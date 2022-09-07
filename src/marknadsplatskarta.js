@@ -63,9 +63,7 @@ function drawMap() {
           icon = "green";
           break;
       }
-      icon = "https://www.adinq.se/images/" + icon + ".png";
-      //        icon = "/images/" + icon + ".png";
-      //        icon = "https://filedn.com/lODGkE8bRyjVm8tpT986SXj/adinq/pins/" + icon + ".png";
+      icon = "https://www.adinq.se/@pins/" + icon + ".png";
       var marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
