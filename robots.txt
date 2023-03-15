@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://www.adinq.se/sitemap.xml
