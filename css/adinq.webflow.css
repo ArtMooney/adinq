@@ -2376,10 +2376,6 @@ a {
   grid-template-rows: auto;
 }
 
-.poster-image-hidden {
-  display: none;
-}
-
 .personal-foto-kristian {
   width: 100%;
   height: 100%;
@@ -2714,6 +2710,48 @@ a {
 .henrikssons-image {
   position: relative;
   width: 12vw;
+}
+
+.video-play {
+  position: absolute;
+  left: 0%;
+  top: auto;
+  right: 0%;
+  bottom: auto;
+  font-family: "Fa solid 900", sans-serif;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 2rem;
+  text-align: center;
+}
+
+.video-chooser {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-video-chooser-overlay {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.79);
+}
+
+.video-chooser-flagga {
+  width: 3rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.video-chooser-flagga:hover {
+  filter: brightness(120%);
 }
 
 @media screen and (max-width: 991px) {
@@ -4001,6 +4039,8 @@ a {
   }
 
   .section-marknad {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     -ms-grid-rows: 12vw auto auto auto;
     grid-template-rows: 12vw auto auto auto;
   }
@@ -4616,18 +4656,52 @@ a {
   justify-self: stretch;
 }
 
-#w-node-_8b50a1ae-eaf7-f226-29e0-e21a57df5475-93bf6b75 {
+#w-node-c223fc3e-a2b2-be4e-0a2d-b812fedd8d94-93bf6b75 {
   -ms-grid-column-span: 1;
-  grid-column-end: 2;
-  -ms-grid-column: 1;
-  grid-column-start: 1;
+  grid-column-end: 3;
+  -ms-grid-column: 2;
+  grid-column-start: 2;
   -ms-grid-row-span: 1;
   grid-row-end: 2;
   -ms-grid-row: 1;
   grid-row-start: 1;
+  -ms-grid-row-align: center;
+  align-self: center;
+  -ms-grid-column-align: center;
+  justify-self: center;
 }
 
-#w-node-c223fc3e-a2b2-be4e-0a2d-b812fedd8d94-93bf6b75 {
+#w-node-_8751f039-0a6c-110c-8dd6-66a3656f16b7-93bf6b75 {
+  -ms-grid-column-span: 1;
+  grid-column-end: 3;
+  -ms-grid-column: 2;
+  grid-column-start: 2;
+  -ms-grid-row-span: 1;
+  grid-row-end: 2;
+  -ms-grid-row: 1;
+  grid-row-start: 1;
+  -ms-grid-row-align: center;
+  align-self: center;
+  -ms-grid-column-align: center;
+  justify-self: center;
+}
+
+#w-node-_8a776c97-c3ee-e8b4-c848-73bb2fd71362-93bf6b75 {
+  -ms-grid-column-span: 1;
+  grid-column-end: 3;
+  -ms-grid-column: 2;
+  grid-column-start: 2;
+  -ms-grid-row-span: 1;
+  grid-row-end: 2;
+  -ms-grid-row: 1;
+  grid-row-start: 1;
+  -ms-grid-row-align: center;
+  align-self: center;
+  -ms-grid-column-align: center;
+  justify-self: center;
+}
+
+#w-node-_8b50a1ae-eaf7-f226-29e0-e21a57df5475-93bf6b75 {
   -ms-grid-column-span: 1;
   grid-column-end: 3;
   -ms-grid-column: 2;
@@ -5737,6 +5811,32 @@ a {
     justify-self: center;
   }
 
+  #w-node-_8751f039-0a6c-110c-8dd6-66a3656f16b7-93bf6b75 {
+    -ms-grid-column-span: 1;
+    grid-column-end: 2;
+    -ms-grid-column: 1;
+    grid-column-start: 1;
+    -ms-grid-row-span: 1;
+    grid-row-end: 2;
+    -ms-grid-row: 1;
+    grid-row-start: 1;
+    -ms-grid-row-align: start;
+    align-self: start;
+    -ms-grid-column-align: center;
+    justify-self: center;
+  }
+
+  #w-node-_8a776c97-c3ee-e8b4-c848-73bb2fd71362-93bf6b75 {
+    -ms-grid-column: 1;
+    grid-column-start: 1;
+    -ms-grid-column-span: 1;
+    grid-column-end: 2;
+    -ms-grid-row: 1;
+    grid-row-start: 1;
+    -ms-grid-row-span: 1;
+    grid-row-end: 2;
+  }
+
   #w-node-_452d304b-83cc-2780-5855-689a8d1a9026-f9bf6b7e {
     -ms-grid-column: 1;
     grid-column-start: 1;
@@ -6395,6 +6495,21 @@ a {
 }
 
 @media screen and (max-width: 479px) {
+  #w-node-_22f79c3d-c49e-b900-703c-ed60e7ae2c1d-93bf6b75 {
+    -ms-grid-column-span: 5;
+    grid-column-end: 5;
+  }
+
+  #w-node-_72e03bf3-87e7-0d79-30a1-1e1c2b966caf-93bf6b75 {
+    -ms-grid-column-span: 5;
+    grid-column-end: 5;
+  }
+
+  #w-node-_525232e3-a9f3-acd1-211b-8e9b4476ffbe-93bf6b75 {
+    -ms-grid-column-span: 5;
+    grid-column-end: 5;
+  }
+
   #w-node-_60042712-1d86-b315-e53f-3fe472226c3c-bdbf6b78 {
     -ms-grid-column: 1;
     grid-column-start: 1;
