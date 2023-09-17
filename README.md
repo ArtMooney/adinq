@@ -1,1 +1,1 @@
-# adinq
+# adinq homepage
