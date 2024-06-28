@@ -1,3 +1,8 @@
+:root {
+  --white: white;
+  --black: black;
+}
+
 body {
   color: #333;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
@@ -28,7 +33,7 @@ a {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 0.3vw;
+  padding-top: .3vw;
   display: flex;
   position: absolute;
   top: 0;
@@ -52,8 +57,8 @@ a {
 
 .adinq-image-link {
   z-index: 101;
-  width: 10%;
   perspective-origin: 50%;
+  width: 10%;
   display: none;
   position: absolute;
 }
@@ -89,24 +94,24 @@ a {
 }
 
 .video-thumb-container {
-  width: 16vw;
   background-image: linear-gradient(#4b4b4b, #4b4b4b);
-  border-radius: 0.3vw;
+  border-radius: .3vw;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 0.2vw;
+  width: 16vw;
+  margin: .2vw;
   display: flex;
   position: relative;
 }
 
 .video-lightbox {
   z-index: 1001;
-  width: 100%;
-  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100vh;
   display: none;
   position: fixed;
   top: 0;
@@ -120,21 +125,21 @@ a {
   height: 2vw;
   display: block;
   position: absolute;
-  top: -0.05vw;
+  top: -.05vw;
   right: -1.96vw;
 }
 
 .video-thumb-image {
+  border-top-left-radius: .3vw;
+  border-top-right-radius: .3vw;
   width: 100%;
   height: 100%;
-  border-top-left-radius: 0.3vw;
-  border-top-right-radius: 0.3vw;
 }
 
 .background-dark {
   z-index: 1000;
+  background-image: linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .75));
   height: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
   display: none;
   position: fixed;
   top: 0;
@@ -143,12 +148,7 @@ a {
   right: 0;
 }
 
-.film1-div,
-.film2-div,
-.film3-div,
-.film4-div,
-.film5-div,
-.film6-div {
+.film1-div, .film2-div, .film3-div, .film4-div, .film5-div, .film6-div {
   display: none;
   position: relative;
 }
@@ -164,7 +164,7 @@ a {
 
 .butiks-tv-ikon {
   width: 3.8vw;
-  margin-bottom: 0.6vw;
+  margin-bottom: .6vw;
 }
 
 .top-menu-text {
@@ -173,7 +173,6 @@ a {
 }
 
 .section-varfor {
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
   flex-direction: column;
@@ -182,17 +181,15 @@ a {
   grid-auto-columns: 1fr;
   justify-content: flex-start;
   align-items: center;
+  min-height: 100vh;
   display: grid;
 }
 
 .video-overlay-varfor {
   z-index: -1;
+  background-image: linear-gradient(rgba(91, 52, 32, .77), rgba(91, 52, 32, .77));
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(
-    rgba(91, 52, 32, 0.77),
-    rgba(91, 52, 32, 0.77)
-  );
   position: fixed;
   top: 0;
   bottom: 0;
@@ -202,12 +199,9 @@ a {
 
 .video-overlay-led {
   z-index: -1;
+  background-image: linear-gradient(rgba(56, 71, 102, .3), rgba(56, 71, 102, .3));
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-    rgba(56, 71, 102, 0.3),
-    rgba(56, 71, 102, 0.3)
-  );
   position: fixed;
   top: 0;
   bottom: 0;
@@ -216,30 +210,29 @@ a {
 }
 
 .section-priser {
-  width: 100%;
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
-  background-color: rgba(0, 0, 0, 0.01);
+  background-color: rgba(0, 0, 0, .01);
   flex-direction: column;
-  grid-template:
-    ". ." 5vw
-    ". ."
-    ". ."
-    ". ."
-    / 1fr 1fr;
+  grid-template: ". ." 5vw
+                 ". ."
+                 ". ."
+                 ". ."
+                 / 1fr 1fr;
   grid-auto-columns: 1fr;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  min-height: 100vh;
   display: block;
   overflow: hidden;
 }
 
 .video-overlay-priser {
   z-index: -1;
+  background-image: linear-gradient(rgba(0, 0, 0, .25), rgba(0, 0, 0, .25));
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
   display: block;
   position: fixed;
   top: 0;
@@ -249,12 +242,12 @@ a {
 }
 
 .prissplash-starta {
-  height: 3vw;
   background-image: linear-gradient(#61a60e, #61a60e);
-  border-radius: 0.7vw;
+  border-radius: .7vw;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 3vw;
   margin: 2%;
   display: flex;
 }
@@ -266,9 +259,9 @@ a {
 .prissplash-text-liten {
   color: #fff;
   text-align: center;
-  text-shadow: 6px 6px 7px rgba(0, 0, 0, 0.16);
+  text-shadow: 6px 6px 7px rgba(0, 0, 0, .16);
   font-family: Brandon med, sans-serif;
-  font-size: 0.8vw;
+  font-size: .8vw;
   font-weight: 400;
   line-height: 1.1vw;
 }
@@ -288,8 +281,7 @@ a {
 
 .pil-ner-dark {
   border: 2vw solid #000;
-  border-color: #000 rgba(255, 224, 0, 0) rgba(246, 255, 18, 0)
-    rgba(220, 250, 0, 0);
+  border-color: #000 rgba(255, 224, 0, 0) rgba(246, 255, 18, 0) rgba(220, 250, 0, 0);
   flex: 0 auto;
   margin-top: -1px;
 }
@@ -304,19 +296,18 @@ a {
 
 .kontakt-form-section {
   z-index: 2000;
-  width: 100%;
-  height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
   flex-direction: column;
-  grid-template:
-    "."
-    "."
-    "." 5vw
-    / 1fr;
+  grid-template: "."
+                 "."
+                 "." 5vw
+                 / 1fr;
   grid-auto-columns: 1fr;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100vh;
   display: none;
   position: absolute;
   top: 0%;
@@ -326,17 +317,17 @@ a {
 }
 
 .kontakt-form {
-  width: 80vw;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.78));
-  border-radius: 0.9vw 0 0.9vw 0.9vw;
+  background-image: linear-gradient(rgba(0, 0, 0, .78), rgba(0, 0, 0, .78));
+  border-radius: .9vw 0 .9vw .9vw;
   flex-direction: column;
   flex: 0 auto;
   justify-content: center;
   align-items: center;
+  width: 80vw;
   padding: 3vw;
   display: flex;
   position: relative;
-  box-shadow: 5px 5px 9px -3px rgba(0, 0, 0, 0.37);
+  box-shadow: 5px 5px 9px -3px rgba(0, 0, 0, .37);
 }
 
 .adinq-logo {
@@ -350,17 +341,17 @@ a {
 }
 
 .text-field {
+  border-radius: .4vw;
   width: 100%;
   height: 2vw;
-  border-radius: 0.4vw;
   font-family: Brandon med, sans-serif;
   font-size: 1.2vw;
   line-height: 1.4vw;
 }
 
 .text-area {
+  border-radius: .4vw;
   width: 100%;
-  border-radius: 0.4vw;
   padding-bottom: 11%;
   font-family: Brandon med, sans-serif;
   font-size: 1.2vw;
@@ -368,8 +359,8 @@ a {
 }
 
 .submit-button {
-  border-radius: 0.7vw;
-  padding: 0.7vw 2vw;
+  border-radius: .7vw;
+  padding: .7vw 2vw;
   font-family: Brandon med, sans-serif;
   font-size: 1.2vw;
   line-height: 1.4vw;
@@ -377,7 +368,7 @@ a {
 
 .kontakt-lyckad {
   background-color: rgba(0, 0, 0, 0);
-  background-image: url("../images/heart.svg");
+  background-image: url('../images/heart.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: auto 100%;
@@ -400,7 +391,7 @@ a {
 }
 
 .email-ikon {
-  background-image: url("../images/email.svg");
+  background-image: url('../images/email.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: auto 100%;
@@ -408,12 +399,12 @@ a {
 }
 
 .close-knapp-kontakt {
-  width: 2vw;
-  height: 2vw;
-  background-image: url("../images/close-knapp.svg");
+  background-image: url('../images/close-knapp.svg');
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  width: 2vw;
+  height: 2vw;
   display: block;
   position: absolute;
   top: 0%;
@@ -433,7 +424,6 @@ a {
 }
 
 .section-marknad {
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
   flex-direction: column;
@@ -442,17 +432,18 @@ a {
   grid-auto-columns: 1fr;
   justify-content: space-between;
   align-items: center;
+  min-height: 100vh;
   display: grid;
   position: relative;
 }
 
 .logos {
   z-index: -1;
-  width: 100%;
-  height: 100%;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  width: 100%;
+  height: 100%;
   display: flex;
   position: fixed;
   top: 0;
@@ -464,19 +455,19 @@ a {
 .ica-logo {
   width: 4vw;
   margin-left: 1vw;
-  margin-right: 0.5vw;
+  margin-right: .5vw;
   display: none;
 }
 
 .willys-logo {
   width: 10.5vw;
-  margin-left: 0.5vw;
+  margin-left: .5vw;
   margin-right: 1vw;
 }
 
 .mediabyraer-ikon {
   width: 4.5vw;
-  margin-bottom: 0.5vw;
+  margin-bottom: .5vw;
 }
 
 .samarbetspartners-logos {
@@ -487,23 +478,22 @@ a {
 }
 
 .ica-link {
-  opacity: 0.25;
+  opacity: .25;
 }
 
 .ica-link:hover {
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .willys-link {
-  opacity: 0.25;
+  opacity: .25;
 }
 
 .willys-link:hover {
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .section-comments {
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
   flex-direction: column;
@@ -512,6 +502,7 @@ a {
   grid-auto-columns: 1fr;
   justify-content: flex-start;
   align-items: center;
+  min-height: 100vh;
   display: grid;
   overflow: hidden;
 }
@@ -521,7 +512,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 0.7vw;
+  margin-top: .7vw;
   margin-left: 1vw;
   display: flex;
   position: absolute;
@@ -539,9 +530,9 @@ a {
 }
 
 .subtitle-marknad {
-  width: 80%;
   color: #fff;
   text-align: center;
+  width: 80%;
   margin-top: 0;
   margin-bottom: 0;
   font-family: Brandon it, sans-serif;
@@ -552,7 +543,7 @@ a {
 
 .title-text-marknad {
   color: #fff;
-  text-shadow: 6px 6px 13px rgba(0, 0, 0, 0.16);
+  text-shadow: 6px 6px 13px rgba(0, 0, 0, .16);
   margin-top: 0;
   margin-bottom: 0;
   font-family: Brandon med, sans-serif;
@@ -562,10 +553,10 @@ a {
 }
 
 .footer-text-marknad {
-  opacity: 0.35;
+  opacity: .35;
   color: #fff;
-  margin-left: 0.5vw;
-  margin-right: 0.5vw;
+  margin-left: .5vw;
+  margin-right: .5vw;
   font-family: Brandon it, sans-serif;
   font-size: 1.5vw;
   font-weight: 400;
@@ -573,7 +564,7 @@ a {
 }
 
 .footer-text-marknad:hover {
-  opacity: 0.65;
+  opacity: .65;
 }
 
 .prislista-ikon {
@@ -593,18 +584,18 @@ a {
 
 .filmkamera-image {
   height: 2vw;
-  margin-left: 0.5vw;
+  margin-left: .5vw;
 }
 
 .filmklappa-image {
   height: 3vw;
   margin-bottom: 10px;
-  margin-left: 0.5vw;
+  margin-left: .5vw;
 }
 
 .filmrulle-image {
   height: 2.8vw;
-  margin-left: 0.5vw;
+  margin-left: .5vw;
 }
 
 .filmproduktioner-text-container {
@@ -615,51 +606,47 @@ a {
 }
 
 .video-container-section {
-  width: 100%;
   flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
+  width: 100%;
   display: flex;
 }
 
-.film7-div,
-.film8-div {
+.film7-div, .film8-div {
   display: none;
   position: relative;
 }
 
 .led-container-section {
-  width: 100%;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
   display: flex;
 }
 
 .led-thumb-container {
-  width: 14vw;
-  background-image: linear-gradient(
-    rgba(199, 199, 199, 0.61),
-    rgba(199, 199, 199, 0.61)
-  );
-  border-radius: 0.3vw;
+  background-image: linear-gradient(rgba(199, 199, 199, .61), rgba(199, 199, 199, .61));
+  border-radius: .3vw;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 0.1vw;
-  padding-top: 0.3vw;
-  padding-left: 0.3vw;
-  padding-right: 0.3vw;
+  width: 14vw;
+  margin: .1vw;
+  padding-top: .3vw;
+  padding-left: .3vw;
+  padding-right: .3vw;
   display: flex;
 }
 
 .led-lightbox {
   z-index: 1001;
-  width: 100%;
-  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100vh;
   display: none;
   position: fixed;
   top: 0;
@@ -668,21 +655,16 @@ a {
   right: 0;
 }
 
-.led-screenshot1,
-.led-screenshot2,
-.led-screenshot3 {
+.led-screenshot1, .led-screenshot2, .led-screenshot3 {
   width: 80vw;
   display: none;
 }
 
 .background-overlay-comments {
   z-index: -1;
+  background-image: linear-gradient(rgba(18, 18, 31, .5), rgba(18, 18, 31, .5));
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(
-    rgba(18, 18, 31, 0.5),
-    rgba(18, 18, 31, 0.5)
-  );
   display: block;
   position: fixed;
   top: 0;
@@ -702,7 +684,7 @@ a {
 }
 
 .glow {
-  opacity: 0.7;
+  opacity: .7;
   filter: blur(15px);
   background-image: linear-gradient(#fff, #fff);
   position: absolute;
@@ -719,27 +701,26 @@ a {
 }
 
 .slider {
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.01);
+  background-color: rgba(0, 0, 0, .01);
   align-self: stretch;
+  height: 100%;
 }
 
 .section-butiks-tv {
   z-index: 1;
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
   flex-direction: column;
-  grid-template:
-    "." 5vw
-    "."
-    "."
-    "."
-    "."
-    / 1fr 1.25fr 1fr;
+  grid-template: "." 5vw
+                 "."
+                 "."
+                 "."
+                 "."
+                 / 1fr 1.25fr 1fr;
   grid-auto-columns: 1fr;
   justify-content: flex-start;
   align-items: center;
+  min-height: 100vh;
   padding-left: 2vw;
   padding-right: 2vw;
   display: grid;
@@ -757,21 +738,21 @@ a {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  margin-bottom: 0.5vw;
+  margin-bottom: .5vw;
   display: flex;
 }
 
 .jobbannons-row {
-  width: 95%;
   justify-content: center;
   align-items: center;
+  width: 95%;
   display: flex;
 }
 
 .adinq-image-link-wobble {
   z-index: 101;
-  width: 10%;
   perspective-origin: 50%;
+  width: 10%;
   position: absolute;
 }
 
@@ -781,18 +762,18 @@ a {
 
 .top-menu-click-area {
   z-index: 102;
-  width: 50vw;
-  height: 4.5vw;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  width: 50vw;
+  height: 4.5vw;
   display: flex;
   position: absolute;
 }
 
 .top-menu-overlay {
   z-index: 100;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85));
+  background-image: linear-gradient(rgba(0, 0, 0, .85), rgba(0, 0, 0, .85));
   display: none;
   position: fixed;
   top: 0;
@@ -814,15 +795,15 @@ a {
 }
 
 .video-size-container {
-  max-height: 70vh;
   max-width: 80vw;
+  max-height: 70vh;
   margin-bottom: 14vh;
   position: relative;
 }
 
 .led-size-container {
-  max-height: 70vh;
   max-width: 80vw;
+  max-height: 70vh;
   margin-bottom: 14vh;
   display: block;
   position: relative;
@@ -840,20 +821,19 @@ a {
 
 .section-mediabyraer {
   z-index: 0;
-  min-height: 100vh;
   grid-column-gap: 16px;
   grid-row-gap: 16px;
   flex-direction: column;
-  grid-template:
-    ". . . ." 5vw
-    ". . . ."
-    ". . . ."
-    ". . . ."
-    ". . . ."
-    / 1fr 1fr 1fr 1fr;
+  grid-template: ". . . ." 5vw
+                 ". . . ."
+                 ". . . ."
+                 ". . . ."
+                 ". . . ."
+                 / 1fr 1fr 1fr 1fr;
   grid-auto-columns: 1fr;
   justify-content: flex-start;
   align-items: center;
+  min-height: 100vh;
   padding-left: 2vw;
   padding-right: 2vw;
   display: grid;
@@ -863,16 +843,14 @@ a {
 .text-default {
   color: #fff;
   text-align: center;
-  text-shadow: 6px 6px 7px rgba(0, 0, 0, 0.16);
+  text-shadow: 6px 6px 7px rgba(0, 0, 0, .16);
   font-family: Brandon med, sans-serif;
   font-size: 1.2vw;
   font-weight: 400;
   line-height: 1.4vw;
 }
 
-.text-default.text-rubrik,
-.text-default.text-title.width-70-percent,
-.text-default.text-title.width-90-percent {
+.text-default.text-rubrik, .text-default.text-title.width-70-percent, .text-default.text-title.width-90-percent {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -880,7 +858,7 @@ a {
 .knapp-text-class {
   text-align: center;
   text-transform: uppercase;
-  border-radius: 0.3vw;
+  border-radius: .3vw;
   font-family: Brandon med, sans-serif;
   font-size: 1.2vw;
   line-height: 1.3vw;
@@ -898,12 +876,9 @@ a {
 
 .video-overlay-mediabyraer {
   z-index: -1;
+  background-image: linear-gradient(rgba(71, 78, 92, .3), rgba(71, 78, 92, .3));
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(
-    rgba(71, 78, 92, 0.3),
-    rgba(71, 78, 92, 0.3)
-  );
   display: block;
   position: fixed;
   top: 0%;
@@ -914,7 +889,7 @@ a {
 
 .prislista-mediabyraer-ikon {
   width: 4.5vw;
-  margin-bottom: 0.3vw;
+  margin-bottom: .3vw;
 }
 
 .prislista-mediabyraer-ikon:hover {
@@ -929,20 +904,19 @@ a {
 }
 
 .section-storbildsskarmar {
-  min-height: 100vh;
   grid-column-gap: 16px;
   grid-row-gap: 16px;
   flex-direction: column;
-  grid-template:
-    ". . . ." 5vw
-    ". . . ."
-    ". . . ."
-    ". . . ."
-    ". . . ."
-    / 1fr 1.5fr 1fr 1fr;
+  grid-template: ". . . ." 5vw
+                 ". . . ."
+                 ". . . ."
+                 ". . . ."
+                 ". . . ."
+                 / 1fr 1.5fr 1fr 1fr;
   grid-auto-columns: 1fr;
   justify-content: flex-start;
   align-items: center;
+  min-height: 100vh;
   padding-left: 2vw;
   padding-right: 2vw;
   display: grid;
@@ -956,9 +930,9 @@ a {
 }
 
 .list-row {
-  width: 70%;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 70%;
   display: flex;
 }
 
@@ -967,7 +941,7 @@ a {
 }
 
 .list-row-glapp {
-  width: 0.3vw;
+  width: .3vw;
 }
 
 .glapp-litet {
@@ -999,12 +973,12 @@ a {
 }
 
 .pil-upp {
-  width: 3vw;
-  min-height: 2vw;
-  background-image: url("../images/pil-upp.svg");
+  background-image: url('../images/pil-upp.svg');
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  width: 3vw;
+  min-height: 2vw;
 }
 
 .text-rubrik {
@@ -1014,13 +988,13 @@ a {
 }
 
 .knapp-butikstv-priser {
-  width: 17vw;
-  height: 3vw;
   background-image: linear-gradient(#000, #000);
-  border-radius: 0.3vw;
+  border-radius: .3vw;
   justify-content: center;
   align-items: center;
-  margin: 0.5vw;
+  width: 17vw;
+  height: 3vw;
+  margin: .5vw;
   display: flex;
 }
 
@@ -1029,23 +1003,23 @@ a {
 }
 
 .prisslide {
-  height: 100%;
   background-color: rgba(0, 0, 0, 0);
+  height: 100%;
 }
 
 .glapp-superlitet {
   width: 100%;
-  min-height: 0.3vw;
+  min-height: .3vw;
 }
 
 .riksprislistan-butiks-tv {
-  width: 3vw;
-  height: 3vw;
-  background-image: url("../images/prislista.svg");
+  background-image: url('../images/prislista.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 0.3vw;
+  width: 3vw;
+  height: 3vw;
+  margin: .3vw;
 }
 
 .slide-nav {
@@ -1053,23 +1027,23 @@ a {
 }
 
 .utility-page-wrap {
-  width: 100vw;
-  height: 100vh;
-  max-height: 100%;
-  max-width: 100%;
-  background-image: url("../images/folkmassa.jpg");
+  background-image: url('../images/folkmassa.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100%;
   display: flex;
 }
 
 .utility-page-content {
-  width: 40vw;
   text-align: center;
   flex-direction: column;
+  width: 40vw;
   display: flex;
 }
 
@@ -1085,12 +1059,12 @@ a {
 }
 
 .kontakt-form-background {
-  width: 100%;
-  height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100vh;
   display: block;
   position: fixed;
   top: 0%;
@@ -1105,7 +1079,6 @@ a {
 
 .section-marknadsplatskarta {
   z-index: 0;
-  min-height: 100vh;
   grid-column-gap: 0vw;
   grid-row-gap: 0vw;
   flex-direction: column;
@@ -1114,6 +1087,7 @@ a {
   grid-auto-columns: 1fr;
   justify-content: flex-start;
   align-items: center;
+  min-height: 100vh;
   display: grid;
   position: relative;
   overflow: hidden;
@@ -1121,9 +1095,9 @@ a {
 
 .marknadsplatskarta {
   z-index: -1;
+  background-image: none;
   width: 200vw;
   min-height: 100vh;
-  background-image: none;
   display: block;
   position: absolute;
   top: 0;
@@ -1149,20 +1123,18 @@ a {
 }
 
 .fullscreen {
-  width: 5vw;
-  height: 5vw;
-  background-image: url("../images/fullscreen.svg"),
-    linear-gradient(rgba(31, 86, 107, 0.81), rgba(31, 86, 107, 0.81));
+  background-image: url('../images/fullscreen.svg'), linear-gradient(rgba(31, 86, 107, .81), rgba(31, 86, 107, .81));
   background-position: 50%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 3vw 3vw, auto;
   border-radius: 2.5vw;
+  width: 5vw;
+  height: 5vw;
   position: absolute;
 }
 
 .fullscreen:hover {
-  background-image: url("../images/fullscreen.svg"),
-    linear-gradient(rgba(74, 132, 154, 0.81), rgba(74, 132, 154, 0.81));
+  background-image: url('../images/fullscreen.svg'), linear-gradient(rgba(74, 132, 154, .81), rgba(74, 132, 154, .81));
   background-position: 50%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 3vw 3vw, auto;
@@ -1176,8 +1148,8 @@ a {
 .sok-karta {
   background-image: linear-gradient(#598f50, #598f50);
   border-radius: 10px;
-  margin-left: 0.3vw;
-  margin-right: 0.3vw;
+  margin-left: .3vw;
+  margin-right: .3vw;
 }
 
 .sok-karta.text-default:hover {
@@ -1198,17 +1170,17 @@ a {
 }
 
 .success-karta {
+  background-color: rgba(0, 0, 0, 0);
   width: 0;
   height: 0;
-  background-color: rgba(0, 0, 0, 0);
   padding: 0;
   position: absolute;
 }
 
 .error-karta {
+  background-color: rgba(0, 0, 0, 0);
   width: 0;
   height: 0;
-  background-color: rgba(0, 0, 0, 0);
   margin-top: 0;
   padding: 0;
   display: none;
@@ -1220,20 +1192,17 @@ a {
 }
 
 .section-sponsorskap {
-  width: 100%;
-  height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0.8)
-  );
+  background-image: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8));
   flex-direction: column;
   grid-template-rows: auto auto auto 10vh;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-auto-columns: 1fr;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100vh;
   display: grid;
   overflow: hidden;
 }
@@ -1245,32 +1214,32 @@ a {
 }
 
 .osk-logga {
-  width: 11vw;
-  height: 11vw;
-  background-image: url("../images/osk.svg");
+  background-image: url('../images/osk.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
-  margin-right: 0.5vw;
+  width: 11vw;
+  height: 11vw;
+  margin-right: .5vw;
 }
 
 .eskilstuna-logga {
-  width: 9.3vw;
-  height: 12vw;
-  background-image: url("../images/Eskilstuna_United_DFF_logo.svg.png");
+  background-image: url('../images/Eskilstuna_United_DFF_logo.svg.png');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
-  margin-left: 0.5vw;
+  width: 9.3vw;
+  height: 12vw;
+  margin-left: .5vw;
 }
 
 .pil-upp-svart {
-  width: 3vw;
-  height: 2vw;
-  background-image: url("../images/pil-upp-svart.svg");
+  background-image: url('../images/pil-upp-svart.svg');
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: contain;
+  width: 3vw;
+  height: 2vw;
 }
 
 .width-90-percent {
@@ -1304,12 +1273,12 @@ a {
 }
 
 .handclick-hand {
-  width: 5vw;
-  height: 7vw;
-  background-image: url("../images/handclick-hand.svg");
+  background-image: url('../images/handclick-hand.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
+  width: 5vw;
+  height: 7vw;
   position: absolute;
 }
 
@@ -1317,26 +1286,26 @@ a {
   display: none;
   position: relative;
   top: 3vw;
-  left: 0.6vw;
+  left: .6vw;
 }
 
 .handclick-click {
-  width: 5vw;
-  height: 7vw;
-  background-image: url("../images/handclick-click.svg");
+  background-image: url('../images/handclick-click.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
+  width: 5vw;
+  height: 7vw;
 }
 
 .videocontainer-marknad {
   z-index: -2;
-  width: 100%;
-  height: 100%;
-  background-image: url("../images/folkmassa.jpg");
+  background-image: url('../images/folkmassa.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1345,12 +1314,12 @@ a {
 
 .videocontainer-butiks-tv {
   z-index: -2;
-  width: 100%;
-  height: 100%;
-  background-image: url("../images/butiks-tv.jpg");
+  background-image: url('../images/butiks-tv.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1359,12 +1328,12 @@ a {
 
 .videocontainer-mediaproduktion {
   z-index: -2;
-  width: 100%;
-  height: 100%;
-  background-image: url("../images/media-produktion.jpg");
+  background-image: url('../images/media-produktion.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1373,12 +1342,12 @@ a {
 
 .videocontainer-led {
   z-index: -2;
-  width: 100%;
-  height: 100%;
-  background-image: url("../images/led.jpg");
+  background-image: url('../images/led.jpg');
   background-position: 75%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1387,12 +1356,12 @@ a {
 
 .videocontainer-kunder {
   z-index: -2;
-  width: 100%;
-  height: 100%;
-  background-image: url("../images/stockholm.jpg");
+  background-image: url('../images/stockholm.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1401,12 +1370,12 @@ a {
 
 .videocontainer-mediabyraer {
   z-index: -2;
-  width: 100%;
-  height: 100%;
-  background-image: url("../images/mediabyraer.jpg");
+  background-image: url('../images/mediabyraer.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1415,12 +1384,12 @@ a {
 
 .videocontainer-varfor {
   z-index: -2;
-  width: 100%;
-  height: 100%;
-  background-image: url("../images/big-city-people.jpg");
+  background-image: url('../images/big-city-people.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1429,12 +1398,12 @@ a {
 
 .videocontainer-priser {
   z-index: -2;
-  width: 100%;
-  height: 100vh;
-  background-image: url("../images/guitarman.jpg");
+  background-image: url('../images/guitarman.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100vh;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1443,12 +1412,12 @@ a {
 
 .videocontainer-kommersialisera {
   z-index: -2;
-  width: 100%;
-  height: 100%;
-  background-image: url("../images/led_rusningstrafik.jpg");
+  background-image: url('../images/led_rusningstrafik.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1457,7 +1426,6 @@ a {
 
 .section-kommersialisera {
   z-index: 0;
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
   flex-direction: column;
@@ -1467,6 +1435,7 @@ a {
   justify-content: space-around;
   align-items: center;
   justify-items: stretch;
+  min-height: 100vh;
   display: grid;
   position: relative;
   overflow: hidden;
@@ -1474,10 +1443,10 @@ a {
 
 .video-overlay-kommersialisera {
   z-index: -1;
+  background-color: rgba(64, 70, 80, .61);
+  background-image: none;
   width: 100%;
   height: 100%;
-  background-color: rgba(64, 70, 80, 0.61);
-  background-image: none;
   display: block;
   position: fixed;
   top: 0;
@@ -1495,16 +1464,16 @@ a {
   align-items: center;
   padding: 2vw;
   display: flex;
-  box-shadow: 4px 4px 14px -4px rgba(0, 0, 0, 0.52);
+  box-shadow: 4px 4px 14px -4px rgba(0, 0, 0, .52);
 }
 
 .pil-ner-ikon {
-  width: 3vw;
-  min-height: 2vw;
-  background-image: url("../images/pil-ner.svg");
+  background-image: url('../images/pil-ner.svg');
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  width: 3vw;
+  min-height: 2vw;
 }
 
 .flex-ver-cen {
@@ -1543,11 +1512,11 @@ a {
 }
 
 .top-menu-container {
-  min-height: 5vw;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 0.3vw;
+  min-height: 5vw;
+  padding-top: .3vw;
   display: flex;
   position: absolute;
   top: 0;
@@ -1556,30 +1525,20 @@ a {
   overflow: hidden;
 }
 
-.text-hover-underscore:hover,
-.text-hover-underscore.w--current:hover {
+.text-hover-underscore:hover, .text-hover-underscore.w--current:hover {
   text-decoration: underline;
 }
 
 .blobcolor-clearblue {
-  background-image: linear-gradient(
-    rgba(8, 134, 250, 0.79),
-    rgba(8, 134, 250, 0.79)
-  );
+  background-image: linear-gradient(rgba(8, 134, 250, .79), rgba(8, 134, 250, .79));
 }
 
 .blobcolor-clearpurple {
-  background-image: linear-gradient(
-    rgba(147, 53, 141, 0.79),
-    rgba(147, 53, 141, 0.79)
-  );
+  background-image: linear-gradient(rgba(147, 53, 141, .79), rgba(147, 53, 141, .79));
 }
 
 .blobcolor-cleargreen {
-  background-image: linear-gradient(
-    rgba(97, 166, 14, 0.79),
-    rgba(97, 166, 14, 0.79)
-  );
+  background-image: linear-gradient(rgba(97, 166, 14, .79), rgba(97, 166, 14, .79));
 }
 
 .width-50-percent {
@@ -1587,13 +1546,13 @@ a {
 }
 
 .section-media {
-  width: 100%;
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
   grid-template-rows: 80vh 20vh auto auto auto auto auto 90px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-auto-columns: 1fr;
+  width: 100%;
+  min-height: 100vh;
   padding-left: 2vw;
   padding-right: 2vw;
   display: grid;
@@ -1601,10 +1560,7 @@ a {
 }
 
 .blobcolor-blue {
-  background-image: linear-gradient(
-    rgba(0, 143, 190, 0.62),
-    rgba(0, 143, 190, 0.62)
-  );
+  background-image: linear-gradient(rgba(0, 143, 190, .62), rgba(0, 143, 190, .62));
 }
 
 .flex-ver-spread {
@@ -1614,30 +1570,21 @@ a {
 }
 
 .blobcolor-black {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
+  background-image: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55));
 }
 
 .blobcolor-forestgreen {
-  background-image: linear-gradient(
-    rgba(145, 160, 66, 0.82),
-    rgba(145, 160, 66, 0.82)
-  );
+  background-image: linear-gradient(rgba(145, 160, 66, .82), rgba(145, 160, 66, .82));
 }
 
 .blobcolor-purple {
-  background-image: linear-gradient(
-    rgba(160, 83, 126, 0.55),
-    rgba(160, 83, 126, 0.55)
-  );
+  background-image: linear-gradient(rgba(160, 83, 126, .55), rgba(160, 83, 126, .55));
 }
 
 .video-thumb-overlay {
+  background-image: linear-gradient(rgba(255, 255, 255, .2), rgba(255, 255, 255, .2));
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 255, 255, 0.2)
-  );
   position: absolute;
 }
 
@@ -1658,19 +1605,16 @@ a {
 }
 
 .blobcolor-pink {
-  background-image: linear-gradient(
-    rgba(206, 14, 45, 0.59),
-    rgba(206, 14, 45, 0.59)
-  );
+  background-image: linear-gradient(rgba(206, 14, 45, .59), rgba(206, 14, 45, .59));
 }
 
 .browserwarning {
   z-index: 2000;
-  width: 100%;
-  height: 9vw;
   background-image: linear-gradient(#000, #000);
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 9vw;
   display: none;
   position: fixed;
   bottom: 0;
@@ -1681,7 +1625,7 @@ a {
 .text-brands-browser {
   color: #fff;
   text-align: center;
-  letter-spacing: 0.3vw;
+  letter-spacing: .3vw;
   font-family: "Fa brands 400", sans-serif;
   font-size: 3vw;
   line-height: 3vw;
@@ -1695,7 +1639,7 @@ a {
 .text-regular-default {
   color: #fff;
   text-align: center;
-  text-shadow: 6px 6px 7px rgba(0, 0, 0, 0.16);
+  text-shadow: 6px 6px 7px rgba(0, 0, 0, .16);
   font-family: "Fa 400", sans-serif;
   font-size: 1.2vw;
   font-weight: 400;
@@ -1704,8 +1648,8 @@ a {
 
 .close-top-right-browser {
   position: absolute;
-  top: 0.5vw;
-  right: 0.7vw;
+  top: .5vw;
+  right: .7vw;
 }
 
 .close-top-right-browser:hover {
@@ -1718,7 +1662,7 @@ a {
 }
 
 .framecore-slider {
-  background-image: linear-gradient(rgba(2, 255, 0, 0.5), rgba(2, 255, 0, 0.5));
+  background-image: linear-gradient(rgba(2, 255, 0, .5), rgba(2, 255, 0, .5));
   align-self: stretch;
   display: flex;
 }
@@ -1736,10 +1680,7 @@ a {
 }
 
 .marknadsplatskarta-background {
-  background-image: linear-gradient(
-    rgba(42, 133, 164, 0.7),
-    rgba(42, 133, 164, 0.7)
-  );
+  background-image: linear-gradient(rgba(42, 133, 164, .7), rgba(42, 133, 164, .7));
   align-self: stretch;
 }
 
@@ -1756,10 +1697,7 @@ a {
 }
 
 .splashcol-blue3 {
-  background-image: linear-gradient(
-    rgba(38, 105, 129, 0.9),
-    rgba(38, 105, 129, 0.9)
-  );
+  background-image: linear-gradient(rgba(38, 105, 129, .9), rgba(38, 105, 129, .9));
 }
 
 .prissplash-sidepadding {
@@ -1787,10 +1725,7 @@ a {
 }
 
 .splashcol-yellow3 {
-  background-image: linear-gradient(
-    rgba(143, 111, 0, 0.9),
-    rgba(143, 111, 0, 0.9)
-  );
+  background-image: linear-gradient(rgba(143, 111, 0, .9), rgba(143, 111, 0, .9));
 }
 
 .splashcol-purple1 {
@@ -1802,10 +1737,7 @@ a {
 }
 
 .splashcol-purple3 {
-  background-image: linear-gradient(
-    rgba(77, 23, 73, 0.9),
-    rgba(77, 23, 73, 0.9)
-  );
+  background-image: linear-gradient(rgba(77, 23, 73, .9), rgba(77, 23, 73, .9));
 }
 
 .blobcolor-solidblack {
@@ -1815,10 +1747,9 @@ a {
 .prissplash {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  grid-template:
-    "." 7vw
-    "."
-    / 1fr;
+  grid-template: "." 7vw
+                 "."
+                 / 1fr;
   grid-auto-columns: 1fr;
   align-content: stretch;
   justify-content: stretch;
@@ -1834,17 +1765,16 @@ a {
 }
 
 .slidegrid1 {
-  width: 100%;
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
-  grid-template:
-    ". . . . ." 5vw
-    ". . . . ." 12vw
-    ". . . . ."
-    ". . . . ."
-    / 0.25fr 1fr 1fr 1fr 0.25fr;
+  grid-template: ". . . . ." 5vw
+                 ". . . . ." 12vw
+                 ". . . . ."
+                 ". . . . ."
+                 / .25fr 1fr 1fr 1fr .25fr;
   grid-auto-columns: 1fr;
+  width: 100%;
+  min-height: 100vh;
   display: grid;
 }
 
@@ -1871,10 +1801,7 @@ a {
 }
 
 .splashcol-brons3 {
-  background-image: linear-gradient(
-    rgba(138, 46, 14, 0.9),
-    rgba(138, 46, 14, 0.9)
-  );
+  background-image: linear-gradient(rgba(138, 46, 14, .9), rgba(138, 46, 14, .9));
 }
 
 .splashcol-guld1 {
@@ -1886,10 +1813,7 @@ a {
 }
 
 .splashcol-guld3 {
-  background-image: linear-gradient(
-    rgba(122, 71, 16, 0.9),
-    rgba(122, 71, 16, 0.9)
-  );
+  background-image: linear-gradient(rgba(122, 71, 16, .9), rgba(122, 71, 16, .9));
 }
 
 .splashcol-silver1 {
@@ -1901,10 +1825,7 @@ a {
 }
 
 .splashcol-silver3 {
-  background-image: linear-gradient(
-    rgba(134, 134, 134, 0.9),
-    rgba(134, 134, 134, 0.9)
-  );
+  background-image: linear-gradient(rgba(134, 134, 134, .9), rgba(134, 134, 134, .9));
 }
 
 .splashcol-lightorange1 {
@@ -1916,10 +1837,7 @@ a {
 }
 
 .splashcol-lightorange3 {
-  background-image: linear-gradient(
-    rgba(206, 128, 38, 0.9),
-    rgba(206, 128, 38, 0.9)
-  );
+  background-image: linear-gradient(rgba(206, 128, 38, .9), rgba(206, 128, 38, .9));
 }
 
 .splashcol-lightblue1 {
@@ -1931,10 +1849,7 @@ a {
 }
 
 .splashcol-lightblue3 {
-  background-image: linear-gradient(
-    rgba(99, 175, 201, 0.9),
-    rgba(99, 175, 201, 0.9)
-  );
+  background-image: linear-gradient(rgba(99, 175, 201, .9), rgba(99, 175, 201, .9));
 }
 
 .splashcol-lightpurple1 {
@@ -1946,39 +1861,34 @@ a {
 }
 
 .splashcol-lightpurple3 {
-  background-image: linear-gradient(
-    rgba(120, 68, 118, 0.87),
-    rgba(120, 68, 118, 0.87)
-  );
+  background-image: linear-gradient(rgba(120, 68, 118, .87), rgba(120, 68, 118, .87));
 }
 
 .slidegrid2 {
-  width: 100%;
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
-  grid-template:
-    ". . . . ." 5vw
-    ". . . . ." 13vw
-    ". . . . ."
-    ". . . . ."
-    / 0.25fr 1fr 1fr 1fr 0.25fr;
+  grid-template: ". . . . ." 5vw
+                 ". . . . ." 13vw
+                 ". . . . ."
+                 ". . . . ."
+                 / .25fr 1fr 1fr 1fr .25fr;
   grid-auto-columns: 1fr;
+  width: 100%;
+  min-height: 100vh;
   display: grid;
 }
 
 .slidegrid3 {
-  width: 100%;
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
-  grid-template:
-    ". . . . ." 5vw
-    ". . . . ." 12vw
-    ". . . . ."
-    ". . . . ."
-    / 0.25fr 1fr 1fr 1fr 0.25fr;
+  grid-template: ". . . . ." 5vw
+                 ". . . . ." 12vw
+                 ". . . . ."
+                 ". . . . ."
+                 / .25fr 1fr 1fr 1fr .25fr;
   grid-auto-columns: 1fr;
+  width: 100%;
+  min-height: 100vh;
   display: grid;
 }
 
@@ -1993,26 +1903,26 @@ a {
 }
 
 .margin-sides {
-  margin-left: 0.3vw;
-  margin-right: 0.3vw;
+  margin-left: .3vw;
+  margin-right: .3vw;
 }
 
 .kontaktform-allman {
-  width: 15vw;
-  height: 15vw;
-  background-image: url("../images/kontakt-allman.svg");
+  background-image: url('../images/kontakt-allman.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 15vw;
+  height: 15vw;
 }
 
 .kontaktform-ekonomi {
-  width: 15vw;
-  height: 15vw;
-  background-image: url("../images/kontakt-ekonomi.svg");
+  background-image: url('../images/kontakt-ekonomi.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 15vw;
+  height: 15vw;
 }
 
 .kontakt-text-width {
@@ -2026,7 +1936,7 @@ a {
 }
 
 .text-hover-trans-to-white {
-  color: rgba(255, 255, 255, 0.56);
+  color: rgba(255, 255, 255, .56);
 }
 
 .text-hover-trans-to-white:hover {
@@ -2049,35 +1959,30 @@ a {
 }
 
 .margin-sides-youtube {
-  margin-left: 0.2vw;
-  margin-right: 0.3vw;
+  margin-left: .2vw;
+  margin-right: .3vw;
 }
 
 .section-kommersialisera-info {
-  width: 100%;
-  min-height: 100vh;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
-  grid-template:
-    "." 5vw
-    "."
-    "."
-    "." 10vw
-    / 1fr 1fr 2fr 1.5fr 1fr;
+  grid-template: "." 5vw
+                 "."
+                 "."
+                 "." 10vw
+                 / 1fr 1fr 2fr 1.5fr 1fr;
   grid-auto-columns: 1fr;
+  width: 100%;
+  min-height: 100vh;
   display: grid;
   overflow: hidden;
 }
 
 .video-overlay-kommersialisera-info {
   z-index: -1;
+  background-image: linear-gradient(rgba(46, 74, 62, 0), rgba(57, 73, 59, .68) 12%, rgba(66, 64, 57, .93));
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-    rgba(46, 74, 62, 0),
-    rgba(57, 73, 59, 0.68) 12%,
-    rgba(66, 64, 57, 0.93)
-  );
   position: fixed;
   top: 0;
   bottom: 0;
@@ -2086,24 +1991,22 @@ a {
 }
 
 .slider-kommersialisera {
-  min-height: 100%;
   background-color: rgba(0, 0, 0, 0);
   align-self: stretch;
+  min-height: 100%;
 }
 
 .slidergrid {
-  min-height: 100%;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
-  grid-template:
-    "."
-    / 0.25fr 1fr 0.25fr;
+  grid-template: "."
+  / .25fr 1fr .25fr;
   grid-auto-columns: 1fr;
+  min-height: 100%;
   display: grid;
 }
 
-.right-arrow-2,
-.left-arrow-2 {
+.right-arrow-2, .left-arrow-2 {
   width: 4vw;
 }
 
@@ -2124,15 +2027,15 @@ a {
   align-items: center;
   padding: 2vw 6vw;
   display: flex;
-  box-shadow: 4px 4px 14px -4px rgba(0, 0, 0, 0.52);
+  box-shadow: 4px 4px 14px -4px rgba(0, 0, 0, .52);
 }
 
 .knapp-def {
-  height: 3vw;
   background-color: #000;
-  border-radius: 0.3vw;
+  border-radius: .3vw;
   justify-content: center;
   align-items: center;
+  height: 3vw;
   margin: 1vw;
   padding-left: 1vw;
   padding-right: 1vw;
@@ -2154,11 +2057,11 @@ a {
 
 .top-menu-click-area-hover-over {
   z-index: 102;
-  width: 100%;
-  height: 100vh;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
+  height: 100vh;
   display: none;
   position: fixed;
   top: 7.5vw;
@@ -2174,7 +2077,7 @@ a {
 .social-top {
   z-index: 110;
   position: absolute;
-  top: 0.7vw;
+  top: .7vw;
   bottom: auto;
   left: auto;
   right: 0%;
@@ -2189,33 +2092,33 @@ a {
 }
 
 .title-video {
-  border-radius: 0.5vw;
+  border-radius: .5vw;
   position: relative;
   overflow: hidden;
 }
 
 .title-video-wrapper {
-  width: 100%;
-  height: 100%;
-  max-width: 36rem;
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
   grid-template-rows: auto;
   grid-template-columns: 1fr;
   grid-auto-columns: 1fr;
+  width: 100%;
+  max-width: 36rem;
+  height: 100%;
   display: grid;
   position: relative;
 }
 
 .personal-foto-kristian {
-  width: 100%;
-  height: 100%;
   filter: saturate(48%);
-  background-image: url("../images/kristian.jpg");
+  background-image: url('../images/kristian.jpg');
   background-position: 100% 0;
   background-repeat: no-repeat;
   background-size: 109%;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 .personal-link {
@@ -2223,145 +2126,118 @@ a {
 }
 
 .personal-foto-martin {
-  width: 100%;
-  height: 100%;
   filter: saturate(30%);
-  background-image: url("../images/martin.jpg");
+  background-image: url('../images/martin.jpg');
   background-position: 50% 2%;
   background-repeat: no-repeat;
   background-size: 135%;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 .personal-foto-christer {
-  width: 100%;
-  height: 100%;
   filter: saturate(110%);
-  background-image: url("../images/christer.jpg");
+  background-image: url('../images/christer.jpg');
   background-position: 50% 39%;
   background-repeat: no-repeat;
   background-size: 105%;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 .personal-foto-patrik {
-  width: 100%;
-  height: 100%;
   filter: saturate(48%);
-  background-image: url("../images/Patrik-Adqvist_V3_large.jpg");
+  background-image: url('../images/Patrik-Adqvist_V3_large.jpg');
   background-position: 50% 1%;
   background-repeat: no-repeat;
   background-size: 110%;
   border-radius: 2%;
-}
-
-.personal-foto-jim {
   width: 100%;
   height: 100%;
-  filter: saturate(35%);
-  background-image: url("../images/Jim.jpg");
-  background-position: 27% 29%;
-  background-repeat: no-repeat;
-  background-size: 156%;
-  border-radius: 2%;
 }
 
 .personal-foto-niclas {
-  width: 100%;
-  height: 100%;
   filter: saturate(55%);
-  background-image: url("../images/niclas.jpg");
+  background-image: url('../images/niclas.jpg');
   background-position: 50% 14%;
   background-repeat: no-repeat;
   background-size: 116%;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 .personal-foto {
-  width: 15vw;
-  height: 21.5vw;
   background-image: linear-gradient(#fff, #fff);
   border-radius: 2%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 15vw;
+  height: 21.5vw;
   margin: 1%;
   padding: 1%;
   display: flex;
-  box-shadow: 13px 15px 35px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: 13px 15px 35px -10px rgba(0, 0, 0, .5);
 }
 
 .personal-foto-magnus {
-  width: 100%;
-  height: 100%;
   filter: saturate(48%);
-  background-image: url("../images/magnus.jpg");
+  background-image: url('../images/magnus.jpg');
   background-position: 50% 47%;
   background-repeat: no-repeat;
   background-size: 127%;
   border-radius: 2%;
-}
-
-.personal-foto-arne {
   width: 100%;
   height: 100%;
+}
+
+.personal-foto-carolina {
   filter: saturate(35%);
-  background-image: url("../images/arne.jpg");
-  background-position: 50% 38%;
+  background-image: url('../images/Carolina-Eriksson.jpg');
+  background-position: 49% 14%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 342%;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 .personal-name {
-  font-size: 0.8vw;
+  font-size: .8vw;
   line-height: 1.15vw;
 }
 
 .personal-foto-lars {
-  width: 100%;
-  height: 100%;
   filter: saturate(48%);
-  background-image: url("../images/Lars-Axelsson_large.jpg");
+  background-image: url('../images/Lars-Axelsson_large.jpg');
   background-position: 50% 0;
   background-repeat: no-repeat;
   background-size: 110%;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 .personal-galleri-section {
-  width: 100%;
   grid-column-gap: 16px;
   grid-row-gap: 16px;
   color: #fff;
-  background-image: linear-gradient(
-      203deg,
-      rgba(48, 33, 27, 0.5),
-      rgba(18, 22, 29, 0.89)
-    ),
-    url("../images/city-crowd-background.jpg");
+  background-image: linear-gradient(203deg, rgba(48, 33, 27, .5), rgba(18, 22, 29, .89)), url('../images/city-crowd-background.jpg');
   background-position: 0 0, 50% 0;
   background-repeat: repeat, no-repeat;
   background-size: auto, 150% 100%;
   grid-template-rows: 100vh auto 40vw auto 40vw auto 10vw auto auto 20vh;
   grid-template-columns: 1fr 1fr;
   grid-auto-columns: 1fr;
+  width: 100%;
   margin-top: 0;
   display: grid;
   top: 0;
   right: 0;
   overflow: hidden;
-}
-
-.personal-foto-almir {
-  width: 100%;
-  height: 100%;
-  filter: saturate(30%);
-  background-image: url("../images/Almir-2.jpg");
-  background-position: 50% 47%;
-  background-repeat: no-repeat;
-  background-size: 110%;
-  border-radius: 2%;
 }
 
 .personal-foto-square {
@@ -2372,51 +2248,40 @@ a {
 }
 
 .personal-foto-text {
-  width: 100%;
   color: #000;
   text-align: center;
   text-transform: uppercase;
+  width: 100%;
   margin-bottom: 6%;
   margin-left: 6%;
   margin-right: 6%;
   padding-top: 2%;
   font-family: Brandon med, sans-serif;
-  font-size: 0.58vw;
+  font-size: .58vw;
   font-weight: 400;
-  line-height: 0.8vw;
-}
-
-.personal-foto-daniel-l {
-  width: 100%;
-  height: 100%;
-  filter: saturate(35%);
-  background-image: url("../images/daniel_l.jpg");
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 2%;
+  line-height: .8vw;
 }
 
 .personal-foto-tina {
-  width: 100%;
-  height: 100%;
   filter: saturate(30%);
-  background-image: url("../images/tina.jpg");
+  background-image: url('../images/tina.jpg');
   background-position: 50% 0;
   background-repeat: no-repeat;
   background-size: 110%;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 .personal-foto-marie {
-  width: 100%;
-  height: 100%;
   filter: saturate(65%);
-  background-image: url("../images/AdobeStock_97167374_2000px.jpg");
+  background-image: url('../images/AdobeStock_97167374_2000px.jpg');
   background-position: 41% 28%;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 .personal-telefon {
@@ -2424,100 +2289,67 @@ a {
 }
 
 .personal-foto-andy {
-  width: 100%;
-  height: 100%;
   filter: saturate(30%);
-  background-image: url("../images/andy.jpg");
+  background-image: url('../images/andy.jpg');
   background-position: 17% 58%;
   background-repeat: no-repeat;
   background-size: 100%;
   border-radius: 2%;
-}
-
-.personal-foto-tim {
   width: 100%;
   height: 100%;
-  filter: saturate(30%);
-  background-image: url("../images/Tim2.jpg");
-  background-position: 41% 31%;
-  background-repeat: no-repeat;
-  background-size: 197%;
-  border-radius: 2%;
-}
-
-.personal-foto-andreas {
-  width: 100%;
-  height: 100%;
-  filter: saturate(33%);
-  background-image: url("../images/andreas.jpg");
-  background-position: 53% 46%;
-  background-repeat: no-repeat;
-  background-size: 150%;
-  border-radius: 2%;
 }
 
 .personal-foto-ingela {
-  width: 100%;
-  height: 100%;
   filter: saturate(48%);
-  background-image: url("../images/Ingela.jpg");
+  background-image: url('../images/Ingela.jpg');
   background-position: 54% 22%;
   background-repeat: no-repeat;
   background-size: 176%;
   border-radius: 2%;
-}
-
-.personal-foto-emil {
   width: 100%;
   height: 100%;
-  filter: saturate(30%);
-  background-image: url("../images/emil.jpg");
-  background-position: 56% 23%;
-  background-repeat: no-repeat;
-  background-size: 209%;
-  border-radius: 2%;
 }
 
 .ifk_gbg {
-  width: 11vw;
-  height: 11vw;
-  background-image: url("../images/ifk_gbg_2022.png");
+  background-image: url('../images/ifk_gbg_2022.png');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
-  margin-right: 0.5vw;
+  width: 11vw;
+  height: 11vw;
+  margin-right: .5vw;
 }
 
 .eskilstuna_guif {
-  width: 11.7vw;
-  height: 11.7vw;
-  background-image: url("../images/eskilstuna_guif.png");
+  background-image: url('../images/eskilstuna_guif.png');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
-  margin-left: 0.5vw;
+  width: 11.7vw;
+  height: 11.7vw;
+  margin-left: .5vw;
 }
 
-.personal-foto-daniel-k {
+.personal-foto-jonas {
+  filter: saturate(48%);
+  background-image: url('../images/Jonas-Hellqvist.jpg');
+  background-position: 53% 31%;
+  background-repeat: no-repeat;
+  background-size: 312%;
+  border-radius: 2%;
   width: 100%;
   height: 100%;
-  filter: saturate(48%);
-  background-image: url("../images/daniel.jpg");
-  background-position: 70% 38%;
-  background-repeat: no-repeat;
-  background-size: 188%;
-  border-radius: 2%;
 }
 
 .personal-foto-oliver-b {
-  width: 100%;
-  height: 100%;
   filter: saturate(48%);
-  background-image: url("../images/oliver.jpg");
+  background-image: url('../images/oliver.jpg');
   background-position: 68% 30%;
   background-repeat: no-repeat;
   background-size: 200%;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 .best-bemanning-logo {
@@ -2530,8 +2362,7 @@ a {
   position: relative;
 }
 
-.birstahusbil-image,
-.henrikssons-image {
+.birstahusbil-image, .henrikssons-image {
   width: 12vw;
   position: relative;
 }
@@ -2557,7 +2388,7 @@ a {
 }
 
 .title-video-chooser-overlay {
-  background-color: rgba(0, 0, 0, 0.79);
+  background-color: rgba(0, 0, 0, .79);
   justify-content: center;
   align-items: center;
   display: flex;
@@ -2570,8 +2401,8 @@ a {
 
 .video-chooser-flagga {
   width: 3rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
 }
 
 .video-chooser-flagga:hover {
@@ -2579,31 +2410,42 @@ a {
 }
 
 .personal-foto-carola {
-  width: 100%;
-  height: 100%;
   filter: saturate(65%);
-  background-image: url("../images/carola.jpg");
+  background-image: url('../images/carola.jpg');
   background-position: 38% 28%;
   background-repeat: no-repeat;
   background-size: 180%;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 .personal-foto-amanda {
-  width: 100%;
-  height: 100%;
   filter: saturate(48%);
-  background-image: url("../images/amanda.jpg");
+  background-image: url('../images/amanda.jpg');
   background-position: 61% 20%;
   background-repeat: no-repeat;
   background-size: 250%;
   border-radius: 2%;
+  width: 100%;
+  height: 100%;
+}
+
+.personal-foto-ida {
+  filter: saturate(65%);
+  background-image: url('../images/Ida-Wånggren.jpg');
+  background-position: 43% 26%;
+  background-repeat: no-repeat;
+  background-size: 154%;
+  border-radius: 2%;
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 991px) {
   .top-menu-texts {
-    width: 50%;
     flex-wrap: wrap;
+    width: 50%;
     margin-top: 1vw;
     font-size: 1.7vw;
     line-height: 1.8vw;
@@ -2636,9 +2478,9 @@ a {
   }
 
   .video-thumb-container {
+    border-radius: .5vw;
     width: 45%;
-    border-radius: 0.5vw;
-    margin: 0.4vw 0.3vw;
+    margin: .4vw .3vw;
   }
 
   .close-knapp-link {
@@ -2648,8 +2490,8 @@ a {
   }
 
   .video-thumb-image {
-    border-top-left-radius: 0.5vw;
-    border-top-right-radius: 0.5vw;
+    border-top-left-radius: .5vw;
+    border-top-right-radius: .5vw;
   }
 
   .butiks-tv-ikon {
@@ -2658,7 +2500,7 @@ a {
   }
 
   .top-menu-text {
-    padding-bottom: 0.5vw;
+    padding-bottom: .5vw;
   }
 
   .section-varfor {
@@ -2699,11 +2541,10 @@ a {
   }
 
   .kontakt-form-section {
-    grid-template-areas:
-      "."
-      "."
-      "."
-      ".";
+    grid-template-areas: "."
+                         "."
+                         "."
+                         ".";
   }
 
   .kontakt-form {
@@ -2712,8 +2553,8 @@ a {
   }
 
   .text-field {
-    height: 4.5vw;
     border-radius: 1vw;
+    height: 4.5vw;
     font-size: 2.2vw;
     line-height: 2.4vw;
   }
@@ -2765,7 +2606,7 @@ a {
   }
 
   .adinq-top-logo {
-    margin-top: 0.9vw;
+    margin-top: .9vw;
   }
 
   .adinq-logo-image {
@@ -2802,8 +2643,7 @@ a {
     margin-left: 1vw;
   }
 
-  .filmklappa-image,
-  .filmrulle-image {
+  .filmklappa-image, .filmrulle-image {
     height: 4vw;
     margin-left: 1vw;
   }
@@ -2814,10 +2654,10 @@ a {
 
   .led-thumb-container {
     width: 17vw;
-    margin: 0.4vw 0.3vw;
-    padding-top: 0.5vw;
-    padding-left: 0.5vw;
-    padding-right: 0.5vw;
+    margin: .4vw .3vw;
+    padding-top: .5vw;
+    padding-left: .5vw;
+    padding-right: .5vw;
   }
 
   .skobes-image {
@@ -2856,7 +2696,7 @@ a {
   }
 
   .knapp-text-class {
-    margin-top: 0.5%;
+    margin-top: .5%;
     font-size: 2vw;
     line-height: 2vw;
   }
@@ -2880,9 +2720,9 @@ a {
   }
 
   .knapp-butikstv-priser {
+    border-radius: .5vw;
     width: 30vw;
     height: 6vw;
-    border-radius: 0.5vw;
   }
 
   .riksprislistan-butiks-tv {
@@ -2914,12 +2754,11 @@ a {
   }
 
   .fullscreen {
-    width: 7vw;
-    height: 7vw;
-    background-image: url("../images/fullscreen.svg"),
-      linear-gradient(to bottom, null, null);
+    background-image: url('../images/fullscreen.svg'), linear-gradient(to bottom, null, null);
     background-size: 4vw, auto;
     border-radius: 3.5vw;
+    width: 7vw;
+    height: 7vw;
   }
 
   .map-image {
@@ -2986,7 +2825,7 @@ a {
   }
 
   .text-brands-browser {
-    letter-spacing: 0.5vw;
+    letter-spacing: .5vw;
     font-size: 5vw;
     line-height: 5vw;
   }
@@ -2997,8 +2836,8 @@ a {
   }
 
   .close-top-right-browser {
-    top: 0.8vw;
-    right: 0.9vw;
+    top: .8vw;
+    right: .9vw;
   }
 
   .text-larger {
@@ -3006,8 +2845,7 @@ a {
     line-height: 2.8vw;
   }
 
-  .right-arrow,
-  .left-arrow {
+  .right-arrow, .left-arrow {
     width: 8vw;
   }
 
@@ -3015,47 +2853,38 @@ a {
     grid-template-rows: 9.5vw auto;
   }
 
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-blue3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-yellow3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-purple3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-brons3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-silver3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-guld3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-lightorange3 {
+  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-blue3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-yellow3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-purple3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-brons3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-silver3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-guld3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-lightorange3 {
     align-self: stretch;
   }
 
   .slidegrid1 {
     grid-row-gap: 1vw;
-    grid-template:
-      ". . . . . ." 9vw
-      ". . . . . ." 22vw
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . ."
-      / 0.25fr 1fr 1fr 1fr 1fr 0.25fr;
+    grid-template: ". . . . . ." 9vw
+                   ". . . . . ." 22vw
+                   ". . . . . ."
+                   ". . . . . ."
+                   ". . . . . ."
+                   / .25fr 1fr 1fr 1fr 1fr .25fr;
   }
 
   .slidegrid2 {
     grid-row-gap: 1vw;
-    grid-template:
-      ". . . . . ." 9vw
-      ". . . . . ." 26vw
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . ."
-      / 0.25fr 1fr 1fr 1fr 1fr 0.25fr;
+    grid-template: ". . . . . ." 9vw
+                   ". . . . . ." 26vw
+                   ". . . . . ."
+                   ". . . . . ."
+                   ". . . . . ."
+                   / .25fr 1fr 1fr 1fr 1fr .25fr;
   }
 
   .slidegrid3 {
     grid-row-gap: 1vw;
-    grid-template:
-      ". . . . . ." 9vw
-      ". . . . . ." 22vw
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . ."
-      / 0.25fr 1fr 1fr 1fr 1fr 0.25fr;
+    grid-template: ". . . . . ." 9vw
+                   ". . . . . ." 22vw
+                   ". . . . . ."
+                   ". . . . . ."
+                   ". . . . . ."
+                   / .25fr 1fr 1fr 1fr 1fr .25fr;
   }
 
   .hide-desk-ipad {
@@ -3063,12 +2892,11 @@ a {
   }
 
   .margin-sides {
-    margin-left: 0.5vw;
-    margin-right: 0.5vw;
+    margin-left: .5vw;
+    margin-right: .5vw;
   }
 
-  .kontaktform-allman,
-  .kontaktform-ekonomi {
+  .kontaktform-allman, .kontaktform-ekonomi {
     width: 18vw;
     height: 18vw;
   }
@@ -3077,24 +2905,22 @@ a {
     width: 18vw;
   }
 
-  .text-brands-medium,
-  .text-solid-medium {
+  .text-brands-medium, .text-solid-medium {
     font-size: 2.8vw;
     line-height: 4vw;
   }
 
   .margin-sides-youtube {
-    margin-left: 0.3vw;
-    margin-right: 0.5vw;
+    margin-left: .3vw;
+    margin-right: .5vw;
   }
 
   .section-kommersialisera-info {
-    grid-template-columns: 0.25fr 1.5fr 2fr 1.5fr 0.25fr;
+    grid-template-columns: .25fr 1.5fr 2fr 1.5fr .25fr;
     grid-template-areas: ".";
   }
 
-  .right-arrow-2,
-  .left-arrow-2 {
+  .right-arrow-2, .left-arrow-2 {
     width: 5vw;
   }
 
@@ -3105,8 +2931,8 @@ a {
   }
 
   .knapp-def {
+    border-radius: .5vw;
     height: 5.5vw;
-    border-radius: 0.5vw;
   }
 
   .kommersialisering-ikon {
@@ -3123,9 +2949,8 @@ a {
     line-height: 2vw;
   }
 
-  .social-top,
-  .social-mobile-menu {
-    top: 0.9vw;
+  .social-top, .social-mobile-menu {
+    top: .9vw;
   }
 
   .title-video {
@@ -3133,8 +2958,8 @@ a {
   }
 
   .title-video-wrapper {
-    max-width: 32rem;
     grid-template-columns: 1fr;
+    max-width: 32rem;
   }
 
   .personal-foto {
@@ -3157,7 +2982,7 @@ a {
 
   .personal-foto-text {
     padding-top: 0%;
-    font-size: 0.85vw;
+    font-size: .85vw;
     line-height: 1vw;
   }
 
@@ -3175,8 +3000,7 @@ a {
     width: 12vw;
   }
 
-  .birstahusbil-image,
-  .henrikssons-image {
+  .birstahusbil-image, .henrikssons-image {
     width: 18vw;
   }
 }
@@ -3213,17 +3037,17 @@ a {
   }
 
   .video-thumb-container {
-    border-radius: 0.7vw;
-    margin: 0.5vw;
+    border-radius: .7vw;
+    margin: .5vw;
   }
 
   .video-thumb-image {
-    border-radius: 0.7vw;
+    border-radius: .7vw;
   }
 
   .kontakt-form {
-    width: 95vw;
     justify-content: center;
+    width: 95vw;
   }
 
   .kontakt-form-generell {
@@ -3236,8 +3060,7 @@ a {
     line-height: 3.6vw;
   }
 
-  .text-area,
-  .submit-button {
+  .text-area, .submit-button {
     font-size: 2.8vw;
     line-height: 3.6vw;
   }
@@ -3293,14 +3116,14 @@ a {
   }
 
   .led-thumb-container {
+    border-radius: .7vw;
     width: 43vw;
-    border-radius: 0.7vw;
-    margin: 0.5vw;
+    margin: .5vw;
   }
 
   .section-butiks-tv {
-    min-height: 200vh;
     grid-template-rows: 80vh 20vh auto auto auto auto auto;
+    min-height: 200vh;
   }
 
   .top-menu-click-area {
@@ -3308,8 +3131,8 @@ a {
   }
 
   .section-mediabyraer {
-    min-height: 200vh;
     grid-template-rows: 80vh 20vh auto auto auto auto;
+    min-height: 200vh;
   }
 
   .text-default {
@@ -3330,12 +3153,11 @@ a {
   }
 
   .section-storbildsskarmar {
-    grid-template:
-      ". . . ." 9vw
-      ". . . ."
-      ". . . ."
-      ". . . ."
-      / 1fr 2fr 2fr 1fr;
+    grid-template: ". . . ." 9vw
+                   ". . . ."
+                   ". . . ."
+                   ". . . ."
+                   / 1fr 2fr 2fr 1fr;
   }
 
   .glapp {
@@ -3361,7 +3183,7 @@ a {
   }
 
   .glapp-superlitet {
-    min-height: 0.6vw;
+    min-height: .6vw;
   }
 
   .riksprislistan-butiks-tv {
@@ -3371,11 +3193,10 @@ a {
   }
 
   .section-marknadsplatskarta {
-    min-height: 200vh;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-      ". . . ."
-      ". . . .";
+    grid-template-areas: ". . . ."
+                         ". . . .";
+    min-height: 200vh;
   }
 
   .marknadsplatskarta {
@@ -3420,8 +3241,7 @@ a {
     font-size: 8vw;
   }
 
-  .handclick-hand,
-  .handclick-click {
+  .handclick-hand, .handclick-click {
     width: 10vw;
     height: 12vw;
   }
@@ -3491,24 +3311,17 @@ a {
     grid-template-rows: 12vw auto;
   }
 
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-blue3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-yellow3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-purple3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-brons3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-silver3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-guld3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-lightorange3 {
+  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-blue3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-yellow3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-purple3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-brons3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-silver3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-guld3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-lightorange3 {
     align-self: stretch;
   }
 
   .slidegrid1 {
     grid-template-rows: 9vw 28vw auto auto auto;
-    grid-template-areas:
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . .";
+    grid-template-areas: ". . . . . ."
+                         ". . . . . ."
+                         ". . . . . ."
+                         ". . . . . ."
+                         ". . . . . .";
   }
 
   .flex-ver-cen-top {
@@ -3521,30 +3334,27 @@ a {
 
   .slidegrid2 {
     grid-template-rows: 9vw 32vw auto auto auto;
-    grid-template-areas:
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . .";
+    grid-template-areas: ". . . . . ."
+                         ". . . . . ."
+                         ". . . . . ."
+                         ". . . . . ."
+                         ". . . . . .";
   }
 
   .slidegrid3 {
     grid-template-rows: 9vw 27vw auto auto auto;
-    grid-template-areas:
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . ."
-      ". . . . . .";
+    grid-template-areas: ". . . . . ."
+                         ". . . . . ."
+                         ". . . . . ."
+                         ". . . . . ."
+                         ". . . . . .";
   }
 
   .kontakt-form-ekonomi {
     width: 90%;
   }
 
-  .kontaktform-allman,
-  .kontaktform-ekonomi {
+  .kontaktform-allman, .kontaktform-ekonomi {
     width: 21vw;
     height: 21vw;
   }
@@ -3553,8 +3363,7 @@ a {
     width: 21vw;
   }
 
-  .text-brands-medium,
-  .text-solid-medium {
+  .text-brands-medium, .text-solid-medium {
     font-size: 3.3vw;
     line-height: 5vw;
   }
@@ -3567,8 +3376,7 @@ a {
     align-self: stretch;
   }
 
-  .right-arrow-2,
-  .left-arrow-2 {
+  .right-arrow-2, .left-arrow-2 {
     width: 7vw;
   }
 
@@ -3594,10 +3402,10 @@ a {
   }
 
   .lottie-animation {
+    opacity: .6;
+    filter: invert();
     width: 3.5vw;
     height: 3.5vw;
-    opacity: 0.6;
-    filter: invert();
   }
 
   .title-video-wrapper {
@@ -3711,8 +3519,8 @@ a {
   }
 
   .text-field {
-    height: 9vw;
     border-radius: 2vw;
+    height: 9vw;
     font-size: 4vw;
     line-height: 5vw;
   }
@@ -3767,13 +3575,12 @@ a {
   }
 
   .section-comments {
-    grid-template:
-      ". . . . ." 12vw
-      ". . . . ."
-      ". . . . ."
-      ". . . . ."
-      ". . . . ." 10vh
-      / 0.5fr 1fr 1fr 1fr 0.5fr;
+    grid-template: ". . . . ." 12vw
+                   ". . . . ."
+                   ". . . . ."
+                   ". . . . ."
+                   ". . . . ." 10vh
+                   / .5fr 1fr 1fr 1fr .5fr;
   }
 
   .adinq-logo-image {
@@ -3796,8 +3603,8 @@ a {
   }
 
   .footer-text-marknad {
-    width: 100%;
     text-align: center;
+    width: 100%;
     font-size: 4vw;
     line-height: 5vw;
   }
@@ -3824,9 +3631,9 @@ a {
   }
 
   .led-thumb-container {
-    padding-top: 0.7vw;
-    padding-left: 0.7vw;
-    padding-right: 0.7vw;
+    padding-top: .7vw;
+    padding-left: .7vw;
+    padding-right: .7vw;
   }
 
   .skobes-image {
@@ -3862,8 +3669,7 @@ a {
     min-height: 10vw;
   }
 
-  .video-size-container,
-  .led-size-container {
+  .video-size-container, .led-size-container {
     margin-right: 10vw;
   }
 
@@ -3896,13 +3702,12 @@ a {
   }
 
   .section-storbildsskarmar {
-    grid-template:
-      ". . . ." 12vw
-      ". . . ."
-      ". . . ."
-      ". . . ."
-      ". . . ."
-      / 1fr 1fr 1fr 1fr;
+    grid-template: ". . . ." 12vw
+                   ". . . ."
+                   ". . . ."
+                   ". . . ."
+                   ". . . ."
+                   / 1fr 1fr 1fr 1fr;
   }
 
   .glapp {
@@ -4060,7 +3865,7 @@ a {
   }
 
   .text-brands-browser {
-    letter-spacing: 0.9vw;
+    letter-spacing: .9vw;
     font-size: 10vw;
     line-height: 10vw;
   }
@@ -4085,26 +3890,19 @@ a {
     grid-template-rows: 24vw auto;
   }
 
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-blue3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-yellow3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-purple3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-brons3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-silver3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-guld3,
-  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-lightorange3 {
+  .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-blue3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-yellow3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-purple3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-brons3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-silver3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-guld3, .prissplash.prissplash-top-rounding.prissplash-bottom-rounding.splashcol-lightorange3 {
     align-self: stretch;
   }
 
   .slidegrid1 {
     grid-row-gap: 2vw;
-    grid-template:
-      ". . ." 12vw
-      ". . ." 71vw
-      ". . ."
-      ". . ."
-      ". . ."
-      ". . ."
-      / 10vw 1fr 10vw;
+    grid-template: ". . ." 12vw
+                   ". . ." 71vw
+                   ". . ."
+                   ". . ."
+                   ". . ."
+                   ". . ."
+                   / 10vw 1fr 10vw;
   }
 
   .icon {
@@ -4113,26 +3911,24 @@ a {
 
   .slidegrid2 {
     grid-row-gap: 2vw;
-    grid-template:
-      ". . ." 12vw
-      ". . ." 89vw
-      ". . ."
-      ". . ."
-      ". . ."
-      ". . ."
-      / 10vw 1fr 10vw;
+    grid-template: ". . ." 12vw
+                   ". . ." 89vw
+                   ". . ."
+                   ". . ."
+                   ". . ."
+                   ". . ."
+                   / 10vw 1fr 10vw;
   }
 
   .slidegrid3 {
     grid-row-gap: 2vw;
-    grid-template:
-      ". . ." 12vw
-      ". . ." 75vw
-      ". . ."
-      ". . ."
-      ". . ."
-      ". . ."
-      / 10vw 1fr 10vw;
+    grid-template: ". . ." 12vw
+                   ". . ." 75vw
+                   ". . ."
+                   ". . ."
+                   ". . ."
+                   ". . ."
+                   / 10vw 1fr 10vw;
   }
 
   .text-center-mob {
@@ -4156,8 +3952,7 @@ a {
     margin-right: 1vw;
   }
 
-  .kontaktform-allman,
-  .kontaktform-ekonomi {
+  .kontaktform-allman, .kontaktform-ekonomi {
     width: 40vw;
     height: 40vw;
   }
@@ -4166,14 +3961,13 @@ a {
     width: 40vw;
   }
 
-  .text-brands-medium,
-  .text-solid-medium {
+  .text-brands-medium, .text-solid-medium {
     font-size: 5.2vw;
     line-height: 8.5vw;
   }
 
   .margin-sides-youtube {
-    margin-left: 0.6vw;
+    margin-left: .6vw;
     margin-right: 1vw;
   }
 
@@ -4181,8 +3975,7 @@ a {
     grid-template-rows: 5vw auto auto 20vw;
   }
 
-  .right-arrow-2,
-  .left-arrow-2 {
+  .right-arrow-2, .left-arrow-2 {
     width: 10vw;
   }
 
@@ -4268,9 +4061,7 @@ a {
     width: 30vw;
   }
 
-  .fargbolaget-image,
-  .birstahusbil-image,
-  .henrikssons-image {
+  .fargbolaget-image, .birstahusbil-image, .henrikssons-image {
     width: 35vw;
   }
 }
@@ -4281,8 +4072,7 @@ a {
   justify-self: center;
 }
 
-#w-node-c223fc3e-a2b2-be4e-0a2d-b812fedd8d94-93bf6b75,
-#w-node-_8751f039-0a6c-110c-8dd6-66a3656f16b7-93bf6b75 {
+#w-node-c223fc3e-a2b2-be4e-0a2d-b812fedd8d94-93bf6b75, #w-node-_8751f039-0a6c-110c-8dd6-66a3656f16b7-93bf6b75 {
   grid-area: 1 / 1 / 2 / 2;
   align-self: center;
   justify-self: stretch;
@@ -4722,8 +4512,7 @@ a {
     justify-self: center;
   }
 
-  #w-node-c223fc3e-a2b2-be4e-0a2d-b812fedd8d94-93bf6b75,
-  #w-node-_8751f039-0a6c-110c-8dd6-66a3656f16b7-93bf6b75 {
+  #w-node-c223fc3e-a2b2-be4e-0a2d-b812fedd8d94-93bf6b75, #w-node-_8751f039-0a6c-110c-8dd6-66a3656f16b7-93bf6b75 {
     grid-area: 1 / 1 / 2 / 2;
     align-self: start;
     justify-self: stretch;
@@ -4966,8 +4755,7 @@ a {
     justify-self: center;
   }
 
-  #w-node-_0a303e27-ebe0-f055-2a09-0aa4310581d6-37bf6b85,
-  #w-node-_0c0901d3-752f-cd6b-08d0-af6be7428f89-37bf6b85 {
+  #w-node-_0a303e27-ebe0-f055-2a09-0aa4310581d6-37bf6b85, #w-node-_0c0901d3-752f-cd6b-08d0-af6be7428f89-37bf6b85 {
     grid-area: 5 / 1 / 6 / 7;
     align-self: start;
     justify-self: auto;
@@ -4997,9 +4785,7 @@ a {
 }
 
 @media screen and (max-width: 479px) {
-  #w-node-_22f79c3d-c49e-b900-703c-ed60e7ae2c1d-93bf6b75,
-  #w-node-_72e03bf3-87e7-0d79-30a1-1e1c2b966caf-93bf6b75,
-  #w-node-_525232e3-a9f3-acd1-211b-8e9b4476ffbe-93bf6b75 {
+  #w-node-_22f79c3d-c49e-b900-703c-ed60e7ae2c1d-93bf6b75, #w-node-_72e03bf3-87e7-0d79-30a1-1e1c2b966caf-93bf6b75, #w-node-_525232e3-a9f3-acd1-211b-8e9b4476ffbe-93bf6b75 {
     grid-column-end: 5;
   }
 
@@ -5036,9 +4822,7 @@ a {
     justify-self: center;
   }
 
-  #w-node-_18ec7729-d051-8c24-21f1-420aa80c735d-a2bf6b7f,
-  #w-node-_18ec7729-d051-8c24-21f1-420aa80c7363-a2bf6b7f,
-  #w-node-_18ec7729-d051-8c24-21f1-420aa80c7368-a2bf6b7f {
+  #w-node-_18ec7729-d051-8c24-21f1-420aa80c735d-a2bf6b7f, #w-node-_18ec7729-d051-8c24-21f1-420aa80c7363-a2bf6b7f, #w-node-_18ec7729-d051-8c24-21f1-420aa80c7368-a2bf6b7f {
     grid-area: span 1 / span 2 / span 1 / span 2;
   }
 
@@ -5128,43 +4912,38 @@ a {
   }
 }
 
+
 @font-face {
-  font-family: "Fa 400";
-  src: url("../fonts/fa-regular-400.eot") format("embedded-opentype"),
-    url("../fonts/fa-regular-400.woff") format("woff"),
-    url("../fonts/fa-regular-400.ttf") format("truetype");
+  font-family: 'Fa 400';
+  src: url('../fonts/fa-regular-400.eot') format('embedded-opentype'), url('../fonts/fa-regular-400.woff') format('woff'), url('../fonts/fa-regular-400.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: auto;
 }
 @font-face {
-  font-family: "Fa brands 400";
-  src: url("../fonts/fa-brands-400.eot") format("embedded-opentype"),
-    url("../fonts/fa-brands-400.woff") format("woff"),
-    url("../fonts/fa-brands-400.ttf") format("truetype");
+  font-family: 'Fa brands 400';
+  src: url('../fonts/fa-brands-400.eot') format('embedded-opentype'), url('../fonts/fa-brands-400.woff') format('woff'), url('../fonts/fa-brands-400.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: auto;
 }
 @font-face {
-  font-family: "Fa solid 900";
-  src: url("../fonts/fa-solid-900.eot") format("embedded-opentype"),
-    url("../fonts/fa-solid-900.woff") format("woff"),
-    url("../fonts/fa-solid-900.ttf") format("truetype");
+  font-family: 'Fa solid 900';
+  src: url('../fonts/fa-solid-900.eot') format('embedded-opentype'), url('../fonts/fa-solid-900.woff') format('woff'), url('../fonts/fa-solid-900.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: auto;
 }
 @font-face {
-  font-family: "Brandon med";
-  src: url("../fonts/Brandon_med.otf") format("opentype");
+  font-family: 'Brandon med';
+  src: url('../fonts/Brandon_med.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: auto;
 }
 @font-face {
-  font-family: "Brandon it";
-  src: url("../fonts/Brandon_light_it.otf") format("opentype");
+  font-family: 'Brandon it';
+  src: url('../fonts/Brandon_light_it.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: auto;
