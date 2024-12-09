@@ -25,6 +25,6 @@ import Footer from "./components/Footer.vue";
 
 <script>
 export default {
-  name: "Framecore",
+  name: "ADinQ",
 };
 </script>
