@@ -1,5 +1,5 @@
 <script setup>
-import Contact from "../components/Contact.vue";
+import Contact from "../components/framecore/Contact.vue";
 </script>
 
 <template>

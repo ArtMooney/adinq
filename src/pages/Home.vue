@@ -1,10 +1,10 @@
 <script setup>
-import VideoHeading from "../components/VideoHeading.vue";
-import DesignQuote from "../components/DesignQuote.vue";
-import Animations from "../components/Animations.vue";
-import Commercials from "../components/Commercials.vue";
-import WebDevelopment from "../components/WebDevelopment.vue";
-import HomePages from "../components/HomePages.vue";
+import VideoHeading from "../components/framecore/VideoHeading.vue";
+import DesignQuote from "../components/framecore/DesignQuote.vue";
+import Animations from "../components/framecore/Animations.vue";
+import Commercials from "../components/framecore/Commercials.vue";
+import WebDevelopment from "../components/framecore/WebDevelopment.vue";
+import HomePages from "../components/framecore/HomePages.vue";
 </script>
 
 <template>
