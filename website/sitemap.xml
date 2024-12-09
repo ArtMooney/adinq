@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.adinq.se/</loc>
+  <lastmod>2023-03-24T09:55:33+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/index.html</loc>
+  <lastmod>2023-03-24T09:55:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/media-produktion.html</loc>
+  <lastmod>2023-03-24T10:08:54+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/dagens-adinq.html</loc>
+  <lastmod>2023-03-24T09:55:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/kundutlatanden.html</loc>
+  <lastmod>2023-03-24T09:55:34+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/varfor-oss.html</loc>
+  <lastmod>2023-03-24T09:55:34+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/priser.html</loc>
+  <lastmod>2023-03-24T09:55:34+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/butiks-tv.html</loc>
+  <lastmod>2023-03-24T09:55:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/storbildsskarmar.html</loc>
+  <lastmod>2023-03-24T09:55:34+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/mediabyraer.html</loc>
+  <lastmod>2023-03-24T09:55:34+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/kommersialisera.html</loc>
+  <lastmod>2023-03-24T09:55:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/%40includes/ADinQ%20Storbildssk%C3%A4rmar%20ADinQ.pdf</loc>
+  <lastmod>2019-07-03T06:50:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.adinq.se/marknadsplatskarta.html</loc>
+  <lastmod>2023-03-24T09:55:34+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
