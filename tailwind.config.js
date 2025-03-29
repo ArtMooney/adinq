@@ -14,7 +14,7 @@ export default {
     plugin(function ({ addBase }) {
       addBase({
         body: {
-          "@apply mx-auto w-full max-w-screen-2xl bg-neutral-800 font-body font-normal text-black":
+          "@apply mx-auto w-full max-w-screen-2xl bg-neutral-800 font-body font-normal text-white":
             {},
         },
         "h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6": {
