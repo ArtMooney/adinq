@@ -1,6 +1,6 @@
 <script setup>
 import Button from "./elements/Button.vue";
-import imageLogo from "assets/images/sakra-logo.png";
+import imageLogo from "assets/images/backup/sakra-logo.png";
 import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/solid";
 </script>
 
