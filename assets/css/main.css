@@ -1,0 +1,4 @@
+@import "../../node_modules/tailwindcss";
+@import './fonts.css';
+
+@config '../../tailwind.config.js';
