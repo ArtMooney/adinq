@@ -22,6 +22,6 @@ definePageMeta({
 
 <script>
 export default {
-  name: "KontaktaOss",
+  name: "MediaProduktion",
 };
 </script>
