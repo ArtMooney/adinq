@@ -1,15 +1,16 @@
 <script setup>
 import { HeartIcon } from "@heroicons/vue/24/solid";
-import imageLogo from "assets/images/adinq_vit.svg";
 </script>
 
 <template>
-  <div class="relative m-6 flex flex-col items-center">
+  <div
+    class="relative my-6 flex flex-col items-center border-t border-white/15 pt-8"
+  >
     <router-link to="/">
-      <img
-        :src="imageLogo"
+      <NuxtImg
+        src="adinq_vit.svg"
         alt="footer logo"
-        class="relative mr-2 mb-4 h-auto w-32"
+        class="relative mr-2 mb-6 h-auto w-32"
       />
     </router-link>
 

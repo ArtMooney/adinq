@@ -15,7 +15,7 @@ import {
 <template>
   <div
     id="navbar"
-    class="relative z-10 flex items-center justify-between p-4 py-2"
+    class="relative z-10 flex items-center justify-between border-b border-white/15 p-4 py-2"
   >
     <router-link to="/">
       <NuxtImg
