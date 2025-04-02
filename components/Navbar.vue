@@ -1,7 +1,15 @@
 <script setup>
 import Button from "./elements/Button.vue";
-import imageLogo from "assets/images/adinq_vit.svg";
-import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/solid";
+import {
+  Bars2Icon,
+  XMarkIcon,
+  HomeIcon,
+  FilmIcon,
+  UserGroupIcon,
+  ChatBubbleOvalLeftEllipsisIcon,
+  QuestionMarkCircleIcon,
+  CurrencyEuroIcon,
+} from "@heroicons/vue/24/solid";
 </script>
 
 <template>
@@ -10,9 +18,9 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/solid";
     class="relative z-10 flex items-center justify-between p-4 py-2"
   >
     <router-link to="/">
-      <img
-        :src="imageLogo"
-        alt="navbar logo"
+      <NuxtImg
+        src="adinq_vit.svg"
+        alt="company logo"
         class="h-auto w-24 p-1 md:w-32 md:p-2"
       />
     </router-link>
@@ -32,23 +40,95 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/solid";
         class="absolute top-4 right-4 h-8 w-8 cursor-pointer"
       />
 
-      <NuxtLink
-        to="/"
-        @click="showNavbar = false"
-        class="hover:underline"
-        :class="[currentPath === '/' && 'border-t-3 border-t-[#ffc000]']"
-      >
-        Hem
-      </NuxtLink>
-      <NuxtLink
-        to="/tjanster"
-        @click="showNavbar = false"
-        class="hover:underline"
-        :class="[
-          currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
-        ]"
-        >Tjänster
-      </NuxtLink>
+      <div class="flex items-center gap-2">
+        <HomeIcon
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+        />
+        <NuxtLink
+          to="/"
+          @click="showNavbar = false"
+          class="hover:underline"
+          :class="[currentPath === '/' && 'border-t-3 border-t-[#ffc000]']"
+        >
+          Hem
+        </NuxtLink>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <FilmIcon
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+        />
+        <NuxtLink
+          to="/tjanster"
+          @click="showNavbar = false"
+          class="hover:underline"
+          :class="[
+            currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
+          ]"
+          >Mediaproduktion
+        </NuxtLink>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <UserGroupIcon
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+        />
+        <NuxtLink
+          to="/tjanster"
+          @click="showNavbar = false"
+          class="hover:underline"
+          :class="[
+            currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
+          ]"
+          >Medarbetare
+        </NuxtLink>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <ChatBubbleOvalLeftEllipsisIcon
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+        />
+        <NuxtLink
+          to="/tjanster"
+          @click="showNavbar = false"
+          class="hover:underline"
+          :class="[
+            currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
+          ]"
+          >Kundutlåtanden
+        </NuxtLink>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <QuestionMarkCircleIcon
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+        />
+        <NuxtLink
+          to="/tjanster"
+          @click="showNavbar = false"
+          class="whitespace-nowrap hover:underline"
+          :class="[
+            currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
+          ]"
+          >Varför oss
+        </NuxtLink>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <CurrencyEuroIcon
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+        />
+        <NuxtLink
+          to="/tjanster"
+          @click="showNavbar = false"
+          class="hover:underline"
+          :class="[
+            currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
+          ]"
+          >Priser
+        </NuxtLink>
+      </div>
+
       <Button
         @click="showNavbar = false"
         text="Kontakta oss"
