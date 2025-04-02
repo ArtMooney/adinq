@@ -19,9 +19,14 @@ definePageMeta({
 <template>
   <div class="relative h-full w-full grow">
     <ClientOnly>
-      <video controls autoplay class="absolute h-full w-full object-cover">
+      <video
+        controls
+        autoplay
+        class="absolute h-full w-full scale-104 transform-gpu object-cover blur-sm"
+      >
         <source src="../assets/videos/folkmassa.mp4" type="video/mp4" />
       </video>
+      <div class="absolute inset-0 bg-black/40"></div>
     </ClientOnly>
   </div>
 </template>
