@@ -4,7 +4,7 @@ import { HeartIcon } from "@heroicons/vue/24/solid";
 
 <template>
   <div
-    class="relative my-6 flex flex-col items-center border-t border-white/15 pt-8"
+    class="relative flex flex-col items-center border-t border-white/15 bg-neutral-800 py-6 pt-8"
   >
     <router-link to="/">
       <NuxtImg
