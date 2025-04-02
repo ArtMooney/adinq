@@ -15,7 +15,7 @@ import {
 <template>
   <div
     id="navbar"
-    class="relative z-10 flex items-center justify-between border-b border-white/15 p-4 py-2"
+    class="relative z-10 flex items-center justify-between border-b border-white/15 bg-neutral-800 p-4 py-2"
   >
     <router-link to="/">
       <NuxtImg
@@ -31,7 +31,7 @@ import {
     />
 
     <div
-      class="fixed top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center gap-5 bg-neutral-800 p-4 pb-10 text-center md:static md:flex-row md:bg-transparent md:p-0"
+      class="fixed top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center gap-5 p-4 pb-10 text-center md:static md:flex-row md:bg-transparent md:p-0"
       :class="showNavbar ? 'absolute md:flex' : 'hidden md:flex'"
     >
       <XMarkIcon
