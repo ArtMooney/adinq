@@ -3,9 +3,7 @@ import { HeartIcon } from "@heroicons/vue/24/solid";
 </script>
 
 <template>
-  <div
-    class="relative flex flex-col items-center border-t border-white/15 bg-neutral-800 py-6 pt-8"
-  >
+  <div class="relative flex flex-col items-center bg-neutral-800 py-6 pt-8">
     <router-link to="/">
       <NuxtImg
         src="adinq_vit.svg"
@@ -59,7 +57,7 @@ import { HeartIcon } from "@heroicons/vue/24/solid";
       >
     </p>
 
-    <div class="my-4 w-1/3 border-t border-gray-300"></div>
+    <div class="my-4 w-1/3 border-t border-gray-300/40"></div>
 
     <a
       class="bottom-3 col-span-1 flex text-xs opacity-20 hover:text-black/75 md:col-span-3"

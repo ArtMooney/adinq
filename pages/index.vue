@@ -17,12 +17,16 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="relative h-full w-full grow">
+  <div class="relative ml-[calc(-50vw+50%)] h-full w-screen grow">
     <ClientOnly>
       <video
-        controls
         autoplay
-        class="absolute h-full w-full scale-104 transform-gpu object-cover blur-sm"
+        loop
+        muted
+        disablepictureinpicture
+        playsinline
+        preload="auto"
+        class="absolute h-full w-full object-cover"
       >
         <source src="../assets/videos/folkmassa.mp4" type="video/mp4" />
       </video>
