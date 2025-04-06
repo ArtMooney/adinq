@@ -6,6 +6,17 @@ import {
   BuildingOffice2Icon,
 } from "@heroicons/vue/24/outline";
 
+useHead({
+  link: [
+    {
+      rel: "preload",
+      as: "video",
+      href: "../assets/videos/folkmassa.mp4",
+      type: "video/mp4",
+    },
+  ],
+});
+
 useSeoMeta({
   title: "",
   description: "",
@@ -24,30 +35,42 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="flex flex-col">
-    <div class="relative mx-[calc(-50vw+50%)] w-screen">
+  <div class="mx-8 flex flex-col">
+    <div class="relative mx-[calc(-50vw+50%)] h-[83.5rem] w-screen">
+      <LoadingSpinner
+        v-if="!videoLoaded"
+        class="absolute top-2/5 left-1/2"
+      ></LoadingSpinner>
+
       <ClientOnly>
         <video
+          v-show="videoLoaded"
+          @canplaythrough="videoLoaded = true"
           autoplay
           loop
           muted
           disablepictureinpicture
           playsinline
           preload="auto"
-          class="h-auto w-full object-cover"
+          class="h-full w-full object-cover"
         >
           <source src="../assets/videos/folkmassa.mp4" type="video/mp4" />
         </video>
       </ClientOnly>
 
-      <div class="absolute inset-0 bg-black/40"></div>
+      <div v-show="videoLoaded" class="absolute inset-0 bg-black/40"></div>
 
       <div
+        v-show="videoLoaded"
         class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15"
       >
         <h1 class="mb-8 text-7xl">Vi hjälper er att nå ut digitalt!</h1>
         <div class="text-2xl">
           Lokalt, regionalt eller rikstäckande - just DOOH* it!
+        </div>
+
+        <div class="text-l absolute right-3 bottom-2 italic opacity-30">
+          *DOOH - Digital out of Home Media
         </div>
       </div>
     </div>
@@ -119,5 +142,11 @@ definePageMeta({
 <script>
 export default {
   name: "Index",
+
+  data() {
+    return {
+      videoLoaded: false,
+    };
+  },
 };
 </script>
