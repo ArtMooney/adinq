@@ -1,4 +1,6 @@
 <script setup>
+import { TvIcon } from "@heroicons/vue/24/outline";
+
 useSeoMeta({
   title: "",
   description: "",
@@ -46,10 +48,13 @@ definePageMeta({
     </div>
 
     <div class="mt-12 mb-20 grid grid-cols-2 gap-4">
-      <div class="min-h-64 rounded border-2 border-white"></div>
-      <div class="min-h-64 rounded border-2 border-white"></div>
-      <div class="min-h-64 rounded border-2 border-white"></div>
-      <div class="min-h-64 rounded border-2 border-white"></div>
+      <div
+        v-for="i in 4"
+        :key="i"
+        class="min-h-64 rounded border border-white/25 bg-neutral-900 p-4"
+      >
+        <TvIcon class="h-10 w-10" />
+      </div>
     </div>
   </div>
 </template>
