@@ -135,7 +135,7 @@ import {
         link="/kontakta-oss"
         type="button"
         styling="light"
-        class="w-full opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
+        class="w-full opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100"
         :class="[
           currentPath === '/kontakta-oss' && 'border-t-3 border-t-[#ffc000]',
         ]"
