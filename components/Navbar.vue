@@ -47,7 +47,7 @@ import {
         <NuxtLink
           to="/"
           @click="showNavbar = false"
-          class="hover:underline"
+          class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
           :class="[currentPath === '/' && 'border-t-3 border-t-[#ffc000]']"
         >
           Hem
@@ -61,7 +61,7 @@ import {
         <NuxtLink
           to="/tjanster"
           @click="showNavbar = false"
-          class="hover:underline"
+          class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
           :class="[
             currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
           ]"
@@ -76,7 +76,7 @@ import {
         <NuxtLink
           to="/tjanster"
           @click="showNavbar = false"
-          class="hover:underline"
+          class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
           :class="[
             currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
           ]"
@@ -91,7 +91,7 @@ import {
         <NuxtLink
           to="/tjanster"
           @click="showNavbar = false"
-          class="hover:underline"
+          class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
           :class="[
             currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
           ]"
@@ -106,7 +106,7 @@ import {
         <NuxtLink
           to="/tjanster"
           @click="showNavbar = false"
-          class="whitespace-nowrap hover:underline"
+          class="whitespace-nowrap opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
           :class="[
             currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
           ]"
@@ -121,7 +121,7 @@ import {
         <NuxtLink
           to="/tjanster"
           @click="showNavbar = false"
-          class="hover:underline"
+          class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
           :class="[
             currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
           ]"
@@ -135,7 +135,7 @@ import {
         link="/kontakta-oss"
         type="button"
         styling="light"
-        class="w-full"
+        class="w-full opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
         :class="[
           currentPath === '/kontakta-oss' && 'border-t-3 border-t-[#ffc000]',
         ]"
