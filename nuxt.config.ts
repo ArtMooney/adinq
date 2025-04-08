@@ -20,7 +20,7 @@ export default defineNuxtConfig({
       userPass: process.env.NUXT_PUBLIC_USERPASS,
     },
   },
-  modules: ["@nuxtjs/robots", "nuxt-simple-sitemap", "@nuxt/image"],
+  modules: ["@nuxtjs/robots", "@nuxtjs/sitemap", "@nuxt/image"],
   image: {
     dir: "assets/images",
     format: ["webp", "jpg", "png"],
@@ -51,11 +51,13 @@ export default defineNuxtConfig({
         sitemap: "https://adinq.se/sitemap.xml",
       },
       {
-        UserAgent: "*",
-        Disallow: "/",
-        Host: "adinq.pages.dev",
+        userAgent: "*",
+        disallow: "/",
+        comment: "Disallow all robots on adinq.pages.dev and its subdomains",
       },
     ],
+    disallowNonStandardSchemes: true,
+    sitemap: "https://adinq.se/sitemap.xml",
   },
   sitemap: {
     hostname: "https://adinq.se",
