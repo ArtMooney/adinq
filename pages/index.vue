@@ -1,22 +1,4 @@
 <script setup>
-import {
-  TvIcon,
-  ComputerDesktopIcon,
-  VideoCameraIcon,
-  BuildingOffice2Icon,
-} from "@heroicons/vue/24/outline";
-
-useHead({
-  link: [
-    {
-      rel: "preload",
-      as: "video",
-      href: "../assets/videos/folkmassa.mp4",
-      type: "video/mp4",
-    },
-  ],
-});
-
 useSeoMeta({
   title: "",
   description: "",
@@ -76,65 +58,25 @@ definePageMeta({
     </div>
 
     <div class="mt-12 mb-20 grid grid-cols-2 gap-8">
-      <div
-        class="group relative min-h-52 rounded border border-white/25 bg-neutral-900 p-8 pb-12"
-      >
-        <div
-          class="absolute inset-0 z-[-1] rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
-        ></div>
-        <TvIcon class="relative mb-3 h-10 w-10" />
-        <div class="relative mb-6 h-[1px] w-2/3 bg-white/25"></div>
-        <p class="relative">
-          Butiks-TV är ett effektivt marknadsföringsverktyg som visar reklam och
-          information direkt i butiksmiljön. Skärmarna placeras strategiskt för
-          att nå kunder när de handlar.
-        </p>
-      </div>
+      <IconBlob
+        icon="tv"
+        message="Butiks-TV är ett effektivt marknadsföringsverktyg som visar reklam och information direkt i butiksmiljön. Skärmarna placeras strategiskt för att nå kunder när de handlar."
+      ></IconBlob>
 
-      <div
-        class="group relative min-h-52 rounded border border-white/25 bg-neutral-900 p-8 pb-12"
-      >
-        <div
-          class="absolute inset-0 z-[-1] rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
-        ></div>
-        <ComputerDesktopIcon class="relative mb-3 h-10 w-10" />
-        <div class="relative mb-6 h-[1px] w-2/3 bg-white/25"></div>
-        <p class="relative">
-          Digitala utomhusskärmar eller LED-skyltar visar rörlig reklam som
-          effektivt fångar förbipasserande trafikanters uppmärksamhet. Med sina
-          starka färger och dynamiska innehåll skapar de minnesvärda intryck
-          även vid hög hastighet.
-        </p>
-      </div>
+      <IconBlob
+        icon="computer"
+        message="Digitala utomhusskärmar eller LED-skyltar visar rörlig reklam som effektivt fångar förbipasserande trafikanters uppmärksamhet. Med sina starka färger och dynamiska innehåll skapar de minnesvärda intryck även vid hög hastighet."
+      ></IconBlob>
 
-      <div
-        class="group relative min-h-52 rounded border border-white/25 bg-neutral-900 p-8 pb-12"
-      >
-        <div
-          class="absolute inset-0 z-[-1] rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
-        ></div>
-        <VideoCameraIcon class="relative mb-3 h-10 w-10" />
-        <div class="relative mb-6 h-[1px] w-2/3 bg-white/25"></div>
-        <p class="relative">
-          Med specialistkompetens kring olika kanaler maximeras avkastningen på
-          kundens marknadsföringsinvesteringar genom datadrivna beslut och
-          förhandlingskraft gentemot medieleverantörer.
-        </p>
-      </div>
+      <IconBlob
+        icon="video"
+        message="Med specialistkompetens kring olika kanaler maximeras avkastningen på kundens marknadsföringsinvesteringar genom datadrivna beslut och förhandlingskraft gentemot medieleverantörer."
+      ></IconBlob>
 
-      <div
-        class="group relative min-h-52 rounded border border-white/25 bg-neutral-900 p-8 pb-12"
-      >
-        <div
-          class="absolute inset-0 z-[-1] rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
-        ></div>
-        <BuildingOffice2Icon class="relative mb-3 h-10 w-10" />
-        <div class="relative mb-6 h-[1px] w-2/3 bg-white/25"></div>
-        <p class="relative">
-          Strategiska samarbeten med fastighetsägare ger annonsörer tillgång
-          till exponeringsytor där människor bor, arbetar och konsumerar.
-        </p>
-      </div>
+      <IconBlob
+        icon="building"
+        message="Strategiska samarbeten med fastighetsägare ger annonsörer tillgång till exponeringsytor där människor bor, arbetar och konsumerar."
+      ></IconBlob>
     </div>
   </div>
 </template>
