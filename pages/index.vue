@@ -1,4 +1,6 @@
 <script setup>
+import { ChevronDoubleDownIcon } from "@heroicons/vue/24/solid";
+
 useSeoMeta({
   title: "",
   description: "",
@@ -54,6 +56,10 @@ definePageMeta({
         <div class="text-l absolute right-3 bottom-2 italic opacity-30">
           *DOOH - Digital out of Home Media
         </div>
+
+        <ChevronDoubleDownIcon
+          class="absolute bottom-4 h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
+        ></ChevronDoubleDownIcon>
       </div>
     </div>
 
