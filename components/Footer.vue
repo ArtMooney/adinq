@@ -20,11 +20,9 @@ import { HeartIcon } from "@heroicons/vue/24/solid";
         >Hem
       </router-link>
       <router-link
-        to="/tjanster"
+        to="/"
         class="pt-0.5 hover:underline"
-        :class="[
-          currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
-        ]"
+        :class="[currentPath === '/' && 'border-t-3 border-t-[#ffc000]']"
         >Tjänster
       </router-link>
       <router-link

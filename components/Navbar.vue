@@ -9,7 +9,7 @@ import {
   ChatBubbleOvalLeftEllipsisIcon,
   QuestionMarkCircleIcon,
   CurrencyEuroIcon,
-} from "@heroicons/vue/24/solid";
+} from "@heroicons/vue/24/outline";
 </script>
 
 <template>
@@ -21,18 +21,18 @@ import {
       <NuxtImg
         src="adinq_vit.svg"
         alt="company logo"
-        class="h-auto w-24 p-1 md:w-32 md:p-2"
+        class="h-auto w-24 p-1 xl:w-32 xl:p-2"
       />
     </router-link>
 
     <Bars2Icon
       @click="showNavbar = !showNavbar"
-      class="block h-8 w-8 cursor-pointer md:hidden"
+      class="block h-8 w-8 cursor-pointer xl:hidden"
     />
 
     <div
-      class="fixed top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center gap-5 p-4 pb-10 text-center md:static md:flex-row md:bg-transparent md:p-0"
-      :class="showNavbar ? 'absolute md:flex' : 'hidden md:flex'"
+      class="fixed top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center gap-5 p-4 pb-10 text-center xl:static xl:flex-row xl:bg-transparent xl:p-0"
+      :class="showNavbar ? 'absolute xl:flex' : 'hidden xl:flex'"
     >
       <XMarkIcon
         v-if="showNavbar"
@@ -40,91 +40,105 @@ import {
         class="absolute top-4 right-4 h-8 w-8 cursor-pointer"
       />
 
-      <div class="flex items-center gap-2">
+      <div class="group relative flex cursor-pointer items-center gap-2">
         <HomeIcon
-          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full bg-neutral-800 p-1 outline-2 outline-white/15"
         />
+        <div
+          class="absolute inset-0 z-[-1] h-7 min-h-7 w-7 min-w-7 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+          :class="[currentPath === '/' && 'opacity-100']"
+        />
+
         <NuxtLink
           to="/"
           @click="showNavbar = false"
           class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
-          :class="[currentPath === '/' && 'border-t-3 border-t-[#ffc000]']"
         >
           Hem
         </NuxtLink>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="group relative flex cursor-pointer items-center gap-2">
         <FilmIcon
-          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full bg-neutral-800 p-1 outline-2 outline-white/15"
         />
+        <div
+          class="absolute inset-0 z-[-1] h-7 min-h-7 w-7 min-w-7 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+          :class="[currentPath === '/media-produktion' && 'opacity-100']"
+        />
+
         <NuxtLink
-          to="/tjanster"
+          to="/media-produktion"
           @click="showNavbar = false"
           class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
-          :class="[
-            currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
-          ]"
           >Mediaproduktion
         </NuxtLink>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="group relative flex cursor-pointer items-center gap-2">
         <UserGroupIcon
-          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full bg-neutral-800 p-1 outline-2 outline-white/15"
         />
+        <div
+          class="absolute inset-0 z-[-1] h-7 min-h-7 w-7 min-w-7 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+          :class="[currentPath === '/medarbetare' && 'opacity-100']"
+        />
+
         <NuxtLink
-          to="/tjanster"
+          to="/medarbetare"
           @click="showNavbar = false"
           class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
-          :class="[
-            currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
-          ]"
           >Medarbetare
         </NuxtLink>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="group relative flex cursor-pointer items-center gap-2">
         <ChatBubbleOvalLeftEllipsisIcon
-          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full bg-neutral-800 p-1 outline-2 outline-white/15"
         />
+        <div
+          class="absolute inset-0 z-[-1] h-7 min-h-7 w-7 min-w-7 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+          :class="[currentPath === '/kundutlatanden' && 'opacity-100']"
+        />
+
         <NuxtLink
-          to="/tjanster"
+          to="/kundutlatanden"
           @click="showNavbar = false"
           class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
-          :class="[
-            currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
-          ]"
           >Kundutlåtanden
         </NuxtLink>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="group relative flex cursor-pointer items-center gap-2">
         <QuestionMarkCircleIcon
-          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full bg-neutral-800 p-1 outline-2 outline-white/15"
         />
+        <div
+          class="absolute inset-0 z-[-1] h-7 min-h-7 w-7 min-w-7 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+          :class="[currentPath === '/varfor-oss' && 'opacity-100']"
+        />
+
         <NuxtLink
-          to="/tjanster"
+          to="/varfor-oss"
           @click="showNavbar = false"
           class="whitespace-nowrap opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
-          :class="[
-            currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
-          ]"
           >Varför oss
         </NuxtLink>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="group relative flex cursor-pointer items-center gap-2">
         <CurrencyEuroIcon
-          class="h-7 min-h-7 w-7 min-w-7 rounded-full p-1.5 outline-2 outline-white/25"
+          class="h-7 min-h-7 w-7 min-w-7 rounded-full bg-neutral-800 p-1 outline-2 outline-white/15"
         />
+        <div
+          class="absolute inset-0 z-[-1] h-7 min-h-7 w-7 min-w-7 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+          :class="[currentPath === '/priser' && 'opacity-100']"
+        />
+
         <NuxtLink
-          to="/tjanster"
+          to="/priser"
           @click="showNavbar = false"
           class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
-          :class="[
-            currentPath === '/tjanster' && 'border-t-3 border-t-[#ffc000]',
-          ]"
           >Priser
         </NuxtLink>
       </div>
