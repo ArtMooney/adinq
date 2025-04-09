@@ -1,7 +1,5 @@
 <script setup>
 import {
-  Bars2Icon,
-  XMarkIcon,
   HomeIcon,
   FilmIcon,
   UserGroupIcon,
@@ -12,24 +10,25 @@ import {
 </script>
 
 <template>
-  <div class="group relative flex cursor-pointer items-center gap-2">
+  <NuxtLink
+    :to="route"
+    @click="showNavbar = false"
+    class="group relative flex cursor-pointer items-center gap-2"
+  >
     <component
       :is="getIcon"
       class="h-7 min-h-7 w-7 min-w-7 rounded-full bg-neutral-800 p-1 outline-2 outline-white/15"
     />
     <div
       class="absolute inset-0 z-[-1] h-7 min-h-7 w-7 min-w-7 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-100"
-      :class="[currentPath === '/' && 'opacity-100']"
+      :class="[currentPath === route && 'opacity-100']"
     />
-
-    <NuxtLink
-      to="/"
-      @click="showNavbar = false"
-      class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
+    <div
+      class="whitespace-nowrap opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
     >
-      Hem
-    </NuxtLink>
-  </div>
+      {{ text }}
+    </div>
+  </NuxtLink>
 </template>
 
 <script>
@@ -45,6 +44,11 @@ export default {
       type: String,
       required: false,
     },
+    route: {
+      type: String,
+      required: false,
+      default: "/",
+    },
   },
 
   computed: {
@@ -52,12 +56,16 @@ export default {
       switch (this.icon) {
         case "HomeIcon":
           return HomeIcon;
-        case "computer":
-          return ComputerDesktopIcon;
-        case "video":
-          return VideoCameraIcon;
-        case "building":
-          return BuildingOffice2Icon;
+        case "FilmIcon":
+          return FilmIcon;
+        case "UserGroupIcon":
+          return UserGroupIcon;
+        case "ChatBubbleOvalLeftEllipsisIcon":
+          return ChatBubbleOvalLeftEllipsisIcon;
+        case "QuestionMarkCircleIcon":
+          return QuestionMarkCircleIcon;
+        case "CurrencyEuroIcon":
+          return CurrencyEuroIcon;
         default:
           return null;
       }
