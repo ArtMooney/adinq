@@ -40,23 +40,7 @@ import {
         class="absolute top-4 right-4 h-8 w-8 cursor-pointer"
       />
 
-      <div class="group relative flex cursor-pointer items-center gap-2">
-        <HomeIcon
-          class="h-7 min-h-7 w-7 min-w-7 rounded-full bg-neutral-800 p-1 outline-2 outline-white/15"
-        />
-        <div
-          class="absolute inset-0 z-[-1] h-7 min-h-7 w-7 min-w-7 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-100"
-          :class="[currentPath === '/' && 'opacity-100']"
-        />
-
-        <NuxtLink
-          to="/"
-          @click="showNavbar = false"
-          class="opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
-        >
-          Hem
-        </NuxtLink>
-      </div>
+      <NavbarLink icon="HomeIcon" text="Hem"></NavbarLink>
 
       <div class="group relative flex cursor-pointer items-center gap-2">
         <FilmIcon
