@@ -63,17 +63,23 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
         route="/priser"
       ></NavbarLink>
 
-      <Button
-        @click="showNavbar = false"
-        text="Kontakta oss"
-        link="/kontakta-oss"
-        type="button"
-        styling="light"
-        class="w-full opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100"
-        :class="[
-          currentPath === '/kontakta-oss' && 'border-t-3 border-t-[#ffc000]',
-        ]"
-      />
+      <div class="group relative">
+        <Button
+          @click="showNavbar = false"
+          text="Kontakta oss"
+          link="/kontakta-oss"
+          type="button"
+          styling="light"
+          class="w-full opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100"
+        />
+        <div
+          class="absolute inset-0 z-[-1] w-full rounded-full bg-gradient-to-r from-blue-500 to-green-500 opacity-0 blur-xl transition-all duration-300 ease-in-out group-hover:opacity-100"
+          :class="[
+            currentPath === '/kontakta-oss' &&
+              'bg-gradient-to-r from-pink-500 to-purple-500 opacity-50',
+          ]"
+        />
+      </div>
     </div>
   </div>
 </template>
