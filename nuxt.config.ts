@@ -8,6 +8,9 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  nitro: {
+    preset: "cloudflare-pages",
+  },
   runtimeConfig: {
     mailgunApiKey: process.env.NUXT_MAILGUN_API_KEY,
     emailFrom: process.env.NUXT_EMAIL_FROM,
@@ -41,7 +44,7 @@ export default defineNuxtConfig({
       animated: false,
     },
     staticFilename: "[name]-[width]-[height]-[format].[ext]",
-    provider: "ipx",
+    provider: "ipxStatic",
   },
   robots: {
     rules: [
