@@ -102,7 +102,18 @@ export default {
   },
 
   mounted() {
-    this.$emit("navbarHeight", this.$refs.navbar.offsetHeight);
+    window.addEventListener("resize", this.onResize);
+    this.onResize();
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("resize", this.onResize);
+  },
+
+  methods: {
+    onResize() {
+      this.$emit("navbarHeight", this.$refs.navbar.offsetHeight);
+    },
   },
 };
 </script>
