@@ -50,7 +50,7 @@ definePageMeta({
       v-show="videoLoaded"
       class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
     >
-      <h1 class="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-7xl">
+      <h1 class="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
         Vi hjälper er att nå ut digitalt!
       </h1>
       <div class="px-8 text-lg lg:text-2xl">
@@ -72,10 +72,10 @@ definePageMeta({
     </div>
   </div>
 
-  <div id="services" class="mx-8 my-32 flex flex-col gap-8">
+  <div id="services" class="mx-8 my-20 flex flex-col gap-8">
     <VideoBlob></VideoBlob>
 
-    <div class="grid gap-8 md:grid-cols-2">
+    <div class="mt-12 grid gap-8 md:grid-cols-2">
       <IconBlob
         icon="tv"
         message="Butiks-TV är ett effektivt marknadsföringsverktyg som visar reklam och information direkt i butiksmiljön. Skärmarna placeras strategiskt för att nå kunder när de handlar."

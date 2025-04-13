@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <video ref="videoplayer" muted playsinline autoplay>
+    <video ref="videoplayer" class="rounded" muted playsinline>
       <source src="../assets/videos/ADinQ-RiksSWE.mp4" />
     </video>
   </ClientOnly>
