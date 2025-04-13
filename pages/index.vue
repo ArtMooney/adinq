@@ -60,13 +60,15 @@ definePageMeta({
         *DOOH - Digital out of Home Media
       </div>
 
-      <ChevronDoubleDownIcon
-        class="absolute bottom-4 h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-      ></ChevronDoubleDownIcon>
+      <NuxtLink :to="{ path: '/', hash: '#services' }">
+        <ChevronDoubleDownIcon
+          class="absolute bottom-4 h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
+        ></ChevronDoubleDownIcon>
+      </NuxtLink>
     </div>
   </div>
 
-  <div class="mx-8 flex flex-col">
+  <div id="services" class="mx-8 flex flex-col">
     <div class="my-32 grid grid-cols-2 gap-8">
       <IconBlob
         icon="tv"
