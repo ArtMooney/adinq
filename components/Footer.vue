@@ -3,62 +3,47 @@ import { HeartIcon } from "@heroicons/vue/24/solid";
 </script>
 
 <template>
-  <div class="relative flex flex-col items-center bg-neutral-800 py-6 pt-8">
+  <div class="relative flex flex-col items-center py-6 pt-8">
     <router-link to="/">
       <NuxtImg
         src="adinq_vit.svg"
         alt="footer logo"
-        class="relative mr-2 mb-6 h-auto w-32"
+        class="relative mr-2 mb-12 h-auto w-32"
       />
     </router-link>
 
-    <div class="flex items-center gap-4">
-      <router-link
-        to="/"
-        class="pt-0.5 hover:underline"
-        :class="[currentPath === '/' && 'border-t-3 border-t-[#ffc000]']"
-        >Hem
-      </router-link>
-      <router-link
-        to="/"
-        class="pt-0.5 hover:underline"
-        :class="[currentPath === '/' && 'border-t-3 border-t-[#ffc000]']"
-        >Tjänster
-      </router-link>
-      <router-link
-        to="/kontakta-oss"
-        class="pt-0.5 hover:underline"
-        :class="[
-          currentPath === '/kontakta-oss' && 'border-t-3 border-t-[#ffc000]',
-        ]"
-        >Kontakta oss
-      </router-link>
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <NavbarLink text="Hem" route="/"></NavbarLink>
+      <NavbarLink text="Mediaproduktion" route="/media-produktion"></NavbarLink>
+      <NavbarLink text="Medarbetare" route="/medarbetare"></NavbarLink>
+      <NavbarLink text="Kundutlåtanden" route="/kundutlatanden"></NavbarLink>
+      <NavbarLink text="Varför oss" route="/varfor-oss"></NavbarLink>
+      <NavbarLink text="Priser" route="/priser"></NavbarLink>
+      <NavbarLink text="Kontakta oss" route="/kontakta-oss"></NavbarLink>
     </div>
 
     <p
       class="bottom-3 col-span-1 mt-10 flex max-w-xl flex-wrap justify-center text-center text-xs leading-5 opacity-40 md:col-span-3 lg:max-w-none"
     >
-      <span>Säkra besiktningar Sverige AB</span>
+      <span>ADinQ AB</span>
       <span class="px-3 opacity-35">|</span>
-      <span>Varlabergsvägen 29</span>
+      <span>Fabriksgatan 11, plan 3</span>
       <span class="px-3 opacity-35">|</span>
-      <span>434 39 Kungsbacka</span>
+      <span>503 38 Borås</span>
       <span class="px-3 opacity-35">|</span>
-      <a class="underline hover:opacity-50" href="tel:0760-05 75 15"
-        >Tel. 0760-05 75 15</a
+      <a class="underline hover:opacity-50" href="tel:033-7222400"
+        >Tel. 033-72 22 400</a
       >
       <span class="px-3 opacity-35">|</span>
-      <a
-        class="underline hover:opacity-50"
-        href="mailto:info@sakrabesiktningar.se"
-        >E-post: info@sakrabesiktningar.se</a
+      <a class="underline hover:opacity-50" href="mailto:info@adinq.se"
+        >E-post: info@adinq.se</a
       >
     </p>
 
     <div class="my-4 w-1/3 border-t border-gray-300/40"></div>
 
     <a
-      class="bottom-3 col-span-1 flex text-xs opacity-20 hover:text-black/75 md:col-span-3"
+      class="bottom-3 col-span-1 flex text-xs opacity-20 hover:text-white/75 md:col-span-3"
       href="https://www.framecore.se"
       target="_blank"
     >
@@ -72,11 +57,5 @@ import { HeartIcon } from "@heroicons/vue/24/solid";
 <script>
 export default {
   name: "Footer",
-
-  computed: {
-    currentPath() {
-      return this.$route.path;
-    },
-  },
 };
 </script>
