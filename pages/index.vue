@@ -73,25 +73,29 @@ definePageMeta({
   </div>
 
   <div id="services" class="mx-8 flex flex-col">
-    <div class="my-32 grid grid-cols-2 gap-8">
+    <div class="my-32 grid gap-8 md:grid-cols-2">
       <IconBlob
         icon="tv"
         message="Butiks-TV är ett effektivt marknadsföringsverktyg som visar reklam och information direkt i butiksmiljön. Skärmarna placeras strategiskt för att nå kunder när de handlar."
+        link="/butiks-tv"
       ></IconBlob>
 
       <IconBlob
         icon="computer"
         message="Digitala utomhusskärmar eller LED-skyltar visar rörlig reklam som effektivt fångar förbipasserande trafikanters uppmärksamhet. Med sina starka färger och dynamiska innehåll skapar de minnesvärda intryck även vid hög hastighet."
+        link="/storbildsskarmar"
       ></IconBlob>
 
       <IconBlob
         icon="video"
         message="Med specialistkompetens kring olika kanaler maximeras avkastningen på kundens marknadsföringsinvesteringar genom datadrivna beslut och förhandlingskraft gentemot medieleverantörer."
+        link="/mediabyraer"
       ></IconBlob>
 
       <IconBlob
         icon="building"
         message="Strategiska samarbeten med fastighetsägare ger annonsörer tillgång till exponeringsytor där människor bor, arbetar och konsumerar."
+        link="/kommersialisera"
       ></IconBlob>
     </div>
   </div>

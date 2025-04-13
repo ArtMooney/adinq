@@ -8,8 +8,9 @@ import {
 </script>
 
 <template>
-  <div
-    class="group relative min-h-52 rounded border border-white/25 bg-neutral-900 p-8 pb-12"
+  <a
+    class="group relative min-h-52 cursor-pointer rounded border border-white/25 bg-neutral-900 p-8 pb-12"
+    :href="link"
   >
     <div
       class="absolute inset-0 z-[-1] rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
@@ -19,7 +20,7 @@ import {
     <p v-if="message" class="relative">
       {{ message }}
     </p>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -32,6 +33,10 @@ export default {
       required: false,
     },
     icon: {
+      type: String,
+      required: false,
+    },
+    link: {
       type: String,
       required: false,
     },
