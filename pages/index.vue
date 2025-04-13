@@ -20,9 +20,8 @@ definePageMeta({
 
 <template>
   <div
-    ref="videoTitle"
     class="relative mx-[calc(-50vw+50%)] w-screen"
-    :style="{ height: `calc(100vh - ${videoTitleTop}px)` }"
+    :style="{ height: `calc(100vh - ${navHeight}px)` }"
   >
     <LoadingSpinner
       v-if="!videoLoaded"
@@ -97,15 +96,18 @@ definePageMeta({
 export default {
   name: "Index",
 
+  inject: ["navbarHeight"],
+
   data() {
     return {
       videoLoaded: false,
-      videoTitleTop: 0,
     };
   },
 
-  mounted() {
-    this.videoTitleTop = this.$refs.videoTitle.getBoundingClientRect().top;
+  computed: {
+    navHeight() {
+      return this.navbarHeight();
+    },
   },
 };
 </script>
