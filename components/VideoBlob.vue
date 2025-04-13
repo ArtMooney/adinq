@@ -1,13 +1,8 @@
 <template>
   <ClientOnly>
-    <div ref="player">
-      <iframe
-        src="https://youtu.be/nqwAykRr6hY"
-        allowfullscreen
-        allowtransparency
-        allow="autoplay"
-      ></iframe>
-    </div>
+    <video ref="videoplayer" muted playsinline autoplay>
+      <source src="../assets/videos/ADinQ-RiksSWE.mp4" />
+    </video>
   </ClientOnly>
 </template>
 
@@ -30,11 +25,7 @@ export default {
       const { default: Plyr } = await import("plyr");
       await import("plyr/dist/plyr.css");
 
-      this.player = new Plyr(this.$refs.player);
-
-      // Valfria konfigurationer
-      // this.player.muted = true;
-      // this.player.play();
+      this.player = new Plyr(this.$refs.videoplayer);
     }
   },
 };
