@@ -19,51 +19,55 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="mx-8 flex flex-col">
-    <div class="relative mx-[calc(-50vw+50%)] h-[83.5rem] w-screen">
-      <LoadingSpinner
-        v-if="!videoLoaded"
-        class="absolute top-2/5 left-1/2"
-      ></LoadingSpinner>
+  <div
+    ref="videoTitle"
+    class="relative mx-[calc(-50vw+50%)] w-screen"
+    :style="{ height: `calc(100vh - ${videoTitleTop}px)` }"
+  >
+    <LoadingSpinner
+      v-if="!videoLoaded"
+      class="absolute top-2/5 left-1/2"
+    ></LoadingSpinner>
 
-      <ClientOnly>
-        <video
-          v-show="videoLoaded"
-          @canplaythrough="videoLoaded = true"
-          autoplay
-          loop
-          muted
-          disablepictureinpicture
-          playsinline
-          preload="auto"
-          class="h-full w-full object-cover"
-        >
-          <source src="../assets/videos/folkmassa.mp4" type="video/mp4" />
-        </video>
-      </ClientOnly>
-
-      <div v-show="videoLoaded" class="absolute inset-0 bg-black/40"></div>
-
-      <div
+    <ClientOnly>
+      <video
         v-show="videoLoaded"
-        class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15"
+        @canplaythrough="videoLoaded = true"
+        autoplay
+        loop
+        muted
+        disablepictureinpicture
+        playsinline
+        preload="auto"
+        class="h-full w-full object-cover"
       >
-        <h1 class="mb-8 text-7xl">Vi hjälper er att nå ut digitalt!</h1>
-        <div class="text-2xl">
-          Lokalt, regionalt eller rikstäckande - just DOOH* it!
-        </div>
+        <source src="../assets/videos/folkmassa.mp4" type="video/mp4" />
+      </video>
+    </ClientOnly>
 
-        <div class="text-l absolute right-3 bottom-2 italic opacity-30">
-          *DOOH - Digital out of Home Media
-        </div>
+    <div v-show="videoLoaded" class="absolute inset-0 bg-black/40"></div>
 
-        <ChevronDoubleDownIcon
-          class="absolute bottom-4 h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-        ></ChevronDoubleDownIcon>
+    <div
+      v-show="videoLoaded"
+      class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15"
+    >
+      <h1 class="mb-8 text-7xl">Vi hjälper er att nå ut digitalt!</h1>
+      <div class="text-2xl">
+        Lokalt, regionalt eller rikstäckande - just DOOH* it!
       </div>
-    </div>
 
-    <div class="mt-12 mb-20 grid grid-cols-2 gap-8">
+      <div class="text-l absolute right-3 bottom-2 italic opacity-30">
+        *DOOH - Digital out of Home Media
+      </div>
+
+      <ChevronDoubleDownIcon
+        class="absolute bottom-4 h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
+      ></ChevronDoubleDownIcon>
+    </div>
+  </div>
+
+  <div class="mx-8 flex flex-col">
+    <div class="my-32 grid grid-cols-2 gap-8">
       <IconBlob
         icon="tv"
         message="Butiks-TV är ett effektivt marknadsföringsverktyg som visar reklam och information direkt i butiksmiljön. Skärmarna placeras strategiskt för att nå kunder när de handlar."
@@ -94,7 +98,12 @@ export default {
   data() {
     return {
       videoLoaded: false,
+      videoTitleTop: 0,
     };
+  },
+
+  mounted() {
+    this.videoTitleTop = this.$refs.videoTitle.getBoundingClientRect().top;
   },
 };
 </script>
