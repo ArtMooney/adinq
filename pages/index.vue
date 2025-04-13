@@ -48,10 +48,12 @@ definePageMeta({
 
     <div
       v-show="videoLoaded"
-      class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15"
+      class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
     >
-      <h1 class="mb-8 text-7xl">Vi hjälper er att nå ut digitalt!</h1>
-      <div class="text-2xl">
+      <h1 class="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-7xl">
+        Vi hjälper er att nå ut digitalt!
+      </h1>
+      <div class="px-8 text-lg lg:text-2xl">
         Lokalt, regionalt eller rikstäckande - just DOOH* it!
       </div>
 
@@ -59,9 +61,12 @@ definePageMeta({
         *DOOH - Digital out of Home Media
       </div>
 
-      <NuxtLink :to="{ path: '/', hash: '#services' }">
+      <NuxtLink
+        :to="{ path: '/', hash: '#services' }"
+        class="absolute bottom-16 flex w-full items-center justify-center"
+      >
         <ChevronDoubleDownIcon
-          class="absolute bottom-4 h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
+          class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
         ></ChevronDoubleDownIcon>
       </NuxtLink>
     </div>
