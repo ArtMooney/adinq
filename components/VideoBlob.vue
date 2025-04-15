@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <video ref="videoplayer" class="rounded" muted playsinline preload="none">
-      <source src="../public/videos/ADinQ-RiksSWE.mp4" />
+      <source src="../assets/videos/ADinQ-RiksSWE.mp4" />
     </video>
   </ClientOnly>
 </template>
