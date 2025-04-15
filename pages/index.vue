@@ -30,14 +30,13 @@ definePageMeta({
 
     <ClientOnly>
       <video
-        v-show="videoLoaded"
         @loadeddata="videoLoaded = true"
         autoplay
         loop
         muted
         disablepictureinpicture
         playsinline
-        preload="metadata"
+        preload="auto"
         class="h-full w-full object-cover"
       >
         <source src="../assets/videos/folkmassa.mp4" type="video/mp4" />
