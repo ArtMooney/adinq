@@ -14,7 +14,7 @@ useSeoMeta({
 });
 
 definePageMeta({
-  ssr: true,
+  ssr: false,
 });
 </script>
 
