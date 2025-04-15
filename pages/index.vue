@@ -31,7 +31,7 @@ definePageMeta({
     <ClientOnly>
       <video
         v-show="videoLoaded"
-        @canplaythrough="videoLoaded = true"
+        @loadeddata="videoLoaded = true"
         autoplay
         loop
         muted
