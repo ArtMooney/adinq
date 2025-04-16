@@ -27,7 +27,7 @@ import {
     </div>
 
     <div
-      class="absolute inset-0 -z-1 bg-gradient-to-r from-blue-500 to-green-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-75"
+      class="absolute inset-0 -z-1 transform-gpu bg-gradient-to-r from-blue-500 to-green-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-75"
       :class="[
         currentPath === route &&
           'bg-gradient-to-r from-pink-500 to-purple-500 opacity-50',
