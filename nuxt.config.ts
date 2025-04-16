@@ -10,13 +10,6 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: "cloudflare-pages",
-    routeRules: {
-      "/**/*.mp4": {
-        headers: {
-          "Cache-Control": "public, max-age=31536000, immutable",
-        },
-      },
-    },
   },
   runtimeConfig: {
     mailgunApiKey: process.env.NUXT_MAILGUN_API_KEY,
