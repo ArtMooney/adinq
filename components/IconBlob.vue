@@ -13,7 +13,7 @@ import {
     :href="link"
   >
     <div
-      class="absolute inset-0 z-[-1] rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
+      class="absolute inset-0 -z-1 transform-gpu rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
     ></div>
     <component
       v-if="getIcon"
