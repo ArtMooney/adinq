@@ -1,6 +1,5 @@
 <script setup>
 import { ChevronDoubleDownIcon } from "@heroicons/vue/24/solid";
-import backgroundVideo from "../assets/videos/folkmassa.mp4";
 
 useSeoMeta({
   title: "",
@@ -41,7 +40,7 @@ definePageMeta({
         preload="metadata"
         class="h-full w-full object-cover"
       >
-        <source :src="backgroundVideo" />
+        <source src="/videos/folkmassa.mp4" />
       </video>
     </ClientOnly>
 
