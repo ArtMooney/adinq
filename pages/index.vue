@@ -40,7 +40,7 @@ definePageMeta({
         preload="metadata"
         class="h-full w-full object-cover"
       >
-        <source src="/videos/folkmassa.mp4" />
+        <source src="/folkmassa.mp4" />
       </video>
     </ClientOnly>
 
