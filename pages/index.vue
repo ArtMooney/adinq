@@ -30,6 +30,7 @@ definePageMeta({
 
     <ClientOnly>
       <video
+        ref="titleVideo"
         v-show="videoLoaded"
         @canplay="videoLoaded = true"
         autoplay
@@ -40,7 +41,7 @@ definePageMeta({
         preload="metadata"
         class="h-full w-full object-cover"
       >
-        <source src="/folkmassa.mp4" />
+        <source src="../assets/videos/folkmassa.mp4" />
       </video>
     </ClientOnly>
 
@@ -113,6 +114,12 @@ export default {
     return {
       videoLoaded: false,
     };
+  },
+
+  activated() {
+    if (this.$refs.titleVideo) {
+      this.$refs.titleVideo.play();
+    }
   },
 
   computed: {
