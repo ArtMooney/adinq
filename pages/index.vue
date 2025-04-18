@@ -38,7 +38,7 @@ definePageMeta({
         muted
         disablepictureinpicture
         playsinline
-        preload="metadata"
+        preload="auto"
         class="h-full w-full object-cover"
       >
         <source src="../assets/videos/folkmassa.mp4" />
@@ -74,9 +74,39 @@ definePageMeta({
   </div>
 
   <div id="services" class="mx-8 my-20 flex flex-col gap-8">
-    <VideoBlob></VideoBlob>
+    <h3 class="mt-32 text-center">Se vår informationsvideo</h3>
+    <div class="flex justify-center gap-4 underline">
+      <div
+        @click="sweVersion = true"
+        class="cursor-pointer"
+        :class="[!sweVersion && 'opacity-25']"
+      >
+        Svensk version
+      </div>
+      <div class="opacity-50">|</div>
+      <div
+        @click="sweVersion = false"
+        class="cursor-pointer"
+        :class="[sweVersion && 'opacity-25']"
+      >
+        English version
+      </div>
+    </div>
 
-    <div class="mt-12 grid gap-8 md:grid-cols-2">
+    <VideoBlob
+      v-if="sweVersion"
+      video-Link="../assets/videos/ADinQ-RiksSWE.mp4"
+    ></VideoBlob>
+    <VideoBlob
+      v-if="!sweVersion"
+      video-Link="../assets/videos/ADinQ-RiksENG.mp4"
+    ></VideoBlob>
+
+    <h3 class="mt-32 text-center">
+      Mer information om våra marknadsföringskanaler
+    </h3>
+
+    <div class="mt-4 grid gap-8 md:grid-cols-2">
       <IconBlob
         icon="tv"
         message="Butiks-TV är ett effektivt marknadsföringsverktyg som visar reklam och information direkt i butiksmiljön. Skärmarna placeras strategiskt för att nå kunder när de handlar."
@@ -113,6 +143,7 @@ export default {
   data() {
     return {
       videoLoaded: false,
+      sweVersion: true,
     };
   },
 
