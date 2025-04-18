@@ -32,7 +32,7 @@ definePageMeta({
       <ClientOnly>
         <video
           v-show="videoLoaded"
-          @loadedmetadata="videoLoaded = true"
+          @canplay="videoLoaded = true"
           autoplay
           loop
           muted

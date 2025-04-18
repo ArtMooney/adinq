@@ -67,6 +67,7 @@ export default defineNuxtConfig({
     gzip: true,
   },
   app: {
+    keepalive: true,
     head: {
       link: [
         {
