@@ -1,8 +1,13 @@
 <template>
   <ClientOnly>
-    <video ref="videoplayer" class="rounded" muted playsinline preload="none">
-      <source src="../assets/videos/ADinQ-RiksSWE.mp4" />
-    </video>
+    <video
+      ref="videoplayer"
+      :src="videoSrc"
+      class="aspect-video w-full rounded"
+      muted
+      playsinline
+      preload="none"
+    ></video>
   </ClientOnly>
 </template>
 
@@ -10,18 +15,25 @@
 export default {
   name: "VideoBlob",
 
-  props: {},
-
-  computed: {},
+  props: {
+    videoLink: {
+      type: String,
+      required: true,
+    },
+  },
 
   data() {
     return {
       player: null,
+      videoSrc: "",
     };
   },
 
   async mounted() {
     if (process.client) {
+      const videoModule = await import(this.videoLink);
+      this.$refs.videoplayer.src = videoModule.default;
+
       const { default: Plyr } = await import("plyr");
       await import("plyr/dist/plyr.css");
 
