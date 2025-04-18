@@ -10,7 +10,5 @@ export default {
         behavior: "smooth",
       };
     }
-
-    return { top: 0, behavior: "smooth" };
   },
 };
