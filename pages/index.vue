@@ -28,22 +28,23 @@ definePageMeta({
       class="absolute top-2/5 left-1/2"
     ></LoadingSpinner>
 
-    <ClientOnly>
-      <video
-        v-show="videoLoaded"
-        @loadedmetadata="videoLoaded = true"
-        key="title-video"
-        autoplay
-        loop
-        muted
-        disablepictureinpicture
-        playsinline
-        preload="metadata"
-        class="h-full w-full object-cover"
-      >
-        <source src="/folkmassa.mp4" />
-      </video>
-    </ClientOnly>
+    <KeepAlive>
+      <ClientOnly>
+        <video
+          v-show="videoLoaded"
+          @loadedmetadata="videoLoaded = true"
+          autoplay
+          loop
+          muted
+          disablepictureinpicture
+          playsinline
+          preload="metadata"
+          class="h-full w-full object-cover"
+        >
+          <source src="/folkmassa.mp4" />
+        </video>
+      </ClientOnly>
+    </KeepAlive>
 
     <div v-show="videoLoaded" class="absolute inset-0 bg-black/40"></div>
 
