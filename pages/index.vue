@@ -31,7 +31,7 @@ definePageMeta({
     <ClientOnly>
       <video
         v-show="videoLoaded"
-        @canplay="videoLoaded = true"
+        @loadedmetadata="videoLoaded = true"
         autoplay
         loop
         muted
@@ -63,7 +63,7 @@ definePageMeta({
 
       <NuxtLink
         :to="{ path: '/', hash: '#services' }"
-        class="absolute bottom-16 flex w-full items-center justify-center"
+        class="absolute bottom-20 flex w-full items-center justify-center sm:bottom-16"
       >
         <ChevronDoubleDownIcon
           class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
