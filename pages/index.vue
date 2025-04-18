@@ -32,6 +32,7 @@ definePageMeta({
       <video
         v-show="videoLoaded"
         @loadedmetadata="videoLoaded = true"
+        key="title-video"
         autoplay
         loop
         muted
