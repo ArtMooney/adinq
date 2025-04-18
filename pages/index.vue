@@ -19,60 +19,58 @@ definePageMeta({
 </script>
 
 <template>
-  <KeepAlive>
-    <div
-      class="relative mx-[calc(-50vw+50%)] w-screen"
-      :style="{ height: `calc(100vh - ${navHeight}px)` }"
-    >
-      <LoadingSpinner
-        v-if="!videoLoaded"
-        class="absolute top-2/5 left-1/2"
-      ></LoadingSpinner>
+  <div
+    class="relative mx-[calc(-50vw+50%)] w-screen"
+    :style="{ height: `calc(100vh - ${navHeight}px)` }"
+  >
+    <LoadingSpinner
+      v-if="!videoLoaded"
+      class="absolute top-2/5 left-1/2"
+    ></LoadingSpinner>
 
-      <ClientOnly>
-        <video
-          v-show="videoLoaded"
-          @canplay="videoLoaded = true"
-          autoplay
-          loop
-          muted
-          disablepictureinpicture
-          playsinline
-          preload="metadata"
-          class="h-full w-full object-cover"
-        >
-          <source src="/folkmassa.mp4" />
-        </video>
-      </ClientOnly>
-
-      <div v-show="videoLoaded" class="absolute inset-0 bg-black/40"></div>
-
-      <div
+    <ClientOnly>
+      <video
         v-show="videoLoaded"
-        class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
+        @canplay="videoLoaded = true"
+        autoplay
+        loop
+        muted
+        disablepictureinpicture
+        playsinline
+        preload="metadata"
+        class="h-full w-full object-cover"
       >
-        <h1 class="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-          Vi hjälper er att nå ut digitalt!
-        </h1>
-        <div class="px-8 text-lg lg:text-2xl">
-          Lokalt, regionalt eller rikstäckande - just DOOH* it!
-        </div>
+        <source src="/folkmassa.mp4" />
+      </video>
+    </ClientOnly>
 
-        <div class="text-l absolute right-3 bottom-2 italic opacity-30">
-          *DOOH - Digital out of Home Media
-        </div>
+    <div v-show="videoLoaded" class="absolute inset-0 bg-black/40"></div>
 
-        <NuxtLink
-          :to="{ path: '/', hash: '#services' }"
-          class="absolute bottom-20 flex w-full items-center justify-center sm:bottom-16"
-        >
-          <ChevronDoubleDownIcon
-            class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-          ></ChevronDoubleDownIcon>
-        </NuxtLink>
+    <div
+      v-show="videoLoaded"
+      class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
+    >
+      <h1 class="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+        Vi hjälper er att nå ut digitalt!
+      </h1>
+      <div class="px-8 text-lg lg:text-2xl">
+        Lokalt, regionalt eller rikstäckande - just DOOH* it!
       </div>
+
+      <div class="text-l absolute right-3 bottom-2 italic opacity-30">
+        *DOOH - Digital out of Home Media
+      </div>
+
+      <NuxtLink
+        :to="{ path: '/', hash: '#services' }"
+        class="absolute bottom-20 flex w-full items-center justify-center sm:bottom-16"
+      >
+        <ChevronDoubleDownIcon
+          class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
+        ></ChevronDoubleDownIcon>
+      </NuxtLink>
     </div>
-  </KeepAlive>
+  </div>
 
   <div id="services" class="mx-8 my-20 flex flex-col gap-8">
     <VideoBlob></VideoBlob>
