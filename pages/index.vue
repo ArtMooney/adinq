@@ -93,14 +93,8 @@ definePageMeta({
       </div>
     </div>
 
-    <VideoBlob
-      v-if="sweVersion"
-      video-Link="../assets/videos/ADinQ-RiksSWE.mp4"
-    ></VideoBlob>
-    <VideoBlob
-      v-if="!sweVersion"
-      video-Link="../assets/videos/ADinQ-RiksENG.mp4"
-    ></VideoBlob>
+    <VideoBlob v-if="sweVersion" :video-Link="videoSWE"></VideoBlob>
+    <VideoBlob v-if="!sweVersion" :video-Link="videoENG"></VideoBlob>
 
     <h3 class="mt-32 text-center">
       Mer information om våra marknadsföringskanaler
@@ -135,6 +129,9 @@ definePageMeta({
 </template>
 
 <script>
+import VideoSWE from "../assets/videos/ADinQ-RiksSWE.mp4";
+import VideoENG from "../assets/videos/ADinQ-RiksENG.mp4";
+
 export default {
   name: "Index",
 
@@ -144,6 +141,8 @@ export default {
     return {
       videoLoaded: false,
       sweVersion: true,
+      videoSWE: VideoSWE,
+      videoENG: VideoENG,
     };
   },
 
