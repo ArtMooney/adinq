@@ -41,7 +41,7 @@ definePageMeta({
         preload="auto"
         class="h-full w-full object-cover"
       >
-        <source src="../assets/videos/folkmassa.mp4" />
+        <source src="../public/videos/folkmassa.mp4" />
       </video>
     </ClientOnly>
 
@@ -93,8 +93,14 @@ definePageMeta({
       </div>
     </div>
 
-    <VideoBlob v-if="sweVersion" :video-Link="videoSWE"></VideoBlob>
-    <VideoBlob v-if="!sweVersion" :video-Link="videoENG"></VideoBlob>
+    <VideoBlob
+      v-if="sweVersion"
+      video-Link="../videos/ADinQ-RiksSWE.mp4"
+    ></VideoBlob>
+    <VideoBlob
+      v-if="!sweVersion"
+      video-Link="../videos/ADinQ-RiksENG.mp4"
+    ></VideoBlob>
 
     <h3 class="mt-32 text-center">
       Mer information om våra marknadsföringskanaler
@@ -129,9 +135,6 @@ definePageMeta({
 </template>
 
 <script>
-import VideoSWE from "../assets/videos/ADinQ-RiksSWE.mp4";
-import VideoENG from "../assets/videos/ADinQ-RiksENG.mp4";
-
 export default {
   name: "Index",
 
@@ -141,8 +144,6 @@ export default {
     return {
       videoLoaded: false,
       sweVersion: true,
-      videoSWE: VideoSWE,
-      videoENG: VideoENG,
     };
   },
 
