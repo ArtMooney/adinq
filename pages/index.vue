@@ -95,11 +95,11 @@ definePageMeta({
 
     <VideoBlob
       v-if="sweVersion"
-      video-Link="../videos/ADinQ-RiksSWE.mp4"
+      video-Link="/videos/ADinQ-RiksSWE.mp4"
     ></VideoBlob>
     <VideoBlob
       v-if="!sweVersion"
-      video-Link="../videos/ADinQ-RiksENG.mp4"
+      video-Link="/videos/ADinQ-RiksENG.mp4"
     ></VideoBlob>
 
     <h3 class="mt-32 text-center">

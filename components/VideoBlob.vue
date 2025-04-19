@@ -31,13 +31,16 @@ export default {
 
   async mounted() {
     if (process.client) {
-      const videoModule = await import(this.videoLink);
-      this.$refs.videoplayer.src = videoModule.default;
+      this.$nextTick(() => {
+        if (this.$refs.videoplayer) {
+          this.$refs.videoplayer.src = this.videoLink;
 
-      const { default: Plyr } = await import("plyr");
-      await import("plyr/dist/plyr.css");
-
-      this.player = new Plyr(this.$refs.videoplayer);
+          import("plyr").then(({ default: Plyr }) => {
+            import("plyr/dist/plyr.css");
+            this.player = new Plyr(this.$refs.videoplayer);
+          });
+        }
+      });
     }
   },
 };
