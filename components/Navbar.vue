@@ -7,7 +7,7 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
   <div
     id="navbar"
     ref="navbar"
-    class="relative z-10 flex items-center justify-between bg-neutral-800 p-4 py-2"
+    class="relative z-10 flex items-center justify-between bg-black p-4 py-2"
   >
     <router-link to="/">
       <NuxtImg
