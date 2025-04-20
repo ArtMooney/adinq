@@ -23,7 +23,7 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
     />
 
     <div
-      class="fixed top-0 right-0 bottom-0 left-auto flex flex-col items-end justify-center gap-5 p-8 pb-10 text-center xl:static xl:flex-row xl:bg-transparent xl:p-0"
+      class="fixed top-0 right-0 bottom-0 left-auto flex flex-col items-end justify-start gap-5 px-8 pt-24 pb-10 text-center xl:static xl:flex-row xl:items-center xl:bg-transparent xl:p-0"
       :class="showNavbar ? 'absolute bg-black xl:flex' : 'hidden xl:flex'"
     >
       <XMarkIcon
@@ -32,36 +32,46 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
         class="absolute top-4 right-4 h-8 w-8 cursor-pointer"
       />
 
-      <NavbarLink icon="HomeIcon" text="Hem" route="/"></NavbarLink>
+      <NavbarLink
+        icon="HomeIcon"
+        text="Hem"
+        route="/"
+        :class="showNavbar && 'flex-row-reverse'"
+      ></NavbarLink>
 
       <NavbarLink
         icon="FilmIcon"
         text="Mediaproduktion"
         route="/media-produktion"
+        :class="showNavbar && 'flex-row-reverse'"
       ></NavbarLink>
 
       <NavbarLink
         icon="UserGroupIcon"
         text="Medarbetare"
         route="/medarbetare"
+        :class="showNavbar && 'flex-row-reverse'"
       ></NavbarLink>
 
       <NavbarLink
         icon="ChatBubbleOvalLeftEllipsisIcon"
         text="Kundutlåtanden"
         route="/kundutlatanden"
+        :class="showNavbar && 'flex-row-reverse'"
       ></NavbarLink>
 
       <NavbarLink
         icon="QuestionMarkCircleIcon"
         text="Varför oss"
         route="/varfor-oss"
+        :class="showNavbar && 'flex-row-reverse'"
       ></NavbarLink>
 
       <NavbarLink
         icon="CurrencyEuroIcon"
         text="Priser"
         route="/priser"
+        :class="showNavbar && 'flex-row-reverse'"
       ></NavbarLink>
 
       <div class="group relative">
