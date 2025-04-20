@@ -23,8 +23,8 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
     />
 
     <div
-      class="fixed top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center gap-5 p-4 pb-10 text-center xl:static xl:flex-row xl:bg-transparent xl:p-0"
-      :class="showNavbar ? 'absolute bg-neutral-800 xl:flex' : 'hidden xl:flex'"
+      class="fixed top-0 right-0 bottom-0 left-auto flex flex-col items-end justify-center gap-5 p-8 pb-10 text-center xl:static xl:flex-row xl:bg-transparent xl:p-0"
+      :class="showNavbar ? 'absolute bg-black xl:flex' : 'hidden xl:flex'"
     >
       <XMarkIcon
         v-if="showNavbar"
