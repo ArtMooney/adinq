@@ -64,7 +64,7 @@ definePageMeta({
 
       <NuxtLink
         :to="{ path: '/', hash: '#services' }"
-        class="absolute bottom-20 flex w-full items-center justify-center sm:bottom-16"
+        class="absolute bottom-24 flex w-full items-center justify-center sm:bottom-16"
       >
         <ChevronDoubleDownIcon
           class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
@@ -73,7 +73,7 @@ definePageMeta({
     </div>
   </div>
 
-  <div id="services" class="mx-8 my-20 flex flex-col gap-8">
+  <div id="services" class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
     <h3 class="mt-32 text-center">Se vår informationsvideo</h3>
     <div class="flex justify-center gap-4 underline">
       <div
