@@ -17,11 +17,11 @@ import {
   >
     <component
       :is="getIcon"
-      class="h-7 min-h-7 w-7 min-w-7 rounded-full bg-neutral-800 p-1 outline-2 outline-white/15"
+      class="h-7 min-h-7 w-7 min-w-7 rounded-full border-2 border-white/15 bg-neutral-800 p-1"
     />
 
     <div
-      class="whitespace-nowrap opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
+      class="transform-gpu whitespace-nowrap opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
     >
       {{ text }}
     </div>
