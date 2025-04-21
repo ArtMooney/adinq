@@ -15,6 +15,14 @@ import {
     @click="showNavbar = false"
     class="group relative flex cursor-pointer items-center gap-2"
   >
+    <div
+      class="absolute inset-0 transform-gpu bg-gradient-to-r from-blue-500 to-green-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-75"
+      :class="[
+        currentPath === route &&
+          'bg-gradient-to-r from-pink-500 to-purple-500 opacity-50',
+      ]"
+    />
+
     <component
       :is="getIcon"
       class="h-7 min-h-7 w-7 min-w-7 rounded-full border-2 border-white/15 bg-neutral-800 p-1"
@@ -25,14 +33,6 @@ import {
     >
       {{ text }}
     </div>
-
-    <div
-      class="absolute inset-0 -z-1 transform-gpu bg-gradient-to-r from-blue-500 to-green-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-75"
-      :class="[
-        currentPath === route &&
-          'bg-gradient-to-r from-pink-500 to-purple-500 opacity-50',
-      ]"
-    />
   </NuxtLink>
 </template>
 
