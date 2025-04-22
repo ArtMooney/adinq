@@ -21,7 +21,7 @@ definePageMeta({
 <template>
   <div
     class="relative mx-[calc(-50vw+50%)] w-screen"
-    :style="{ height: `calc(100vh - ${navHeight}px)` }"
+    :style="{ height: `calc(100dvh - ${navHeight}px)` }"
   >
     <LoadingSpinner
       v-if="!videoLoaded"
