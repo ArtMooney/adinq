@@ -25,20 +25,14 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
         class="block h-8 w-8 cursor-pointer xl:hidden"
       />
 
-      <!--      <div-->
-      <!--        class="fixed top-0 right-0 bottom-0 left-auto flex flex-col items-end justify-start gap-5 px-8 pt-24 pb-10 text-center transition-all duration-1000 ease-in-out xl:static xl:flex-row xl:items-center xl:bg-transparent xl:p-0"-->
-      <!--        :class="-->
-      <!--          showNavbar-->
-      <!--            ? 'absolute translate-x-0 bg-neutral-950 xl:flex'-->
-      <!--            : 'absolute translate-x-100 xl:flex'-->
-      <!--        "-->
-      <!--      >-->
-
       <div
-        class="fixed top-0 right-0 bottom-0 left-auto flex flex-col items-end justify-start gap-5 px-8 pt-24 pb-10 text-center xl:static xl:flex-row xl:items-center xl:bg-transparent xl:p-0"
-        :class="
-          showNavbar ? 'absolute bg-neutral-950 xl:flex' : 'hidden xl:flex'
-        "
+        class="fixed top-0 right-0 bottom-0 left-auto flex flex-col items-end justify-start gap-5 px-8 pt-24 pb-10 text-center transition-all duration-300 ease-in-out xl:static xl:flex-row xl:items-center xl:bg-transparent xl:p-0"
+        :class="[
+          showNavbar
+            ? 'absolute bg-neutral-950 xl:flex'
+            : 'absolute translate-x-100 xl:flex xl:translate-x-0',
+          resizing && 'transition-none',
+        ]"
       >
         <XMarkIcon
           v-if="showNavbar"
@@ -47,45 +41,45 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
         />
 
         <NavbarLink
+          @click="showNavbar = false"
           icon="HomeIcon"
           text="Hem"
           route="/"
-          :class="showNavbar && 'flex-row-reverse'"
         ></NavbarLink>
 
         <NavbarLink
+          @click="showNavbar = false"
           icon="FilmIcon"
           text="Mediaproduktion"
           route="/media-produktion"
-          :class="showNavbar && 'flex-row-reverse'"
         ></NavbarLink>
 
         <NavbarLink
+          @click="showNavbar = false"
           icon="UserGroupIcon"
           text="Medarbetare"
           route="/medarbetare"
-          :class="showNavbar && 'flex-row-reverse'"
         ></NavbarLink>
 
         <NavbarLink
+          @click="showNavbar = false"
           icon="ChatBubbleOvalLeftEllipsisIcon"
           text="Kundutlåtanden"
           route="/kundutlatanden"
-          :class="showNavbar && 'flex-row-reverse'"
         ></NavbarLink>
 
         <NavbarLink
+          @click="showNavbar = false"
           icon="QuestionMarkCircleIcon"
           text="Varför oss"
           route="/varfor-oss"
-          :class="showNavbar && 'flex-row-reverse'"
         ></NavbarLink>
 
         <NavbarLink
+          @click="showNavbar = false"
           icon="CurrencyEuroIcon"
           text="Priser"
           route="/priser"
-          :class="showNavbar && 'flex-row-reverse'"
         ></NavbarLink>
 
         <div class="group relative">
@@ -117,6 +111,8 @@ export default {
   data() {
     return {
       showNavbar: false,
+      resizing: false,
+      resizeTimeout: null,
     };
   },
 
@@ -138,6 +134,15 @@ export default {
   methods: {
     onResize() {
       this.$emit("navbarHeight", this.$refs.navbar.offsetHeight);
+      this.resizing = true;
+
+      if (this.resizeTimeout) {
+        clearTimeout(this.resizeTimeout);
+      }
+
+      this.resizeTimeout = setTimeout(() => {
+        this.resizing = false;
+      }, 300);
     },
   },
 };

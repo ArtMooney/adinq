@@ -13,7 +13,7 @@ import {
   <NuxtLink
     :to="route"
     @click="showNavbar = false"
-    class="group relative flex cursor-pointer items-center gap-2"
+    class="group relative flex cursor-pointer flex-row-reverse items-center gap-2 xl:flex-row"
   >
     <div
       class="absolute inset-0 transform-gpu bg-gradient-to-r from-blue-500 to-green-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-75"
