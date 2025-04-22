@@ -75,8 +75,8 @@ definePageMeta({
     </div>
   </div>
 
-  <div id="services" class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
-    <h3 class="mt-32 text-center">Se vår informationsvideo</h3>
+  <div class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
+    <h3 id="services" class="mt-32 text-center">Se vår informationsvideo</h3>
     <div class="flex justify-center gap-4 underline">
       <div
         @click="sweVersion = true"
