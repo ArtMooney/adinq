@@ -25,7 +25,7 @@ definePageMeta({
   >
     <LoadingSpinner
       v-if="!videoLoaded"
-      class="absolute top-2/5 left-1/2"
+      class="absolute top-2/5 left-1/2 -translate-x-1/2 transform"
     ></LoadingSpinner>
 
     <ClientOnly>
