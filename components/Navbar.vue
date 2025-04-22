@@ -10,6 +10,12 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
     class="relative z-10 mx-[calc(-50vw+50%)] w-screen bg-neutral-950"
   >
     <div
+      v-if="showNavbar"
+      @click="showNavbar = false"
+      class="fixed inset-0"
+    ></div>
+
+    <div
       class="mx-auto flex w-full max-w-screen-2xl items-center justify-between p-4 py-2"
     >
       <router-link to="/">
@@ -26,7 +32,7 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
       />
 
       <div
-        class="fixed top-0 right-0 bottom-0 left-auto flex flex-col items-end justify-start gap-5 px-8 pt-24 pb-10 text-center transition-all duration-300 ease-in-out xl:static xl:flex-row xl:items-center xl:bg-transparent xl:p-0"
+        class="fixed top-0 right-0 bottom-0 left-auto flex flex-col items-end justify-start gap-5 overflow-auto px-8 pt-24 pb-10 text-center transition-all duration-300 ease-in-out xl:static xl:flex-row xl:items-center xl:bg-transparent xl:p-0"
         :class="[
           showNavbar
             ? 'absolute bg-neutral-950 xl:flex'
@@ -113,6 +119,8 @@ export default {
       showNavbar: false,
       resizing: false,
       resizeTimeout: null,
+      scrollY: 0,
+      originalPaddingRight: 0,
     };
   },
 
@@ -143,6 +151,38 @@ export default {
       this.resizeTimeout = setTimeout(() => {
         this.resizing = false;
       }, 300);
+    },
+
+    stopScrolling() {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+      this.scrollY = window.scrollY;
+      this.originalPaddingRight = document.body.style.paddingRight;
+
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${this.scrollY}px`;
+      document.body.style.width = "100%";
+    },
+
+    startScrolling() {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = this.originalPaddingRight;
+
+      window.scrollTo(0, this.scrollY);
+    },
+  },
+
+  watch: {
+    showNavbar(newValue) {
+      if (newValue) {
+        this.stopScrolling();
+      } else {
+        this.startScrolling();
+      }
     },
   },
 };
