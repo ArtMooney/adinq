@@ -21,7 +21,9 @@ definePageMeta({
 <template>
   <div
     class="relative mx-[calc(-50vw+50%)] w-screen"
-    :style="{ height: `calc(100dvh - ${navHeight}px)` }"
+    :style="{
+      height: `calc(100${supportsDvh ? 'dvh' : 'vh'} - ${navHeight}px)`,
+    }"
   >
     <LoadingSpinner
       v-if="!videoLoaded"
@@ -144,6 +146,7 @@ export default {
     return {
       videoLoaded: false,
       sweVersion: true,
+      supportsDvh: null,
     };
   },
 
@@ -157,6 +160,10 @@ export default {
     navHeight() {
       return this.navbarHeight();
     },
+  },
+
+  mounted() {
+    this.supportsDvh = CSS.supports("height", "100dvh");
   },
 };
 </script>
