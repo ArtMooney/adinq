@@ -25,7 +25,7 @@ import {
 
     <component
       :is="getIcon"
-      class="h-7 min-h-7 w-7 min-w-7 rounded-full border-2 border-white/15 bg-neutral-800 p-1"
+      class="relative h-7 min-h-7 w-7 min-w-7 rounded-full border-2 border-white/15 bg-neutral-800 p-1"
     />
 
     <div
