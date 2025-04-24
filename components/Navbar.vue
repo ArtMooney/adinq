@@ -32,10 +32,10 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
       />
 
       <div
-        class="fixed top-0 right-0 bottom-0 left-auto flex flex-col items-end justify-start gap-5 overflow-auto px-8 pt-24 pb-10 text-center transition-all duration-300 ease-in-out xl:static xl:flex-row xl:items-center xl:bg-transparent xl:p-0"
+        class="fixed top-0 right-0 bottom-0 left-auto flex flex-col items-end justify-start gap-5 px-8 pt-24 pb-10 text-center transition-all duration-300 ease-in-out xl:static xl:flex-row xl:items-center xl:bg-transparent xl:p-0"
         :class="[
           showNavbar
-            ? 'absolute bg-neutral-950 xl:flex'
+            ? 'absolute overflow-auto bg-neutral-950 xl:flex'
             : 'absolute translate-x-100 xl:flex xl:translate-x-0',
           resizing && 'transition-none',
         ]"
