@@ -1,16 +1,12 @@
-<script setup>
-import { HeartIcon } from "@heroicons/vue/24/solid";
-</script>
-
 <template>
   <div class="relative flex flex-col items-center bg-neutral-950 pt-20 pb-12">
-    <router-link to="/">
+    <NuxtLink to="/">
       <NuxtImg
         src="adinq_vit.svg"
         alt="footer logo"
         class="relative mr-2 mb-12 h-auto w-32"
       />
-    </router-link>
+    </NuxtLink>
 
     <div class="flex flex-wrap items-center justify-center gap-4">
       <NavbarLink text="Hem" route="/"></NavbarLink>
@@ -21,6 +17,8 @@ import { HeartIcon } from "@heroicons/vue/24/solid";
       <NavbarLink text="Priser" route="/priser"></NavbarLink>
       <NavbarLink text="Kontakta oss" route="/kontakta-oss"></NavbarLink>
     </div>
+
+    <SocialMediaIcons class="mt-4" />
 
     <p
       class="bottom-3 col-span-1 mt-10 flex max-w-xl flex-wrap justify-center text-center text-xs leading-5 opacity-40 md:col-span-3 lg:max-w-none"
@@ -48,7 +46,11 @@ import { HeartIcon } from "@heroicons/vue/24/solid";
       target="_blank"
     >
       Powered by
-      <span><HeartIcon class="h-4 w-4 px-0.5 text-red-600"></HeartIcon></span>
+      <span
+        ><Icon
+          name="emojione-v1:growing-heart"
+          class="h-4 min-h-4 w-4 min-w-4 px-3"
+      /></span>
       FrameCore
     </a>
   </div>
