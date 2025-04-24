@@ -23,7 +23,7 @@ export default defineNuxtConfig({
       userPass: process.env.NUXT_PUBLIC_USERPASS,
     },
   },
-  modules: ["@nuxtjs/robots", "@nuxtjs/sitemap", "@nuxt/image"],
+  modules: ["@nuxtjs/robots", "@nuxtjs/sitemap", "@nuxt/image", "@nuxt/icon"],
   image: {
     dir: "assets/images",
     format: ["webp", "jpg", "png"],
