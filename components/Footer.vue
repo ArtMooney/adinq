@@ -1,14 +1,22 @@
 <template>
-  <div class="relative flex flex-col items-center bg-neutral-950 pt-20 pb-12">
+  <div
+    class="relative grid items-start justify-items-center bg-neutral-950 px-12 pt-20 pb-12 md:grid-cols-[0.5fr_1fr_0.5fr] md:justify-items-start"
+  >
     <NuxtLink to="/">
       <NuxtImg
         src="adinq_vit.svg"
         alt="footer logo"
-        class="relative mr-2 mb-12 h-auto w-32"
+        class="relative mb-12 h-auto w-32 opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100"
       />
     </NuxtLink>
 
-    <div class="flex flex-wrap items-center justify-center gap-4">
+    <SocialMediaIcons
+      class="row-start-3 my-12 md:col-start-3 md:col-end-4 md:row-start-auto md:mt-3 md:justify-self-end"
+    />
+
+    <div
+      class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:mx-12 md:col-start-2 md:col-end-3 md:mx-0 md:-mt-8"
+    >
       <NavbarLink text="Hem" route="/"></NavbarLink>
       <NavbarLink text="Mediaproduktion" route="/media-produktion"></NavbarLink>
       <NavbarLink text="Medarbetare" route="/medarbetare"></NavbarLink>
@@ -18,30 +26,32 @@
       <NavbarLink text="Kontakta oss" route="/kontakta-oss"></NavbarLink>
     </div>
 
-    <SocialMediaIcons class="mt-4" />
-
     <p
-      class="bottom-3 col-span-1 mt-10 flex max-w-xl flex-wrap justify-center text-center text-xs leading-5 opacity-40 md:col-span-3 lg:max-w-none"
+      class="mt-12 flex flex-wrap justify-center text-xs leading-5 sm:mx-12 md:col-span-3 md:mt-20 md:justify-self-center"
     >
-      <span>ADinQ AB</span>
+      <span class="opacity-40">ADinQ AB</span>
       <span class="px-3 opacity-35">|</span>
-      <span>Fabriksgatan 11, plan 3</span>
+      <span class="opacity-40">Fabriksgatan 11, plan 3</span>
       <span class="px-3 opacity-35">|</span>
-      <span>503 38 Borås</span>
+      <span class="opacity-40">503 38 Borås</span>
       <span class="px-3 opacity-35">|</span>
-      <a class="underline hover:opacity-50" href="tel:033-7222400"
+      <a class="underline opacity-40 hover:opacity-50" href="tel:033-7222400"
         >Tel. 033-72 22 400</a
       >
       <span class="px-3 opacity-35">|</span>
-      <a class="underline hover:opacity-50" href="mailto:info@adinq.se"
+      <a
+        class="underline opacity-40 hover:opacity-50"
+        href="mailto:info@adinq.se"
         >E-post: info@adinq.se</a
       >
     </p>
 
-    <div class="my-4 w-1/3 border-t border-gray-300/40"></div>
+    <div
+      class="col-span-1 my-4 border-t border-gray-300/40 md:col-span-3"
+    ></div>
 
     <a
-      class="bottom-3 col-span-1 flex text-xs opacity-20 hover:text-white/75 md:col-span-3"
+      class="flex justify-self-center text-xs opacity-20 hover:opacity-30 md:col-span-3"
       href="https://www.framecore.se"
       target="_blank"
     >
