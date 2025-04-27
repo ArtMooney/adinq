@@ -6,7 +6,7 @@
       <NuxtImg
         src="adinq_vit.svg"
         alt="footer logo"
-        class="relative mb-12 h-auto w-32 opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100 md:w-26"
+        class="relative mb-12 h-auto w-32 min-w-32 opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100 md:w-26 md:min-w-26"
       />
     </NuxtLink>
 
@@ -15,7 +15,7 @@
     />
 
     <div
-      class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:mx-12 md:col-start-2 md:col-end-3 md:mx-0 md:-mt-8"
+      class="flex flex-col flex-wrap items-center justify-center gap-x-4 gap-y-2 justify-self-center sm:mx-12 md:col-span-3 md:mx-0 lg:flex-row"
     >
       <NavbarLink text="Hem" route="/"></NavbarLink>
       <NavbarLink text="Mediaproduktion" route="/media-produktion"></NavbarLink>
@@ -47,7 +47,7 @@
     </p>
 
     <div
-      class="col-span-1 my-4 border-t border-gray-300/40 md:col-span-3"
+      class="col-span-1 my-4 h-px w-2/3 justify-self-center bg-gray-200/30 md:col-span-3 xl:w-1/3"
     ></div>
 
     <a
