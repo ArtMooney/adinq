@@ -105,6 +105,8 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
             ]"
           />
         </div>
+
+        <SocialMediaIcons v-if="showNavbar" class="mt-4" />
       </div>
     </div>
   </div>
