@@ -6,7 +6,7 @@
       <NuxtImg
         src="adinq_vit.svg"
         alt="footer logo"
-        class="relative mb-12 h-auto w-32 opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100"
+        class="relative mb-12 h-auto w-32 opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100 md:w-26"
       />
     </NuxtLink>
 
