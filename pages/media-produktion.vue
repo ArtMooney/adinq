@@ -40,7 +40,9 @@ definePageMeta({
     <div
       class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
     >
-      <h1 class="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+      <h1
+        class="mb-8 text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
+      >
         Vi producerar er reklamfilm eller slide för storbildsskärmar!
       </h1>
       <div class="px-8 text-lg lg:text-2xl">
