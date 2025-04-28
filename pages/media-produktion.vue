@@ -19,26 +19,21 @@ definePageMeta({
 </script>
 
 <template>
-  <!--  <img src="test.jpg" />-->
-  <!--  <img src="../assets/images/test.jpg" />-->
-  <!--  <NuxtImg src="test.jpg" />-->
-  <NuxtImg src="test.jpg" sizes="sm:100vw md:50vw lg:400px" />
-
   <div
     class="relative mx-[calc(-50vw+50%)] w-screen"
     :style="{
       height: `calc(100${supportsDvh ? 'dvh' : 'vh'} - ${navHeight}px)`,
     }"
   >
-    <!--    <NuxtImg-->
-    <!--      src="andrey-novik-5DDDzKMK0s8-unsplash.jpg"-->
-    <!--      alt=""-->
-    <!--      class="h-full w-full object-cover"-->
-    <!--      sizes="1000px md:2000px"-->
-    <!--      width="4600"-->
-    <!--      height="3500"-->
-    <!--      densities="x1"-->
-    <!--    />-->
+    <NuxtImg
+      src="andrey-novik-5DDDzKMK0s8-unsplash.jpg"
+      alt=""
+      class="h-full w-full object-cover"
+      sizes="1000px md:2000px"
+      width="4600"
+      height="3500"
+      densities="x1"
+    />
 
     <div class="absolute inset-0 bg-black/40"></div>
 
