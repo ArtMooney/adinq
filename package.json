@@ -12,11 +12,11 @@
     "dependencies": {
         "@heroicons/vue": "^2.2.0",
         "@nuxt/image": "^1.10.0",
-        "@nuxtjs/robots": "^5.2.8",
+        "@nuxtjs/robots": "^5.2.10",
         "@nuxtjs/sitemap": "^7.2.10",
         "@tailwindcss/vite": "^4.0.3",
         "@vueuse/core": "^12.7.0",
-        "nuxt": "^3.16.2",
+        "nuxt": "^3.17.0",
         "plyr": "^3.7.8",
         "tailwindcss": "^4.1.4",
         "vue": "latest",
