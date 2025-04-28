@@ -22,7 +22,7 @@ definePageMeta({
   <!--  <img src="test.jpg" />-->
   <!--  <img src="../assets/images/test.jpg" />-->
   <!--  <NuxtImg src="test.jpg" />-->
-  <NuxtImg src="../assets/images/test.jpg" />
+  <NuxtImg src="test.jpg" sizes="sm:100vw md:50vw lg:400px" />
 
   <div
     class="relative mx-[calc(-50vw+50%)] w-screen"

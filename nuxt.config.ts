@@ -10,6 +10,11 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: "cloudflare-pages",
+    prerender: {
+      crawlLinks: true,
+      routes: ["/"],
+      ignore: [],
+    },
   },
   runtimeConfig: {
     mailgunApiKey: process.env.NUXT_MAILGUN_API_KEY,
@@ -44,7 +49,7 @@ export default defineNuxtConfig({
       animated: false,
     },
     staticFilename: "[name]-[width]-[height]-[format].[ext]",
-    provider: "ipxStatic",
+    provider: "ipx",
   },
   robots: {
     rules: [
