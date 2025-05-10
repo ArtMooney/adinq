@@ -26,12 +26,12 @@ definePageMeta({
     }"
   >
     <NuxtImg
-      src="andrey-novik-5DDDzKMK0s8-unsplash.jpg"
+      src="pexels-rpnickson-7238759.jpg"
       alt=""
       class="h-full w-full object-cover"
       sizes="1000px md:2000px"
-      width="4600"
-      height="3500"
+      width="6720"
+      height="4480"
       densities="x1"
     />
 
@@ -41,7 +41,7 @@ definePageMeta({
       class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
     >
       <h1
-        class="mb-8 text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
+        class="mx-10 mb-8 text-3xl sm:text-4xl md:mx-20 md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
       >
         Vi producerar er reklamfilm eller slide för storbildsskärmar!
       </h1>
@@ -109,7 +109,6 @@ definePageMeta({
       ></IconBlob>
     </div>
   </div>
-  s
 </template>
 
 <script>
@@ -120,15 +119,8 @@ export default {
 
   data() {
     return {
-      sweVersion: true,
       supportsDvh: null,
     };
-  },
-
-  activated() {
-    if (this.$refs.titleVideo) {
-      this.$refs.titleVideo.play();
-    }
   },
 
   computed: {
