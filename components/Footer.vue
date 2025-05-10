@@ -15,7 +15,7 @@
     />
 
     <div
-      class="flex flex-col flex-wrap items-center justify-center gap-x-4 gap-y-2 justify-self-center sm:mx-12 md:col-span-3 md:mx-0 lg:flex-row"
+      class="flex flex-col flex-wrap items-center justify-center gap-x-4 gap-y-2 justify-self-center sm:mx-12 md:col-span-3 md:mx-0 lg:-mt-8 lg:flex-row"
     >
       <NavbarLink text="Hem" route="/"></NavbarLink>
       <NavbarLink text="Mediaproduktion" route="/media-produktion"></NavbarLink>
