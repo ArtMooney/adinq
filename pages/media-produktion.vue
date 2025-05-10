@@ -61,23 +61,27 @@ definePageMeta({
   </div>
 
   <div id="info" class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
-    <p>
-      Stort eller litet företag? Vi har lösningar för det mesta. Nej vi kan inte
-      trolla men vi har en bred kompetens och vi försöker alltid skapa bästa
-      möjliga produktion utifrån ditt företags behov och plånbok här och nu. Vi
-      hjälper er gärna!
-    </p>
-    <p>
-      Vi gör både reklamfilmer och material till storbildsskärmar i olika
-      storlek och komplexitet för våra digitala utomhusmedier.
-    </p>
-    <p>
-      Tänk på att nyttan med en bra film är större än bara en enskild kampanj.
-      Ni kan även fritt använda er film i sociala medier och nå ännu fler
-      människor samtidigt som ni stärker ert varumärke.
-    </p>
+    <div class="grid items-center gap-8 lg:grid-cols-2">
+      <div class="mx-8 mb-8 flex flex-col gap-6 lg:mb-0">
+        <p>
+          Stort eller litet företag? Vi har lösningar för det mesta. Nej vi kan
+          inte trolla men vi har en bred kompetens och vi försöker alltid skapa
+          bästa möjliga produktion utifrån ditt företags behov och plånbok här
+          och nu. Vi hjälper er gärna!
+        </p>
+        <p>
+          Vi gör både reklamfilmer och material till storbildsskärmar i olika
+          storlek och komplexitet för våra digitala utomhusmedier.
+        </p>
+        <p>
+          Tänk på att nyttan med en bra film är större än bara en enskild
+          kampanj. Ni kan även fritt använda er film i sociala medier och nå
+          ännu fler människor samtidigt som ni stärker ert varumärke.
+        </p>
+      </div>
 
-    <VideoBlob video-Link="/videos/ADinQ-Info.mp4"></VideoBlob>
+      <VideoBlob video-Link="/videos/ADinQ-Info.mp4"></VideoBlob>
+    </div>
 
     <h3 class="mt-32 text-center">
       Mer information om våra marknadsföringskanaler
