@@ -87,31 +87,12 @@ definePageMeta({
       Mer information om våra marknadsföringskanaler
     </h3>
 
-    <div class="mt-4 grid gap-8 md:grid-cols-2">
-      <IconBlob
-        icon="tv"
-        message="Butiks-TV är ett effektivt marknadsföringsverktyg som visar reklam och information direkt i butiksmiljön. Skärmarna placeras strategiskt för att nå kunder när de handlar."
-        link="/butiks-tv"
-      ></IconBlob>
+    <p class="text-center">
+      Några exempelfilmer som vi producerat. Ni kan hitta fler genom att klicka
+      på Youtube-länken i övre högra hörnet.
+    </p>
 
-      <IconBlob
-        icon="computer"
-        message="Digitala utomhusskärmar eller LED-skyltar visar rörlig reklam som effektivt fångar förbipasserande trafikanters uppmärksamhet. Med sina starka färger och dynamiska innehåll skapar de minnesvärda intryck även vid hög hastighet."
-        link="/storbildsskarmar"
-      ></IconBlob>
-
-      <IconBlob
-        icon="video"
-        message="Med specialistkompetens kring olika kanaler maximeras avkastningen på kundens marknadsföringsinvesteringar genom datadrivna beslut och förhandlingskraft gentemot medieleverantörer."
-        link="/mediabyraer"
-      ></IconBlob>
-
-      <IconBlob
-        icon="building"
-        message="Strategiska samarbeten med fastighetsägare ger annonsörer tillgång till exponeringsytor där människor bor, arbetar och konsumerar."
-        link="/kommersialisera"
-      ></IconBlob>
-    </div>
+    <Gallery></Gallery>
   </div>
 </template>
 
