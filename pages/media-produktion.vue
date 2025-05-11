@@ -92,7 +92,7 @@ definePageMeta({
       på Youtube-länken i övre högra hörnet.
     </p>
 
-    <Gallery></Gallery>
+    <QcardGallery></QcardGallery>
   </div>
 </template>
 
