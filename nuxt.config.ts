@@ -18,6 +18,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     mailgunApiKey: process.env.NUXT_MAILGUN_API_KEY,
+    baserowToken: process.env.NUXT_BASEROW_TOKEN,
     emailFrom: process.env.NUXT_EMAIL_FROM,
     emailTo: process.env.NUXT_EMAIL_TO,
     userName: process.env.NUXT_USERNAME,
