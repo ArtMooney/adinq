@@ -1,16 +1,20 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col rounded border border-white/25 bg-neutral-800 p-8">
     <div class="relative mb-8">
-      <div class="columns-1 gap-4 sm:columns-2 md:columns-3">
+      <div class="columns-1 gap-8 sm:columns-2 md:columns-3">
         <div
           v-if="galleryData"
-          class="mb-4 cursor-pointer"
+          class="group relative mb-4 cursor-pointer"
           v-for="(qcard, index) of galleryData"
         >
+          <div
+            class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
+          ></div>
+
           <img
             :src="qcard.screenshot[0]?.thumbnails?.card_cover?.url"
             @click="clickedQcard($event, index)"
-            class="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-[1.01]"
+            class="relative h-full w-full object-cover transition-[filter] duration-300 ease-in-out group-hover:brightness-80"
           />
         </div>
       </div>
