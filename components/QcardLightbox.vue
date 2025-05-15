@@ -25,7 +25,10 @@ export default {
   },
 
   data() {
+    const config = useRuntimeConfig();
     return {
+      userName: config.public.userName,
+      userPass: config.public.userPass,
       scrollY: 0,
       originalPaddingRight: 0,
     };
@@ -39,11 +42,29 @@ export default {
 
   mounted() {
     this.stopScrolling();
-
-    console.log("HEJ", this.videoUrl);
+    this.getQcardVideo();
   },
 
   methods: {
+    async getQcardVideo() {
+      try {
+        const response = await $fetch(
+          `/api/qcard?url=${encodeURIComponent(this.lightboxUrl)}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization:
+                "Basic " + btoa(this.userName + ":" + this.userPass),
+            },
+          },
+        );
+
+        console.log("RESPONSE", response);
+      } catch (err) {
+        console.error("Failed to fetch Q-card video:", err);
+      }
+    },
+
     handleClose() {
       this.$emit("close");
       this.startScrolling();
