@@ -52,8 +52,6 @@ export default {
           Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
         },
       });
-
-      console.log(this.galleryData);
     } catch (err) {
       this.error = true;
     }

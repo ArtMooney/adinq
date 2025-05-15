@@ -1,5 +1,20 @@
 <template>
-  <div class="fixed inset-0 z-100 flex items-center justify-center bg-black/75">
+  <div class="fixed inset-0 z-10 flex items-center justify-center bg-black/90">
+    <ClientOnly>
+      <video
+        v-if="videoUrl !== ''"
+        ref="qcardVideo"
+        autoplay
+        disablepictureinpicture
+        playsinline
+        preload="auto"
+        class="h-full w-full object-contain p-4 md:p-8"
+        @ended="handleClose"
+      >
+        <source :src="videoUrl" />
+      </video>
+    </ClientOnly>
+
     <div v-if="videoUrl === ''" class="bg-[#5e4878]/90 p-8">
       Något gick tyvärr fel när videon skulle visas
     </div>
@@ -7,7 +22,7 @@
     <Icon
       name="heroicons:x-mark-20-solid"
       @click="handleClose"
-      class="absolute top-0 right-0 h-8 min-h-8 w-8 min-w-8 bg-[skyblue]"
+      class="absolute top-3 right-4 h-8 min-h-8 w-8 min-w-8 bg-[skyblue]"
     />
   </div>
 </template>
@@ -31,18 +46,13 @@ export default {
       userPass: config.public.userPass,
       scrollY: 0,
       originalPaddingRight: 0,
+      videoUrl: "",
     };
   },
 
-  computed: {
-    videoUrl() {
-      return this.lightboxUrl;
-    },
-  },
-
-  mounted() {
+  async created() {
     this.stopScrolling();
-    this.getQcardVideo();
+    this.videoUrl = await this.getQcardVideo();
   },
 
   methods: {
@@ -59,7 +69,7 @@ export default {
           },
         );
 
-        console.log("RESPONSE", response);
+        return response;
       } catch (err) {
         console.error("Failed to fetch Q-card video:", err);
       }
