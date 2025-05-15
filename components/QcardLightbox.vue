@@ -1,6 +1,9 @@
 <template>
-  <div v-if="lightboxUrl" class="fixed inset-0 z-100 bg-[coral]/50">
-    LIGHTBOX
+  <div class="fixed inset-0 z-100 flex items-center justify-center bg-black/75">
+    <div v-if="videoUrl === ''" class="bg-[#5e4878]/90 p-8">
+      Något gick tyvärr fel när videon skulle visas
+    </div>
+
     <Icon
       name="heroicons:x-mark-20-solid"
       @click="handleClose"
@@ -28,8 +31,16 @@ export default {
     };
   },
 
+  computed: {
+    videoUrl() {
+      return this.lightboxUrl;
+    },
+  },
+
   mounted() {
     this.stopScrolling();
+
+    console.log("HEJ", this.videoUrl);
   },
 
   methods: {
