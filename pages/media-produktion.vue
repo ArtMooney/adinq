@@ -87,12 +87,15 @@ definePageMeta({
       Mer information om våra marknadsföringskanaler
     </h3>
 
-    <p class="text-center">
+    <p v-show="galleryData.length > 0" class="text-center">
       Några exempelfilmer som vi producerat. Ni kan hitta fler genom att klicka
       på Youtube-länken i övre högra hörnet.
     </p>
 
-    <QcardGallery></QcardGallery>
+    <QcardGallery
+      v-show="galleryData.length > 0"
+      @galleryData="galleryData = $event"
+    ></QcardGallery>
   </div>
 </template>
 
@@ -105,6 +108,7 @@ export default {
   data() {
     return {
       supportsDvh: null,
+      galleryData: [],
     };
   },
 
