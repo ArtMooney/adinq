@@ -87,14 +87,23 @@ definePageMeta({
       Mer information om våra marknadsföringskanaler
     </h3>
 
-    <p v-if="galleryData.length > 0" class="text-center">
+    <p v-if="galleryStores.length > 0" class="text-center">
       Några exempelfilmer som vi producerat. Ni kan hitta fler genom att klicka
       på Youtube-länken i övre högra hörnet.
     </p>
 
     <QcardGallery
-      v-if="galleryData.length > 0"
-      :galleryData="galleryData"
+      v-if="galleryStores.length > 0"
+      :galleryData="galleryStores"
+    ></QcardGallery>
+
+    <p v-if="galleryBigscreens.length > 0" class="mt-20 text-center">
+      Några exempel på produktioner för storbildsskärmar.
+    </p>
+
+    <QcardGallery
+      v-if="galleryBigscreens.length > 0"
+      :galleryData="galleryBigscreens"
     ></QcardGallery>
   </div>
 </template>
@@ -111,7 +120,8 @@ export default {
       userName: config.public.userName,
       userPass: config.public.userPass,
       supportsDvh: null,
-      galleryData: [],
+      galleryStores: [],
+      galleryBigscreens: [],
       error: false,
     };
   },
@@ -124,12 +134,20 @@ export default {
 
   async created() {
     try {
-      this.galleryData = await $fetch("/api/get-mediaproduktioner", {
+      const gallery = await $fetch("/api/get-mediaproduktioner", {
         method: "GET",
         headers: {
           Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
         },
       });
+
+      this.galleryStores = gallery.filter(
+        (qcard) => qcard.filmtyp.value === "butiksfilm",
+      );
+
+      this.galleryBigscreens = gallery.filter(
+        (qcard) => qcard.filmtyp.value === "storbildsfilm",
+      );
     } catch (err) {
       this.error = true;
     }
