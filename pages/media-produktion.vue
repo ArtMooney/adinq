@@ -87,14 +87,14 @@ definePageMeta({
       Mer information om våra marknadsföringskanaler
     </h3>
 
-    <p v-show="galleryData.length > 0" class="text-center">
+    <p v-if="galleryData.length > 0" class="text-center">
       Några exempelfilmer som vi producerat. Ni kan hitta fler genom att klicka
       på Youtube-länken i övre högra hörnet.
     </p>
 
     <QcardGallery
-      v-show="galleryData.length > 0"
-      @galleryData="galleryData = $event"
+      v-if="galleryData.length > 0"
+      :galleryData="galleryData"
     ></QcardGallery>
   </div>
 </template>
@@ -106,9 +106,13 @@ export default {
   inject: ["navbarHeight"],
 
   data() {
+    const config = useRuntimeConfig();
     return {
+      userName: config.public.userName,
+      userPass: config.public.userPass,
       supportsDvh: null,
       galleryData: [],
+      error: false,
     };
   },
 
@@ -116,6 +120,27 @@ export default {
     navHeight() {
       return this.navbarHeight();
     },
+  },
+
+  async created() {
+    try {
+      const gallery = await $fetch("/api/get-mediaproduktioner", {
+        method: "GET",
+        headers: {
+          Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
+        },
+      });
+
+      // this.galleryData = gallery.sort((a, b) => {
+      //   return b.index - a.index;
+      // });
+
+      this.galleryData = gallery;
+
+      console.log(this.galleryData);
+    } catch (err) {
+      this.error = true;
+    }
   },
 
   mounted() {

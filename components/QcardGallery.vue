@@ -32,31 +32,19 @@
 export default {
   name: "QcardGallery",
 
+  props: {
+    galleryData: {
+      type: Array,
+      required: false,
+      default: [],
+    },
+  },
+  
   data() {
-    const config = useRuntimeConfig();
     return {
-      galleryData: null,
-      userName: config.public.userName,
-      userPass: config.public.userPass,
-      error: false,
       showQcardLightbox: false,
       lightboxUrl: 0,
     };
-  },
-
-  async created() {
-    try {
-      this.galleryData = await $fetch("/api/get-mediaproduktioner", {
-        method: "GET",
-        headers: {
-          Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
-        },
-      });
-
-      this.$emit("galleryData", this.galleryData);
-    } catch (err) {
-      this.error = true;
-    }
   },
 
   methods: {
