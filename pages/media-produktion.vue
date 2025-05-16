@@ -26,22 +26,22 @@ definePageMeta({
     }"
   >
     <NuxtImg
-      src="pexels-rpnickson-7238759.jpg"
+      src="raychan-NWyxR75AkFY-unsplash.jpg"
       alt=""
       class="h-full w-full object-cover"
       sizes="1000px md:2000px"
-      width="6720"
-      height="4480"
+      width="3992"
+      height="6240"
       densities="x1"
     />
 
-    <div class="absolute inset-0 bg-blue-950/80"></div>
+    <div class="absolute inset-0 bg-[#365e80]/70"></div>
 
     <div
       class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
     >
       <h1
-        class="mx-10 mb-8 text-3xl sm:text-4xl md:mx-20 md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
+        class="mx-10 -mt-96 mb-8 text-3xl sm:text-4xl md:mx-20 md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
       >
         Vi producerar er reklamfilm eller slide för storbildsskärmar!
       </h1>
