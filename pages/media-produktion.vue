@@ -35,7 +35,7 @@ definePageMeta({
       densities="x1"
     />
 
-    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute inset-0 bg-blue-950/80"></div>
 
     <div
       class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
@@ -80,7 +80,7 @@ definePageMeta({
         </p>
       </div>
 
-      <VideoBlob video-Link="/videos/ADinQ-Info.mp4"></VideoBlob>
+      <VideoBlob video-Link="https://qcard.adinq.se/?i=1747390713"></VideoBlob>
     </div>
 
     <h3 class="mt-32 text-center">

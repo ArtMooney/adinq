@@ -47,7 +47,7 @@ definePageMeta({
       </video>
     </ClientOnly>
 
-    <div v-show="videoLoaded" class="absolute inset-0 bg-black/40"></div>
+    <div v-show="videoLoaded" class="absolute inset-0 bg-red-950/40"></div>
 
     <div
       v-show="videoLoaded"
