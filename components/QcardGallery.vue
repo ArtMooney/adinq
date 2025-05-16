@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col rounded border border-white/25 bg-neutral-800 p-8">
-    <div class="relative mb-8">
+    <div class="relative">
       <div class="columns-1 gap-8 sm:columns-2 md:columns-3">
         <div
           v-if="galleryData"
-          class="group relative mb-4 cursor-pointer"
+          class="group relative mb-6 cursor-pointer"
           v-for="(qcard, index) of galleryData"
         >
           <div
@@ -39,7 +39,7 @@ export default {
       default: [],
     },
   },
-  
+
   data() {
     return {
       showQcardLightbox: false,
