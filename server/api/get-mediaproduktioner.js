@@ -13,7 +13,13 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const galleryData = await listRows(config.baserowToken, "534306");
+    const galleryData = await listRows(
+      config.baserowToken,
+      "534306",
+      true,
+      "index",
+    );
+
     return galleryData.results;
   } catch (error) {
     throw createError({

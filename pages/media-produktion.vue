@@ -124,20 +124,12 @@ export default {
 
   async created() {
     try {
-      const gallery = await $fetch("/api/get-mediaproduktioner", {
+      this.galleryData = await $fetch("/api/get-mediaproduktioner", {
         method: "GET",
         headers: {
           Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
         },
       });
-
-      // this.galleryData = gallery.sort((a, b) => {
-      //   return b.index - a.index;
-      // });
-
-      this.galleryData = gallery;
-
-      console.log(this.galleryData);
     } catch (err) {
       this.error = true;
     }

@@ -1,4 +1,4 @@
-export async function listRows(token, tableid, search) {
+export async function listRows(token, tableid, asc, orderBy, search) {
   let headersList = {
     Accept: "*/*",
     "Content-Type": "application/json",
@@ -8,7 +8,7 @@ export async function listRows(token, tableid, search) {
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
       let response = await fetch(
-        `https://api.baserow.io/api/database/rows/table/${tableid}/?user_field_names=true` +
+        `https://api.baserow.io/api/database/rows/table/${tableid}/?user_field_names=true&order_by=${!asc ? "-" : ""}${orderBy ? orderBy : "index"}` +
           (search ? "&search=" + search : ""),
         {
           method: "GET",
