@@ -1,0 +1,32 @@
+{
+    "name": "adinq",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "dependencies": {
+        "@heroicons/vue": "^2.2.0",
+        "@nuxt/image": "^1.10.0",
+        "@nuxtjs/robots": "^5.2.10",
+        "@nuxtjs/sitemap": "^7.2.10",
+        "@tailwindcss/vite": "^4.0.3",
+        "@vueuse/core": "^12.7.0",
+        "nuxt": "^3.17.0",
+        "plyr": "^3.7.8",
+        "tailwindcss": "^4.1.4",
+        "vue": "latest",
+        "vue-router": "latest"
+    },
+    "devDependencies": {
+        "@iconify-json/emojione-v1": "^1.2.1",
+        "@iconify-json/fa": "^1.2.1",
+        "@nuxt/icon": "^1.12.0",
+        "prettier": "^3.3.3",
+        "prettier-plugin-tailwindcss": "^0.6.8"
+    }
+}
