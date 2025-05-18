@@ -15,7 +15,7 @@
       </video>
     </ClientOnly>
 
-    <div v-if="videoUrl === ''" class="bg-[#5e4878]/90 p-8">
+    <div v-if="loadingError" class="bg-[#5e4878]/90 p-8">
       Något gick tyvärr fel när videon skulle visas
     </div>
 
@@ -47,12 +47,14 @@ export default {
       scrollY: 0,
       originalPaddingRight: 0,
       videoUrl: "",
+      loadingError: false,
     };
   },
 
   async created() {
     this.stopScrolling();
     this.videoUrl = await this.getQcardVideo();
+    if (this.videoUrl === "") this.loadingError = true;
   },
 
   methods: {
