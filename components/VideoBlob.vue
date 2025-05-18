@@ -1,6 +1,7 @@
 <template>
   <ClientOnly>
     <video
+      v-if="!errorLoading"
       ref="videoplayer"
       :src="videoSrc"
       class="aspect-video w-full rounded"
@@ -9,6 +10,10 @@
       preload="none"
     ></video>
   </ClientOnly>
+
+  <div v-if="errorLoading" class="w-full bg-[#5e4878]/90 p-8 text-center">
+    Videon kunde inte laddas
+  </div>
 </template>
 
 <script>
@@ -29,11 +34,14 @@ export default {
       userPass: config.public.userPass,
       player: null,
       videoSrc: "",
+      errorLoading: false,
     };
   },
 
   async mounted() {
     this.videoSrc = await this.getQcardVideo();
+    
+    if (!this.videoSrc) this.errorLoading = true;
 
     if (this.$refs.videoplayer) {
       this.$refs.videoplayer.src = this.videoSrc;
