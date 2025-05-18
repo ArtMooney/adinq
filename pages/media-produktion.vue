@@ -82,7 +82,7 @@ definePageMeta({
       <VideoBlob video-Link="https://qcard.adinq.se/?i=1747390713"></VideoBlob>
     </div>
 
-    <h3 class="mt-32 text-center">
+    <h3 id="media-gallery" class="mt-32 text-center">
       Mer information om våra marknadsföringskanaler
     </h3>
 
@@ -119,28 +119,28 @@ definePageMeta({
         icon="ph:film-reel-light"
         icon-color="#e09963"
         message="En bild säger mer än tusen ord. 10-20 sekunder säger ännu mer. I kombination med enkla, personliga och kärnfulla budskap kan vi hjälpa dig att stärka ditt varumärke hos både befintliga och nya kunder. Effektfulla filmer som passar perfekt att dela på sociala medier."
-        link="/"
+        link="/media-produktion#media-gallery"
       ></IconBlob>
 
       <IconBlob
         icon="bi:camera-reels"
         icon-color="#67ac6e"
         message="Perfekt för dina kampanjer. På en bra grund är det enkelt att byta budskap under året."
-        link="/"
+        link="/media-produktion#media-gallery"
       ></IconBlob>
 
       <IconBlob
         icon="teenyicons:headset-outline"
         icon-color="#ac67a6"
         message="Att önska sina kunder en Glad Påsk, Trevlig Sommar eller God Jul har ett mycket stort värde och stärker din image. Kundvård på ett mycket enkelt sätt och vi hjälper dig gärna!"
-        link="/"
+        link="/kundutlatanden"
       ></IconBlob>
 
       <IconBlob
         icon="hugeicons:contact-01"
         icon-color="#6293a5"
         message="Kontakta oss för mer info"
-        link="/"
+        link="/kontakta-oss"
       ></IconBlob>
     </div>
   </div>
