@@ -49,42 +49,42 @@ import Button from "./elements/Button.vue";
 
         <NavbarLink
           @click="showNavbar = false"
-          icon="HomeIcon"
+          icon="heroicons:home"
           text="Hem"
           route="/"
         ></NavbarLink>
 
         <NavbarLink
           @click="showNavbar = false"
-          icon="FilmIcon"
+          icon="ph:film-slate-light"
           text="Mediaproduktion"
           route="/media-produktion"
         ></NavbarLink>
 
         <NavbarLink
           @click="showNavbar = false"
-          icon="UserGroupIcon"
+          icon="fluent:people-32-regular"
           text="Medarbetare"
           route="/medarbetare"
         ></NavbarLink>
 
         <NavbarLink
           @click="showNavbar = false"
-          icon="ChatBubbleOvalLeftEllipsisIcon"
+          icon="famicons:chatbubble-ellipses-outline"
           text="Kundutlåtanden"
           route="/kundutlatanden"
         ></NavbarLink>
 
         <NavbarLink
           @click="showNavbar = false"
-          icon="QuestionMarkCircleIcon"
+          icon="proicons:chat-question"
           text="Varför oss"
           route="/varfor-oss"
         ></NavbarLink>
 
         <NavbarLink
           @click="showNavbar = false"
-          icon="CurrencyEuroIcon"
+          icon="hugeicons:money-bag-01"
           text="Priser"
           route="/priser"
         ></NavbarLink>

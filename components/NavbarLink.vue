@@ -1,14 +1,3 @@
-<script setup>
-import {
-  HomeIcon,
-  FilmIcon,
-  UserGroupIcon,
-  ChatBubbleOvalLeftEllipsisIcon,
-  QuestionMarkCircleIcon,
-  CurrencyEuroIcon,
-} from "@heroicons/vue/24/outline";
-</script>
-
 <template>
   <NuxtLink
     :to="route"
@@ -23,10 +12,12 @@ import {
       ]"
     />
 
-    <component
-      :is="getIcon"
-      class="relative h-7 min-h-7 w-7 min-w-7 rounded-full border-2 border-white/15 bg-neutral-800 p-1"
-    />
+    <div
+      v-if="icon"
+      class="relative flex h-7 min-h-7 w-7 min-w-7 items-center justify-center rounded-full border-2 border-white/15 bg-neutral-800 p-1"
+    >
+      <Icon :name="icon" class="h-full w-full" />
+    </div>
 
     <div
       class="transform-gpu whitespace-nowrap opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
@@ -57,25 +48,6 @@ export default {
   },
 
   computed: {
-    getIcon() {
-      switch (this.icon) {
-        case "HomeIcon":
-          return HomeIcon;
-        case "FilmIcon":
-          return FilmIcon;
-        case "UserGroupIcon":
-          return UserGroupIcon;
-        case "ChatBubbleOvalLeftEllipsisIcon":
-          return ChatBubbleOvalLeftEllipsisIcon;
-        case "QuestionMarkCircleIcon":
-          return QuestionMarkCircleIcon;
-        case "CurrencyEuroIcon":
-          return CurrencyEuroIcon;
-        default:
-          return null;
-      }
-    },
-
     currentPath() {
       return this.$route.path;
     },
