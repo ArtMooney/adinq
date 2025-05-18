@@ -1,6 +1,4 @@
 <script setup>
-import { ChevronDoubleDownIcon } from "@heroicons/vue/24/solid";
-
 useSeoMeta({
   title: "",
   description: "",
@@ -53,9 +51,10 @@ definePageMeta({
         :to="{ path: '/media-produktion', hash: '#info' }"
         class="absolute bottom-24 flex w-full items-center justify-center sm:bottom-16"
       >
-        <ChevronDoubleDownIcon
+        <Icon
+          name="qlementine-icons:chevron-double-down-16"
           class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-        ></ChevronDoubleDownIcon>
+        ></Icon>
       </NuxtLink>
     </div>
   </div>
@@ -105,6 +104,45 @@ definePageMeta({
       v-if="galleryBigscreens.length > 0"
       :galleryData="galleryBigscreens"
     ></QcardGallery>
+
+    <div class="relative mt-32 grid gap-8 p-8">
+      <NuxtImg
+        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover opacity-15"
+        sizes="1000px md:2000px"
+        width="2912"
+        height="2032"
+      />
+
+      <IconBlob
+        icon="ph:film-reel-light"
+        icon-color="#e09963"
+        message="En bild säger mer än tusen ord. 10-20 sekunder säger ännu mer. I kombination med enkla, personliga och kärnfulla budskap kan vi hjälpa dig att stärka ditt varumärke hos både befintliga och nya kunder. Effektfulla filmer som passar perfekt att dela på sociala medier."
+        link="/"
+      ></IconBlob>
+
+      <IconBlob
+        icon="bi:camera-reels"
+        icon-color="#67ac6e"
+        message="Perfekt för dina kampanjer. På en bra grund är det enkelt att byta budskap under året."
+        link="/"
+      ></IconBlob>
+
+      <IconBlob
+        icon="teenyicons:headset-outline"
+        icon-color="#ac67a6"
+        message="Att önska sina kunder en Glad Påsk, Trevlig Sommar eller God Jul har ett mycket stort värde och stärker din image. Kundvård på ett mycket enkelt sätt och vi hjälper dig gärna!"
+        link="/"
+      ></IconBlob>
+
+      <IconBlob
+        icon="hugeicons:contact-01"
+        icon-color="#6293a5"
+        message="Kontakta oss för mer info"
+        link="/"
+      ></IconBlob>
+    </div>
   </div>
 </template>
 
