@@ -1,6 +1,4 @@
 <script setup>
-import { ChevronDoubleDownIcon } from "@heroicons/vue/24/solid";
-
 useSeoMeta({
   title: "",
   description: "",

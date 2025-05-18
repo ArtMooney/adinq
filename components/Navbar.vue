@@ -1,6 +1,5 @@
 <script setup>
 import Button from "./elements/Button.vue";
-import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 </script>
 
 <template>
@@ -26,9 +25,10 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
         />
       </router-link>
 
-      <Bars2Icon
+      <Icon
+        name="heroicons:bars-2"
         @click="showNavbar = !showNavbar"
-        class="block h-8 w-8 cursor-pointer xl:hidden"
+        class="block h-8 min-h-8 w-8 min-w-8 cursor-pointer xl:!hidden"
       />
 
       <div
@@ -40,10 +40,11 @@ import { Bars2Icon, XMarkIcon } from "@heroicons/vue/24/outline";
           resizing && 'transition-none',
         ]"
       >
-        <XMarkIcon
+        <Icon
           v-if="showNavbar"
           @click="showNavbar = !showNavbar"
-          class="absolute top-4 right-4 h-8 w-8 cursor-pointer"
+          name="iconoir:xmark"
+          class="absolute top-4 right-4 h-8 min-h-8 w-8 min-w-8 cursor-pointer"
         />
 
         <NavbarLink
