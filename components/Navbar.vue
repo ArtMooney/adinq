@@ -45,6 +45,7 @@ import Button from "./elements/Button.vue";
           @click="showNavbar = !showNavbar"
           name="iconoir:xmark"
           class="absolute top-4 right-4 h-8 min-h-8 w-8 min-w-8 cursor-pointer"
+          :class="[showNavbar && 'xl:!hidden']"
         />
 
         <NavbarLink
@@ -107,7 +108,11 @@ import Button from "./elements/Button.vue";
           />
         </div>
 
-        <SocialMediaIcons v-if="showNavbar" class="mt-4" />
+        <SocialMediaIcons
+          v-if="showNavbar"
+          class="mt-4"
+          :class="[showNavbar && 'xl:!hidden']"
+        />
       </div>
     </div>
   </div>
