@@ -17,7 +17,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="relative mx-4 my-20 flex flex-col gap-8 sm:mx-8">
+  <div class="relative my-0 flex flex-col gap-8">
     <div class="absolute inset-0 flex items-center overflow-hidden">
       <NuxtImg
         src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
@@ -29,16 +29,57 @@ definePageMeta({
         densities="x1"
       />
 
-      <div class="absolute inset-0 bg-[#365e80]/70"></div>
+      <div class="absolute inset-0 bg-[#140a14]/80"></div>
     </div>
 
-    <div class="relative h-screen">HEJ</div>
+    <div class="relative h-screen">
+      <div v-for="colleague in colleaguesManagement" :key="colleague.id">
+        {{ colleague.name }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "Medarbetare",
+
+  data() {
+    const config = useRuntimeConfig();
+    return {
+      userName: config.public.userName,
+      userPass: config.public.userPass,
+      error: false,
+      colleaguesManagement: [],
+      colleaguesSales: [],
+      colleaguesProduction: [],
+    };
+  },
+
+  async created() {
+    try {
+      const colleagues = await $fetch("/api/get-medarbetare", {
+        method: "GET",
+        headers: {
+          Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
+        },
+      });
+
+      this.colleaguesManagement = colleagues.filter(
+        (colleague) => colleague.department.value === "management",
+      );
+
+      this.colleaguesSales = colleagues.filter(
+        (colleague) => colleague.department.value === "sales",
+      );
+
+      this.colleaguesProduction = colleagues.filter(
+        (colleague) => colleague.department.value === "production",
+      );
+    } catch (err) {
+      this.error = true;
+    }
+  },
 
   methods: {
     handleScroll() {
@@ -48,7 +89,7 @@ export default {
       );
 
       parallaxElements.forEach(function (el, index) {
-        const rate = index === 0 ? 0.4 : 0.2;
+        const rate = index === 0 ? 0.5 : 0.2;
         const translateY = scrolled * rate;
         el.style.transform = `translateY(${translateY}px)`;
       });
