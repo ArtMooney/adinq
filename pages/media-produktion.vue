@@ -157,10 +157,10 @@ export default {
     return {
       userName: config.public.userName,
       userPass: config.public.userPass,
+      error: false,
       supportsDvh: null,
       galleryStores: [],
       galleryBigscreens: [],
-      error: false,
     };
   },
 
