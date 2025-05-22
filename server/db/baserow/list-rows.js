@@ -6,7 +6,7 @@ export async function listRows(token, tableid, asc, orderBy, search) {
       method: "GET",
       query: {
         user_field_names: true,
-        order_by: `${!asc ? "-" : ""}${orderBy || "index"}`,
+        ...(orderBy ? { order_by: `${!asc ? "-" : ""}${orderBy}` } : {}),
         ...(search ? { search } : {}),
       },
       headers: {
@@ -20,6 +20,6 @@ export async function listRows(token, tableid, asc, orderBy, search) {
       retryStatusCodes: [408, 429, 500, 502, 503, 504],
     });
   } catch (error) {
-    return { error: `Network error: ${error.message}` };
+    throw new Error(`Network error: ${error.message}`);
   }
 }
