@@ -32,10 +32,12 @@ definePageMeta({
       <div class="absolute inset-0 bg-[#140a14]/80"></div>
     </div>
 
-    <div class="relative h-screen">
-      <div v-for="colleague in colleaguesManagement" :key="colleague.id">
-        {{ colleague.name }}
-      </div>
+    <div class="relative grid h-screen grid-cols-3 gap-8 p-8">
+      <ColleagueCard
+        v-for="colleague in colleaguesManagement"
+        :key="colleague.id"
+        :colleague="colleague"
+      />
     </div>
   </div>
 </template>
