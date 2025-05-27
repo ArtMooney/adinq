@@ -17,7 +17,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="relative my-0 flex flex-col gap-8">
+  <div class="relative -my-12 flex flex-col gap-8 py-32">
     <div class="absolute inset-0 flex items-center overflow-hidden">
       <NuxtImg
         src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
