@@ -64,15 +64,5 @@ export default {
       return this.colleague?.photo[0]?.url || "silhouette.jpg";
     },
   },
-
-  data() {
-    return {
-      frameColors: ["#ff0000", "#00ff00", "#0000ff"],
-    };
-  },
-
-  mounted() {
-    console.log(this.colleague);
-  },
 };
 </script>
