@@ -6,7 +6,7 @@
 
     <div class="relative flex h-full w-full flex-col items-center bg-[skyblue]">
       <NuxtImg
-        :src="colleague.photo[0].url"
+        :src="getImageUrl"
         class="h-96 max-h-96 w-full object-cover"
         :alt="`bild på vår kollega ${colleague.name}`"
       />
@@ -25,6 +25,12 @@ export default {
       type: Object,
       required: false,
       default: {},
+    },
+  },
+
+  computed: {
+    getImageUrl() {
+      return this.colleague?.photo[0]?.url || "silhouette.jpg";
     },
   },
 
