@@ -67,6 +67,9 @@ export default defineNuxtConfig({
     disallowNonStandardSchemes: true,
     sitemap: "https://adinq.se/sitemap.xml",
   },
+  site: {
+    url: "https://adinq.se",
+  },
   sitemap: {
     hostname: "https://adinq.se",
     gzip: true,
