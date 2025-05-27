@@ -22,17 +22,17 @@ definePageMeta({
       <NuxtImg
         src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
         alt=""
-        class="parallax-background h-full w-full object-cover"
+        class="parallax-background h-full w-full object-cover saturate-50"
         sizes="1000px md:2000px"
         width="3456"
         height="5184"
         densities="x1"
       />
 
-      <div class="absolute inset-0 bg-[#140a14]/80"></div>
+      <div class="absolute inset-0 bg-[#140a14]/85"></div>
     </div>
 
-    <div class="relative grid h-auto grid-cols-4 gap-8 px-32 py-8">
+    <div class="relative grid h-auto grid-cols-4 gap-6 px-32 py-8">
       <ColleagueCard
         v-for="colleague in colleaguesManagement"
         :key="colleague.id"
