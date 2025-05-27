@@ -32,7 +32,7 @@ definePageMeta({
       <div class="absolute inset-0 bg-[#140a14]/80"></div>
     </div>
 
-    <div class="relative grid h-screen grid-cols-3 gap-8 px-32 py-8">
+    <div class="relative grid h-auto grid-cols-4 gap-8 px-32 py-8">
       <ColleagueCard
         v-for="colleague in colleaguesManagement"
         :key="colleague.id"
@@ -40,6 +40,12 @@ definePageMeta({
       />
     </div>
   </div>
+
+  <NuxtImg
+    src="silhouette.jpg"
+    class="hidden"
+    alt="gömd bild på en siluett till nuxtimg"
+  />
 </template>
 
 <script>
