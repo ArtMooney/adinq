@@ -32,7 +32,7 @@ definePageMeta({
       <div class="absolute inset-0 bg-[#140a14]/85"></div>
     </div>
 
-    <div class="relative grid h-auto grid-cols-4 gap-6 px-32 py-8">
+    <div class="relative grid h-auto grid-cols-4 gap-x-8 gap-y-12 px-32 py-8">
       <ColleagueCard
         v-for="colleague in colleaguesManagement"
         :key="colleague.id"
