@@ -32,9 +32,49 @@ definePageMeta({
       <div class="absolute inset-0 bg-[#140a14]/85"></div>
     </div>
 
+    <h1
+      class="relative my-52 text-center text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
+    >
+      Vi hjälper er att nå ut digitalt!
+    </h1>
+
+    <h3
+      v-if="colleaguesManagement.length > 0"
+      class="relative mt-32 text-center"
+    >
+      Företagsledning och administration
+    </h3>
+
     <div class="relative grid h-auto grid-cols-4 gap-x-8 gap-y-12 px-32 py-8">
       <ColleagueCard
         v-for="colleague in colleaguesManagement"
+        :key="colleague.id"
+        :colleague="colleague"
+      />
+    </div>
+
+    <h3 v-if="colleaguesSales.length > 0" class="relative mt-32 text-center">
+      Försäljning
+    </h3>
+
+    <div class="relative grid h-auto grid-cols-4 gap-x-8 gap-y-12 px-32 py-8">
+      <ColleagueCard
+        v-for="colleague in colleaguesSales"
+        :key="colleague.id"
+        :colleague="colleague"
+      />
+    </div>
+
+    <h3
+      v-if="colleaguesProduction.length > 0"
+      class="relative mt-32 text-center"
+    >
+      Produktion och marknadsföring
+    </h3>
+
+    <div class="relative grid h-auto grid-cols-4 gap-x-8 gap-y-12 px-32 py-8">
+      <ColleagueCard
+        v-for="colleague in colleaguesProduction"
         :key="colleague.id"
         :colleague="colleague"
       />
