@@ -4,7 +4,7 @@
       class="absolute inset-0 transform-gpu rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
     ></div>
 
-    <div class="relative h-full w-full bg-white/20 p-1">
+    <div class="relative h-full w-full bg-white/10 p-0.5 shadow-2xl">
       <div class="flex h-full w-full flex-col items-center bg-black/70">
         <NuxtImg
           :src="getImageUrl"

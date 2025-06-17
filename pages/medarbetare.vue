@@ -18,12 +18,14 @@ definePageMeta({
 
 <template>
   <div class="relative -my-12 flex flex-col gap-8 py-32">
-    <div class="absolute inset-0 flex items-center overflow-hidden">
+    <div
+      class="absolute inset-0 mx-[calc(-50vw+50%)] flex w-screen items-center overflow-hidden"
+    >
       <NuxtImg
         src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
         alt=""
         class="parallax-background h-full w-full object-cover saturate-50"
-        sizes="1000px md:2000px"
+        sizes="2000px md:4000px"
         width="3456"
         height="5184"
         densities="x1"
