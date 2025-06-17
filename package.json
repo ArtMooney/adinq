@@ -16,7 +16,7 @@
         "@tailwindcss/vite": "^4.0.3",
         "nuxt": "^3.17.0",
         "plyr": "^3.7.8",
-        "tailwindcss": "^4.1.4",
+        "tailwindcss": "^4.1.10",
         "vue": "latest",
         "vue-router": "latest"
     },
