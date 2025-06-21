@@ -18,16 +18,20 @@ definePageMeta({
 
 <template>
   <div class="relative -my-12 flex flex-col gap-8 px-4 py-32 md:px-8">
-    <div
-      class="absolute inset-0 mx-[calc(-50vw+50%)] flex w-screen items-center overflow-hidden"
-    >
+    <div class="absolute inset-0 mx-[calc(-50vw+50%)] w-screen overflow-hidden">
       <NuxtImg
         src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
-        alt=""
-        class="parallax-background h-full w-full object-cover saturate-50"
-        sizes="2000px md:4000px"
+        width="700"
+        height="5184"
+        class="parallax-background h-full saturate-50 md:hidden"
+        densities="x1"
+      />
+
+      <NuxtImg
+        src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
         width="3456"
         height="5184"
+        class="parallax-background hidden h-full saturate-50 md:block"
         densities="x1"
       />
 
@@ -87,6 +91,22 @@ definePageMeta({
         :colleague="colleague"
       />
     </div>
+
+    <div
+      class="absolute inset-0 mx-[calc(-50vw+50%)] flex w-screen items-center overflow-hidden opacity-35"
+    >
+      <NuxtImg
+        src="flat_clouds.png"
+        alt=""
+        class="parallax-clouds h-full w-full object-cover"
+        sizes="1500px md:3000px"
+        width="3006"
+        height="2000"
+        densities="x1"
+      />
+
+      <div class="absolute inset-0 bg-[#140a14]/85"></div>
+    </div>
   </div>
 
   <NuxtImg
@@ -141,7 +161,7 @@ export default {
     handleScroll() {
       const scrolled = window.scrollY;
       const parallaxElements = document.querySelectorAll(
-        ".parallax-background, .parallax-layer",
+        ".parallax-background, .parallax-clouds",
       );
 
       parallaxElements.forEach(function (el, index) {
