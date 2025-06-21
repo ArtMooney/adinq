@@ -13,7 +13,7 @@
         />
 
         <div
-          class="my-3 flex h-full flex-col items-center justify-center gap-0.5 text-center text-sm"
+          class="my-3 flex h-full flex-col items-center justify-center gap-0.5 p-2 text-center text-sm"
         >
           <p class="mb-1 font-bold">{{ colleague.name }}</p>
           <p>{{ colleague.title }}</p>

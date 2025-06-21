@@ -49,7 +49,7 @@ export default defineNuxtConfig({
       animated: false,
     },
     staticFilename: "[name]-[width]-[height]-[format].[ext]",
-    provider: "ipxStatic",
+    provider: "ipx",
   },
   robots: {
     rules: [

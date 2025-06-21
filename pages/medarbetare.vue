@@ -17,7 +17,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="relative -my-12 flex flex-col gap-8 py-32">
+  <div class="relative -my-12 flex flex-col gap-8 px-4 py-32 md:px-8">
     <div
       class="absolute inset-0 mx-[calc(-50vw+50%)] flex w-screen items-center overflow-hidden"
     >
@@ -47,7 +47,9 @@ definePageMeta({
       Företagsledning och administration
     </h3>
 
-    <div class="relative grid h-auto grid-cols-4 gap-x-8 gap-y-12 px-32 py-8">
+    <div
+      class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
+    >
       <ColleagueCard
         v-for="colleague in colleaguesManagement"
         :key="colleague.id"
@@ -59,7 +61,9 @@ definePageMeta({
       Försäljning
     </h3>
 
-    <div class="relative grid h-auto grid-cols-4 gap-x-8 gap-y-12 px-32 py-8">
+    <div
+      class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
+    >
       <ColleagueCard
         v-for="colleague in colleaguesSales"
         :key="colleague.id"
@@ -74,7 +78,9 @@ definePageMeta({
       Produktion och marknadsföring
     </h3>
 
-    <div class="relative grid h-auto grid-cols-4 gap-x-8 gap-y-12 px-32 py-8">
+    <div
+      class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
+    >
       <ColleagueCard
         v-for="colleague in colleaguesProduction"
         :key="colleague.id"
