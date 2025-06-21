@@ -93,19 +93,17 @@ definePageMeta({
     </div>
 
     <div
-      class="absolute inset-0 mx-[calc(-50vw+50%)] flex w-screen items-center overflow-hidden opacity-35"
+      class="absolute inset-0 mx-[calc(-50vw+50%)] flex w-screen items-center overflow-hidden"
     >
       <NuxtImg
         src="flat_clouds.png"
         alt=""
-        class="parallax-clouds h-full w-full object-cover"
+        class="parallax-clouds h-full w-full object-cover opacity-10"
         sizes="1500px md:3000px"
         width="3006"
         height="2000"
         densities="x1"
       />
-
-      <div class="absolute inset-0 bg-[#140a14]/85"></div>
     </div>
   </div>
 
@@ -165,7 +163,7 @@ export default {
       );
 
       parallaxElements.forEach(function (el, index) {
-        const rate = index === 0 ? 0.5 : 0.2;
+        const rate = index === 0 || index === 1 ? 0.7 : 0.4;
         const translateY = scrolled * rate;
         el.style.transform = `translateY(${translateY}px)`;
       });
