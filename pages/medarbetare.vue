@@ -21,7 +21,7 @@ definePageMeta({
     <div class="absolute inset-0 mx-[calc(-50vw+50%)] w-screen overflow-hidden">
       <NuxtImg
         src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
-        width="700"
+        width="768"
         height="5184"
         class="parallax-background h-full saturate-50 md:hidden"
         densities="x1"
@@ -41,7 +41,7 @@ definePageMeta({
     <h1
       class="relative my-52 text-center text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
     >
-      Vi hjälper er att nå ut digitalt!
+      Dagens ADinQ
     </h1>
 
     <h3
