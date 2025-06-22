@@ -47,7 +47,7 @@ definePageMeta({
     <div>HEJ</div>
 
     <div
-      class="absolute inset-0 mx-[calc(-50vw+50%)] flex w-screen items-center overflow-hidden"
+      class="pointer-events-none absolute inset-0 mx-[calc(-50vw+50%)] flex w-screen items-center overflow-hidden"
     >
       <NuxtImg
         src="flat_clouds.png"
