@@ -44,7 +44,16 @@ definePageMeta({
       Vad säger våra kunder?
     </h1>
 
-    <div>HEJ</div>
+    <div class="grid gap-8">
+      <TestimonialBlob
+        v-for="testimonial in testimonials"
+        :key="testimonial.id"
+        icon="la:store"
+        icon-color="#6293a5"
+        :message="testimonial.text"
+        link="/butiks-tv"
+      ></TestimonialBlob>
+    </div>
 
     <div
       class="pointer-events-none absolute inset-0 mx-[calc(-50vw+50%)] flex w-screen items-center overflow-hidden"
@@ -78,32 +87,20 @@ export default {
       userName: config.public.userName,
       userPass: config.public.userPass,
       error: false,
-      colleaguesManagement: [],
-      colleaguesSales: [],
-      colleaguesProduction: [],
+      testimonials: [],
     };
   },
 
   async created() {
     try {
-      const colleagues = await $fetch("/api/get-medarbetare", {
+      this.testimonials = await $fetch("/api/get-testimonials", {
         method: "GET",
         headers: {
           Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
         },
       });
 
-      this.colleaguesManagement = colleagues.filter(
-        (colleague) => colleague.department.value === "management",
-      );
-
-      this.colleaguesSales = colleagues.filter(
-        (colleague) => colleague.department.value === "sales",
-      );
-
-      this.colleaguesProduction = colleagues.filter(
-        (colleague) => colleague.department.value === "production",
-      );
+      console.log(this.testimonials);
     } catch (err) {
       this.error = true;
     }
