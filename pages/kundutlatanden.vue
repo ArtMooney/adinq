@@ -17,41 +17,35 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="relative -my-12 flex flex-col gap-8 px-4 py-32 md:px-8">
+  <div class="relative -my-12 flex flex-col gap-8 px-4 py-72 md:px-8">
     <div class="absolute inset-0 mx-[calc(-50vw+50%)] w-screen overflow-hidden">
       <NuxtImg
-        src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
-        width="768"
-        height="5184"
-        class="parallax-background h-full saturate-50 md:hidden"
+        src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
+        width="2335"
+        height="3500"
+        alt=""
+        class="parallax-background -mt-3 h-full object-cover saturate-90"
         densities="x1"
       />
 
-      <NuxtImg
-        src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
-        width="3456"
-        height="5184"
-        class="parallax-background hidden h-full saturate-50 md:block"
-        densities="x1"
-      />
-
-      <div class="absolute inset-0 bg-[#140a14]/85"></div>
+      <div class="absolute inset-0 bg-[#140a14]/50"></div>
     </div>
 
     <h1
-      class="relative my-52 text-center text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
+      class="relative mt-32 mb-72 text-center text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
     >
       Vad säger våra kunder?
     </h1>
 
-    <div class="grid gap-8">
+    <div class="grid gap-32">
       <TestimonialBlob
         v-for="testimonial in testimonials"
         :key="testimonial.id"
-        icon="la:store"
-        icon-color="#6293a5"
-        :message="testimonial.text"
-        link="/butiks-tv"
+        :message="testimonial?.text"
+        :logo="testimonial?.logo[0]"
+        :att="testimonial?.att"
+        :client="testimonial?.client"
+        :link="testimonial?.link"
       ></TestimonialBlob>
     </div>
 
@@ -61,7 +55,7 @@ definePageMeta({
       <NuxtImg
         src="flat_clouds.png"
         alt=""
-        class="parallax-clouds h-full w-full object-cover opacity-10"
+        class="parallax-clouds h-full w-full object-cover opacity-5"
         sizes="1500px md:3000px"
         width="3006"
         height="2000"
@@ -69,12 +63,6 @@ definePageMeta({
       />
     </div>
   </div>
-
-  <NuxtImg
-    src="silhouette.jpg"
-    class="hidden"
-    alt="gömd bild på en siluett till nuxtimg"
-  />
 </template>
 
 <script>
@@ -99,8 +87,6 @@ export default {
           Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
         },
       });
-
-      console.log(this.testimonials);
     } catch (err) {
       this.error = true;
     }
@@ -114,7 +100,7 @@ export default {
       );
 
       parallaxElements.forEach(function (el, index) {
-        const rate = index === 0 || index === 1 ? 0.7 : 0.4;
+        const rate = index === 0 ? 0.8 : 0.4;
         const translateY = scrolled * rate;
         el.style.transform = `translateY(${translateY}px)`;
       });
