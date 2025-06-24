@@ -1,7 +1,8 @@
 <template>
   <NuxtLink
     :to="link"
-    class="group relative min-h-52 cursor-pointer rounded border border-white/25 shadow-2xl"
+    class="group relative min-h-52 w-md cursor-pointer rounded border-2 border-white/25 shadow-2xl md:w-5xl"
+    :style="`transform: translateX(${randomX}) rotate(${randomRotate})`"
   >
     <div
       class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-25"
@@ -58,6 +59,18 @@ export default {
       type: String,
       required: false,
       default: "",
+    },
+  },
+
+  computed: {
+    randomX() {
+      const value = Math.random() * 200 - 100;
+      return `${value.toFixed(1)}px`;
+    },
+
+    randomRotate() {
+      const value = Math.random() * 6 - 3;
+      return `${value.toFixed(1)}deg`;
     },
   },
 };
