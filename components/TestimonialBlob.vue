@@ -1,18 +1,24 @@
 <template>
   <NuxtLink
     :to="link"
-    class="group relative min-h-52 cursor-pointer rounded border border-white/25"
+    class="group relative min-h-52 cursor-pointer rounded border border-white/25 shadow-2xl"
   >
     <div
-      class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
+      class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-25"
     ></div>
 
-    <div class="relative h-full w-full rounded bg-neutral-900 p-8 pb-12">
+    <div
+      class="relative h-full w-full rounded bg-[#2c3645]/75 p-8 pb-12 backdrop-blur-xs"
+    >
+      <NuxtImg
+        :src="logo.url"
+        class="relative mt-2 mb-6 h-14 max-h-14 min-h-14"
+      ></NuxtImg>
+
       <Icon
-        v-if="icon"
-        :name="icon"
-        class="relative mb-3 h-10 max-h-10 min-h-10 w-10 max-w-10 min-w-10 text-zinc-500"
-        :style="{ color: iconColor }"
+        name="fluent:comment-quote-20-regular"
+        class="absolute -top-6 -right-4 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
+        style="color: #6293a5"
       ></Icon>
 
       <div class="mb-6 h-[1px] w-2/3 bg-white/25"></div>
@@ -20,6 +26,9 @@
       <p v-if="message">
         {{ message }}
       </p>
+
+      <p class="mt-8 text-lg">{{ att }}</p>
+      <p class="italic">{{ client }}</p>
     </div>
   </NuxtLink>
 </template>
@@ -33,17 +42,22 @@ export default {
       type: String,
       required: false,
     },
-    icon: {
+    logo: {
+      type: Object,
+      required: false,
+    },
+    att: {
       type: String,
       required: false,
     },
-    iconColor: {
+    client: {
       type: String,
       required: false,
     },
     link: {
       type: String,
       required: false,
+      default: "",
     },
   },
 };
