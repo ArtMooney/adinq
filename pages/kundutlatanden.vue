@@ -23,7 +23,7 @@ definePageMeta({
         src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
         width="2335"
         height="3500"
-        alt=""
+        alt="deep blue background from underneath the ocean"
         class="parallax-background -mt-3 h-full object-cover saturate-90"
         densities="x1"
       />
@@ -37,7 +37,7 @@ definePageMeta({
       Vad säger våra kunder?
     </h1>
 
-    <div class="grid gap-32">
+    <div class="grid place-content-center gap-32">
       <TestimonialBlob
         v-for="testimonial in testimonials"
         :key="testimonial.id"
@@ -54,7 +54,7 @@ definePageMeta({
     >
       <NuxtImg
         src="flat_clouds.png"
-        alt=""
+        alt="flat and transparent background layer with clouds"
         class="parallax-clouds h-full w-full object-cover opacity-5"
         sizes="1500px md:3000px"
         width="3006"
