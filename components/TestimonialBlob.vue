@@ -35,8 +35,12 @@
 </template>
 
 <script>
+import { getBreakpointMixin } from "../mixins/getBreakpoint.js";
+
 export default {
   name: "TestimonialBlob",
+
+  mixins: [getBreakpointMixin],
 
   props: {
     message: {
@@ -64,12 +68,16 @@ export default {
 
   computed: {
     randomX() {
-      const value = Math.random() * 200 - 100;
+      const baseRange = this.breakpoints.md ? 200 : 50;
+      const baseOffset = this.breakpoints.md ? 100 : 25;
+      const value = Math.random() * baseRange - baseOffset;
       return `${value.toFixed(1)}px`;
     },
 
     randomRotate() {
-      const value = Math.random() * 6 - 3;
+      const baseRange = this.breakpoints.md ? 6 : 3;
+      const baseOffset = this.breakpoints.md ? 3 : 1.5;
+      const value = Math.random() * baseRange - baseOffset;
       return `${value.toFixed(1)}deg`;
     },
   },
