@@ -37,7 +37,7 @@ definePageMeta({
       Vad säger våra kunder?
     </h1>
 
-    <div class="grid place-content-center gap-32">
+    <div class="flex flex-col items-center gap-32">
       <TestimonialBlob
         v-for="testimonial in testimonials"
         :key="testimonial.id"

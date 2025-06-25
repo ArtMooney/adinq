@@ -3,7 +3,7 @@
     :to="link"
     target="_blank"
     external
-    class="group relative min-h-52 w-md cursor-pointer rounded border-2 border-white/25 shadow-2xl md:w-5xl"
+    class="group relative min-h-52 w-full cursor-pointer rounded border-2 border-white/25 shadow-2xl sm:max-w-lg lg:max-w-4xl"
     :style="`transform: translateX(${randomX}) rotate(${randomRotate})`"
   >
     <div
@@ -11,7 +11,7 @@
     ></div>
 
     <div
-      class="relative h-full w-full rounded bg-[#2c3645]/75 p-8 pb-12 backdrop-blur-xs"
+      class="relative h-full w-full rounded bg-[#2c3645]/75 p-6 pb-12 backdrop-blur-xs md:p-8"
     >
       <NuxtImg
         :src="logo.url"
@@ -70,15 +70,15 @@ export default {
 
   computed: {
     randomX() {
-      const baseRange = this.breakpoints.md ? 200 : 50;
-      const baseOffset = this.breakpoints.md ? 100 : 25;
+      const baseRange = this.breakpoints.lg ? 100 : 20;
+      const baseOffset = this.breakpoints.lg ? 50 : 10;
       const value = Math.random() * baseRange - baseOffset;
       return `${value.toFixed(1)}px`;
     },
 
     randomRotate() {
-      const baseRange = this.breakpoints.md ? 6 : 3;
-      const baseOffset = this.breakpoints.md ? 3 : 1.5;
+      const baseRange = this.breakpoints.lg ? 6 : 3;
+      const baseOffset = this.breakpoints.lg ? 3 : 1.5;
       const value = Math.random() * baseRange - baseOffset;
       return `${value.toFixed(1)}deg`;
     },
