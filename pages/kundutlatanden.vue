@@ -28,7 +28,7 @@ definePageMeta({
         densities="x1"
       />
 
-      <div class="absolute inset-0 bg-[#140a14]/50"></div>
+      <div class="absolute inset-0 bg-[#140a14]/65"></div>
     </div>
 
     <h1
@@ -37,7 +37,7 @@ definePageMeta({
       Vad säger våra kunder?
     </h1>
 
-    <div class="flex flex-col items-center gap-32">
+    <div class="flex flex-col items-center gap-32 px-4 md:px-0">
       <TestimonialBlob
         v-for="testimonial in testimonials"
         :key="testimonial.id"

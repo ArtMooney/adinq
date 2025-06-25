@@ -3,35 +3,33 @@
     :to="link"
     target="_blank"
     external
-    class="group relative min-h-52 w-full cursor-pointer rounded border-2 border-white/25 shadow-2xl sm:max-w-lg lg:max-w-4xl"
+    class="group relative w-full cursor-pointer rounded border-2 border-white/25 shadow-2xl sm:max-w-lg lg:max-w-4xl"
     :style="`transform: translateX(${randomX}) rotate(${randomRotate})`"
   >
     <div
-      class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-25"
+      class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-yellow-500 to-blue-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-25"
     ></div>
 
     <div
-      class="relative h-full w-full rounded bg-[#2c3645]/75 p-6 pb-12 backdrop-blur-xs md:p-8"
+      class="relative h-full w-full rounded bg-neutral-500/65 p-6 pb-12 backdrop-blur-xs md:p-8"
     >
-      <NuxtImg
-        :src="logo.url"
-        class="relative mt-2 mb-6 h-14 max-h-14 min-h-14"
-      ></NuxtImg>
-
       <Icon
         name="fluent:comment-quote-20-regular"
-        class="absolute -top-6 -right-4 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
-        style="color: #6293a5"
+        class="absolute -top-10 -left-6 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
+        style="color: #ffffff"
       ></Icon>
 
-      <div class="mb-6 h-[1px] w-2/3 bg-white/25"></div>
-
-      <p v-if="message">
+      <p v-if="message" class="mt-4 md:mt-0">
         {{ message }}
       </p>
 
-      <p class="mt-8 text-lg">{{ att }}</p>
+      <p class="mt-8">{{ att }}</p>
       <p class="italic">{{ client }}</p>
+
+      <NuxtImg
+        :src="logo.url"
+        class="relative mt-8 h-14 max-h-14 min-h-14 max-w-40 object-contain lg:absolute lg:right-6 lg:bottom-6 lg:mt-0"
+      ></NuxtImg>
     </div>
   </NuxtLink>
 </template>
