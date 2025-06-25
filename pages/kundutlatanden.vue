@@ -20,11 +20,11 @@ definePageMeta({
   <div class="relative -my-12 flex flex-col gap-8 px-4 py-72 md:px-8">
     <div class="absolute inset-0 mx-[calc(-50vw+50%)] w-screen overflow-hidden">
       <NuxtImg
-        src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
-        width="2335"
-        height="3500"
-        alt="deep blue background from underneath the ocean"
-        class="parallax-background -mt-3 h-full object-cover saturate-90"
+        src="philip-myrtorp-kWnVvnG30dQ-unsplash.jpg"
+        width="3863"
+        height="5795"
+        alt="in the city of gothenburg at night"
+        class="parallax-background -mt-3 object-cover saturate-90"
         densities="x1"
       />
 
@@ -100,7 +100,7 @@ export default {
       );
 
       parallaxElements.forEach(function (el, index) {
-        const rate = index === 0 ? 0.8 : 0.4;
+        const rate = index === 0 ? 0.6 : 0.4;
         const translateY = scrolled * rate;
         el.style.transform = `translateY(${translateY}px)`;
       });
