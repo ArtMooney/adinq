@@ -24,7 +24,7 @@ definePageMeta({
         width="3863"
         height="5795"
         alt="in the city of gothenburg at night"
-        class="parallax-background -mt-3 object-cover saturate-90"
+        class="parallax-background -mt-3 transform-gpu object-cover saturate-90 will-change-transform backface-hidden"
         densities="x1"
       />
 
@@ -55,7 +55,7 @@ definePageMeta({
       <NuxtImg
         src="flat_clouds.png"
         alt="flat and transparent background layer with clouds"
-        class="parallax-clouds h-full w-full object-cover opacity-5"
+        class="parallax-clouds h-full w-full transform-gpu object-cover opacity-5 will-change-transform backface-hidden"
         sizes="1500px md:3000px"
         width="3006"
         height="2000"
