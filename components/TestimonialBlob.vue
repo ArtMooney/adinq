@@ -1,6 +1,8 @@
 <template>
   <NuxtLink
     :to="link"
+    target="_blank"
+    external
     class="group relative min-h-52 w-md cursor-pointer rounded border-2 border-white/25 shadow-2xl md:w-5xl"
     :style="`transform: translateX(${randomX}) rotate(${randomRotate})`"
   >
