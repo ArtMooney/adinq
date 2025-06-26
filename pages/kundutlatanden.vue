@@ -32,10 +32,11 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
     <div class="absolute inset-0 mx-[calc(-50vw+50%)] w-screen overflow-hidden">
       <NuxtImg
         src="philip-myrtorp-kWnVvnG30dQ-unsplash.jpg"
+        sizes="1500px md:4000px"
         width="3863"
         height="5795"
         alt="in the city of gothenburg at night"
-        class="parallax-background -mt-3 transform-gpu object-cover saturate-90 will-change-transform backface-hidden"
+        class="parallax-background -mt-3 h-[200vh] transform-gpu object-cover saturate-90 will-change-transform backface-hidden"
         densities="x1"
       />
 
@@ -49,17 +50,15 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
     </h1>
 
     <div class="flex flex-col items-center gap-32 px-4 md:px-0">
-      <ClientOnly>
-        <TestimonialBlob
-          v-for="testimonial in testimonials"
-          :key="testimonial.id"
-          :message="testimonial?.text"
-          :logo="testimonial?.logo[0]"
-          :att="testimonial?.att"
-          :client="testimonial?.client"
-          :link="testimonial?.link"
-        ></TestimonialBlob>
-      </ClientOnly>
+      <TestimonialBlob
+        v-for="testimonial in testimonials"
+        :key="testimonial.id"
+        :message="testimonial?.text"
+        :logo="testimonial?.logo[0]"
+        :att="testimonial?.att"
+        :client="testimonial?.client"
+        :link="testimonial?.link"
+      ></TestimonialBlob>
     </div>
 
     <div
@@ -97,7 +96,7 @@ export default {
     },
   },
 
-  beforeMount() {
+  mounted() {
     window.addEventListener("scroll", this.handleScroll);
   },
 
