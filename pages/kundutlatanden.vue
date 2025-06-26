@@ -14,6 +14,17 @@ useSeoMeta({
 definePageMeta({
   ssr: true,
 });
+
+const config = useRuntimeConfig();
+
+const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
+  method: "GET",
+  headers: {
+    Authorization:
+      "Basic " + btoa(config.public.userName + ":" + config.public.userPass),
+  },
+  default: () => [],
+});
 </script>
 
 <template>
@@ -38,15 +49,17 @@ definePageMeta({
     </h1>
 
     <div class="flex flex-col items-center gap-32 px-4 md:px-0">
-      <TestimonialBlob
-        v-for="testimonial in testimonials"
-        :key="testimonial.id"
-        :message="testimonial?.text"
-        :logo="testimonial?.logo[0]"
-        :att="testimonial?.att"
-        :client="testimonial?.client"
-        :link="testimonial?.link"
-      ></TestimonialBlob>
+      <ClientOnly>
+        <TestimonialBlob
+          v-for="testimonial in testimonials"
+          :key="testimonial.id"
+          :message="testimonial?.text"
+          :logo="testimonial?.logo[0]"
+          :att="testimonial?.att"
+          :client="testimonial?.client"
+          :link="testimonial?.link"
+        ></TestimonialBlob>
+      </ClientOnly>
     </div>
 
     <div
@@ -68,29 +81,6 @@ definePageMeta({
 <script>
 export default {
   name: "Kundutlatanden",
-
-  data() {
-    const config = useRuntimeConfig();
-    return {
-      userName: config.public.userName,
-      userPass: config.public.userPass,
-      error: false,
-      testimonials: [],
-    };
-  },
-
-  async created() {
-    try {
-      this.testimonials = await $fetch("/api/get-testimonials", {
-        method: "GET",
-        headers: {
-          Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
-        },
-      });
-    } catch (err) {
-      this.error = true;
-    }
-  },
 
   methods: {
     handleScroll() {
