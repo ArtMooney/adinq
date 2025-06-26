@@ -3,7 +3,7 @@
     :to="link"
     target="_blank"
     external
-    class="group relative w-full cursor-pointer rounded border-2 border-white/25 shadow-2xl sm:max-w-lg lg:max-w-4xl"
+    class="group relative w-full cursor-pointer rounded shadow-2xl sm:max-w-lg lg:max-w-4xl"
     :style="`transform: translateX(${randomX}) rotate(${randomRotate})`"
   >
     <div
