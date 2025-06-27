@@ -3,11 +3,15 @@ import tailwindcss from "@tailwindcss/vite";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-04-28",
+
   devtools: { enabled: true },
+
   css: ["/assets/css/main.css"],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   nitro: {
     preset: "cloudflare-pages",
     prerender: {
@@ -15,6 +19,7 @@ export default defineNuxtConfig({
       ignore: [],
     },
   },
+
   runtimeConfig: {
     mailgunApiKey: process.env.NUXT_MAILGUN_API_KEY,
     baserowToken: process.env.NUXT_BASEROW_TOKEN,
@@ -28,7 +33,9 @@ export default defineNuxtConfig({
       userPass: process.env.NUXT_PUBLIC_USERPASS,
     },
   },
+
   modules: ["@nuxtjs/robots", "@nuxtjs/sitemap", "@nuxt/image", "@nuxt/icon"],
+
   image: {
     dir: "assets/images",
     format: ["webp", "jpg", "png"],
@@ -51,6 +58,11 @@ export default defineNuxtConfig({
     staticFilename: "[name]-[width]-[height]-[format].[ext]",
     provider: "ipxStatic",
   },
+
+  icon: {
+    serverBundle: "local",
+  },
+
   robots: {
     rules: [
       {
@@ -67,13 +79,16 @@ export default defineNuxtConfig({
     disallowNonStandardSchemes: true,
     sitemap: "https://adinq.se/sitemap.xml",
   },
+
   site: {
     url: "https://adinq.se",
   },
+
   sitemap: {
     hostname: "https://adinq.se",
     gzip: true,
   },
+
   app: {
     keepalive: true,
     head: {
