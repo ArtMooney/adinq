@@ -23,7 +23,7 @@ definePageMeta({
         src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
         width="768"
         height="5184"
-        class="parallax-background h-full saturate-50 md:hidden"
+        class="parallax-background h-full transform-gpu saturate-50 will-change-transform backface-hidden md:hidden"
         densities="x1"
       />
 
@@ -31,7 +31,7 @@ definePageMeta({
         src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
         width="3456"
         height="5184"
-        class="parallax-background hidden h-full saturate-50 md:block"
+        class="parallax-background hidden h-full transform-gpu saturate-50 will-change-transform backface-hidden md:block"
         densities="x1"
       />
 
@@ -98,7 +98,7 @@ definePageMeta({
       <NuxtImg
         src="flat_clouds.png"
         alt=""
-        class="parallax-clouds h-full w-full object-cover opacity-10"
+        class="parallax-clouds h-full w-full transform-gpu object-cover opacity-10 will-change-transform backface-hidden"
         sizes="1500px md:3000px"
         width="3006"
         height="2000"
