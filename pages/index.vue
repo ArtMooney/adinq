@@ -18,9 +18,9 @@ definePageMeta({
 
 <template>
   <div
-    class="relative mx-[calc(-50vw+50%)] w-screen"
+    class="relative mx-[calc(-50vw+50%)] min-h-80 w-screen"
     :style="{
-      height: `calc(100${supportsDvh ? 'dvh' : 'vh'} - ${navHeight}px)`,
+      height: `${windowHeight - navHeight}px`,
     }"
   >
     <LoadingSpinner
@@ -66,7 +66,7 @@ definePageMeta({
 
       <NuxtLink
         :to="{ path: '/', hash: '#services' }"
-        class="absolute bottom-24 flex w-full items-center justify-center sm:bottom-16"
+        class="absolute bottom-12 flex w-full items-center justify-center sm:bottom-12"
       >
         <Icon
           name="qlementine-icons:chevron-double-down-16"
@@ -151,7 +151,7 @@ export default {
     return {
       videoLoaded: false,
       sweVersion: true,
-      supportsDvh: null,
+      windowHeight: window.innerHeight,
     };
   },
 
@@ -168,7 +168,17 @@ export default {
   },
 
   mounted() {
-    this.supportsDvh = CSS.supports("height", "100dvh");
+    window.addEventListener("resize", this.handleResize);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  },
+
+  methods: {
+    handleResize() {
+      this.windowHeight = window.innerHeight;
+    },
   },
 };
 </script>
