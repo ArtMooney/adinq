@@ -14,6 +14,29 @@ useSeoMeta({
 definePageMeta({
   ssr: true,
 });
+
+const config = useRuntimeConfig();
+
+const { data: colleagues, error } = await useFetch("/api/get-medarbetare", {
+  method: "GET",
+  headers: {
+    Authorization:
+      "Basic " + btoa(config.public.userName + ":" + config.public.userPass),
+  },
+  default: () => [],
+});
+
+const colleaguesManagement = colleagues.value.filter(
+  (colleague) => colleague.department.value === "management",
+);
+
+const colleaguesSales = colleagues.value.filter(
+  (colleague) => colleague.department.value === "sales",
+);
+
+const colleaguesProduction = colleagues.value.filter(
+  (colleague) => colleague.department.value === "production",
+);
 </script>
 
 <template>
@@ -118,43 +141,6 @@ definePageMeta({
 export default {
   name: "Medarbetare",
 
-  data() {
-    const config = useRuntimeConfig();
-    return {
-      userName: config.public.userName,
-      userPass: config.public.userPass,
-      error: false,
-      colleaguesManagement: [],
-      colleaguesSales: [],
-      colleaguesProduction: [],
-    };
-  },
-
-  async created() {
-    try {
-      const colleagues = await $fetch("/api/get-medarbetare", {
-        method: "GET",
-        headers: {
-          Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
-        },
-      });
-
-      this.colleaguesManagement = colleagues.filter(
-        (colleague) => colleague.department.value === "management",
-      );
-
-      this.colleaguesSales = colleagues.filter(
-        (colleague) => colleague.department.value === "sales",
-      );
-
-      this.colleaguesProduction = colleagues.filter(
-        (colleague) => colleague.department.value === "production",
-      );
-    } catch (err) {
-      this.error = true;
-    }
-  },
-
   methods: {
     handleScroll() {
       const scrolled = window.scrollY;
@@ -170,7 +156,7 @@ export default {
     },
   },
 
-  beforeMount() {
+  mounted() {
     window.addEventListener("scroll", this.handleScroll);
   },
 
