@@ -41,25 +41,17 @@ const colleaguesProduction = colleagues.value.filter(
 
 <template>
   <div class="relative -my-12 flex flex-col gap-8 px-4 py-32 md:px-8">
-    <div class="absolute inset-0 mx-[calc(-50vw+50%)] w-screen overflow-hidden">
-      <NuxtImg
-        src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
-        width="768"
-        height="5184"
-        class="parallax-background h-full transform-gpu saturate-50 will-change-transform backface-hidden md:hidden"
-        densities="x1"
-      />
+    <!--    <div class="absolute inset-0 overflow-hidden">-->
+    <!--      <NuxtImg-->
+    <!--        src="eszter-solyom-wDaWqcolhWU-unsplash.jpg"-->
+    <!--        width="4000"-->
+    <!--        height="6000"-->
+    <!--        class="parallax-background transform-gpu object-cover opacity-25 will-change-transform backface-hidden"-->
+    <!--        densities="x1"-->
+    <!--      />-->
 
-      <NuxtImg
-        src="teo-d-4op9_2Bt2Eg-unsplash.jpg"
-        width="3456"
-        height="5184"
-        class="parallax-background hidden h-full transform-gpu saturate-50 will-change-transform backface-hidden md:block"
-        densities="x1"
-      />
-
-      <div class="absolute inset-0 bg-[#140a14]/85"></div>
-    </div>
+    <!--      <div class="absolute inset-0 bg-[#140a14]/40"></div>-->
+    <!--    </div>-->
 
     <h1
       class="relative my-52 text-center text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
@@ -67,66 +59,76 @@ const colleaguesProduction = colleagues.value.filter(
       Dagens ADinQ
     </h1>
 
-    <h3
-      v-if="colleaguesManagement.length > 0"
-      class="relative mt-32 text-center"
-    >
-      Företagsledning och administration
-    </h3>
-
-    <div
-      class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
-    >
-      <ColleagueCard
-        v-for="colleague in colleaguesManagement"
-        :key="colleague.id"
-        :colleague="colleague"
-      />
-    </div>
-
-    <h3 v-if="colleaguesSales.length > 0" class="relative mt-32 text-center">
-      Försäljning
-    </h3>
-
-    <div
-      class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
-    >
-      <ColleagueCard
-        v-for="colleague in colleaguesSales"
-        :key="colleague.id"
-        :colleague="colleague"
-      />
-    </div>
-
-    <h3
-      v-if="colleaguesProduction.length > 0"
-      class="relative mt-32 text-center"
-    >
-      Produktion och marknadsföring
-    </h3>
-
-    <div
-      class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
-    >
-      <ColleagueCard
-        v-for="colleague in colleaguesProduction"
-        :key="colleague.id"
-        :colleague="colleague"
-      />
-    </div>
-
-    <div
-      class="pointer-events-none absolute inset-0 mx-[calc(-50vw+50%)] flex w-screen items-center overflow-hidden"
-    >
+    <div class="relative mt-32 bg-neutral-900 py-32">
       <NuxtImg
-        src="flat_clouds.png"
+        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
         alt=""
-        class="parallax-clouds h-full w-full transform-gpu object-cover opacity-10 will-change-transform backface-hidden"
-        sizes="1500px md:3000px"
-        width="3006"
-        height="2000"
-        densities="x1"
+        class="absolute inset-0 h-full w-full object-cover opacity-15"
+        sizes="1000px md:2000px"
+        width="2912"
+        height="2032"
       />
+
+      <h3 v-if="colleaguesManagement.length > 0" class="text-center">
+        Företagsledning och administration
+      </h3>
+
+      <div
+        class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
+      >
+        <ColleagueCard
+          v-for="colleague in colleaguesManagement"
+          :key="colleague.id"
+          :colleague="colleague"
+        />
+      </div>
+    </div>
+
+    <div class="relative mt-32 bg-neutral-900 py-32">
+      <NuxtImg
+        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover opacity-15"
+        sizes="1000px md:2000px"
+        width="2912"
+        height="2032"
+      />
+      <h3 v-if="colleaguesSales.length > 0" class="text-center">Försäljning</h3>
+
+      <div
+        class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
+      >
+        <ColleagueCard
+          v-for="colleague in colleaguesSales"
+          :key="colleague.id"
+          :colleague="colleague"
+        />
+      </div>
+    </div>
+
+    <div class="relative mt-32 bg-neutral-900 py-32">
+      <NuxtImg
+        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover opacity-15"
+        sizes="1000px md:2000px"
+        width="2912"
+        height="2032"
+      />
+
+      <h3 v-if="colleaguesProduction.length > 0" class="text-center">
+        Produktion och marknadsföring
+      </h3>
+
+      <div
+        class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
+      >
+        <ColleagueCard
+          v-for="colleague in colleaguesProduction"
+          :key="colleague.id"
+          :colleague="colleague"
+        />
+      </div>
     </div>
   </div>
 
