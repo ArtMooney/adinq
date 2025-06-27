@@ -6,6 +6,12 @@
     class="group relative w-full cursor-pointer rounded shadow-2xl sm:max-w-lg lg:max-w-4xl"
     :style="`transform: translateX(${randomX}px) rotate(${randomRotate}deg)`"
   >
+    <Icon
+      name="fluent:comment-quote-20-regular"
+      class="absolute -top-10 -left-10 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
+      style="color: #ffffff"
+    ></Icon>
+
     <div
       class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-yellow-500 to-blue-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-25"
     ></div>
@@ -13,12 +19,6 @@
     <div
       class="relative h-full w-full rounded bg-neutral-500/65 p-6 pb-12 backdrop-blur-xs md:p-8"
     >
-      <Icon
-        name="fluent:comment-quote-20-regular"
-        class="absolute -top-10 -left-6 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
-        style="color: #ffffff"
-      ></Icon>
-
       <p v-if="message" class="mt-4 md:mt-0">
         {{ message }}
       </p>
