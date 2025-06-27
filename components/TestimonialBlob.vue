@@ -4,7 +4,7 @@
     target="_blank"
     external
     class="group relative w-full cursor-pointer rounded shadow-2xl sm:max-w-lg lg:max-w-4xl"
-    :style="`transform: translateX(${randomX}) rotate(${randomRotate})`"
+    :style="`transform: translateX(${randomX}px) rotate(${randomRotate}deg)`"
   >
     <div
       class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-yellow-500 to-blue-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-25"
@@ -66,19 +66,31 @@ export default {
     },
   },
 
-  computed: {
-    randomX() {
+  data() {
+    return {
+      randomX: 0,
+      randomRotate: 0,
+    };
+  },
+
+  mounted() {
+    this.randomX = this.getRandomX();
+    this.randomRotate = this.getRandomRotate();
+  },
+
+  methods: {
+    getRandomX() {
       const baseRange = this.breakpoints.lg ? 100 : 20;
       const baseOffset = this.breakpoints.lg ? 50 : 10;
-      const value = Math.random() * baseRange - baseOffset;
-      return `${value.toFixed(1)}px`;
+
+      return (Math.random() * baseRange - baseOffset).toFixed(1);
     },
 
-    randomRotate() {
+    getRandomRotate() {
       const baseRange = this.breakpoints.lg ? 6 : 3;
       const baseOffset = this.breakpoints.lg ? 3 : 1.5;
-      const value = Math.random() * baseRange - baseOffset;
-      return `${value.toFixed(1)}deg`;
+
+      return (Math.random() * baseRange - baseOffset).toFixed(1);
     },
   },
 };
