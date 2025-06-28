@@ -41,17 +41,15 @@ const colleaguesProduction = colleagues.value.filter(
 
 <template>
   <div class="relative -my-12 flex flex-col gap-8 px-4 py-32 md:px-8">
-    <!--    <div class="absolute inset-0 overflow-hidden">-->
-    <!--      <NuxtImg-->
-    <!--        src="eszter-solyom-wDaWqcolhWU-unsplash.jpg"-->
-    <!--        width="4000"-->
-    <!--        height="6000"-->
-    <!--        class="parallax-background transform-gpu object-cover opacity-25 will-change-transform backface-hidden"-->
-    <!--        densities="x1"-->
-    <!--      />-->
-
-    <!--      <div class="absolute inset-0 bg-[#140a14]/40"></div>-->
-    <!--    </div>-->
+    <div class="absolute inset-0 overflow-hidden">
+      <NuxtImg
+        src="guillaume-le-louarn-uC21aXJ7yQs-unsplash.jpg"
+        width="4000"
+        height="6000"
+        class="parallax-background transform-gpu object-cover opacity-25 will-change-transform backface-hidden"
+        densities="x1"
+      />
+    </div>
 
     <h1
       class="relative my-52 text-center text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
@@ -59,17 +57,19 @@ const colleaguesProduction = colleagues.value.filter(
       Dagens ADinQ
     </h1>
 
-    <div class="relative mt-32 bg-neutral-900 py-32">
+    <div
+      class="relative mt-32 rounded border border-white/25 py-32 backdrop-blur-[2px]"
+    >
       <NuxtImg
-        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
         alt=""
-        class="absolute inset-0 h-full w-full object-cover opacity-15"
+        class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
-        width="2912"
-        height="2032"
+        width="6000"
+        height="4000"
       />
 
-      <h3 v-if="colleaguesManagement.length > 0" class="text-center">
+      <h3 v-if="colleaguesManagement.length > 0" class="relative text-center">
         Företagsledning och administration
       </h3>
 
@@ -84,15 +84,18 @@ const colleaguesProduction = colleagues.value.filter(
       </div>
     </div>
 
-    <div class="relative mt-32 bg-neutral-900 py-32">
+    <div
+      class="relative mt-32 rounded border border-white/25 py-32 backdrop-blur-[2px]"
+    >
       <NuxtImg
-        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
         alt=""
-        class="absolute inset-0 h-full w-full object-cover opacity-15"
+        class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
-        width="2912"
-        height="2032"
+        width="6000"
+        height="4000"
       />
+
       <h3 v-if="colleaguesSales.length > 0" class="text-center">Försäljning</h3>
 
       <div
@@ -106,14 +109,16 @@ const colleaguesProduction = colleagues.value.filter(
       </div>
     </div>
 
-    <div class="relative mt-32 bg-neutral-900 py-32">
+    <div
+      class="relative mt-32 rounded border border-white/25 py-32 backdrop-blur-[2px]"
+    >
       <NuxtImg
-        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
         alt=""
-        class="absolute inset-0 h-full w-full object-cover opacity-15"
+        class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
-        width="2912"
-        height="2032"
+        width="6000"
+        height="4000"
       />
 
       <h3 v-if="colleaguesProduction.length > 0" class="text-center">
