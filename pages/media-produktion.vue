@@ -14,6 +14,25 @@ useSeoMeta({
 definePageMeta({
   ssr: true,
 });
+
+const config = useRuntimeConfig();
+
+const { data: gallery, error } = await useFetch("/api/get-mediaproduktioner", {
+  method: "GET",
+  headers: {
+    Authorization:
+      "Basic " + btoa(config.public.userName + ":" + config.public.userPass),
+  },
+  default: () => [],
+});
+
+const galleryStores = gallery.value.filter(
+  (qcard) => qcard.filmtyp.value === "butiksfilm",
+);
+
+const galleryBigscreens = gallery.value.filter(
+  (qcard) => qcard.filmtyp.value === "storbildsfilm",
+);
 </script>
 
 <template>
@@ -154,13 +173,7 @@ export default {
   inject: ["navbarHeight"],
 
   data() {
-    const config = useRuntimeConfig();
     return {
-      userName: config.public.userName,
-      userPass: config.public.userPass,
-      error: false,
-      galleryStores: [],
-      galleryBigscreens: [],
       windowHeight: 0,
     };
   },
@@ -169,27 +182,6 @@ export default {
     navHeight() {
       return this.navbarHeight();
     },
-  },
-
-  async created() {
-    try {
-      const gallery = await $fetch("/api/get-mediaproduktioner", {
-        method: "GET",
-        headers: {
-          Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
-        },
-      });
-
-      this.galleryStores = gallery.filter(
-        (qcard) => qcard.filmtyp.value === "butiksfilm",
-      );
-
-      this.galleryBigscreens = gallery.filter(
-        (qcard) => qcard.filmtyp.value === "storbildsfilm",
-      );
-    } catch (err) {
-      this.error = true;
-    }
   },
 
   mounted() {
