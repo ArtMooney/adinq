@@ -40,24 +40,44 @@ const colleaguesProduction = colleagues.value.filter(
 </script>
 
 <template>
-  <div class="relative -my-12 flex flex-col gap-8 px-4 py-32 md:px-8">
+  <div class="relative px-4 pb-32 md:px-8">
     <div class="absolute inset-0 overflow-hidden">
       <NuxtImg
         src="guillaume-le-louarn-uC21aXJ7yQs-unsplash.jpg"
+        sizes="1000px md:2000px xl:4000px"
         width="4000"
         height="6000"
-        class="parallax-background transform-gpu object-cover opacity-25 will-change-transform backface-hidden"
+        class="parallax-backgroundXXX h-full transform-gpu object-cover opacity-25 will-change-transform backface-hidden"
         densities="x1"
       />
     </div>
 
-    <h1
-      class="relative my-52 text-center text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
-    >
-      Dagens ADinQ
-    </h1>
+    <Heading>
+      <template #heading-content>
+        <div
+          class="absolute inset-0 flex flex-col items-center justify-center text-center"
+        >
+          <h1
+            class="mx-10 mb-8 text-3xl sm:text-4xl md:mx-20 md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
+          >
+            Dagens ADinQ
+          </h1>
+
+          <NuxtLink
+            :to="{ path: '/medarbetare', hash: '#medarbetare' }"
+            class="absolute bottom-8 flex w-full items-center justify-center"
+          >
+            <Icon
+              name="qlementine-icons:chevron-double-down-16"
+              class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
+            ></Icon>
+          </NuxtLink>
+        </div>
+      </template>
+    </Heading>
 
     <div
+      id="medarbetare"
       class="relative mt-32 rounded border border-white/25 py-32 backdrop-blur-[2px]"
     >
       <NuxtImg
@@ -150,6 +170,14 @@ const colleaguesProduction = colleagues.value.filter(
 export default {
   name: "Medarbetare",
 
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
+
   methods: {
     handleScroll() {
       const scrolled = window.scrollY;
@@ -163,14 +191,6 @@ export default {
         el.style.transform = `translateY(${translateY}px)`;
       });
     },
-  },
-
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
-
-  beforeUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
   },
 };
 </script>
