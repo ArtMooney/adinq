@@ -5,6 +5,14 @@ export default {
     }
 
     if (to.hash) {
+      setTimeout(() => {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + window.location.search,
+        );
+      }, 800);
+
       return {
         el: to.hash,
         top: 50,
