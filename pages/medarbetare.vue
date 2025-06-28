@@ -96,7 +96,9 @@ const colleaguesProduction = colleagues.value.filter(
         height="4000"
       />
 
-      <h3 v-if="colleaguesSales.length > 0" class="text-center">Försäljning</h3>
+      <h3 v-if="colleaguesSales.length > 0" class="relative text-center">
+        Försäljning
+      </h3>
 
       <div
         class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
@@ -121,7 +123,7 @@ const colleaguesProduction = colleagues.value.filter(
         height="4000"
       />
 
-      <h3 v-if="colleaguesProduction.length > 0" class="text-center">
+      <h3 v-if="colleaguesProduction.length > 0" class="relative text-center">
         Produktion och marknadsföring
       </h3>
 
