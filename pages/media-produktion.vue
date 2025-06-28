@@ -18,9 +18,9 @@ definePageMeta({
 
 <template>
   <div
-    class="relative mx-[calc(-50vw+50%)] w-screen"
+    class="relative mx-[calc(-50vw+50%)] min-h-80 w-screen"
     :style="{
-      height: `calc(100${supportsDvh ? 'dvh' : 'vh'} - ${navHeight}px)`,
+      height: `${windowHeight - navHeight}px`,
     }"
   >
     <NuxtImg
@@ -39,17 +39,18 @@ definePageMeta({
       class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
     >
       <h1
-        class="mx-10 -mt-96 mb-8 text-3xl sm:text-4xl md:mx-20 md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
+        class="mx-10 mb-8 text-3xl sm:text-4xl md:mx-20 md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
       >
         Vi producerar er reklamfilm eller slide för storbildsskärmar!
       </h1>
+
       <div class="px-8 text-lg lg:text-2xl">
         - Vi kan hjälpa er med allt under samma tak!
       </div>
 
       <NuxtLink
         :to="{ path: '/media-produktion', hash: '#info' }"
-        class="absolute bottom-24 flex w-full items-center justify-center sm:bottom-16"
+        class="absolute bottom-8 flex w-full items-center justify-center"
       >
         <Icon
           name="qlementine-icons:chevron-double-down-16"
@@ -158,9 +159,9 @@ export default {
       userName: config.public.userName,
       userPass: config.public.userPass,
       error: false,
-      supportsDvh: null,
       galleryStores: [],
       galleryBigscreens: [],
+      windowHeight: 0,
     };
   },
 
@@ -192,7 +193,18 @@ export default {
   },
 
   mounted() {
-    this.supportsDvh = CSS.supports("height", "100dvh");
+    this.windowHeight = window.innerHeight;
+    window.addEventListener("resize", this.handleResize);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  },
+
+  methods: {
+    handleResize() {
+      this.windowHeight = window.innerHeight;
+    },
   },
 };
 </script>

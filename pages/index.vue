@@ -56,6 +56,7 @@ definePageMeta({
       >
         Vi hjälper er att nå ut digitalt!
       </h1>
+
       <div class="px-8 text-lg lg:text-2xl">
         Lokalt, regionalt eller rikstäckande - just DOOH* it!
       </div>
@@ -66,7 +67,7 @@ definePageMeta({
 
       <NuxtLink
         :to="{ path: '/', hash: '#services' }"
-        class="absolute bottom-12 flex w-full items-center justify-center sm:bottom-12"
+        class="absolute bottom-8 flex w-full items-center justify-center"
       >
         <Icon
           name="qlementine-icons:chevron-double-down-16"
