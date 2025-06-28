@@ -151,7 +151,7 @@ export default {
     return {
       videoLoaded: false,
       sweVersion: true,
-      windowHeight: window.innerHeight,
+      windowHeight: 0,
     };
   },
 
@@ -168,6 +168,7 @@ export default {
   },
 
   mounted() {
+    this.windowHeight = window.innerHeight;
     window.addEventListener("resize", this.handleResize);
   },
 
