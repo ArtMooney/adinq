@@ -44,10 +44,10 @@ const colleaguesProduction = colleagues.value.filter(
     <div class="absolute inset-0 overflow-hidden">
       <NuxtImg
         src="guillaume-le-louarn-uC21aXJ7yQs-unsplash.jpg"
-        sizes="1000px md:2000px xl:4000px"
+        sizes="1500px md:2000px xl:4000px"
         width="4000"
         height="6000"
-        class="parallax-backgroundXXX h-full transform-gpu object-cover opacity-25 will-change-transform backface-hidden"
+        class="parallax-background -mt-12 h-[200vh] transform-gpu object-fill opacity-25 will-change-transform backface-hidden"
         densities="x1"
       />
     </div>
@@ -186,7 +186,7 @@ export default {
       );
 
       parallaxElements.forEach(function (el, index) {
-        const rate = index === 0 || index === 1 ? 0.7 : 0.4;
+        const rate = index === 0 || index === 1 ? 0.9 : 0.4;
         const translateY = scrolled * rate;
         el.style.transform = `translateY(${translateY}px)`;
       });
