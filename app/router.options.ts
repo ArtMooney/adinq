@@ -7,7 +7,7 @@ export default {
     if (to.hash) {
       setTimeout(() => {
         window.history.replaceState(
-          null,
+          history.state,
           "",
           window.location.pathname + window.location.search,
         );
