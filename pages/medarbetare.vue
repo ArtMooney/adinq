@@ -41,7 +41,7 @@ const colleaguesProduction = colleagues.value.filter(
 
 <template>
   <div class="relative px-4 pb-32 md:px-8">
-    <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute inset-0 mx-[calc(-50vw+50%)] w-screen overflow-hidden">
       <NuxtImg
         src="guillaume-le-louarn-uC21aXJ7yQs-unsplash.jpg"
         sizes="1000px md:2000px"

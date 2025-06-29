@@ -69,7 +69,7 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
 
     <div
       id="testimonials"
-      class="flex flex-col items-center gap-32 px-4 md:px-0"
+      class="flex flex-col items-center gap-32 px-4 pt-12 md:px-0"
     >
       <TestimonialBlob
         v-for="testimonial in testimonials"
