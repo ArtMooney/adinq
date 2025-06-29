@@ -93,5 +93,12 @@ export default {
       return (Math.random() * baseRange - baseOffset).toFixed(1);
     },
   },
+
+  watch: {
+    "breakpoints.lg"() {
+      this.randomX = this.getRandomX();
+      this.randomRotate = this.getRandomRotate();
+    },
+  },
 };
 </script>
