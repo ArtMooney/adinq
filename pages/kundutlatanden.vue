@@ -32,7 +32,7 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
     <div class="absolute inset-0 mx-[calc(-50vw+50%)] w-screen overflow-hidden">
       <NuxtImg
         src="philip-myrtorp-kWnVvnG30dQ-unsplash.jpg"
-        sizes="1500px md:4000px"
+        sizes="1000px md:2000px"
         width="3863"
         height="5795"
         alt="in the city of gothenburg at night"
@@ -89,7 +89,7 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
         src="flat_clouds.png"
         alt="flat and transparent background layer with clouds"
         class="parallax-clouds h-[300vh] w-full transform-gpu object-cover opacity-5 will-change-transform backface-hidden"
-        sizes="1500px md:3000px"
+        sizes="1000px md:2000px"
         width="3006"
         height="2000"
         densities="x1"

@@ -44,7 +44,7 @@ const colleaguesProduction = colleagues.value.filter(
     <div class="absolute inset-0 overflow-hidden">
       <NuxtImg
         src="guillaume-le-louarn-uC21aXJ7yQs-unsplash.jpg"
-        sizes="1500px md:2000px xl:4000px"
+        sizes="1000px md:2000px"
         width="4000"
         height="6000"
         class="parallax-background h-[200vh] transform-gpu object-cover opacity-25 will-change-transform backface-hidden"
