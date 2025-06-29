@@ -47,7 +47,7 @@ const colleaguesProduction = colleagues.value.filter(
         sizes="1500px md:2000px xl:4000px"
         width="4000"
         height="6000"
-        class="parallax-background -mt-12 h-[200vh] transform-gpu object-fill opacity-25 will-change-transform backface-hidden"
+        class="parallax-background h-[200vh] transform-gpu object-cover opacity-25 will-change-transform backface-hidden"
         densities="x1"
       />
     </div>
@@ -170,6 +170,18 @@ const colleaguesProduction = colleagues.value.filter(
 export default {
   name: "Medarbetare",
 
+  inject: ["navbarHeight", "footerHeight"],
+
+  computed: {
+    getNavbarHeight() {
+      return this.navbarHeight();
+    },
+
+    getFooterHeight() {
+      return this.footerHeight();
+    },
+  },
+
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
   },
@@ -181,14 +193,26 @@ export default {
   methods: {
     handleScroll() {
       const scrolled = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      const maxScroll = documentHeight - windowHeight;
+      const scrollPercent = Math.min(scrolled / maxScroll, 1);
+      const addedOffset = 300;
+
       const parallaxElements = document.querySelectorAll(
         ".parallax-background, .parallax-clouds",
       );
 
       parallaxElements.forEach(function (el, index) {
-        const rate = index === 0 || index === 1 ? 0.9 : 0.4;
-        const translateY = scrolled * rate;
-        el.style.transform = `translateY(${translateY}px)`;
+        if (el.classList.contains("parallax-background")) {
+          const elementHeight = el.offsetHeight;
+          const containerHeight = el.parentElement.offsetHeight + addedOffset;
+
+          const maxTranslate = elementHeight - containerHeight;
+          const translateY = -(scrollPercent * maxTranslate);
+
+          el.style.transform = `translateY(${translateY}px)`;
+        }
       });
     },
   },
