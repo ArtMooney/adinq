@@ -28,7 +28,7 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
 </script>
 
 <template>
-  <div class="relative -my-12 flex flex-col gap-8 px-4 py-72 md:px-8">
+  <div class="relative flex flex-col gap-8 px-4 pb-72 md:px-8">
     <div class="absolute inset-0 mx-[calc(-50vw+50%)] w-screen overflow-hidden">
       <NuxtImg
         src="philip-myrtorp-kWnVvnG30dQ-unsplash.jpg"
@@ -43,13 +43,34 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
       <div class="absolute inset-0 bg-[#140a14]/65"></div>
     </div>
 
-    <h1
-      class="relative mt-32 mb-72 text-center text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
-    >
-      Vad säger våra kunder?
-    </h1>
+    <Heading>
+      <template #heading-content>
+        <div
+          class="absolute inset-0 flex flex-col items-center justify-center text-center"
+        >
+          <h1
+            class="mx-10 mb-8 text-3xl sm:text-4xl md:mx-20 md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
+          >
+            Vad säger våra kunder?
+          </h1>
 
-    <div class="flex flex-col items-center gap-32 px-4 md:px-0">
+          <NuxtLink
+            :to="{ path: '/kundutlatanden', hash: '#testimonials' }"
+            class="absolute bottom-8 flex w-full items-center justify-center"
+          >
+            <Icon
+              name="qlementine-icons:chevron-double-down-16"
+              class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
+            ></Icon>
+          </NuxtLink>
+        </div>
+      </template>
+    </Heading>
+
+    <div
+      id="testimonials"
+      class="flex flex-col items-center gap-32 px-4 md:px-0"
+    >
       <TestimonialBlob
         v-for="testimonial in testimonials"
         :key="testimonial.id"
@@ -67,7 +88,7 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
       <NuxtImg
         src="flat_clouds.png"
         alt="flat and transparent background layer with clouds"
-        class="parallax-clouds h-full w-full transform-gpu object-cover opacity-5 will-change-transform backface-hidden"
+        class="parallax-clouds h-[300vh] w-full transform-gpu object-cover opacity-5 will-change-transform backface-hidden"
         sizes="1500px md:3000px"
         width="3006"
         height="2000"
@@ -81,18 +102,15 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
 export default {
   name: "Kundutlatanden",
 
-  methods: {
-    handleScroll() {
-      const scrolled = window.scrollY;
-      const parallaxElements = document.querySelectorAll(
-        ".parallax-background, .parallax-clouds",
-      );
+  inject: ["navbarHeight", "footerHeight"],
 
-      parallaxElements.forEach(function (el, index) {
-        const rate = index === 0 ? 0.6 : 0.4;
-        const translateY = scrolled * rate;
-        el.style.transform = `translateY(${translateY}px)`;
-      });
+  computed: {
+    getNavbarHeight() {
+      return this.navbarHeight();
+    },
+
+    getFooterHeight() {
+      return this.footerHeight();
     },
   },
 
@@ -102,6 +120,31 @@ export default {
 
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+  },
+
+  methods: {
+    handleScroll() {
+      const scrolled = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      const maxScroll = documentHeight - windowHeight;
+      const scrollPercent = Math.min(scrolled / maxScroll, 1);
+      const addedOffset = this.getFooterHeight + this.getNavbarHeight;
+
+      const parallaxElements = document.querySelectorAll(
+        ".parallax-background, .parallax-clouds",
+      );
+
+      parallaxElements.forEach(function (el, index) {
+        const elementHeight = el.offsetHeight;
+        const containerHeight = el.parentElement.offsetHeight + addedOffset;
+
+        const maxTranslate = elementHeight - containerHeight;
+        const translateY = -(scrollPercent * maxTranslate);
+
+        el.style.transform = `translateY(${translateY}px)`;
+      });
+    },
   },
 };
 </script>
