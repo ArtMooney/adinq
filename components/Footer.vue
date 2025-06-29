@@ -1,5 +1,8 @@
 <template>
-  <div class="relative mx-[calc(-50vw+50%)] grid w-screen bg-neutral-950">
+  <div
+    ref="footer"
+    class="relative mx-[calc(-50vw+50%)] grid w-screen bg-neutral-950"
+  >
     <div
       class="mx-auto grid w-full max-w-screen-2xl items-start justify-items-center px-12 pt-20 pb-12 md:grid-cols-[0.5fr_1fr_0.5fr] md:justify-items-start"
     >
@@ -74,5 +77,20 @@
 <script>
 export default {
   name: "Footer",
+
+  mounted() {
+    window.addEventListener("resize", this.onResize);
+    this.onResize();
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("resize", this.onResize);
+  },
+
+  methods: {
+    onResize() {
+      this.$emit("footerHeight", this.$refs.footer.offsetHeight);
+    },
+  },
 };
 </script>
