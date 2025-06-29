@@ -48,6 +48,7 @@ const colleaguesProduction = colleagues.value.filter(
         width="4000"
         height="6000"
         class="parallax-background h-[200vh] transform-gpu object-cover opacity-25 will-change-transform backface-hidden"
+        :style="{ marginTop: `-${getNavbarHeight}px` }"
         densities="x1"
       />
     </div>
@@ -197,7 +198,7 @@ export default {
       const windowHeight = window.innerHeight;
       const maxScroll = documentHeight - windowHeight;
       const scrollPercent = Math.min(scrolled / maxScroll, 1);
-      const addedOffset = 300;
+      const addedOffset = this.getFooterHeight + this.getNavbarHeight;
 
       const parallaxElements = document.querySelectorAll(
         ".parallax-background, .parallax-clouds",
