@@ -80,8 +80,8 @@ export default {
 
   methods: {
     getRandomX() {
-      const baseRange = this.breakpoints.lg ? 100 : 20;
-      const baseOffset = this.breakpoints.lg ? 50 : 10;
+      const baseRange = this.breakpoints.lg ? 100 : 10;
+      const baseOffset = this.breakpoints.lg ? 50 : 5;
 
       return (Math.random() * baseRange - baseOffset).toFixed(1);
     },
