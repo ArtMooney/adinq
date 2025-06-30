@@ -49,7 +49,7 @@ definePageMeta({
 
     <div
       v-show="videoLoaded"
-      class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
+      class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 px-4 text-center"
     >
       <h1
         class="mb-8 text-3xl sm:text-4xl md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
