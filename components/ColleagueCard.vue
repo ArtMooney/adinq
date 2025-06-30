@@ -5,12 +5,26 @@
     ></div>
 
     <div class="relative h-full w-full bg-white/10 p-0.5 shadow-2xl">
-      <div class="flex h-full w-full flex-col items-center bg-black/70">
-        <NuxtImg
-          :src="getImageUrl"
-          class="aspect-square w-full border-b border-b-white/15 object-cover saturate-70"
-          :alt="`bild på vår kollega ${colleague.name}`"
-        />
+      <div
+        class="flex h-full w-full flex-col items-center overflow-hidden bg-black/70"
+      >
+        <div
+          class="relative w-full overflow-hidden border-b border-b-white/15 pb-[100%]"
+        >
+          <NuxtImg
+            :src="getImageUrl"
+            class="absolute object-cover saturate-50"
+            :style="{
+              width: `${(colleague?.zoom || 1) * 100}%`,
+              height: `${(colleague?.zoom || 1) * 100}%`,
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+              'object-position': `${colleague?.adjustx || '50'}% ${colleague?.adjusty || '50'}%`,
+            }"
+            :alt="`bild på vår kollega ${colleague.name}`"
+          />
+        </div>
 
         <div
           class="my-3 flex h-full flex-col items-center justify-center gap-0.5 p-2 text-center text-sm"
