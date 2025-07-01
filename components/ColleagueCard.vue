@@ -11,19 +11,16 @@
         <div
           class="relative w-full overflow-hidden border-b border-b-white/15 pb-[100%]"
         >
-          <NuxtImg
-            :src="getImageUrl"
-            class="absolute object-cover saturate-50"
-            :style="{
-              width: `${(colleague?.zoom || 1) * 100}%`,
-              height: `${(colleague?.zoom || 1) * 100}%`,
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-              'object-position': `${colleague?.adjustx || '50'}% ${colleague?.adjusty || '50'}%`,
-            }"
-            :alt="`bild på vår kollega ${colleague.name}`"
-          />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <NuxtImg
+              :src="getImageUrl"
+              class="max-w-none saturate-50"
+              :style="{
+                transform: `translate(0px, 0px) scale(0.5)`,
+              }"
+              :alt="`bild på vår kollega ${colleague.name}`"
+            />
+          </div>
         </div>
 
         <div
