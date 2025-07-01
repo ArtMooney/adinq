@@ -16,7 +16,7 @@
               :src="getImageUrl"
               class="max-w-none saturate-50"
               :style="{
-                transform: `translate(${colleague?.adjustx || 0}px, ${colleague?.adjusty || 0}px) scale(${colleague?.zoom || 0.5})`,
+                transform: `translate(${colleague?.adjustx || 0}%, ${colleague?.adjusty || 0}%) scale(${colleague?.zoom || 0.5})`,
               }"
               :alt="`bild på vår kollega ${colleague.name}`"
             />
