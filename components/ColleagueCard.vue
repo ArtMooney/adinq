@@ -14,7 +14,7 @@
           <div
             class="absolute inset-0 h-full w-full saturate-50"
             :style="{
-              backgroundImage: `url(${getImageUrl})`,
+              backgroundImage: `url(${colleague?.photo[0]?.url})`,
               ...imageTransformStyle,
             }"
             role="img"
@@ -70,10 +70,6 @@ export default {
   },
 
   computed: {
-    getImageUrl() {
-      return this.colleague?.photo[0]?.url || "_ipx/q_80/silhouette.jpg";
-    },
-
     imageTransformStyle() {
       const adjustX = Number(this.colleague?.adjustx) || 0;
       const adjustY = Number(this.colleague?.adjusty) || 0;
