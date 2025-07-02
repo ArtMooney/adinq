@@ -79,7 +79,7 @@ const colleaguesProduction = colleagues.value.filter(
 
     <div
       id="medarbetare"
-      class="relative mt-32 rounded border border-white/25 py-32 backdrop-blur-[2px]"
+      class="relative mt-32 rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] sm:px-12"
     >
       <NuxtImg
         src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
@@ -94,7 +94,7 @@ const colleaguesProduction = colleagues.value.filter(
         Företagsledning och administration
       </h3>
 
-      <div class="flex flex-wrap justify-center gap-8 px-4 py-8 sm:px-12">
+      <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
         <ColleagueCard
           v-for="colleague in colleaguesManagement"
           :key="colleague.id"
@@ -105,7 +105,7 @@ const colleaguesProduction = colleagues.value.filter(
     </div>
 
     <div
-      class="relative mt-32 rounded border border-white/25 py-32 backdrop-blur-[2px]"
+      class="relative mt-32 rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] sm:px-12"
     >
       <NuxtImg
         src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
@@ -120,7 +120,7 @@ const colleaguesProduction = colleagues.value.filter(
         Försäljning
       </h3>
 
-      <div class="flex flex-wrap justify-center gap-8 px-4 py-8 sm:px-12">
+      <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
         <ColleagueCard
           v-for="colleague in colleaguesSales"
           :key="colleague.id"
@@ -131,7 +131,7 @@ const colleaguesProduction = colleagues.value.filter(
     </div>
 
     <div
-      class="relative mt-32 rounded border border-white/25 py-32 backdrop-blur-[2px]"
+      class="relative mt-32 rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] sm:px-12"
     >
       <NuxtImg
         src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
@@ -146,7 +146,7 @@ const colleaguesProduction = colleagues.value.filter(
         Produktion och marknadsföring
       </h3>
 
-      <div class="flex flex-wrap justify-center gap-8 px-4 py-8 sm:px-12">
+      <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
         <ColleagueCard
           v-for="colleague in colleaguesProduction"
           :key="colleague.id"

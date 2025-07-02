@@ -1,5 +1,5 @@
 <template>
-  <div class="group relative">
+  <div class="group relative max-w-64 sm:max-w-none">
     <div
       class="absolute inset-0 transform-gpu rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-50"
     ></div>
