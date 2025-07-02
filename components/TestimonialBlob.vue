@@ -6,12 +6,6 @@
     class="group relative w-full cursor-pointer rounded shadow-2xl sm:max-w-lg lg:max-w-4xl"
     :style="`transform: translateX(${randomX}px) rotate(${randomRotate}deg)`"
   >
-    <Icon
-      name="fluent:comment-quote-20-regular"
-      class="absolute -top-10 -left-10 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
-      style="color: #ffffff"
-    ></Icon>
-
     <div
       class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-yellow-500 to-blue-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-25"
     ></div>
@@ -31,6 +25,12 @@
         class="relative mt-8 h-14 max-h-14 min-h-14 max-w-40 object-contain lg:absolute lg:right-6 lg:bottom-6 lg:mt-0"
       ></NuxtImg>
     </div>
+
+    <Icon
+      name="fluent:comment-quote-20-regular"
+      class="absolute -top-10 -left-10 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
+      style="color: #ffffff"
+    ></Icon>
   </NuxtLink>
 </template>
 
