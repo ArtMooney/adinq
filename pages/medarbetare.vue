@@ -159,12 +159,6 @@ const colleaguesProduction = colleagues.value.filter(
       </div>
     </div>
   </div>
-
-  <NuxtImg
-    src="silhouette.jpg"
-    class="hidden"
-    alt="gömd bild på en siluett till nuxtimg"
-  />
 </template>
 
 <script>
