@@ -94,13 +94,12 @@ const colleaguesProduction = colleagues.value.filter(
         Företagsledning och administration
       </h3>
 
-      <div
-        class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
-      >
+      <div class="flex flex-wrap justify-center gap-8 px-4 py-8 sm:px-12">
         <ColleagueCard
           v-for="colleague in colleaguesManagement"
           :key="colleague.id"
           :colleague="colleague"
+          class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] xl:w-[calc(25%-1.5rem)]"
         />
       </div>
     </div>
@@ -121,13 +120,12 @@ const colleaguesProduction = colleagues.value.filter(
         Försäljning
       </h3>
 
-      <div
-        class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
-      >
+      <div class="flex flex-wrap justify-center gap-8 px-4 py-8 sm:px-12">
         <ColleagueCard
           v-for="colleague in colleaguesSales"
           :key="colleague.id"
           :colleague="colleague"
+          class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] xl:w-[calc(25%-1.5rem)]"
         />
       </div>
     </div>
@@ -148,13 +146,12 @@ const colleaguesProduction = colleagues.value.filter(
         Produktion och marknadsföring
       </h3>
 
-      <div
-        class="relative grid h-auto gap-x-8 gap-y-12 px-4 py-8 sm:grid-cols-2 sm:px-12 lg:grid-cols-3 xl:grid-cols-4"
-      >
+      <div class="flex flex-wrap justify-center gap-8 px-4 py-8 sm:px-12">
         <ColleagueCard
           v-for="colleague in colleaguesProduction"
           :key="colleague.id"
           :colleague="colleague"
+          class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] xl:w-[calc(25%-1.5rem)]"
         />
       </div>
     </div>
