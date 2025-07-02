@@ -47,7 +47,7 @@ const colleaguesProduction = colleagues.value.filter(
         sizes="1000px md:2000px"
         width="4000"
         height="6000"
-        class="parallax-background h-[200vh] transform-gpu object-cover opacity-25 will-change-transform backface-hidden"
+        class="parallax-background h-[200vh] transform-gpu object-cover opacity-40 will-change-transform backface-hidden"
         :style="{ marginTop: `-${getNavbarHeight}px` }"
         densities="x1"
       />
