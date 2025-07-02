@@ -11,14 +11,15 @@
         <div
           class="relative w-full overflow-hidden border-b border-b-white/15 pb-[100%]"
         >
-          <div class="absolute inset-0 flex items-center justify-center">
-            <NuxtImg
-              :src="getImageUrl"
-              class="max-w-none saturate-50"
-              :style="imageTransformStyle"
-              :alt="`bild på vår kollega ${colleague.name}`"
-            />
-          </div>
+          <div
+            class="absolute inset-0 h-full w-full saturate-50"
+            :style="{
+              backgroundImage: `url(${getImageUrl})`,
+              ...imageTransformStyle,
+            }"
+            role="img"
+            :aria-label="`bild på vår kollega ${colleague.name}`"
+          ></div>
         </div>
 
         <div
@@ -70,16 +71,25 @@ export default {
 
   computed: {
     getImageUrl() {
-      return this.colleague?.photo[0]?.url || "silhouette.jpg";
+      return this.colleague?.photo[0]?.url || "_ipx/q_80/silhouette.jpg";
     },
 
     imageTransformStyle() {
       const adjustX = Number(this.colleague?.adjustx) || 0;
       const adjustY = Number(this.colleague?.adjusty) || 0;
-      const zoom = Number(this.colleague?.zoom) || 0.5;
+      const zoom = Number(this.colleague?.zoom) || 1;
+
+      const posX = 50 + adjustX;
+      const posY = 50 + adjustY;
+
+      if (!this.colleague?.photo[0]?.url) {
+        console.log(posX, posY, zoom);
+      }
 
       return {
-        transform: `translate(${adjustX}%, ${adjustY}%) scale(${zoom})`,
+        backgroundPosition: `${posX}% ${posY}%`,
+        backgroundSize: zoom > 1 ? `${zoom * 100}%` : "cover",
+        backgroundRepeat: "no-repeat",
       };
     },
   },
