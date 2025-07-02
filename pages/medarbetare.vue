@@ -79,7 +79,7 @@ const colleaguesProduction = colleagues.value.filter(
 
     <div
       id="medarbetare"
-      class="relative mt-32 rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] sm:px-12"
+      class="relative mt-32 transform-gpu rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] will-change-transform backface-hidden sm:px-12"
     >
       <NuxtImg
         src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
@@ -105,7 +105,7 @@ const colleaguesProduction = colleagues.value.filter(
     </div>
 
     <div
-      class="relative mt-32 rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] sm:px-12"
+      class="relative mt-32 transform-gpu rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] will-change-transform backface-hidden sm:px-12"
     >
       <NuxtImg
         src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
@@ -131,7 +131,7 @@ const colleaguesProduction = colleagues.value.filter(
     </div>
 
     <div
-      class="relative mt-32 rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] sm:px-12"
+      class="relative mt-32 transform-gpu rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] will-change-transform backface-hidden sm:px-12"
     >
       <NuxtImg
         src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
