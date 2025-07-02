@@ -15,9 +15,7 @@
             <NuxtImg
               :src="getImageUrl"
               class="max-w-none saturate-50"
-              :style="{
-                transform: `translate(${colleague?.adjustx || 0}%, ${colleague?.adjusty || 0}%) scale(${colleague?.zoom || 0.5})`,
-              }"
+              :style="imageTransformStyle"
               :alt="`bild på vår kollega ${colleague.name}`"
             />
           </div>
@@ -73,6 +71,16 @@ export default {
   computed: {
     getImageUrl() {
       return this.colleague?.photo[0]?.url || "silhouette.jpg";
+    },
+
+    imageTransformStyle() {
+      const adjustX = Number(this.colleague?.adjustx) || 0;
+      const adjustY = Number(this.colleague?.adjusty) || 0;
+      const zoom = Number(this.colleague?.zoom) || 0.5;
+
+      return {
+        transform: `translate(${adjustX}%, ${adjustY}%) scale(${zoom})`,
+      };
     },
   },
 };
