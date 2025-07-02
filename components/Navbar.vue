@@ -100,11 +100,8 @@ import Button from "./elements/Button.vue";
             class="w-full opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100"
           />
           <div
-            class="absolute inset-0 z-[-1] w-full rounded-full bg-gradient-to-r from-blue-500 to-green-500 opacity-0 blur-xl transition-all duration-300 ease-in-out group-hover:opacity-100"
-            :class="[
-              currentPath === '/kontakta-oss' &&
-                'bg-gradient-to-r from-pink-500 to-purple-500 opacity-50',
-            ]"
+            class="absolute inset-0 z-[-1] w-full rounded-full bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-all duration-300 ease-in-out group-hover:opacity-90"
+            :class="[currentPath === '/kontakta-oss' && 'opacity-60']"
           />
         </div>
 

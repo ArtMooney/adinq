@@ -5,12 +5,9 @@
     class="group relative flex cursor-pointer flex-row-reverse items-center gap-2 xl:flex-row"
   >
     <div
-      class="absolute inset-0 transform-gpu bg-gradient-to-r from-blue-500 to-green-500 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-75"
-      :class="[
-        currentPath === route &&
-          'bg-gradient-to-r from-pink-500 to-purple-500 opacity-50',
-      ]"
-    />
+      class="absolute inset-0 transform-gpu bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-90"
+      :class="[currentPath === route && 'opacity-60']"
+    ></div>
 
     <div
       v-if="icon"
