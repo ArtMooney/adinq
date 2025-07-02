@@ -82,10 +82,6 @@ export default {
       const posX = 50 + adjustX;
       const posY = 50 + adjustY;
 
-      if (!this.colleague?.photo[0]?.url) {
-        console.log(posX, posY, zoom);
-      }
-
       return {
         backgroundPosition: `${posX}% ${posY}%`,
         backgroundSize: zoom > 1 ? `${zoom * 100}%` : "cover",
