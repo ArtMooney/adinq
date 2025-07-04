@@ -22,6 +22,7 @@ import Button from "./elements/Button.vue";
           src="adinq_vit.svg"
           alt="company logo"
           class="h-auto w-24 p-1 xl:w-32 xl:p-2"
+          :class="currentPath === '/dagens-adinq' && 'opacity-0'"
         />
       </router-link>
 

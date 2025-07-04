@@ -61,11 +61,19 @@ const colleaguesProduction = colleagues.value.filter(
           <h1
             class="mx-10 mb-8 text-3xl sm:text-4xl md:mx-20 md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
           >
-            Dagens ADinQ
+            Dagens
+            <span>
+              <router-link to="/">
+                <NuxtImg
+                  src="adinq_vit.svg"
+                  class="mt-2 mb-12 inline h-auto w-44 max-w-44 sm:mt-0 sm:ml-2 sm:w-64 sm:max-w-64"
+                  alt="company logo"
+                ></NuxtImg> </router-link
+            ></span>
           </h1>
 
           <NuxtLink
-            :to="{ path: '/medarbetare', hash: '#medarbetare' }"
+            :to="{ path: '/dagens-adinq', hash: '#medarbetare' }"
             class="absolute bottom-8 flex w-full items-center justify-center"
           >
             <Icon
@@ -160,7 +168,7 @@ const colleaguesProduction = colleagues.value.filter(
 
 <script>
 export default {
-  name: "Medarbetare",
+  name: "DagensAdinq",
 
   inject: ["navbarHeight", "footerHeight"],
 
