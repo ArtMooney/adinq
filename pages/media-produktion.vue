@@ -57,9 +57,7 @@ const galleryBigscreens = gallery.value.filter(
     <div
       class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
     >
-      <h1
-        class="mx-10 mb-8 text-3xl sm:text-4xl md:mx-30 md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
-      >
+      <h1 class="mx-10 mb-8 md:mx-30">
         Vi producerar er reklamfilm eller slide för storbildsskärmar!
       </h1>
 

@@ -48,11 +48,7 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
         <div
           class="absolute inset-0 flex flex-col items-center justify-center text-center"
         >
-          <h1
-            class="mx-10 mb-8 text-3xl sm:text-4xl md:mx-20 md:text-5xl md:leading-12 lg:text-6xl lg:leading-16"
-          >
-            Vad säger våra kunder?
-          </h1>
+          <h1 class="mx-10 mb-8 md:mx-30">Vad säger våra kunder?</h1>
 
           <NuxtLink
             :to="{ path: '/kundutlatanden', hash: '#testimonials' }"
