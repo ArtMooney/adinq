@@ -47,6 +47,7 @@ definePageMeta({
 
     <div v-show="videoLoaded" class="absolute inset-0 bg-red-950/40"></div>
 
+    <!--    2c4459, 59312c, 59452c, amber-700/15-->
     <div
       v-show="videoLoaded"
       class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 px-4 text-center"
