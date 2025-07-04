@@ -65,8 +65,8 @@ import Button from "./elements/Button.vue";
         <NavbarLink
           @click="showNavbar = false"
           icon="fluent:people-32-regular"
-          text="Medarbetare"
-          route="/medarbetare"
+          text="Dagens ADinQ"
+          route="/dagens-adinq"
         ></NavbarLink>
 
         <NavbarLink

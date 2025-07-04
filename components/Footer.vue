@@ -26,7 +26,7 @@
           text="Mediaproduktion"
           route="/media-produktion"
         ></NavbarLink>
-        <NavbarLink text="Medarbetare" route="/medarbetare"></NavbarLink>
+        <NavbarLink text="Dagens ADinQ" route="/dagens-adinq"></NavbarLink>
         <NavbarLink text="Kundutlåtanden" route="/kundutlatanden"></NavbarLink>
         <NavbarLink text="Varför oss" route="/varfor-oss"></NavbarLink>
         <NavbarLink text="Priser" route="/priser"></NavbarLink>
