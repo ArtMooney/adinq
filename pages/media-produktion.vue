@@ -50,6 +50,7 @@ const galleryBigscreens = gallery.value.filter(
       width="3992"
       height="6240"
       densities="x1"
+      format="webp"
     />
 
     <div class="absolute inset-0 bg-[#2f3f4d]/80"></div>
@@ -131,6 +132,7 @@ const galleryBigscreens = gallery.value.filter(
         sizes="1000px md:2000px"
         width="2912"
         height="2032"
+        format="webp"
       />
 
       <IconBlob

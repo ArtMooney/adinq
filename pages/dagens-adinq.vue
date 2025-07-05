@@ -50,6 +50,7 @@ const colleaguesProduction = colleagues.value.filter(
         class="parallax-background h-[200vh] transform-gpu object-cover opacity-40 will-change-transform backface-hidden"
         :style="{ marginTop: `-${getNavbarHeight}px` }"
         densities="x1"
+        format="webp"
       />
     </div>
 
@@ -94,6 +95,7 @@ const colleaguesProduction = colleagues.value.filter(
         sizes="1000px md:2000px"
         width="6000"
         height="4000"
+        format="webp"
       />
 
       <h3 v-if="colleaguesManagement.length > 0" class="relative text-center">
@@ -120,6 +122,7 @@ const colleaguesProduction = colleagues.value.filter(
         sizes="1000px md:2000px"
         width="6000"
         height="4000"
+        format="webp"
       />
 
       <h3 v-if="colleaguesSales.length > 0" class="relative text-center">
@@ -146,6 +149,7 @@ const colleaguesProduction = colleagues.value.filter(
         sizes="1000px md:2000px"
         width="6000"
         height="4000"
+        format="webp"
       />
 
       <h3 v-if="colleaguesProduction.length > 0" class="relative text-center">

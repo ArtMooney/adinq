@@ -16,6 +16,7 @@ import { formCollector } from "../utils/formCollector.js";
         sizes="1000px md:2000px"
         width="2000"
         height="1333"
+        format="webp"
       />
     </div>
   </div>

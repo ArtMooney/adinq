@@ -38,6 +38,7 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
         alt="in the city of gothenburg at night"
         class="parallax-background -mt-3 h-[200vh] transform-gpu object-cover saturate-90 will-change-transform backface-hidden"
         densities="x1"
+        format="webp"
       />
 
       <div class="absolute inset-0 bg-[#140a14]/65"></div>
@@ -89,6 +90,7 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
         width="3006"
         height="2000"
         densities="x1"
+        format="webp"
       />
     </div>
   </div>

@@ -31,6 +31,7 @@ definePageMeta({
       width="3888"
       height="2592"
       densities="x1"
+      format="webp"
     />
 
     <div class="absolute inset-0 bg-[#1a2d38]/50"></div>
@@ -90,6 +91,7 @@ definePageMeta({
         sizes="1000px md:2000px"
         width="2912"
         height="2032"
+        format="webp"
       />
 
       <IconBlob
