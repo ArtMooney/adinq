@@ -59,7 +59,7 @@ definePageMeta({
     >
       <Icon
         name="fluent:comment-quote-20-regular"
-        class="absolute -top-16 -left-16 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
+        class="h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20 sm:absolute sm:-top-16 sm:-left-16"
         style="color: #aaaaaa"
       ></Icon>
 
