@@ -38,7 +38,6 @@ export default defineNuxtConfig({
 
   image: {
     dir: "assets/images",
-    format: ["webp", "jpg", "png"],
     quality: 80,
     screens: {
       xs: 320,
@@ -50,11 +49,6 @@ export default defineNuxtConfig({
       "2xl": 1536,
     },
     densities: [1, 2],
-    modifiers: {
-      format: "webp",
-      quality: 80,
-      animated: false,
-    },
     staticFilename: "[name]-[width]-[height]-[format].[ext]",
     provider: "ipxStatic",
   },
