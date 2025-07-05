@@ -52,10 +52,10 @@ const galleryBigscreens = gallery.value.filter(
       densities="x1"
     />
 
-    <div class="absolute inset-0 bg-[#365e80]/70"></div>
+    <div class="absolute inset-0 bg-[#2f3f4d]/80"></div>
 
     <div
-      class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 text-center"
+      class="absolute inset-0 flex flex-col items-center justify-center text-center"
     >
       <h1 class="mx-10 mb-8 md:mx-30">
         Vi producerar er reklamfilm eller slide för storbildsskärmar!
