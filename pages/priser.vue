@@ -24,17 +24,17 @@ definePageMeta({
     }"
   >
     <NuxtImg
-      src="noelle-rebekah-iD6o6fydAWE-unsplash.jpg"
+      src="priser-handslag.jpg"
       alt=""
       class="h-full w-full object-cover"
       sizes="1000px md:2000px"
-      width="3888"
-      height="2592"
+      width="7360"
+      height="4912"
       densities="x1"
       format="webp"
     />
 
-    <div class="absolute inset-0 bg-[#1a2d38]/50"></div>
+    <div class="absolute inset-0 bg-[#2f3f4d]/50"></div>
 
     <div
       class="absolute inset-0 flex flex-col items-center justify-center text-center"

@@ -41,7 +41,7 @@ const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
         format="webp"
       />
 
-      <div class="absolute inset-0 bg-[#140a14]/65"></div>
+      <div class="absolute inset-0 bg-[#140a14]/40"></div>
     </div>
 
     <Heading>
