@@ -95,9 +95,17 @@ const { data: prices, error } = await useFetch("/api/get-prices", {
         :key="price.id"
         :data="price"
       ></PriceBlob>
+
+      <p
+        v-if="prices.length < 1"
+        class="my-12 text-center lg:col-span-2 xl:col-span-3"
+      >
+        Det finns inga prisexempel att visa för tillfället.
+      </p>
     </div>
 
     <div
+      v-if="prices.length > 3"
       class="relative mt-32 grid gap-8 px-4 py-8 sm:px-8 lg:grid-cols-2 xl:grid-cols-3"
     >
       <h3 class="my-12 text-center lg:col-span-2 xl:col-span-3">
