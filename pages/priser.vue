@@ -14,6 +14,17 @@ useSeoMeta({
 definePageMeta({
   ssr: true,
 });
+
+const config = useRuntimeConfig();
+
+const { data: prices, error } = await useFetch("/api/get-prices", {
+  method: "GET",
+  headers: {
+    Authorization:
+      "Basic " + btoa(config.public.userName + ":" + config.public.userPass),
+  },
+  default: () => [],
+});
 </script>
 
 <template>
@@ -78,10 +89,9 @@ definePageMeta({
       />
 
       <PriceBlob
-        icon="hugeicons:contact-01"
-        icon-color="#6293a5"
-        message="Kontakta oss för mer info"
-        link="/kontakta-oss"
+        v-for="price in prices"
+        :key="price.id"
+        :data="price"
       ></PriceBlob>
     </div>
   </div>
