@@ -204,7 +204,7 @@ definePageMeta({
 
       <p class="mt-6 max-w-2xl text-[12px] text-gray-300">
         * När du skickar detta formulär vidarebefordras dina uppgifter endast
-        via e-post till Säkra besiktningar för att kunna svara på din förfrågan.
+        via e-post till ADinQ AB för att kunna svara på din förfrågan.
         Uppgifterna lagras inte på denna webbplats.
       </p>
     </form>
@@ -214,22 +214,20 @@ definePageMeta({
         class="flex h-full w-full flex-col bg-amber-200 p-4 sm:items-center md:p-8"
       >
         <p>Telefon:</p>
-        <a class="underline" href="tel:0760-05 75 15">0760-05 75 15</a>
+        <a class="underline" href="tel:033-72 22 400">033-72 22 400</a>
       </div>
       <div
         class="flex h-full w-full flex-col bg-amber-200 p-4 sm:items-center md:p-8"
       >
         <p>E-post:</p>
-        <a class="underline" href="mailto:info@sakrabesiktningar.se"
-          >info@sakrabesiktningar.se</a
-        >
+        <a class="underline" href="mailto:info@adinq.se">info@adinq.se</a>
       </div>
       <div
         class="flex h-full w-full flex-col bg-amber-200 p-4 sm:items-center md:col-span-2 md:p-8"
       >
         <p>Adress:</p>
-        <p>Varlabergsvägen 29</p>
-        <p>434 39 Kungsbacka</p>
+        <p>Fabriksgatan 11, Plan 3</p>
+        <p>503 32 Borås</p>
       </div>
     </div>
 
