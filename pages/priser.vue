@@ -77,7 +77,9 @@ const { data: prices, error } = await useFetch("/api/get-prices", {
       </p>
     </div>
 
-    <div class="relative mt-32 grid grid-cols-3 gap-8 p-8">
+    <div
+      class="relative mt-32 grid gap-8 px-4 py-8 sm:px-8 lg:grid-cols-2 xl:grid-cols-3"
+    >
       <NuxtImg
         src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
         alt=""
@@ -89,7 +91,31 @@ const { data: prices, error } = await useFetch("/api/get-prices", {
       />
 
       <PriceBlob
-        v-for="price in prices"
+        v-for="price in prices.slice(0, 3)"
+        :key="price.id"
+        :data="price"
+      ></PriceBlob>
+    </div>
+
+    <div
+      class="relative mt-32 grid gap-8 px-4 py-8 sm:px-8 lg:grid-cols-2 xl:grid-cols-3"
+    >
+      <h3 class="my-12 text-center lg:col-span-2 xl:col-span-3">
+        Fler prisexempel
+      </h3>
+
+      <NuxtImg
+        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover opacity-15"
+        sizes="1000px md:2000px"
+        width="2483"
+        height="3718"
+        format="webp"
+      />
+
+      <PriceBlob
+        v-for="price in prices.slice(3)"
         :key="price.id"
         :data="price"
       ></PriceBlob>
