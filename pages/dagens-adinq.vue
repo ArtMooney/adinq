@@ -17,7 +17,7 @@ definePageMeta({
 
 const config = useRuntimeConfig();
 
-const { data: colleagues, error } = await useFetch("/api/get-medarbetare", {
+const { data: colleagues, error } = await useFetch("/api/team", {
   method: "GET",
   headers: {
     Authorization:

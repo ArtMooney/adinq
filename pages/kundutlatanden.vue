@@ -17,7 +17,7 @@ definePageMeta({
 
 const config = useRuntimeConfig();
 
-const { data: testimonials, error } = await useFetch("/api/get-testimonials", {
+const { data: testimonials, error } = await useFetch("/api/testimonials", {
   method: "GET",
   headers: {
     Authorization:

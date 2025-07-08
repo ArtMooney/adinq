@@ -17,7 +17,7 @@ definePageMeta({
 
 const config = useRuntimeConfig();
 
-const { data: prices, error } = await useFetch("/api/get-prices", {
+const { data: prices, error } = await useFetch("/api/prices", {
   method: "GET",
   headers: {
     Authorization:

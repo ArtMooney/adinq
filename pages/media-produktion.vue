@@ -17,7 +17,7 @@ definePageMeta({
 
 const config = useRuntimeConfig();
 
-const { data: gallery, error } = await useFetch("/api/get-mediaproduktioner", {
+const { data: gallery, error } = await useFetch("/api/media-productions", {
   method: "GET",
   headers: {
     Authorization:

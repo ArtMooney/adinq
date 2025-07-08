@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     throw createError({
       statusCode: 500,
-      statusMessage: "Getting gallery data failed",
+      statusMessage: "Getting media gallery data failed",
     });
   }
 });
