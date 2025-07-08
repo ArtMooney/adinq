@@ -371,10 +371,8 @@ export default {
     },
 
     formCollector(form, extraFields) {
-      console.log(form);
-
       let formData = new FormData();
-      formData.append("form-name", form.name);
+      formData.append("form-name", form.getAttribute("name"));
 
       for (const item of form.querySelectorAll("input")) {
         if (item.type !== "submit") {
