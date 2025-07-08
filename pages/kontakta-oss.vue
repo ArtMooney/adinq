@@ -198,7 +198,6 @@ definePageMeta({
           link=""
           hash=""
           type="submit"
-          data-wait="Vänta..."
         />
       </div>
 
@@ -249,9 +248,6 @@ definePageMeta({
 <script>
 import Button from "../components/elements/Button.vue";
 import Input from "../components/elements/Input.vue";
-import { requiredFields } from "../utils/requiredFields.js";
-import { emailValidator } from "../utils/emailValidator.js";
-import { formCollector } from "../utils/formCollector.js";
 
 export default {
   name: "KontaktaOss",
@@ -265,6 +261,7 @@ export default {
 
   data() {
     const config = useRuntimeConfig();
+
     return {
       userName: config.public.userName,
       userPass: config.public.userPass,
@@ -275,6 +272,7 @@ export default {
         amex: "",
       },
       buttonText: "Skicka",
+      buttonTextWait: "Vänta...",
       defaultEmailMessage: "Något gick fel när formuläret skulle skickas.",
       emailSuccessMessage: `Tack för ert meddelande! Vi återkommer till er snart!`,
       emailErrorMessage:
@@ -318,7 +316,7 @@ export default {
     async sendForm(event) {
       event.target.disabled = true;
 
-      if (!emailValidator(event.target.form)) {
+      if (!this.emailValidator(event.target.form)) {
         const savedErrorMessage = this.defaultEmailMessage;
         this.defaultEmailMessage = this.emailErrorMessage;
         this.errorMessage = true;
@@ -336,22 +334,22 @@ export default {
       }
 
       if (
-        requiredFields(event.target.form) &&
-        emailValidator(event.target.form)
+        this.requiredFields(event.target.form) &&
+        this.emailValidator(event.target.form)
       ) {
         const { data: res, error } = await useLazyFetch("/api/contact", {
           method: "POST",
           headers: {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
           },
-          body: formCollector(event.target.form, this.extraFields),
+          body: this.formCollector(event.target.form, this.extraFields),
         });
 
         if (error.value) {
           this.errorMessage = true;
         } else if (res.value && res.value.status === "ok") {
           const savedText = this.buttonText;
-          this.buttonText = event.target.dataset.wait;
+          this.buttonText = this.buttonTextWait;
 
           setTimeout(() => {
             this.contactForm = false;
@@ -366,6 +364,112 @@ export default {
       } else {
         event.target.disabled = false;
       }
+    },
+
+    emailValidator(form) {
+      const emailReg =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/;
+
+      let emailVerificationError = false;
+      const inputs = form.querySelectorAll("input");
+
+      for (const input of inputs) {
+        if (input.type === "email" && emailReg.test(input.value)) {
+          emailVerificationError = true;
+        }
+      }
+
+      return emailVerificationError;
+    },
+
+    requiredFields(form) {
+      const inputs = form.querySelectorAll("input");
+      const textareas = form.querySelectorAll("textarea");
+      const selectors = form.querySelectorAll("select");
+      let requiredFilled = true;
+      let radioButtonNames = [];
+
+      for (const input of inputs) {
+        if (input.required) {
+          if (!input.value) requiredFilled = false;
+          if (input.type === "checkbox" && !input.checked)
+            requiredFilled = false;
+          if (input.type === "radio") radioButtonNames.push(input.dataset.name); // push to list with radiobutton groups
+        }
+      }
+
+      radioButtonNames = [...new Set(radioButtonNames)]; // removes duplicates
+
+      for (const name of radioButtonNames) {
+        let radioButtonCleared = 0;
+        for (const input of inputs) {
+          if (input.type === "radio" && input.dataset.name === name) {
+            if (input.checked) radioButtonCleared++;
+          }
+        }
+        if (!radioButtonCleared) requiredFilled = false;
+      }
+
+      for (const input of textareas) {
+        if (input.required) {
+          if (!input.value) requiredFilled = false;
+        }
+      }
+
+      for (const input of selectors) {
+        if (input.required) {
+          if (!input.value) requiredFilled = false;
+        }
+      }
+
+      return requiredFilled;
+    },
+
+    formCollector(form, extraFields) {
+      let formData = new FormData();
+      formData.append("form-name", form.name);
+
+      for (const item of form.querySelectorAll("input")) {
+        if (item.type !== "submit") {
+          if (item.type === "file") {
+            if (item.files[0]) {
+              for (const file of item.files) {
+                formData.append(item.name, file, file.name);
+              }
+            }
+          } else if (
+            item.name !== "gdpr-confirm" &&
+            item.name !== "clientip" &&
+            item.name !== "pageuri" &&
+            item.name !== "pagename" &&
+            item.name !== "amex"
+          ) {
+            if (item.type === "checkbox") {
+              formData.append(item.name, item.checked);
+            } else if (item.type === "radio") {
+              formData.append(item.name, item.checked);
+            } else {
+              formData.append(item.name, item.value);
+            }
+          }
+        }
+      }
+
+      for (const item of form.querySelectorAll("textarea")) {
+        formData.append(item.name, item.value);
+      }
+
+      for (const item of form.querySelectorAll("select")) {
+        formData.append(item.name, item.value);
+      }
+
+      if (extraFields) {
+        for (const [key, value] of Object.entries(extraFields)) {
+          formData.append(key, value);
+        }
+      }
+
+      return formData;
     },
   },
 };
