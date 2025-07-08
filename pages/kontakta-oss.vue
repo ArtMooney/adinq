@@ -53,74 +53,21 @@ definePageMeta({
     </div>
   </div>
 
-  <div id="kontakta-oss" class="mx-4 my-32 flex flex-col gap-8 sm:mx-8">
-    <div
-      class="mx-auto flex w-full flex-col items-center justify-center gap-8 text-center sm:max-w-lg lg:max-w-4xl"
-    >
-      <h3 class="text-center">Prisexempel</h3>
+  <div
+    id="kontakta-oss"
+    class="my-32 flex max-w-5xl flex-col gap-8 px-4 sm:px-8 lg:mx-auto"
+  >
+    <h3 class="text-center sm:px-8 md:px-12">
+      Välkomna att kontakta oss för offert eller andra frågor.
+    </h3>
 
-      <p>
-        Priserna varierar beroende på flera faktorer såsom täckning och
-        sändningstid så vi tillhandahåller endast några förslag för att ge
-        exempel på vilka kostnadsnivåer ni kan förvänta er.
-      </p>
-    </div>
+    <p class="mb-12 text-center sm:px-16 md:px-32">
+      Vi som svarar i telefon eller på mejlen sitter i Borås, där ADinQ har sitt
+      hjärta. Vi gör allt vi kan för att hjälpa dig med din förfrågan snabbt och
+      enkelt.
+    </p>
 
-    <div
-      class="relative mt-32 grid gap-8 px-4 py-8 sm:px-8 lg:grid-cols-2 xl:grid-cols-3"
-    >
-      <NuxtImg
-        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
-        alt=""
-        class="absolute inset-0 h-full w-full object-cover opacity-15"
-        sizes="1000px md:2000px"
-        width="2483"
-        height="3718"
-        format="webp"
-      />
-
-      <p class="my-12 text-center lg:col-span-2 xl:col-span-3">
-        Det finns inga prisexempel att visa för tillfället.
-      </p>
-    </div>
-
-    <div
-      class="relative mt-32 grid gap-8 px-4 py-8 sm:px-8 lg:grid-cols-2 xl:grid-cols-3"
-    >
-      <h3 class="my-12 text-center lg:col-span-2 xl:col-span-3">
-        Fler prisexempel
-      </h3>
-
-      <NuxtImg
-        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
-        alt=""
-        class="absolute inset-0 h-full w-full object-cover opacity-15"
-        sizes="1000px md:2000px"
-        width="2483"
-        height="3718"
-        format="webp"
-      />
-    </div>
-  </div>
-
-  <div id="contact" class="py-20 md:py-32">
-    <h2 class="mb-24 w-full px-4 text-center text-4xl md:text-6xl lg:mb-32">
-      Kontakta oss
-    </h2>
-
-    <div class="mx-4 p-4 sm:mx-8 md:mx-20 md:p-8 lg:text-center xl:mx-52">
-      <h4 class="font-bold">
-        Välkomna att kontakta oss för offert eller andra frågor.
-      </h4>
-      <p>Vi ser fram emot att höra från er.</p>
-    </div>
-
-    <form
-      v-if="contactForm"
-      @submit.prevent
-      name="contact"
-      class="mx-4 bg-gray-50 p-4 sm:mx-8 md:mx-20 md:p-8 xl:mx-52"
-    >
+    <form v-if="contactForm" @submit.prevent name="contact">
       <Input
         name="company"
         type="text"
@@ -198,6 +145,7 @@ definePageMeta({
           link=""
           hash=""
           type="submit"
+          styling="light"
         />
       </div>
 
@@ -207,28 +155,6 @@ definePageMeta({
         Uppgifterna lagras inte på denna webbplats.
       </p>
     </form>
-
-    <div class="mx-4 mt-8 grid gap-4 sm:mx-8 md:mx-20 md:grid-cols-2 xl:mx-52">
-      <div
-        class="flex h-full w-full flex-col bg-amber-200 p-4 sm:items-center md:p-8"
-      >
-        <p>Telefon:</p>
-        <a class="underline" href="tel:033-72 22 400">033-72 22 400</a>
-      </div>
-      <div
-        class="flex h-full w-full flex-col bg-amber-200 p-4 sm:items-center md:p-8"
-      >
-        <p>E-post:</p>
-        <a class="underline" href="mailto:info@adinq.se">info@adinq.se</a>
-      </div>
-      <div
-        class="flex h-full w-full flex-col bg-amber-200 p-4 sm:items-center md:col-span-2 md:p-8"
-      >
-        <p>Adress:</p>
-        <p>Fabriksgatan 11, Plan 3</p>
-        <p>503 32 Borås</p>
-      </div>
-    </div>
 
     <div v-if="successMessage">
       <div class="mx-4 my-20 mt-8 bg-blue-200 p-8 sm:mx-8 md:mx-20 xl:mx-52">
