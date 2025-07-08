@@ -11,6 +11,7 @@
       :placeholder="placeholderText"
       :required="required"
       :value="modelValue"
+      :autocomplete="autoComplete"
       @input="$emit('updateValue', $event.target.value)"
     />
 
@@ -22,6 +23,7 @@
       :placeholder="placeholderText"
       :required="required"
       :value="modelValue"
+      :autocomplete="autoComplete"
       @input="$emit('updateValue', $event.target.value)"
     ></textarea>
   </div>
@@ -57,6 +59,11 @@ export default {
     modelValue: {
       type: String,
       required: false,
+    },
+    autoComplete: {
+      type: String,
+      required: false,
+      default: "off",
     },
   },
 
