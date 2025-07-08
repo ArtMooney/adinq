@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
   const toContact = await sendEmail(
     config.emailTo,
     formDataJson.email,
-    "Tack för att ni kontaktat Säkra besiktningar!",
+    "Tack för att ni kontaktat AdinQ!",
     await messageContact(),
     config.mailgunApiKey,
   );
@@ -53,5 +53,10 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  return { status: "ok" };
+  return {
+    success: true,
+    data: {
+      message: "Email sent successfully",
+    },
+  };
 });
