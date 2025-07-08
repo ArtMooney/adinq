@@ -69,11 +69,11 @@ definePageMeta({
 
     <form v-if="contactForm" @submit.prevent name="contact">
       <Input
-        name="company"
+        name="name"
         type="text"
-        placeholder-text="Företagsnamn"
+        placeholder-text="Namn"
         :required="true"
-        auto-complete="organization"
+        auto-complete="name"
       />
 
       <Input
@@ -85,11 +85,27 @@ definePageMeta({
       />
 
       <Input
+        name="company"
+        type="text"
+        placeholder-text="Företagsnamn"
+        :required="true"
+        auto-complete="organization"
+      />
+
+      <Input
         name="phone"
         type="tel"
         placeholder-text="Telefon"
         :required="true"
         auto-complete="tel"
+      />
+
+      <Input
+        name="city"
+        type="text"
+        placeholder-text="Stad"
+        :required="true"
+        auto-complete="address-level2"
       />
 
       <Input
