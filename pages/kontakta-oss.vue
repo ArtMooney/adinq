@@ -157,8 +157,6 @@ definePageMeta({
         <Button
           @click="sendForm"
           :text="buttonText"
-          link=""
-          hash=""
           type="submit"
           styling="light"
         />
@@ -252,65 +250,65 @@ export default {
     },
 
     async sendForm(event) {
-      // event.target.disabled = true;
-      //
-      // if (!this.emailValidator(event.target.form)) {
-      //   const savedErrorMessage = this.defaultEmailMessage;
-      //   this.defaultEmailMessage = this.emailErrorMessage;
-      //   this.errorMessage = true;
-      //
-      //   setTimeout(() => {
-      //     window.addEventListener(
-      //       "click",
-      //       () => {
-      //         this.errorMessage = false;
-      //         this.defaultEmailMessage = savedErrorMessage;
-      //       },
-      //       { once: true },
-      //     );
-      //   }, 500);
-      // }
-      //
-      // if (
-      //   this.requiredFields(event.target.form) &&
-      //   this.emailValidator(event.target.form)
-      // ) {
-      // let res = null;
-      // let error = null;
-      //
-      // try {
-      //   res = await $fetch("/api/contact", {
-      //     method: "POST",
-      //     headers: {
-      //       Authorization:
-      //         "Basic " + btoa(this.userName + ":" + this.userPass),
-      //     },
-      //     body: this.formCollector(event.target.form, this.extraFields),
-      //   });
-      // } catch (err) {
-      //   error = err;
-      //   this.errorMessage = true;
-      // }
-      //
-      // if (error) {
-      //   this.errorMessage = true;
-      // } else if (res.success) {
-      //   const savedText = this.buttonText;
-      //   this.buttonText = this.buttonTextWait;
-      //
-      //   this.$router.push({
-      //     hash: "#kontakta-oss",
-      //   });
-      //
-      //   setTimeout(() => {
-      //     this.contactForm = false;
-      //     this.successMessage = true;
-      //     this.buttonText = savedText;
-      //   }, 1500);
-      // }
-      // } else {
-      //   event.target.disabled = false;
-      // }
+      event.target.disabled = true;
+
+      if (!this.emailValidator(event.target.form)) {
+        const savedErrorMessage = this.defaultEmailMessage;
+        this.defaultEmailMessage = this.emailErrorMessage;
+        this.errorMessage = true;
+
+        setTimeout(() => {
+          window.addEventListener(
+            "click",
+            () => {
+              this.errorMessage = false;
+              this.defaultEmailMessage = savedErrorMessage;
+            },
+            { once: true },
+          );
+        }, 500);
+      }
+
+      if (
+        this.requiredFields(event.target.form) &&
+        this.emailValidator(event.target.form)
+      ) {
+        let res = null;
+        let error = null;
+
+        try {
+          res = await $fetch("/api/contact", {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Basic " + btoa(this.userName + ":" + this.userPass),
+            },
+            body: this.formCollector(event.target.form, this.extraFields),
+          });
+        } catch (err) {
+          error = err;
+          this.errorMessage = true;
+        }
+
+        if (error) {
+          this.errorMessage = true;
+        } else if (res.success) {
+          const savedText = this.buttonText;
+          this.buttonText = this.buttonTextWait;
+
+          this.$router.push({
+            hash: "#kontakta-oss",
+          });
+
+          setTimeout(() => {
+            this.contactForm = false;
+            this.successMessage = true;
+            this.buttonText = savedText;
+          }, 1500);
+        }
+      } else {
+        event.target.disabled = false;
+      }
     },
 
     emailValidator(form) {

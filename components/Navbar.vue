@@ -93,9 +93,8 @@ import Button from "./elements/Button.vue";
 
         <div class="group relative">
           <Button
-            @click="showNavbar = false"
+            @click="handleClickContact"
             text="Kontakta oss"
-            link="/kontakta-oss"
             type="button"
             styling="light"
             class="w-full opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100"
@@ -157,6 +156,14 @@ export default {
       this.resizeTimeout = setTimeout(() => {
         this.resizing = false;
       }, 300);
+    },
+
+    handleClickContact() {
+      this.showNavbar = false;
+
+      this.$router.push({
+        path: "/kontakta-oss",
+      });
     },
 
     stopScrolling() {

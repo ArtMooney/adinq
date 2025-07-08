@@ -1,6 +1,5 @@
 <template>
   <button
-    @click="navigateTo({ path: link, hash: hash })"
     class="min-w-40 rounded px-6 py-3 text-center text-sm text-black no-underline duration-200"
     :class="[
       styling === 'dark' ? 'bg-neutral-800 text-white' : 'bg-white/95',
@@ -26,14 +25,6 @@ export default {
     text: {
       type: String,
       required: true,
-    },
-    link: {
-      type: String,
-      required: false,
-    },
-    hash: {
-      type: String,
-      required: false,
     },
     type: {
       type: String,
