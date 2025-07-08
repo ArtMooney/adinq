@@ -120,43 +120,43 @@ definePageMeta({
         :required="true"
       />
 
-      <!--      <div class="hidden">-->
-      <!--        <Input-->
-      <!--          name="clientip"-->
-      <!--          type="text"-->
-      <!--          placeholder-text="clientip"-->
-      <!--          :required="false"-->
-      <!--          label-text=""-->
-      <!--          v-model="extraFields.clientip"-->
-      <!--        />-->
+      <div class="hidden">
+        <Input
+          name="clientip"
+          type="text"
+          placeholder-text="clientip"
+          :required="false"
+          label-text=""
+          v-model="extraFields.clientip"
+        />
 
-      <!--        <Input-->
-      <!--          name="pageuri"-->
-      <!--          type="text"-->
-      <!--          placeholder-text="pageuri"-->
-      <!--          :required="false"-->
-      <!--          label-text=""-->
-      <!--          v-model="extraFields.pageuri"-->
-      <!--        />-->
+        <Input
+          name="pageuri"
+          type="text"
+          placeholder-text="pageuri"
+          :required="false"
+          label-text=""
+          v-model="extraFields.pageuri"
+        />
 
-      <!--        <Input-->
-      <!--          name="pagename"-->
-      <!--          type="text"-->
-      <!--          placeholder-text="pagename"-->
-      <!--          :required="false"-->
-      <!--          label-text=""-->
-      <!--          v-model="extraFields.pagename"-->
-      <!--        />-->
+        <Input
+          name="pagename"
+          type="text"
+          placeholder-text="pagename"
+          :required="false"
+          label-text=""
+          v-model="extraFields.pagename"
+        />
 
-      <!--        <Input-->
-      <!--          name="amex"-->
-      <!--          type="text"-->
-      <!--          placeholder-text="amex"-->
-      <!--          :required="false"-->
-      <!--          label-text=""-->
-      <!--          v-model="extraFields.amex"-->
-      <!--        />-->
-      <!--      </div>-->
+        <Input
+          name="amex"
+          type="text"
+          placeholder-text="amex"
+          :required="false"
+          label-text=""
+          v-model="extraFields.amex"
+        />
+      </div>
 
       <div class="flex justify-start pt-8">
         <Button
