@@ -67,7 +67,12 @@ definePageMeta({
       enkelt.
     </p>
 
-    <form v-if="contactForm" @submit.prevent name="contact">
+    <form
+      v-if="contactForm"
+      @submit.prevent
+      name="contact"
+      action="/api/contact"
+    >
       <Input
         name="name"
         type="text"
@@ -115,43 +120,43 @@ definePageMeta({
         :required="true"
       />
 
-      <div class="hidden">
-        <Input
-          name="clientip"
-          type="text"
-          placeholder-text="clientip"
-          :required="false"
-          label-text=""
-          v-model="extraFields.clientip"
-        />
+      <!--      <div class="hidden">-->
+      <!--        <Input-->
+      <!--          name="clientip"-->
+      <!--          type="text"-->
+      <!--          placeholder-text="clientip"-->
+      <!--          :required="false"-->
+      <!--          label-text=""-->
+      <!--          v-model="extraFields.clientip"-->
+      <!--        />-->
 
-        <Input
-          name="pageuri"
-          type="text"
-          placeholder-text="pageuri"
-          :required="false"
-          label-text=""
-          v-model="extraFields.pageuri"
-        />
+      <!--        <Input-->
+      <!--          name="pageuri"-->
+      <!--          type="text"-->
+      <!--          placeholder-text="pageuri"-->
+      <!--          :required="false"-->
+      <!--          label-text=""-->
+      <!--          v-model="extraFields.pageuri"-->
+      <!--        />-->
 
-        <Input
-          name="pagename"
-          type="text"
-          placeholder-text="pagename"
-          :required="false"
-          label-text=""
-          v-model="extraFields.pagename"
-        />
+      <!--        <Input-->
+      <!--          name="pagename"-->
+      <!--          type="text"-->
+      <!--          placeholder-text="pagename"-->
+      <!--          :required="false"-->
+      <!--          label-text=""-->
+      <!--          v-model="extraFields.pagename"-->
+      <!--        />-->
 
-        <Input
-          name="amex"
-          type="text"
-          placeholder-text="amex"
-          :required="false"
-          label-text=""
-          v-model="extraFields.amex"
-        />
-      </div>
+      <!--        <Input-->
+      <!--          name="amex"-->
+      <!--          type="text"-->
+      <!--          placeholder-text="amex"-->
+      <!--          :required="false"-->
+      <!--          label-text=""-->
+      <!--          v-model="extraFields.amex"-->
+      <!--        />-->
+      <!--      </div>-->
 
       <div class="flex justify-start pt-8">
         <Button
@@ -172,15 +177,12 @@ definePageMeta({
     </form>
 
     <div v-if="successMessage">
-      <div class="mx-4 my-20 mt-8 bg-blue-200 p-8 sm:mx-8 md:mx-20 xl:mx-52">
+      <div class="my-12 w-full bg-green-900 p-8">
         {{ emailSuccessMessage }}
       </div>
     </div>
 
-    <div
-      v-if="errorMessage"
-      class="mx-4 my-20 mt-8 bg-pink-100 p-8 sm:mx-8 md:mx-20 xl:mx-52"
-    >
+    <div v-if="errorMessage" class="my-12 w-full bg-red-800 p-8">
       <p>{{ defaultEmailMessage }}</p>
     </div>
   </div>
@@ -298,19 +300,17 @@ export default {
         if (error) {
           this.errorMessage = true;
         } else if (res.success) {
-          console.log(res, error);
-
           const savedText = this.buttonText;
           this.buttonText = this.buttonTextWait;
+
+          this.$router.push({
+            hash: "#kontakta-oss",
+          });
 
           setTimeout(() => {
             this.contactForm = false;
             this.successMessage = true;
             this.buttonText = savedText;
-
-            this.$router.push({
-              hash: "#kontakta-oss",
-            });
           }, 1500);
         }
       } else {
@@ -378,6 +378,8 @@ export default {
     },
 
     formCollector(form, extraFields) {
+      console.log(form);
+
       let formData = new FormData();
       formData.append("form-name", form.name);
 
