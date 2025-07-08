@@ -73,7 +73,7 @@ definePageMeta({
         type="text"
         placeholder-text="Företagsnamn"
         :required="true"
-        autocomplete="company"
+        auto-complete="organization"
       />
 
       <Input
@@ -81,7 +81,7 @@ definePageMeta({
         type="email"
         placeholder-text="E-post"
         :required="true"
-        autocomplete="email"
+        auto-complete="email"
       />
 
       <Input
@@ -89,7 +89,7 @@ definePageMeta({
         type="tel"
         placeholder-text="Telefon"
         :required="true"
-        autocomplete="tel"
+        auto-complete="tel"
       />
 
       <Input
@@ -97,7 +97,6 @@ definePageMeta({
         type="message"
         placeholder-text="Meddelande"
         :required="true"
-        auto-complete="off"
       />
 
       <div class="hidden">
@@ -263,17 +262,28 @@ export default {
         this.requiredFields(event.target.form) &&
         this.emailValidator(event.target.form)
       ) {
-        const { data: res, error } = await useLazyFetch("/api/contact", {
-          method: "POST",
-          headers: {
-            Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
-          },
-          body: this.formCollector(event.target.form, this.extraFields),
-        });
+        let res = null;
+        let error = null;
 
-        if (error.value) {
+        try {
+          res = await $fetch("/api/contact", {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Basic " + btoa(this.userName + ":" + this.userPass),
+            },
+            body: this.formCollector(event.target.form, this.extraFields),
+          });
+        } catch (err) {
+          error = err;
           this.errorMessage = true;
-        } else if (res.value && res.value.status === "ok") {
+        }
+
+        if (error) {
+          this.errorMessage = true;
+        } else if (res.success) {
+          console.log(res, error);
+
           const savedText = this.buttonText;
           this.buttonText = this.buttonTextWait;
 
@@ -283,7 +293,7 @@ export default {
             this.buttonText = savedText;
 
             this.$router.push({
-              hash: "#contact",
+              hash: "#kontakta-oss",
             });
           }, 1500);
         }
