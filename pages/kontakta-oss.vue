@@ -127,6 +127,27 @@ definePageMeta({
         class="message"
       ></textarea>
 
+      <label class="flex items-center gap-2">
+        <input
+          type="radio"
+          name="subject"
+          value="allmanna-fragor"
+          v-model="formData.subject"
+          required
+        />
+        <span>Allmänna frågor</span>
+      </label>
+      <label class="flex items-center gap-2">
+        <input
+          type="radio"
+          name="subject"
+          value="ekonomi"
+          v-model="formData.subject"
+          required
+        />
+        <span>Ekonomi</span>
+      </label>
+
       <div class="hidden">
         <input
           name="clientip"
@@ -201,6 +222,7 @@ export default {
         phone: "",
         city: "",
         message: "",
+        subject: "allmanna-fragor",
         clientip: "",
         pageuri: "",
         pagename: "",
