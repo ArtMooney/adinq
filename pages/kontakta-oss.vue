@@ -153,12 +153,9 @@ definePageMeta({
       </div>
 
       <div class="flex justify-start pt-8">
-        <Button
-          @click="sendForm"
-          :text="buttonText"
-          type="submit"
-          styling="light"
-        />
+        <button @click="sendForm" type="submit" class="white">
+          {{ buttonText }}
+        </button>
       </div>
 
       <p class="mt-6 max-w-2xl text-[12px] text-gray-300">
@@ -181,14 +178,12 @@ definePageMeta({
 </template>
 
 <script>
-import Button from "../components/elements/Button.vue";
 import Input from "../components/elements/Input.vue";
 
 export default {
   name: "KontaktaOss",
 
   components: {
-    Button,
     Input,
   },
 

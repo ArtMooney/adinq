@@ -1,7 +1,3 @@
-<script setup>
-import Button from "./elements/Button.vue";
-</script>
-
 <template>
   <div
     id="navbar"
@@ -92,13 +88,9 @@ import Button from "./elements/Button.vue";
         ></NavbarLink>
 
         <div class="group relative">
-          <Button
-            @click="handleClickContact"
-            text="Kontakta oss"
-            type="button"
-            styling="light"
-            class="w-full opacity-90 transition-opacity duration-300 ease-in-out hover:opacity-100"
-          />
+          <button @click="handleClickContact" class="white">
+            Kontakta oss
+          </button>
           <div
             class="absolute inset-0 z-[-1] w-full rounded-full bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-all duration-300 ease-in-out group-hover:opacity-90"
             :class="[currentPath === '/kontakta-oss' && 'opacity-60']"
