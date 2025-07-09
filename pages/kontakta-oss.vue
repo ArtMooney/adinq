@@ -192,12 +192,12 @@ definePageMeta({
     </form>
 
     <div v-if="successMessage">
-      <div class="my-12 w-full bg-green-900 p-8">
+      <div class="my-12 w-full bg-green-900 p-8 text-center">
         {{ emailSuccessMessage }}
       </div>
     </div>
 
-    <div v-if="errorMessage" class="my-12 w-full bg-red-800 p-8">
+    <div v-if="errorMessage" class="my-12 w-full bg-red-800 p-8 text-center">
       <p>{{ defaultEmailMessage }}</p>
     </div>
   </div>
