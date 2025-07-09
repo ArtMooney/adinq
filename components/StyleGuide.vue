@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen w-full flex-col items-center gap-8 py-16">
+  <div class="flex min-h-screen w-full flex-col items-center gap-8 py-16">
     <h1>Style guide</h1>
 
     <div
@@ -46,6 +46,55 @@
         <button text="" type="button" class="transparent disabled">
           Test Button
         </button>
+      </div>
+    </div>
+
+    <div
+      class="grid w-full grid-cols-2 divide-x divide-white outline outline-white"
+    >
+      <div class="flex h-full w-full items-center justify-center p-12">
+        <h4>Input styles</h4>
+      </div>
+
+      <div class="flex w-full flex-col items-center gap-4 bg-neutral-800 p-12">
+        <input type="text" placeholder="Ange ditt namn" />
+        <input type="email" placeholder="exempel@email.com" />
+        <input type="password" placeholder="Minst 8 tecken" />
+        <input type="search" placeholder="Sök..." />
+        <input type="url" placeholder="https://example.com" />
+        <input type="tel" placeholder="070-123 45 67" />
+        <input type="number" placeholder="Ange antal" />
+        <input type="range" min="0" max="100" value="50" />
+        <input type="date" placeholder="ÅÅÅÅ-MM-DD" />
+        <input type="time" placeholder="HH:MM" />
+        <input type="datetime-local" placeholder="ÅÅÅÅ-MM-DD HH:MM" />
+        <input type="month" placeholder="ÅÅÅÅ-MM" />
+        <input type="week" placeholder="ÅÅÅÅ-W##" />
+        <input type="color" value="#000000" />
+        <input type="file" accept="image/*" />
+
+        <input type="button" value="Klicka här" />
+        <input type="submit" value="Skicka" />
+        <input type="reset" value="Återställ" />
+        <input type="image" src="/favicon-32x32.png" alt="Bildknapp" />
+
+        <input type="checkbox" id="check1" /><label for="check1"
+          >Godkänn villkor</label
+        >
+        <input type="radio" name="val" id="radio1" /><label for="radio1"
+          >Alternativ 1</label
+        >
+
+        <input type="hidden" value="hemligt-värde" />
+
+        <textarea
+          name="message"
+          type="message"
+          placeholder="Meddelande"
+          required
+          maxlength="5000"
+          class="message"
+        ></textarea>
       </div>
     </div>
   </div>
