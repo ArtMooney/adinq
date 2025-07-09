@@ -78,12 +78,29 @@
         <input type="reset" value="Återställ" />
         <input type="image" src="/favicon-32x32.png" alt="Bildknapp" />
 
-        <input type="checkbox" id="check1" /><label for="check1"
-          >Godkänn villkor</label
-        >
-        <input type="radio" name="val" id="radio1" /><label for="radio1"
-          >Alternativ 1</label
-        >
+        <input type="checkbox" id="check1" />
+        <label for="check1">Godkänn villkor</label>
+
+        <label class="flex items-center gap-2">
+          <input
+            type="radio"
+            name="subject"
+            value="allmanna-fragor"
+            v-model="formData.subject"
+            required
+          />
+          <span>Allmänna frågor</span>
+        </label>
+        <label class="flex items-center gap-2">
+          <input
+            type="radio"
+            name="subject"
+            value="ekonomi"
+            v-model="formData.subject"
+            required
+          />
+          <span>Ekonomi</span>
+        </label>
 
         <input type="hidden" value="hemligt-värde" />
 
@@ -103,5 +120,23 @@
 <script>
 export default {
   name: "StyleGuide",
+
+  data() {
+    return {
+      formData: {
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        city: "",
+        message: "",
+        subject: "allmanna-fragor",
+        clientip: "",
+        pageuri: "",
+        pagename: "",
+        amex: "",
+      },
+    };
+  },
 };
 </script>
