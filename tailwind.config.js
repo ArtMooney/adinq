@@ -102,6 +102,16 @@ export default {
             "@apply bg-neutral-800 text-neutral-600": {},
           },
         },
+
+        "input, .input": {
+          "@apply rounded text-sm border border-white/25 px-4 py-3 placeholder:text-neutral-600 focus:border-white/50 focus:outline-none":
+            {},
+        },
+
+        "textarea, .textarea": {
+          "@apply min-h-28 rounded text-sm border border-white/25 px-4 py-3 placeholder:text-neutral-600 focus:border-white/50 focus:outline-none":
+            {},
+        },
       });
     }),
   ],
