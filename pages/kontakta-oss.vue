@@ -66,89 +66,94 @@ definePageMeta({
       mejl, och ser till att du får den hjälp du behöver.
     </p>
 
-    <form v-if="contactForm" @submit.prevent name="contact">
-      <Input
+    <form
+      v-if="contactForm"
+      @submit.prevent
+      name="contact"
+      class="flex flex-col items-stretch justify-start gap-4"
+    >
+      <input
         name="name"
         type="text"
-        placeholder-text="Namn"
-        :required="true"
-        auto-complete="name"
+        placeholder="Namn"
+        v-model="formData.name"
+        required
+        autocomplete="name"
       />
 
-      <Input
+      <input
         name="email"
         type="email"
-        placeholder-text="E-post"
-        :required="true"
-        auto-complete="email"
+        placeholder="Email"
+        v-model="formData.email"
+        required
+        autocomplete="email"
       />
 
-      <Input
+      <input
         name="company"
         type="text"
-        placeholder-text="Företagsnamn"
-        :required="true"
-        auto-complete="organization"
+        placeholder="Företagsnamn"
+        v-model="formData.company"
+        required
+        autocomplete="organization"
       />
 
-      <Input
+      <input
         name="phone"
         type="tel"
-        placeholder-text="Telefon"
-        :required="true"
-        auto-complete="tel"
+        placeholder="Telefon"
+        v-model="formData.phone"
+        required
+        autocomplete="tel"
       />
 
-      <Input
+      <input
         name="city"
         type="text"
-        placeholder-text="Stad"
-        :required="true"
-        auto-complete="address-level2"
+        placeholder="Stad"
+        v-model="formData.city"
+        required
+        autocomplete="address-level2"
       />
 
-      <Input
+      <textarea
         name="message"
         type="message"
-        placeholder-text="Meddelande"
-        :required="true"
-      />
+        placeholder="Meddelande"
+        v-model="formData.message"
+        required
+        maxlength="5000"
+        class="message"
+      ></textarea>
 
       <div class="hidden">
-        <Input
+        <input
           name="clientip"
           type="text"
-          placeholder-text="clientip"
-          :required="false"
-          label-text=""
-          v-model="extraFields.clientip"
+          placeholder="clientip"
+          v-model="formData.clientip"
         />
 
-        <Input
+        <input
           name="pageuri"
           type="text"
-          placeholder-text="pageuri"
-          :required="false"
-          label-text=""
-          v-model="extraFields.pageuri"
+          placeholder="pageuri"
+          v-model="formData.pageuri"
         />
 
-        <Input
+        <input
           name="pagename"
           type="text"
-          placeholder-text="pagename"
-          :required="false"
-          label-text=""
-          v-model="extraFields.pagename"
+          placeholder="pagename"
+          v-model="formData.pagename"
         />
 
-        <Input
+        <input
           name="amex"
           type="text"
-          placeholder-text="amex"
-          :required="false"
-          label-text=""
-          v-model="extraFields.amex"
+          placeholder="amex"
+          v-model="formData.amex"
         />
       </div>
 
@@ -178,14 +183,8 @@ definePageMeta({
 </template>
 
 <script>
-import Input from "../components/elements/Input.vue";
-
 export default {
   name: "KontaktaOss",
-
-  components: {
-    Input,
-  },
 
   inject: ["navbarHeight"],
 
@@ -195,7 +194,13 @@ export default {
     return {
       userName: config.public.userName,
       userPass: config.public.userPass,
-      extraFields: {
+      formData: {
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        city: "",
+        message: "",
         clientip: "",
         pageuri: "",
         pagename: "",
@@ -223,15 +228,15 @@ export default {
   async created() {
     const res = await fetch("https://api.ipify.org?format=json");
     const ip = await res.json();
-    this.extraFields.clientip = ip.ip;
+    this.formData.clientip = ip.ip;
   },
 
   mounted() {
     this.windowHeight = window.innerHeight;
     window.addEventListener("resize", this.handleResize);
 
-    this.extraFields.pageuri = window.location.href;
-    this.extraFields.pagename = document.title;
+    this.formData.pageuri = window.location.href;
+    this.formData.pagename = document.title;
   },
 
   beforeUnmount() {
@@ -277,7 +282,7 @@ export default {
               Authorization:
                 "Basic " + btoa(this.userName + ":" + this.userPass),
             },
-            body: this.formCollector(event.target.form, this.extraFields),
+            body: this.objectToFormData(this.formData),
           });
         } catch (err) {
           error = err;
@@ -309,12 +314,12 @@ export default {
       const emailReg =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/;
 
-      let emailVerificationError = false;
+      let emailVerificationError = true;
       const inputs = form.querySelectorAll("input");
 
       for (const input of inputs) {
-        if (input.type === "email" && emailReg.test(input.value)) {
-          emailVerificationError = true;
+        if (input.type === "email" && !emailReg.test(input.value)) {
+          emailVerificationError = false;
         }
       }
 
@@ -364,49 +369,11 @@ export default {
       return requiredFilled;
     },
 
-    formCollector(form, extraFields) {
-      let formData = new FormData();
-      formData.append("form-name", form.getAttribute("name"));
-
-      for (const item of form.querySelectorAll("input")) {
-        if (item.type !== "submit") {
-          if (item.type === "file") {
-            if (item.files[0]) {
-              for (const file of item.files) {
-                formData.append(item.name, file, file.name);
-              }
-            }
-          } else if (
-            item.name !== "gdpr-confirm" &&
-            item.name !== "clientip" &&
-            item.name !== "pageuri" &&
-            item.name !== "pagename" &&
-            item.name !== "amex"
-          ) {
-            if (item.type === "checkbox") {
-              formData.append(item.name, item.checked);
-            } else if (item.type === "radio") {
-              formData.append(item.name, item.checked);
-            } else {
-              formData.append(item.name, item.value);
-            }
-          }
-        }
-      }
-
-      for (const item of form.querySelectorAll("textarea")) {
-        formData.append(item.name, item.value);
-      }
-
-      for (const item of form.querySelectorAll("select")) {
-        formData.append(item.name, item.value);
-      }
-
-      if (extraFields) {
-        for (const [key, value] of Object.entries(extraFields)) {
-          formData.append(key, value);
-        }
-      }
+    objectToFormData(obj) {
+      const formData = new FormData();
+      Object.keys(obj).forEach((key) => {
+        formData.append(key, obj[key]);
+      });
 
       return formData;
     },
