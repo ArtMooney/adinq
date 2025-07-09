@@ -28,41 +28,38 @@ const { data: prices, error } = await useFetch("/api/prices", {
 </script>
 
 <template>
-  <div
-    class="relative mx-[calc(-50vw+50%)] min-h-80 w-screen"
-    :style="{
-      height: `${windowHeight - navHeight}px`,
-    }"
-  >
-    <NuxtImg
-      src="priser-handslag.jpg"
-      alt=""
-      class="h-full w-full object-cover"
-      sizes="1000px md:2000px"
-      width="7360"
-      height="4912"
-      densities="x1"
-      format="webp"
-    />
+  <Heading>
+    <template #heading-content>
+      <NuxtImg
+        src="priser-handslag.jpg"
+        alt=""
+        class="h-full w-full object-cover"
+        sizes="1000px md:2000px"
+        width="7360"
+        height="4912"
+        densities="x1"
+        format="webp"
+      />
 
-    <div class="absolute inset-0 bg-[#2f3f4d]/50"></div>
+      <div class="absolute inset-0 bg-[#2f3f4d]/50"></div>
 
-    <div
-      class="absolute inset-0 flex flex-col items-center justify-center text-center"
-    >
-      <h1 class="mx-10 mb-8 md:mx-30">Priser</h1>
-
-      <NuxtLink
-        :to="{ path: '/priser', hash: '#priser' }"
-        class="absolute bottom-8 flex w-full items-center justify-center"
+      <div
+        class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <Icon
-          name="qlementine-icons:chevron-double-down-16"
-          class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-        ></Icon>
-      </NuxtLink>
-    </div>
-  </div>
+        <h1 class="mx-10 mb-8 md:mx-30">Priser</h1>
+
+        <NuxtLink
+          :to="{ path: '/priser', hash: '#priser' }"
+          class="absolute bottom-8 flex w-full items-center justify-center"
+        >
+          <Icon
+            name="qlementine-icons:chevron-double-down-16"
+            class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
+          ></Icon>
+        </NuxtLink>
+      </div>
+    </template>
+  </Heading>
 
   <div id="priser" class="mx-4 my-32 flex flex-col gap-8 sm:mx-8">
     <div
@@ -134,34 +131,5 @@ const { data: prices, error } = await useFetch("/api/prices", {
 <script>
 export default {
   name: "Priser",
-
-  inject: ["navbarHeight"],
-
-  data() {
-    return {
-      windowHeight: 0,
-    };
-  },
-
-  computed: {
-    navHeight() {
-      return this.navbarHeight();
-    },
-  },
-
-  mounted() {
-    this.windowHeight = window.innerHeight;
-    window.addEventListener("resize", this.handleResize);
-  },
-
-  beforeUnmount() {
-    window.removeEventListener("resize", this.handleResize);
-  },
-
-  methods: {
-    handleResize() {
-      this.windowHeight = window.innerHeight;
-    },
-  },
 };
 </script>

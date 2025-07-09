@@ -17,43 +17,42 @@ definePageMeta({
 </script>
 
 <template>
-  <div
-    class="relative mx-[calc(-50vw+50%)] min-h-80 w-screen"
-    :style="{
-      height: `${windowHeight - navHeight}px`,
-    }"
-  >
-    <NuxtImg
-      src="tara-clark-Gk8LG7dsHWA-unsplash.jpg"
-      alt=""
-      class="h-full w-full object-cover"
-      sizes="1000px md:2000px"
-      width="4000"
-      height="4000"
-      densities="x1"
-      format="webp"
-    />
+  <Heading>
+    <template #heading-content>
+      <NuxtImg
+        src="tara-clark-Gk8LG7dsHWA-unsplash.jpg"
+        alt=""
+        class="h-full w-full object-cover"
+        sizes="1000px md:2000px"
+        width="4000"
+        height="4000"
+        densities="x1"
+        format="webp"
+      />
 
-    <div class="absolute inset-0 bg-yellow-900/50"></div>
+      <div class="absolute inset-0 bg-yellow-900/50"></div>
 
-    <div
-      class="absolute inset-0 flex flex-col items-center justify-center text-center"
-    >
-      <h1 class="mx-10 mb-8 md:mx-30">Butiks-TV</h1>
-
-      <div class="px-8 text-lg lg:text-2xl">Att synas där människor finns</div>
-
-      <NuxtLink
-        :to="{ path: '/butiks-tv', hash: '#info' }"
-        class="absolute bottom-8 flex w-full items-center justify-center"
+      <div
+        class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <Icon
-          name="qlementine-icons:chevron-double-down-16"
-          class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-        ></Icon>
-      </NuxtLink>
-    </div>
-  </div>
+        <h1 class="mx-10 mb-8 md:mx-30">Butiks-TV</h1>
+
+        <div class="px-8 text-lg lg:text-2xl">
+          Att synas där människor finns
+        </div>
+
+        <NuxtLink
+          :to="{ path: '/butiks-tv', hash: '#info' }"
+          class="absolute bottom-8 flex w-full items-center justify-center"
+        >
+          <Icon
+            name="qlementine-icons:chevron-double-down-16"
+            class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
+          ></Icon>
+        </NuxtLink>
+      </div>
+    </template>
+  </Heading>
 
   <div id="info" class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
     <div class="relative mt-32 grid gap-8 p-8">
@@ -94,34 +93,5 @@ definePageMeta({
 <script>
 export default {
   name: "ButiksTv",
-
-  inject: ["navbarHeight"],
-
-  data() {
-    return {
-      windowHeight: 0,
-    };
-  },
-
-  computed: {
-    navHeight() {
-      return this.navbarHeight();
-    },
-  },
-
-  mounted() {
-    this.windowHeight = window.innerHeight;
-    window.addEventListener("resize", this.handleResize);
-  },
-
-  beforeUnmount() {
-    window.removeEventListener("resize", this.handleResize);
-  },
-
-  methods: {
-    handleResize() {
-      this.windowHeight = window.innerHeight;
-    },
-  },
 };
 </script>

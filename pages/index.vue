@@ -17,62 +17,59 @@ definePageMeta({
 </script>
 
 <template>
-  <div
-    class="relative mx-[calc(-50vw+50%)] min-h-80 w-screen"
-    :style="{
-      height: `${windowHeight - navHeight}px`,
-    }"
-  >
-    <LoadingSpinner
-      v-if="!videoLoaded"
-      class="absolute top-2/5 left-1/2 -translate-x-1/2 transform"
-    ></LoadingSpinner>
+  <Heading>
+    <template #heading-content>
+      <LoadingSpinner
+        v-if="!videoLoaded"
+        class="absolute top-2/5 left-1/2 -translate-x-1/2 transform"
+      ></LoadingSpinner>
 
-    <ClientOnly>
-      <video
-        ref="titleVideo"
+      <ClientOnly>
+        <video
+          ref="titleVideo"
+          v-show="videoLoaded"
+          @canplay="videoLoaded = true"
+          autoplay
+          loop
+          muted
+          disablepictureinpicture
+          playsinline
+          preload="auto"
+          class="h-full w-full object-cover"
+        >
+          <source src="../public/videos/slow-motion-crowd.mp4" />
+        </video>
+      </ClientOnly>
+
+      <div v-show="videoLoaded" class="absolute inset-0 bg-red-950/40"></div>
+
+      <!--    2c4459, 59312c, 59452c, amber-700/15-->
+      <div
         v-show="videoLoaded"
-        @canplay="videoLoaded = true"
-        autoplay
-        loop
-        muted
-        disablepictureinpicture
-        playsinline
-        preload="auto"
-        class="h-full w-full object-cover"
+        class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 px-4 text-center"
       >
-        <source src="../public/videos/slow-motion-crowd.mp4" />
-      </video>
-    </ClientOnly>
+        <h1 class="mx-10 mb-8 md:mx-30">Vi hjälper er att nå ut digitalt!</h1>
 
-    <div v-show="videoLoaded" class="absolute inset-0 bg-red-950/40"></div>
+        <div class="px-8 text-lg lg:text-2xl">
+          Lokalt, regionalt eller rikstäckande - just DOOH* it!
+        </div>
 
-    <!--    2c4459, 59312c, 59452c, amber-700/15-->
-    <div
-      v-show="videoLoaded"
-      class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 px-4 text-center"
-    >
-      <h1 class="mx-10 mb-8 md:mx-30">Vi hjälper er att nå ut digitalt!</h1>
+        <div class="text-l absolute right-3 bottom-2 italic opacity-30">
+          *DOOH - Digital out of Home Media
+        </div>
 
-      <div class="px-8 text-lg lg:text-2xl">
-        Lokalt, regionalt eller rikstäckande - just DOOH* it!
+        <NuxtLink
+          :to="{ path: '/', hash: '#services' }"
+          class="absolute bottom-8 flex w-full items-center justify-center"
+        >
+          <Icon
+            name="qlementine-icons:chevron-double-down-16"
+            class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
+          ></Icon>
+        </NuxtLink>
       </div>
-
-      <div class="text-l absolute right-3 bottom-2 italic opacity-30">
-        *DOOH - Digital out of Home Media
-      </div>
-
-      <NuxtLink
-        :to="{ path: '/', hash: '#services' }"
-        class="absolute bottom-8 flex w-full items-center justify-center"
-      >
-        <Icon
-          name="qlementine-icons:chevron-double-down-16"
-          class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-        ></Icon>
-      </NuxtLink>
-    </div>
-  </div>
+    </template>
+  </Heading>
 
   <div class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
     <h3 id="services" class="mt-32 text-center">Se vår informationsvideo</h3>
@@ -142,14 +139,11 @@ definePageMeta({
 <script>
 export default {
   name: "Index",
-
-  inject: ["navbarHeight"],
-
+  
   data() {
     return {
       videoLoaded: false,
       sweVersion: true,
-      windowHeight: 0,
     };
   },
 
@@ -157,27 +151,6 @@ export default {
     if (this.$refs.titleVideo) {
       this.$refs.titleVideo.play();
     }
-  },
-
-  computed: {
-    navHeight() {
-      return this.navbarHeight();
-    },
-  },
-
-  mounted() {
-    this.windowHeight = window.innerHeight;
-    window.addEventListener("resize", this.handleResize);
-  },
-
-  beforeUnmount() {
-    window.removeEventListener("resize", this.handleResize);
-  },
-
-  methods: {
-    handleResize() {
-      this.windowHeight = window.innerHeight;
-    },
   },
 };
 </script>
