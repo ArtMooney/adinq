@@ -1,27 +1,25 @@
 export async function sendEmail(from, to, subject, message, apiKey) {
-  let headersList = {
-    Accept: "*/*",
-    Authorization: "Basic " + btoa("api" + ":" + apiKey),
-  };
+  const url = `https://api.eu.mailgun.net/v3/mg.framecore.se/messages`;
 
-  let bodyContent = new FormData();
-  bodyContent.append("from", from);
-  bodyContent.append("to", to);
-  bodyContent.append("subject", subject);
-  bodyContent.append("text", message);
-
-  let response = await fetch(
-    "https://api.eu.mailgun.net/v3/mg.framecore.se/messages",
-    {
+  try {
+    return await $fetch(url, {
       method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    },
-  );
+      body: new URLSearchParams({
+        from: from,
+        to: to,
+        subject: subject,
+        text: message,
+      }),
+      headers: {
+        Accept: "*/*",
+        Authorization: "Basic " + btoa("api" + ":" + apiKey),
+      },
 
-  if (!response.ok) {
-    return { error: `HTTP error! status: ${response.status}` };
+      retry: 3,
+      retryDelay: 1000,
+      retryStatusCodes: [408, 429, 500, 502, 503, 504],
+    });
+  } catch (error) {
+    throw new Error(`Network error: ${error.message}`);
   }
-
-  return await response.json();
 }
