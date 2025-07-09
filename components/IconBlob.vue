@@ -17,9 +17,17 @@
 
       <div class="mb-6 h-[1px] w-2/3 bg-white/25"></div>
 
-      <p v-if="message">
-        {{ message }}
-      </p>
+      <h6 v-if="title" class="mb-3">{{ title }}</h6>
+
+      <ul v-if="message" class="flex flex-col">
+        <li v-if="typeof message === 'string'">
+          {{ message }}
+        </li>
+
+        <li v-if="Array.isArray(message)" v-for="line in message">
+          {{ line }}
+        </li>
+      </ul>
     </div>
   </NuxtLink>
 </template>
@@ -29,8 +37,12 @@ export default {
   name: "IconBlob",
 
   props: {
-    message: {
+    title: {
       type: String,
+      required: false,
+    },
+    message: {
+      type: [String, Array],
       required: false,
     },
     icon: {
