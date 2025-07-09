@@ -141,11 +141,11 @@ definePageMeta({
         <input
           type="radio"
           name="subject"
-          value="ekonomi"
+          value="ekonomi-fragor"
           v-model="formData.subject"
           required
         />
-        <span>Ekonomi</span>
+        <span>Ekonomi frågor</span>
       </label>
 
       <div class="hidden">
