@@ -55,7 +55,7 @@ definePageMeta({
   </Heading>
 
   <div id="info" class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
-    <div class="relative mt-32 grid gap-8 p-8">
+    <div class="relative grid gap-8 p-8">
       <NuxtImg
         src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
         alt=""
@@ -67,24 +67,33 @@ definePageMeta({
       />
 
       <IconBlob
-        icon="ph:film-reel-light"
+        icon="logos:google-play-icon"
         icon-color="#e09963"
-        message="En bild säger mer än tusen ord. 10-20 sekunder säger ännu mer. I kombination med enkla, personliga och kärnfulla budskap kan vi hjälpa dig att stärka ditt varumärke hos både befintliga och nya kunder. Effektfulla filmer som passar perfekt att dela på sociala medier."
-        link="/media-produktion#media-gallery"
+        title="Stort eller litet företag?"
+        message="Vi hjälper dig att nå ut. Lokalt, regionalt eller rikstäckande!"
+        link=""
       ></IconBlob>
 
       <IconBlob
-        icon="bi:camera-reels"
+        icon="streamline-ultimate-color:desktop-monitor-smiley"
         icon-color="#67ac6e"
-        message="Perfekt för dina kampanjer. På en bra grund är det enkelt att byta budskap under året."
-        link="/media-produktion#media-gallery"
+        title="Fördelar som annonsör"
+        :message="[
+          '• Filmerna går inte att klicka eller zappa bort.',
+          '• Du möter folk i en av vardagens få pauser, - i kön till kassan.',
+          '• Hög visningsfrekvens, - från 140 visningar per dag/butik.',
+          '• Enkelt att köpa, enkelt att variera ditt budskap.',
+          '• Köp lokalt på din ort, regionalt eller rikstäckande.',
+        ]"
+        link=""
       ></IconBlob>
 
       <IconBlob
-        icon="teenyicons:headset-outline"
+        icon="emojione-v1:bull-horn"
         icon-color="#ac67a6"
-        message="Att önska sina kunder en Glad Påsk, Trevlig Sommar eller God Jul har ett mycket stort värde och stärker din image. Kundvård på ett mycket enkelt sätt och vi hjälper dig gärna!"
-        link="/kundutlatanden"
+        title="200 butiker"
+        message="Vi har digitala skärmar i kassalinjen på ca 200 livsmedelsbutiker i Sverige. Här kan du nå ut med ditt budskap med hög visningsfrekvens till dina kunder under en vecka, månad eller kampanjvis under året, allt efter behov. Dessutom i en av vardagens få pauser, - i kön till kassan!"
+        link=""
       ></IconBlob>
     </div>
   </div>
