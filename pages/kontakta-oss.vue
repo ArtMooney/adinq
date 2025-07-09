@@ -58,13 +58,12 @@ definePageMeta({
     class="my-32 flex max-w-5xl flex-col gap-8 px-4 sm:px-8 lg:mx-auto"
   >
     <h3 class="text-center sm:px-8 md:px-12">
-      Välkomna att kontakta oss för offert eller andra frågor.
+      Få personlig hjälp från vårt team i Borås
     </h3>
 
     <p class="mb-12 text-center sm:px-16 md:px-32">
-      Vi som svarar i telefon eller på mejlen sitter i Borås, där ADinQ har sitt
-      hjärta. Vi gör allt vi kan för att hjälpa dig med din förfrågan snabbt och
-      enkelt.
+      Vårt team i Borås är redo att hjälpa dig. Vi svarar snabbt på telefon och
+      mejl, och ser till att du får den hjälp du behöver.
     </p>
 
     <form v-if="contactForm" @submit.prevent name="contact">
