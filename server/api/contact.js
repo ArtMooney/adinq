@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
   const toContact = await sendEmail(
     config.emailTo,
     formDataJson.email,
-    "Tack för att ni kontaktat AdinQ!",
+    "Tack för att ni kontaktat ADinQ!",
     await messageContact(),
     config.mailgunApiKey,
   );
