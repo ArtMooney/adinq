@@ -20,17 +20,17 @@ definePageMeta({
   <Heading>
     <template #heading-content>
       <NuxtImg
-        src="personalgraphic-com-fseahNq6zic-unsplash.jpg"
+        src="ian-dooley-hpTH5b6mo2s-unsplash.jpg"
         alt=""
         class="h-full w-full object-cover"
         sizes="1000px md:2000px"
-        width="2500"
-        height="2500"
+        width="4000"
+        height="6000"
         densities="x1"
         format="webp"
       />
 
-      <div class="absolute inset-0 bg-[#2a3749]/50"></div>
+      <div class="absolute inset-0 bg-[#294143]/40"></div>
 
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"

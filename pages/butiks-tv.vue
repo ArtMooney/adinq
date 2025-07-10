@@ -67,7 +67,7 @@ definePageMeta({
       />
 
       <IconBlob
-        icon="logos:google-play-icon"
+        icon="streamline-ultimate-color:color-palette"
         icon-color="#e09963"
         title="Stort eller litet företag?"
         message="Vi hjälper dig att nå ut. Lokalt, regionalt eller rikstäckande!"
