@@ -82,6 +82,8 @@ definePageMeta({
         class="relative"
       />
     </div>
+
+    <MarketingChannels></MarketingChannels>
   </div>
 </template>
 

@@ -125,6 +125,8 @@ const { data: prices, error } = await useFetch("/api/prices", {
         :data="price"
       ></PriceBlob>
     </div>
+
+    <MarketingChannels></MarketingChannels>
   </div>
 </template>
 

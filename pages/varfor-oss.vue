@@ -98,6 +98,8 @@ definePageMeta({
         link="/kontakta-oss"
       ></IconBlob>
     </div>
+
+    <MarketingChannels></MarketingChannels>
   </div>
 </template>
 

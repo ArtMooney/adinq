@@ -96,6 +96,8 @@ definePageMeta({
         link=""
       ></IconBlob>
     </div>
+
+    <MarketingChannels></MarketingChannels>
   </div>
 </template>
 
