@@ -30,7 +30,7 @@ definePageMeta({
         format="webp"
       />
 
-      <div class="absolute inset-0 bg-red-950/40"></div>
+      <div class="absolute inset-0 bg-black/20"></div>
 
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
@@ -40,7 +40,7 @@ definePageMeta({
         </h1>
 
         <NuxtLink
-          :to="{ path: '/butiks-tv', hash: '#info' }"
+          :to="{ path: '/storbildsskarmar', hash: '#info' }"
           class="absolute bottom-8 flex w-full items-center justify-center"
         >
           <Icon
@@ -53,14 +53,14 @@ definePageMeta({
   </Heading>
 
   <div id="info" class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
-    <div class="relative grid gap-8 p-8">
+    <div class="relative grid items-center gap-8 p-4 sm:p-8 lg:grid-cols-3">
       <NuxtImg
-        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        src="angele-kamp--OQbUQce54k-unsplash.jpg"
         alt=""
-        class="absolute inset-0 h-full w-full object-cover opacity-15"
+        class="absolute inset-0 h-full w-full object-cover opacity-10"
         sizes="1000px md:2000px"
-        width="2912"
-        height="2032"
+        width="3456"
+        height="5184"
         format="webp"
       />
 
@@ -69,7 +69,18 @@ definePageMeta({
         icon-color="#e09963"
         message="Att synas på Storbildsskärm är ett fantastiskt bra sätt att synas där människor finns! Ett stort antal passerande människor kombinerat med ett medie som är stort, tydligt och som inte är påtvingande är ett vinnande recept. Vi kan erbjuda er att synas på flera olika orter i Sverige. Vår produktionsavdelning kan även hjälpa er att producera era egna slides som sen kan visas på Storbildsskärmarna."
         link=""
+        class="relative lg:col-span-2"
       ></IconBlob>
+
+      <NuxtImg
+        src="vertical-billboard-9083310.jpg"
+        alt=""
+        sizes="1000px md:2000px"
+        width="3968"
+        height="4800"
+        format="webp"
+        class="relative"
+      />
     </div>
   </div>
 </template>

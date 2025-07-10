@@ -7,7 +7,7 @@
       class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-60"
     ></div>
 
-    <div class="relative h-full w-full rounded bg-neutral-900 p-8 pb-12">
+    <div class="relative h-full w-full rounded bg-neutral-900 p-4 pb-12 sm:p-8">
       <Icon
         v-if="icon"
         :name="icon"
