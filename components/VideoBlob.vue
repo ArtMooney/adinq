@@ -4,6 +4,7 @@
       v-if="!errorLoading"
       ref="videoplayer"
       :src="videoSrc"
+      :poster="poster"
       class="aspect-video w-full rounded"
       muted
       playsinline
@@ -25,6 +26,11 @@ export default {
       type: String,
       required: true,
     },
+    poster: {
+      type: String,
+      required: false,
+      default: "",
+    },
   },
 
   data() {
@@ -40,7 +46,7 @@ export default {
 
   async mounted() {
     this.videoSrc = await this.getQcardVideo();
-    
+
     if (!this.videoSrc) this.errorLoading = true;
 
     if (this.$refs.videoplayer) {

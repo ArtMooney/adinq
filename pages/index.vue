@@ -93,10 +93,12 @@ definePageMeta({
     <VideoBlob
       v-if="sweVersion"
       video-Link="https://qcard.adinq.se/?i=1747390713"
+      poster="images/adinq-presentation-poster.webp"
     ></VideoBlob>
     <VideoBlob
       v-if="!sweVersion"
       video-Link="https://qcard.adinq.se/?i=1747391059"
+      poster="images/adinq-presentation-poster.webp"
     ></VideoBlob>
 
     <h3 class="mt-32 text-center">
