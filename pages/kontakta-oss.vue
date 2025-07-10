@@ -197,7 +197,9 @@ definePageMeta({
     <div v-if="errorMessage" class="my-12 w-full bg-red-800 p-8 text-center">
       <p>{{ defaultEmailMessage }}</p>
     </div>
+  </div>
 
+  <div class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
     <MarketingChannels></MarketingChannels>
   </div>
 </template>
