@@ -49,7 +49,7 @@ const galleryBigscreens = gallery.value.filter(
         format="webp"
       />
 
-      <div class="absolute inset-0 bg-[#2f3f4d]/80"></div>
+      <div class="absolute inset-0 bg-[#2f3f4d]/50"></div>
 
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
