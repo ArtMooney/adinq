@@ -42,7 +42,7 @@ definePageMeta({
         </div>
 
         <NuxtLink
-          :to="{ path: '/storbildsskarmar', hash: '#info' }"
+          :to="{ path: '/mediabyraer', hash: '#info' }"
           class="absolute bottom-8 flex w-full items-center justify-center"
         >
           <Icon
