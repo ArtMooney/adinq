@@ -25,7 +25,7 @@
         </li>
 
         <li v-if="Array.isArray(message)" v-for="line in message">
-          {{ line }}
+          {{ line || "\u00A0" }}
         </li>
       </ul>
     </div>
