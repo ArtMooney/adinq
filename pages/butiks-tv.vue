@@ -30,7 +30,7 @@ definePageMeta({
         format="webp"
       />
 
-      <div class="absolute inset-0 bg-[#7b3526]/60"></div>
+      <div class="absolute inset-0 bg-[#8a5f35]/40"></div>
 
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
