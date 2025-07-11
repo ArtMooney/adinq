@@ -56,9 +56,9 @@ definePageMeta({
     </template>
   </Heading>
 
-  <div id="info" class="my-20">
-    <MarketplaceMap />
+  <MarketplaceMap id="info" />
 
+  <div class="mx-4 mb-20 flex flex-col gap-8 sm:mx-8">
     <MarketingChannels></MarketingChannels>
   </div>
 </template>
