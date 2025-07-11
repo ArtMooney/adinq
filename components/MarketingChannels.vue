@@ -31,6 +31,13 @@
       message="Strategiska samarbeten med fastighetsägare ger annonsörer tillgång till exponeringsytor där människor bor, arbetar och konsumerar."
       link="/kommersialisera"
     ></IconBlob>
+
+    <IconBlob
+      icon="cil:building"
+      icon-color="#5b9652"
+      message="Marknadsplatskarta"
+      link="/marknadsplatskarta"
+    ></IconBlob>
   </div>
 </template>
 
