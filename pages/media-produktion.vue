@@ -58,7 +58,7 @@ const galleryBigscreens = gallery.value.filter(
           Vi producerar er reklamfilm eller slide för storbildsskärmar!
         </h1>
 
-        <div class="px-8 text-lg lg:text-2xl">
+        <div class="max-w-3xl px-8 text-lg lg:text-2xl">
           - Vi kan hjälpa er med allt under samma tak!
         </div>
 

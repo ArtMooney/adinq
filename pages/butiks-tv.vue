@@ -37,7 +37,7 @@ definePageMeta({
       >
         <h1 class="mx-10 mb-8 md:mx-30">Butiks-TV</h1>
 
-        <div class="px-8 text-lg lg:text-2xl">
+        <div class="max-w-3xl px-8 text-lg lg:text-2xl">
           Att synas där människor finns
         </div>
 
@@ -55,7 +55,7 @@ definePageMeta({
   </Heading>
 
   <div id="info" class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
-    <div class="relative grid gap-8 p-8">
+    <div class="relative grid gap-8 p-4 sm:p-8">
       <NuxtImg
         src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
         alt=""

@@ -39,7 +39,7 @@ definePageMeta({
           Sök bland våra många marknadsplatser över hela Sverige!
         </h1>
 
-        <div class="px-8 text-lg lg:text-2xl">
+        <div class="max-w-3xl px-8 text-lg lg:text-2xl">
           Navigera i kartan nedan med mus, touchpad eller på mobilen!
         </div>
 
