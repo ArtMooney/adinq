@@ -33,9 +33,9 @@
     ></IconBlob>
 
     <IconBlob
-      icon="cil:building"
-      icon-color="#5b9652"
-      message="Marknadsplatskarta"
+      icon="ph:map-pin-light"
+      icon-color="#605296"
+      message="Vår interaktiva marknadsplatskarta som hjälper dig att strategiskt placera din marknadsföring där den gör störst intryck. Kartan visar tillgängliga reklamytor och ger dig insikt i trafikflöden och målgruppsrörelser för optimal kampanjplanering."
       link="/marknadsplatskarta"
     ></IconBlob>
   </div>
