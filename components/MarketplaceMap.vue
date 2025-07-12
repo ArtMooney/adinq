@@ -26,18 +26,7 @@
         name="OpenStreetMap"
       />
 
-      <!--        <LMarker-->
-      <!--          v-for="marker in markers"-->
-      <!--          :key="`${marker.lat}-${marker.lng}`"-->
-      <!--          :lat-lng="[marker.lat, marker.lng]"-->
-      <!--        >-->
-      <!--          <LPopup>-->
-      <!--            <div class="p-2">-->
-      <!--              <h3 class="text-lg font-bold">{{ marker.title }}</h3>-->
-      <!--              <p class="text-sm text-gray-600">{{ marker.description }}</p>-->
-      <!--            </div>-->
-      <!--          </LPopup>-->
-      <!--        </LMarker>-->
+      <LMarker :lat-lng="[59.3293, 18.0686]" />
     </LMap>
   </div>
 </template>
