@@ -1,8 +1,8 @@
 <template>
-  <div class="h-screen w-full overflow-auto bg-[pink]/50 p-8">
-    <h1 class="mb-4 text-2xl">Marknadsplats Data</h1>
-
-    <div class="flex gap-4">
+  <div
+    class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col p-16"
+  >
+    <div class="absolute top-4 right-4 z-[1000] flex gap-4 bg-neutral-400 p-8">
       <input
         v-model="searchTerm"
         @keyup.enter="getMarkers"
@@ -13,47 +13,46 @@
       <button @click="resetSearch" class="primary">Rensa</button>
     </div>
 
-    <!--    <GoogleMap-->
-    <!--      :api-key="apiKey"-->
-    <!--      class="map"-->
-    <!--      :center="coords(currentPerson.address.geo)"-->
-    <!--      :zoom="3"-->
-    <!--    >-->
-    <!--      <Marker :options="{ position: coords(currentPerson.address.geo) }" />-->
-    <!--    </GoogleMap>-->
-
-    <GoogleMap
-      :api-key="googleMapsApiKey"
+    <LMap
+      class="relative grow"
+      :zoom="zoom"
       :center="center"
-      :zoom="3"
-      class="mt-4 h-200 w-full"
+      :use-global-leaflet="false"
     >
-      <AdvancedMarker :options="markerOptions" />
-    </GoogleMap>
+      <LTileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+        layer-type="base"
+        name="OpenStreetMap"
+      />
+
+      <!--        <LMarker-->
+      <!--          v-for="marker in markers"-->
+      <!--          :key="`${marker.lat}-${marker.lng}`"-->
+      <!--          :lat-lng="[marker.lat, marker.lng]"-->
+      <!--        >-->
+      <!--          <LPopup>-->
+      <!--            <div class="p-2">-->
+      <!--              <h3 class="text-lg font-bold">{{ marker.title }}</h3>-->
+      <!--              <p class="text-sm text-gray-600">{{ marker.description }}</p>-->
+      <!--            </div>-->
+      <!--          </LPopup>-->
+      <!--        </LMarker>-->
+    </LMap>
   </div>
 </template>
 
 <script>
-import { GoogleMap, AdvancedMarker } from "vue3-google-map";
-
 export default {
   name: "MarketplaceMap",
 
-  components: { GoogleMap, AdvancedMarker },
-
   data() {
-    const config = useRuntimeConfig();
     return {
       searchTerm: "",
       markers: [],
       loading: false,
-      googleMapsApiKey: config.public.googleMaps,
-      center: { lat: 40.689247, lng: -74.044502 },
-      markerOptions: {
-        position: { lat: 40.689247, lng: -74.044502 },
-        label: "L",
-        title: "LADY LIBERTY",
-      },
+      center: [59.3293, 18.0686],
+      zoom: 6,
     };
   },
 
