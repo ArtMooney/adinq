@@ -12,18 +12,48 @@
       <button @click="getMarkers" class="primary">Sök</button>
       <button @click="resetSearch" class="primary">Rensa</button>
     </div>
+
+    <!--    <GoogleMap-->
+    <!--      :api-key="apiKey"-->
+    <!--      class="map"-->
+    <!--      :center="coords(currentPerson.address.geo)"-->
+    <!--      :zoom="3"-->
+    <!--    >-->
+    <!--      <Marker :options="{ position: coords(currentPerson.address.geo) }" />-->
+    <!--    </GoogleMap>-->
+
+    <GoogleMap
+      :api-key="googleMapsApiKey"
+      :center="center"
+      :zoom="3"
+      class="mt-4 h-200 w-full"
+    >
+      <AdvancedMarker :options="markerOptions" />
+    </GoogleMap>
   </div>
 </template>
 
 <script>
+import { GoogleMap, AdvancedMarker } from "vue3-google-map";
+
 export default {
   name: "MarketplaceMap",
 
+  components: { GoogleMap, AdvancedMarker },
+
   data() {
+    const config = useRuntimeConfig();
     return {
       searchTerm: "",
       markers: [],
       loading: false,
+      googleMapsApiKey: config.public.googleMaps,
+      center: { lat: 40.689247, lng: -74.044502 },
+      markerOptions: {
+        position: { lat: 40.689247, lng: -74.044502 },
+        label: "L",
+        title: "LADY LIBERTY",
+      },
     };
   },
 
