@@ -18,7 +18,8 @@
         "plyr": "^3.7.8",
         "tailwindcss": "^4.1.11",
         "vue": "latest",
-        "vue-router": "latest"
+        "vue-router": "latest",
+        "vue3-google-map": "^0.23.0"
     },
     "devDependencies": {
         "@iconify-json/emojione-v1": "^1.2.1",
