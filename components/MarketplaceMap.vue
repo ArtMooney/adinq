@@ -18,6 +18,7 @@
       :zoom="zoom"
       :center="center"
       :use-global-leaflet="false"
+      @ready="setupMarkerIcons"
     >
       <LTileLayer
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -66,6 +67,24 @@ export default {
   },
 
   methods: {
+    setupMarkerIcons() {
+      if (process.client && window.L) {
+        delete window.L.Icon.Default.prototype._getIconUrl;
+        window.L.Icon.Default.mergeOptions({
+          iconRetinaUrl:
+            "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+          iconUrl:
+            "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+          shadowUrl:
+            "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          shadowSize: [41, 41],
+        });
+      }
+    },
+
     async getMarkers() {
       this.loading = true;
 
