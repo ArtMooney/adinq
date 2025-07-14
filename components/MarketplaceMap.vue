@@ -20,13 +20,16 @@
       :use-global-leaflet="false"
     >
       <LTileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-        layer-type="base"
-        name="OpenStreetMap"
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
       />
 
-      <LMarker :lat-lng="[59.3293, 18.0686]" />
+      <!--      <LMarker :lat-lng="[59.3293, 18.0686]" />-->
+      <LMarker
+        v-for="marker in markers"
+        :key="marker.title"
+        :lat-lng="[marker.lat, marker.lng]"
+      />
     </LMap>
   </div>
 </template>
@@ -40,9 +43,26 @@ export default {
       searchTerm: "",
       markers: [],
       loading: false,
-      center: [59.3293, 18.0686],
       zoom: 6,
     };
+  },
+
+  computed: {
+    center() {
+      if (this.markers.length === 0) return [59.3293, 18.0686];
+
+      const avgLat =
+        this.markers.reduce((sum, m) => sum + m.lat, 0) / this.markers.length;
+      const avgLng =
+        this.markers.reduce((sum, m) => sum + m.lng, 0) / this.markers.length;
+
+      console.log(avgLat, avgLng);
+      return [avgLat, avgLng];
+    },
+  },
+
+  mounted() {
+    console.log(this.getMarkers());
   },
 
   methods: {
