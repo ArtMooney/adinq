@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  css: ["/assets/css/main.css"],
+  css: ["/assets/css/main.css", "leaflet/dist/leaflet.css"],
 
   vite: {
     plugins: [tailwindcss()],
