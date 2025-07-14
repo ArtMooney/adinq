@@ -10,6 +10,13 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ["leaflet"],
+    },
+    ssr: {
+      noExternal: ["leaflet"],
+    },
+    assetsInclude: ["**/*.png"],
   },
 
   nitro: {
