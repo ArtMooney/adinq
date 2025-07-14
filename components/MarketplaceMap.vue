@@ -1,38 +1,41 @@
 <template>
-  <div
-    class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col p-16"
-  >
-    <div class="absolute top-4 right-4 z-[1000] flex gap-4 bg-neutral-400 p-8">
-      <input
-        v-model="searchTerm"
-        @keyup.enter="getMarkers"
-        placeholder="Sök ort (t.ex. Stockholm)"
-      />
-
-      <button @click="getMarkers" class="primary">Sök</button>
-      <button @click="resetSearch" class="primary">Rensa</button>
-    </div>
-
-    <LMap
-      class="relative grow"
-      :zoom="zoom"
-      :center="center"
-      :use-global-leaflet="false"
-      @ready="setupMarkerIcons"
+  <ClientOnly>
+    <div
+      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col p-16"
     >
-      <LTileLayer
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      />
+      <div
+        class="absolute top-4 right-4 z-[1000] flex gap-4 bg-neutral-400 p-8"
+      >
+        <input
+          v-model="searchTerm"
+          @keyup.enter="getMarkers"
+          placeholder="Sök ort (t.ex. Stockholm)"
+        />
 
-      <!--      <LMarker :lat-lng="[59.3293, 18.0686]" />-->
-      <LMarker
-        v-for="marker in markers"
-        :key="marker.title"
-        :lat-lng="[marker.lat, marker.lng]"
-      />
-    </LMap>
-  </div>
+        <button @click="getMarkers" class="primary">Sök</button>
+        <button @click="resetSearch" class="primary">Rensa</button>
+      </div>
+
+      <LMap
+        class="relative grow"
+        :zoom="zoom"
+        :center="center"
+        :use-global-leaflet="false"
+      >
+        <LTileLayer
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        />
+
+        <LMarker :lat-lng="[59.3293, 18.0686]" />
+        <LMarker
+          v-for="marker in markers"
+          :key="marker.title"
+          :lat-lng="[marker.lat, marker.lng]"
+        />
+      </LMap>
+    </div>
+  </ClientOnly>
 </template>
 
 <script>
@@ -67,24 +70,6 @@ export default {
   },
 
   methods: {
-    setupMarkerIcons() {
-      if (process.client && window.L) {
-        delete window.L.Icon.Default.prototype._getIconUrl;
-        window.L.Icon.Default.mergeOptions({
-          iconRetinaUrl:
-            "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-          iconUrl:
-            "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-          shadowUrl:
-            "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-          iconSize: [25, 41],
-          iconAnchor: [12, 41],
-          popupAnchor: [1, -34],
-          shadowSize: [41, 41],
-        });
-      }
-    },
-
     async getMarkers() {
       this.loading = true;
 
