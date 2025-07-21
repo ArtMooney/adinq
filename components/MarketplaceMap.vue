@@ -18,6 +18,7 @@
 
         <button @click="getMarkers" class="primary">Sök</button>
         <button @click="resetSearch" class="primary">Rensa</button>
+        <div>{{ fingerMonitor }}</div>
       </div>
 
       <LMap
@@ -57,6 +58,7 @@ export default {
       isOverlayHidden: false,
       isCommandOrControlPressed: false,
       activeTouches: 0,
+      fingerMonitor: null,
     };
   },
 
@@ -108,6 +110,9 @@ export default {
     },
 
     handleTouchMove(event) {
+      this.fingerMonitor = event.touches.length;
+      console.log(event.touches.length);
+
       if (this.isOverlayHidden && event.touches.length >= 2) {
         event.preventDefault();
       }
