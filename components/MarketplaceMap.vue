@@ -91,21 +91,25 @@ export default {
       this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
 
       if (wasPressed !== this.isCommandOrControlPressed) {
-        this.updateOverlayVisibility();
+        this.updateOverlayVisibility(event);
       }
     },
 
     handleTouchStart(event) {
       this.activeTouches = event.touches.length;
-      this.updateOverlayVisibility();
+      this.updateOverlayVisibility(event);
     },
 
     handleTouchEnd(event) {
       this.activeTouches = event.touches.length;
-      this.updateOverlayVisibility();
+      this.updateOverlayVisibility(event);
     },
 
-    updateOverlayVisibility() {
+    updateOverlayVisibility(event) {
+      if (this.activeTouches >= 2) {
+        event.preventDefault();
+      }
+
       this.isOverlayHidden =
         this.isCommandOrControlPressed || this.activeTouches >= 2;
     },
