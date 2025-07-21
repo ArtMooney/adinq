@@ -2,6 +2,9 @@
   <ClientOnly>
     <div
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
+      @touchstart="handleTouchStart"
+      @touchend="handleTouchEnd"
+      tabindex="0"
     >
       <div
         class="absolute top-4 right-4 z-[1000] flex gap-4 bg-neutral-400 p-8"
@@ -35,7 +38,7 @@
         />
       </LMap>
 
-      <div class="absolute inset-0 bg-black/30"></div>
+      <div v-show="!isOverlayHidden" class="absolute inset-0 bg-black/30"></div>
     </div>
   </ClientOnly>
 </template>
@@ -50,6 +53,9 @@ export default {
       markers: [],
       loading: false,
       zoom: 6,
+      isOverlayHidden: false,
+      isCommandOrControlPressed: false,
+      activeTouches: 0,
     };
   },
 
@@ -69,9 +75,41 @@ export default {
 
   mounted() {
     console.log(this.getMarkers());
+
+    window.addEventListener("keydown", this.checkCommandOrControl);
+    window.addEventListener("keyup", this.checkCommandOrControl);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("keydown", this.checkCommandOrControl);
+    window.removeEventListener("keyup", this.checkCommandOrControl);
   },
 
   methods: {
+    checkCommandOrControl(event) {
+      const wasPressed = this.isCommandOrControlPressed;
+      this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
+
+      if (wasPressed !== this.isCommandOrControlPressed) {
+        this.updateOverlayVisibility();
+      }
+    },
+
+    handleTouchStart(event) {
+      this.activeTouches = event.touches.length;
+      this.updateOverlayVisibility();
+    },
+
+    handleTouchEnd(event) {
+      this.activeTouches = event.touches.length;
+      this.updateOverlayVisibility();
+    },
+
+    updateOverlayVisibility() {
+      this.isOverlayHidden =
+        this.isCommandOrControlPressed || this.activeTouches >= 2;
+    },
+
     async getMarkers() {
       this.loading = true;
 
