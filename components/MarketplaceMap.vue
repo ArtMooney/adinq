@@ -98,7 +98,7 @@ export default {
     handleTouchStart(event) {
       this.activeTouches = event.touches.length;
 
-      if (this.activeTouches < 2) {
+      if (this.activeTouches >= 2) {
         event.preventDefault();
       }
 
