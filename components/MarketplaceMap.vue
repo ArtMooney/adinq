@@ -42,8 +42,8 @@
       <div
         v-show="!isOverlayHidden"
         :class="[
-          'absolute inset-0 bg-black/30',
-          isOverlayHidden && 'pointer-events-none',
+          'pointer-events-auto absolute inset-0 bg-black/30',
+          !isOverlayHidden && 'pointer-events-none',
         ]"
       ></div>
     </div>
