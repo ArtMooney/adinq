@@ -97,6 +97,11 @@ export default {
 
     handleTouchStart(event) {
       this.activeTouches = event.touches.length;
+
+      if (this.activeTouches < 2) {
+        event.preventDefault();
+      }
+
       this.updateOverlayVisibility(event);
     },
 
@@ -106,10 +111,6 @@ export default {
     },
 
     updateOverlayVisibility(event) {
-      if (this.activeTouches >= 2) {
-        event.preventDefault();
-      }
-
       this.isOverlayHidden =
         this.isCommandOrControlPressed || this.activeTouches >= 2;
     },
