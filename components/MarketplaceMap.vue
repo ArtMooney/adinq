@@ -2,11 +2,10 @@
   <ClientOnly>
     <div
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
+      @touchstart="handleTouchStart"
+      @touchend="handleTouchEnd"
       tabindex="0"
     >
-      <!--      @touchstart="handleTouchStart"-->
-      <!--      @touchend="handleTouchEnd"-->
-
       <div
         class="absolute top-4 right-4 z-[1000] flex gap-4 bg-neutral-400 p-8"
       >
@@ -39,7 +38,7 @@
         />
       </LMap>
 
-      <div v-show="!isOverlayHidden" class="absolute inset-0 bg-black/30"></div>
+      <!--      <div v-show="!isOverlayHidden" class="absolute inset-0 bg-black/30"></div>-->
     </div>
   </ClientOnly>
 </template>
