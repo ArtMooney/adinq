@@ -18,7 +18,6 @@
 
         <button @click="getMarkers" class="primary">Sök</button>
         <button @click="resetSearch" class="primary">Rensa</button>
-        <div>{{ fingerMonitor }}</div>
       </div>
 
       <LMap
@@ -40,7 +39,13 @@
         />
       </LMap>
 
-      <div v-show="!isOverlayHidden" class="absolute inset-0 bg-black/30"></div>
+      <div
+        v-show="!isOverlayHidden"
+        :class="[
+          'absolute inset-0 bg-black/30',
+          isOverlayHidden && 'pointer-events-none',
+        ]"
+      ></div>
     </div>
   </ClientOnly>
 </template>
@@ -58,7 +63,6 @@ export default {
       isOverlayHidden: false,
       isCommandOrControlPressed: false,
       activeTouches: 0,
-      fingerMonitor: null,
     };
   },
 
@@ -110,10 +114,8 @@ export default {
     },
 
     handleTouchMove(event) {
-      this.fingerMonitor = event.touches.length;
-
       if (this.isOverlayHidden && event.touches.length >= 2) {
-        // event.preventDefault();
+        event.preventDefault();
       }
     },
 
