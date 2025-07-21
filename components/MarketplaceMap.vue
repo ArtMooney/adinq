@@ -43,7 +43,7 @@
         v-show="!isOverlayHidden"
         :class="[
           'absolute inset-0 bg-black/30',
-          !isOverlayHidden && 'pointer-events-none',
+          isOverlayHidden && 'pointer-events-none',
         ]"
       ></div>
     </div>
@@ -110,7 +110,7 @@ export default {
 
     handleTouchEnd(event) {
       this.activeTouches = event.touches.length;
-      this.updateOverlayVisibility();
+      this.isOverlayHidden = false;
     },
 
     handleTouchMove(event) {
