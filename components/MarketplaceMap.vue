@@ -111,10 +111,9 @@ export default {
 
     handleTouchMove(event) {
       this.fingerMonitor = event.touches.length;
-      console.log(event.touches.length);
 
       if (this.isOverlayHidden && event.touches.length >= 2) {
-        event.preventDefault();
+        // event.preventDefault();
       }
     },
 
