@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <div
-      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col p-16"
+      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
     >
       <div
         class="absolute top-4 right-4 z-[1000] flex gap-4 bg-neutral-400 p-8"
@@ -17,7 +17,7 @@
       </div>
 
       <LMap
-        class="relative grow"
+        class="relative grow transform-gpu"
         :zoom="zoom"
         :center="center"
         :use-global-leaflet="false"
@@ -34,6 +34,8 @@
           :lat-lng="[marker.lat, marker.lng]"
         />
       </LMap>
+
+      <div class="absolute inset-0 bg-black/30"></div>
     </div>
   </ClientOnly>
 </template>
