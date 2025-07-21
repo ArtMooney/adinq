@@ -4,6 +4,7 @@
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
       @touchstart="handleTouchStart"
       @touchend="handleTouchEnd"
+      @touchmove="handleTouchMove"
       tabindex="0"
     >
       <div
@@ -104,6 +105,12 @@ export default {
     handleTouchEnd(event) {
       this.activeTouches = event.touches.length;
       this.updateOverlayVisibility();
+    },
+
+    handleTouchMove(event) {
+      if (this.isOverlayHidden && event.touches.length >= 2) {
+        event.preventDefault();
+      }
     },
 
     updateOverlayVisibility() {
