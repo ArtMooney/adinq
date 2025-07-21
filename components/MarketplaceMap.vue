@@ -38,7 +38,7 @@
         />
       </LMap>
 
-      <!--      <div v-show="!isOverlayHidden" class="absolute inset-0 bg-black/30"></div>-->
+      <div v-show="!isOverlayHidden" class="absolute inset-0 bg-black/30"></div>
     </div>
   </ClientOnly>
 </template>
@@ -98,19 +98,15 @@ export default {
     handleTouchStart(event) {
       this.activeTouches = event.touches.length;
 
-      if (this.activeTouches >= 2) {
-        event.preventDefault();
-      }
-
-      this.updateOverlayVisibility(event);
+      this.updateOverlayVisibility();
     },
 
     handleTouchEnd(event) {
       this.activeTouches = event.touches.length;
-      this.updateOverlayVisibility(event);
+      this.updateOverlayVisibility();
     },
 
-    updateOverlayVisibility(event) {
+    updateOverlayVisibility() {
       this.isOverlayHidden =
         this.isCommandOrControlPressed || this.activeTouches >= 2;
     },
