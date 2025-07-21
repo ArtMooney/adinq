@@ -1,9 +1,10 @@
 <template>
   <ClientOnly>
     <div
-      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
+      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen touch-none flex-col"
       @touchstart="handleTouchStart"
       @touchend="handleTouchEnd"
+      @touchmove="handleTouchMove"
       tabindex="0"
     >
       <div
@@ -97,7 +98,18 @@ export default {
 
     handleTouchStart(event) {
       this.activeTouches = event.touches.length;
+
+      if (event.touches.length >= 2) {
+        event.preventDefault();
+      }
+
       this.updateOverlayVisibility();
+    },
+
+    handleTouchMove(event) {
+      if (event.touches.length >= 2) {
+        event.preventDefault();
+      }
     },
 
     handleTouchEnd(event) {
