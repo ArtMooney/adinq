@@ -4,6 +4,7 @@
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
       @touchstart="handleStart"
       @touchend="handleEnd"
+      @touchmove="handleMove"
       tabindex="0"
     >
       <div
@@ -25,11 +26,6 @@
         :zoom="zoom"
         :center="center"
         :use-global-leaflet="false"
-        :options="{
-          dragging: !isScrolling,
-          touchZoom: !isScrolling,
-          scrollWheelZoom: !isScrolling,
-        }"
       >
         <LTileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -43,8 +39,6 @@
           :lat-lng="[marker.lat, marker.lng]"
         />
       </LMap>
-
-      <div v-show="!isScrolling" class="absolute inset-0 bg-black/30"></div>
     </div>
   </ClientOnly>
 </template>
@@ -59,7 +53,6 @@ export default {
       markers: [],
       loading: false,
       zoom: 6,
-      isOverlayHidden: true,
       isCommandOrControlPressed: false,
       activeTouches: 0,
       scrollTimeout: null,
@@ -83,54 +76,41 @@ export default {
   mounted() {
     this.getMarkers();
 
-    window.addEventListener("scroll", this.handleScroll, { passive: true });
-    window.addEventListener("touchmove", this.handleScroll, { passive: true });
     window.addEventListener("keydown", this.checkCommandOrControl);
     window.addEventListener("keyup", this.checkCommandOrControl);
   },
 
   beforeUnmount() {
-    window.removeEventListener("scroll", this.handleScroll, { passive: true });
-    window.removeEventListener("touchmove", this.handleScroll, {
-      passive: true,
-    });
     window.removeEventListener("keydown", this.checkCommandOrControl);
     window.removeEventListener("keyup", this.checkCommandOrControl);
   },
 
   methods: {
-    handleScroll() {
-      if (!this.scrollTimeout) {
-        this.isScrolling = true;
-      }
-
-      clearTimeout(this.scrollTimeout);
-
-      this.scrollTimeout = setTimeout(() => {
-        this.isScrolling = false;
-        this.scrollTimeout = null;
-      }, 0);
-    },
-
     handleStart(event) {
-      this.activeTouches = event.touches.length;
-
-      this.updateOverlayVisibility();
+      // this.activeTouches = event.touches.length;
+      //
+      // this.updateOverlayVisibility();
     },
 
     handleEnd(event) {
-      this.activeTouches = event.touches.length;
+      // this.activeTouches = event.touches.length;
+      //
+      // this.updateOverlayVisibility();
+    },
 
-      this.updateOverlayVisibility();
+    handleMove(event) {
+      // if (this.isOverlayHidden && event.touches.length >= 2) {
+      //   event.preventDefault();
+      // }
     },
 
     checkCommandOrControl(event) {
-      const wasPressed = this.isCommandOrControlPressed;
-      this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
-
-      if (wasPressed !== this.isCommandOrControlPressed) {
-        this.updateOverlayVisibility(event);
-      }
+      // const wasPressed = this.isCommandOrControlPressed;
+      // this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
+      //
+      // if (wasPressed !== this.isCommandOrControlPressed) {
+      //   this.updateOverlayVisibility(event);
+      // }
     },
 
     updateOverlayVisibility() {
