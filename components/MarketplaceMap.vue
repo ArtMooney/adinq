@@ -42,12 +42,7 @@
         />
       </LMap>
 
-      <div
-        :class="[
-          'pointer-events-auto absolute inset-0 bg-black/50',
-          hideOverlay && '!pointer-events-none hidden',
-        ]"
-      ></div>
+      <div v-if="!hideOverlay" class="absolute inset-0 bg-black/50"></div>
     </div>
   </ClientOnly>
 </template>
