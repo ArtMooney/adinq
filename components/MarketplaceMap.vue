@@ -108,7 +108,10 @@ export default {
     },
 
     handleMove(event) {
-      event.preventDefault();
+      if (event.touches.length >= 2) {
+        event.preventDefault();
+      }
+
       this.updateOverlayVisibility();
     },
 
