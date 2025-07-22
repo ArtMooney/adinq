@@ -18,6 +18,8 @@
 
         <button @click="getMarkers" class="primary">Sök</button>
         <button @click="resetSearch" class="primary">Rensa</button>
+        <div class="mt-4">{{ activeTouches }}</div>
+        <div class="mt-4">{{ isScrolling }}</div>
       </div>
 
       <LMap
@@ -87,15 +89,15 @@ export default {
 
   methods: {
     handleStart(event) {
-      // this.activeTouches = event.touches.length;
-      //
-      // this.updateOverlayVisibility();
+      this.activeTouches = event.touches.length;
+
+      this.updateOverlayVisibility();
     },
 
     handleEnd(event) {
-      // this.activeTouches = event.touches.length;
-      //
-      // this.updateOverlayVisibility();
+      this.activeTouches = event.touches.length;
+
+      this.updateOverlayVisibility();
     },
 
     handleMove(event) {
