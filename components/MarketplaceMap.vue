@@ -2,6 +2,8 @@
   <ClientOnly>
     <div
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
+      @touchstart="handleStart"
+      @touchend="handleEnd"
       tabindex="0"
     >
       <div
@@ -42,7 +44,7 @@
         />
       </LMap>
 
-      <div v-show="!isScrolling" class="absolute inset-0"></div>
+      <div v-show="!isScrolling" class="absolute inset-0 bg-black/30"></div>
     </div>
   </ClientOnly>
 </template>
@@ -108,6 +110,18 @@ export default {
         this.isScrolling = false;
         this.scrollTimeout = null;
       }, 0);
+    },
+
+    handleStart(event) {
+      this.activeTouches = event.touches.length;
+
+      this.updateOverlayVisibility();
+    },
+
+    handleEnd(event) {
+      this.activeTouches = event.touches.length;
+
+      this.updateOverlayVisibility();
     },
 
     checkCommandOrControl(event) {
