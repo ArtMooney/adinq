@@ -19,7 +19,7 @@
         <button @click="getMarkers" class="primary">Sök</button>
         <button @click="resetSearch" class="primary">Rensa</button>
         <div class="mt-4">{{ activeTouches }}</div>
-        <div class="mt-4">{{ isScrolling }}</div>
+        <div class="mt-4">{{ hideOverlay }}</div>
       </div>
 
       <LMap
@@ -41,6 +41,8 @@
           :lat-lng="[marker.lat, marker.lng]"
         />
       </LMap>
+
+      <div v-show="!hideOverlay" class="absolute inset-0 bg-black/50"></div>
     </div>
   </ClientOnly>
 </template>
@@ -58,7 +60,7 @@ export default {
       isCommandOrControlPressed: false,
       activeTouches: 0,
       scrollTimeout: null,
-      isScrolling: false,
+      hideOverlay: false,
     };
   },
 
@@ -116,8 +118,12 @@ export default {
     },
 
     updateOverlayVisibility() {
-      this.isScrolling =
-        this.isCommandOrControlPressed || this.activeTouches >= 2;
+      console.log(this.activeTouches >= 2);
+
+      this.hideOverlay = this.activeTouches >= 2;
+
+      // this.hideOverlay =
+      //   this.isCommandOrControlPressed || this.activeTouches >= 2;
     },
 
     async getMarkers() {
