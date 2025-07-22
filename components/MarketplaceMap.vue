@@ -2,9 +2,10 @@
   <ClientOnly>
     <div
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
-      @touchstart="handleTouchStart"
-      @touchend="handleTouchEnd"
-      @touchmove="handleTouchMove"
+      @touchstart="handleStart"
+      @touchend="handleEnd"
+      @touchcancel="handleEnd"
+      @touchmove="handleMove"
       tabindex="0"
     >
       <div
@@ -41,6 +42,10 @@
 
       <div
         v-if="isOverlayHidden"
+        @touchstart="handleStart"
+        @touchend="handleEnd"
+        @touchcancel="handleEnd"
+        @touchmove="handleMove"
         class="absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out"
       ></div>
 
@@ -105,24 +110,34 @@ export default {
       }
     },
 
-    handleTouchStart(event) {
+    handleStart(event) {
       this.activeTouches = event.touches.length;
+
+      console.log("START");
+
       this.isOverlayHidden = false;
 
       // this.updateOverlayVisibility();
     },
 
-    handleTouchEnd(event) {
+    handleEnd(event) {
       this.activeTouches = event.touches.length;
+
       this.isOverlayHidden = true;
+
+      console.log("END");
 
       // this.updateOverlayVisibility();
     },
 
-    handleTouchMove(event) {
-      if (this.isOverlayHidden && event.touches.length >= 2) {
-        event.preventDefault();
-      }
+    handleMove(event) {
+      console.log("MOVE");
+
+      this.isOverlayHidden = false;
+
+      // if (this.isOverlayHidden && event.touches.length >= 2) {
+      //   event.preventDefault();
+      // }
     },
 
     updateOverlayVisibility() {
@@ -151,7 +166,7 @@ export default {
           lng: parseFloat(marker.lng),
         }));
 
-        console.log(this.markers);
+        // console.log(this.markers);
 
         return this.markers;
       } catch (error) {
