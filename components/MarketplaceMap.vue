@@ -4,7 +4,6 @@
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
       @touchstart="handleStart"
       @touchend="handleEnd"
-      @touchmove="handleMove"
       tabindex="0"
     >
       <div
@@ -19,7 +18,7 @@
         <button @click="getMarkers" class="primary">Sök</button>
         <button @click="resetSearch" class="primary">Rensa</button>
         <div class="mt-4">{{ activeTouches }}</div>
-        <div class="mt-4">{{ hideOverlay }}</div>
+        <div class="mt-4">{{ showOverlay }}</div>
       </div>
 
       <LMap
@@ -28,6 +27,11 @@
         :zoom="zoom"
         :center="center"
         :use-global-leaflet="false"
+        :options="{
+          dragging: false,
+          touchZoom: false,
+          scrollWheelZoom: false,
+        }"
       >
         <LTileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -42,7 +46,7 @@
         />
       </LMap>
 
-      <div v-if="!hideOverlay" class="absolute inset-0 bg-black/50"></div>
+      <!--      <div v-if="showOverlay" class="absolute inset-0 bg-black/50"></div>-->
     </div>
   </ClientOnly>
 </template>
@@ -60,7 +64,7 @@ export default {
       isCommandOrControlPressed: false,
       activeTouches: 0,
       scrollTimeout: null,
-      hideOverlay: false,
+      showOverlay: false,
     };
   },
 
@@ -93,10 +97,6 @@ export default {
     handleStart(event) {
       this.activeTouches = event.touches.length;
 
-      // if (event.touches.length >= 2) {
-      //   event.preventDefault();
-      // }
-
       this.updateOverlayVisibility();
     },
 
@@ -104,12 +104,6 @@ export default {
       this.activeTouches = event.touches.length;
 
       this.updateOverlayVisibility();
-    },
-
-    handleMove(event) {
-      // if (this.isOverlayHidden && event.touches.length >= 2) {
-      //   event.preventDefault();
-      // }
     },
 
     checkCommandOrControl(event) {
@@ -122,10 +116,30 @@ export default {
     },
 
     updateOverlayVisibility() {
-      this.hideOverlay = this.activeTouches >= 2;
-
-      // this.hideOverlay =
+      this.showOverlay = this.activeTouches >= 2;
+      
+      // this.showOverlay =
       //   this.isCommandOrControlPressed || this.activeTouches >= 2;
+    },
+
+    enableMapDragging() {
+      if (!this.$refs.map?.leafletObject) return;
+
+      const map = this.$refs.map.leafletObject;
+
+      map.dragging.enable();
+      map.touchZoom.enable();
+      map.scrollWheelZoom.enable();
+    },
+
+    disableMapDragging() {
+      if (!this.$refs.map?.leafletObject) return;
+
+      const map = this.$refs.map.leafletObject;
+
+      map.dragging.disable();
+      map.touchZoom.disable();
+      map.scrollWheelZoom.disable();
     },
 
     async getMarkers() {
@@ -175,6 +189,16 @@ export default {
     resetSearch() {
       this.searchTerm = "";
       this.markers = [];
+    },
+  },
+
+  watch: {
+    showOverlay() {
+      if (this.showOverlay) {
+        this.enableMapDragging();
+      } else {
+        this.disableMapDragging();
+      }
     },
   },
 };
