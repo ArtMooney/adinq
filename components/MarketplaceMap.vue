@@ -47,14 +47,14 @@
         />
       </LMap>
 
-      <div
-        :class="[
-          'pointer-events-none absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',
-          showOverlay && 'opacity-0',
-        ]"
-      >
-        Använd ⌘ + scrolla för att zooma på kartan
-      </div>
+      <!--      <div-->
+      <!--        :class="[-->
+      <!--          'pointer-events-none absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',-->
+      <!--          showOverlay && 'opacity-0',-->
+      <!--        ]"-->
+      <!--      >-->
+      <!--        Använd ⌘ + scrolla för att zooma på kartan-->
+      <!--      </div>-->
     </div>
   </ClientOnly>
 </template>
@@ -123,17 +123,17 @@ export default {
     },
 
     checkCommandOrControl(event) {
-      const wasPressed = this.isCommandOrControlPressed;
-      this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
-
-      if (wasPressed !== this.isCommandOrControlPressed) {
-        this.updateOverlayVisibility(event);
-      }
+      // const wasPressed = this.isCommandOrControlPressed;
+      // this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
+      //
+      // if (wasPressed !== this.isCommandOrControlPressed) {
+      //   this.updateOverlayVisibility(event);
+      // }
     },
 
     updateOverlayVisibility() {
       this.showOverlay = this.activeTouches >= 2;
-      
+
       // this.showOverlay =
       //   this.isCommandOrControlPressed || this.activeTouches >= 2;
     },
