@@ -2,10 +2,6 @@
   <ClientOnly>
     <div
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
-      @touchstart="handleStart"
-      @touchend="handleEnd"
-      @touchcancel="handleEnd"
-      @touchmove="handleMove"
       tabindex="0"
     >
       <div
@@ -22,10 +18,16 @@
       </div>
 
       <LMap
+        ref="map"
         class="relative grow transform-gpu"
         :zoom="zoom"
         :center="center"
         :use-global-leaflet="false"
+        :options="{
+          dragging: !isScrolling,
+          touchZoom: !isScrolling,
+          scrollWheelZoom: !isScrolling,
+        }"
       >
         <LTileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -40,21 +42,7 @@
         />
       </LMap>
 
-      <div
-        v-if="isOverlayHidden"
-        @touchstart="handleStart"
-        @touchend="handleEnd"
-        @touchcancel="handleEnd"
-        @touchmove="handleMove"
-        class="absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out"
-      ></div>
-
-      <!--      <div-->
-      <!--        :class="[-->
-      <!--          'pointer-events-auto absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out',-->
-      <!--          isOverlayHidden && 'pointer-events-none opacity-0',-->
-      <!--        ]"-->
-      <!--      ></div>-->
+      <div v-show="!isScrolling" class="absolute inset-0"></div>
     </div>
   </ClientOnly>
 </template>
@@ -72,6 +60,8 @@ export default {
       isOverlayHidden: true,
       isCommandOrControlPressed: false,
       activeTouches: 0,
+      scrollTimeout: null,
+      isScrolling: false,
     };
   },
 
@@ -91,16 +81,35 @@ export default {
   mounted() {
     this.getMarkers();
 
-    // window.addEventListener("keydown", this.checkCommandOrControl);
-    // window.addEventListener("keyup", this.checkCommandOrControl);
+    window.addEventListener("scroll", this.handleScroll, { passive: true });
+    window.addEventListener("touchmove", this.handleScroll, { passive: true });
+    window.addEventListener("keydown", this.checkCommandOrControl);
+    window.addEventListener("keyup", this.checkCommandOrControl);
   },
 
   beforeUnmount() {
-    // window.removeEventListener("keydown", this.checkCommandOrControl);
-    // window.removeEventListener("keyup", this.checkCommandOrControl);
+    window.removeEventListener("scroll", this.handleScroll, { passive: true });
+    window.removeEventListener("touchmove", this.handleScroll, {
+      passive: true,
+    });
+    window.removeEventListener("keydown", this.checkCommandOrControl);
+    window.removeEventListener("keyup", this.checkCommandOrControl);
   },
 
   methods: {
+    handleScroll() {
+      if (!this.scrollTimeout) {
+        this.isScrolling = true;
+      }
+
+      clearTimeout(this.scrollTimeout);
+
+      this.scrollTimeout = setTimeout(() => {
+        this.isScrolling = false;
+        this.scrollTimeout = null;
+      }, 0);
+    },
+
     checkCommandOrControl(event) {
       const wasPressed = this.isCommandOrControlPressed;
       this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
@@ -110,38 +119,8 @@ export default {
       }
     },
 
-    handleStart(event) {
-      this.activeTouches = event.touches.length;
-
-      console.log("START");
-
-      this.isOverlayHidden = false;
-
-      // this.updateOverlayVisibility();
-    },
-
-    handleEnd(event) {
-      this.activeTouches = event.touches.length;
-
-      this.isOverlayHidden = true;
-
-      console.log("END");
-
-      // this.updateOverlayVisibility();
-    },
-
-    handleMove(event) {
-      console.log("MOVE");
-
-      this.isOverlayHidden = false;
-
-      // if (this.isOverlayHidden && event.touches.length >= 2) {
-      //   event.preventDefault();
-      // }
-    },
-
     updateOverlayVisibility() {
-      this.isOverlayHidden =
+      this.isScrolling =
         this.isCommandOrControlPressed || this.activeTouches >= 2;
     },
 
