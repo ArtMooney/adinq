@@ -4,6 +4,7 @@
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
       @touchstart="handleStart"
       @touchend="handleEnd"
+      @touchmove="handleMove"
       tabindex="0"
     >
       <div
@@ -106,6 +107,11 @@ export default {
       this.updateOverlayVisibility();
     },
 
+    handleMove(event) {
+      event.preventDefault();
+      this.updateOverlayVisibility();
+    },
+
     checkCommandOrControl(event) {
       // const wasPressed = this.isCommandOrControlPressed;
       // this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
@@ -117,7 +123,7 @@ export default {
 
     updateOverlayVisibility() {
       this.showOverlay = this.activeTouches >= 2;
-      
+
       // this.showOverlay =
       //   this.isCommandOrControlPressed || this.activeTouches >= 2;
     },
