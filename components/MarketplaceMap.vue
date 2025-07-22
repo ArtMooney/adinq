@@ -42,7 +42,7 @@
       <div
         :class="[
           'absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out',
-          isOverlayHidden && 'pointer-events-none opacity-0',
+          !isOverlayHidden && 'pointer-events-none opacity-0',
         ]"
       ></div>
     </div>
@@ -113,7 +113,7 @@ export default {
 
     handleTouchMove(event) {
       if (this.isOverlayHidden && event.touches.length >= 2) {
-        // event.preventDefault();
+        event.preventDefault();
       }
     },
 
@@ -144,6 +144,7 @@ export default {
         }));
 
         console.log(this.markers);
+
         return this.markers;
       } catch (error) {
         this.markers = [];
