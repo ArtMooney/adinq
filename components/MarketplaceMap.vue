@@ -113,7 +113,7 @@ export default {
 
     handleTouchMove(event) {
       if (this.isOverlayHidden && event.touches.length >= 2) {
-        event.preventDefault();
+        // event.preventDefault();
       }
     },
 
