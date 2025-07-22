@@ -39,6 +39,7 @@
         />
       </LMap>
 
+      <div v-if="preventDefault">PREVENT DEFAULT IS ON</div>
       <div
         :class="[
           'pointer-events-auto absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out',
@@ -62,6 +63,7 @@ export default {
       isOverlayHidden: false,
       isCommandOrControlPressed: false,
       activeTouches: 0,
+      preventDefault: false,
     };
   },
 
@@ -115,6 +117,7 @@ export default {
     handleTouchMove(event) {
       if (this.isOverlayHidden && event.touches.length >= 2) {
         event.preventDefault();
+        this.preventDefault = true;
       }
     },
 
