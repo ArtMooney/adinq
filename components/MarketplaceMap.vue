@@ -44,8 +44,8 @@
 
       <div
         :class="[
-          'pointer-events-none absolute inset-0 bg-black/50',
-          hideOverlay && 'hidden',
+          'pointer-events-auto absolute inset-0 bg-black/50',
+          hideOverlay && '!pointer-events-none hidden',
         ]"
       ></div>
     </div>
