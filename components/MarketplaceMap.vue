@@ -39,13 +39,17 @@
         />
       </LMap>
 
-      <div v-if="preventDefault">PREVENT DEFAULT IS ON</div>
       <div
-        :class="[
-          'pointer-events-auto absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out',
-          isOverlayHidden && 'pointer-events-none opacity-0',
-        ]"
+        v-if="isOverlayHidden"
+        class="absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out"
       ></div>
+
+      <!--      <div-->
+      <!--        :class="[-->
+      <!--          'pointer-events-auto absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out',-->
+      <!--          isOverlayHidden && 'pointer-events-none opacity-0',-->
+      <!--        ]"-->
+      <!--      ></div>-->
     </div>
   </ClientOnly>
 </template>
@@ -60,10 +64,9 @@ export default {
       markers: [],
       loading: false,
       zoom: 6,
-      isOverlayHidden: false,
+      isOverlayHidden: true,
       isCommandOrControlPressed: false,
       activeTouches: 0,
-      preventDefault: false,
     };
   },
 
@@ -83,13 +86,13 @@ export default {
   mounted() {
     this.getMarkers();
 
-    window.addEventListener("keydown", this.checkCommandOrControl);
-    window.addEventListener("keyup", this.checkCommandOrControl);
+    // window.addEventListener("keydown", this.checkCommandOrControl);
+    // window.addEventListener("keyup", this.checkCommandOrControl);
   },
 
   beforeUnmount() {
-    window.removeEventListener("keydown", this.checkCommandOrControl);
-    window.removeEventListener("keyup", this.checkCommandOrControl);
+    // window.removeEventListener("keydown", this.checkCommandOrControl);
+    // window.removeEventListener("keyup", this.checkCommandOrControl);
   },
 
   methods: {
@@ -104,20 +107,21 @@ export default {
 
     handleTouchStart(event) {
       this.activeTouches = event.touches.length;
+      this.isOverlayHidden = false;
 
-      this.updateOverlayVisibility();
+      // this.updateOverlayVisibility();
     },
 
     handleTouchEnd(event) {
       this.activeTouches = event.touches.length;
+      this.isOverlayHidden = true;
 
-      this.updateOverlayVisibility();
+      // this.updateOverlayVisibility();
     },
 
     handleTouchMove(event) {
       if (this.isOverlayHidden && event.touches.length >= 2) {
         event.preventDefault();
-        this.preventDefault = true;
       }
     },
 
