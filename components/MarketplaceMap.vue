@@ -47,7 +47,14 @@
         />
       </LMap>
 
-      <!--      <div v-if="showOverlay" class="absolute inset-0 bg-black/50"></div>-->
+      <div
+        :class="[
+          'pointer-events-none absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',
+          showOverlay && 'opacity-0',
+        ]"
+      >
+        Använd ⌘ + scrolla för att zooma på kartan
+      </div>
     </div>
   </ClientOnly>
 </template>
@@ -125,10 +132,10 @@ export default {
     },
 
     updateOverlayVisibility() {
-      // this.showOverlay = this.activeTouches >= 2;
-
-      this.showOverlay =
-        this.isCommandOrControlPressed || this.activeTouches >= 2;
+      this.showOverlay = this.activeTouches >= 2;
+      
+      // this.showOverlay =
+      //   this.isCommandOrControlPressed || this.activeTouches >= 2;
     },
 
     enableMapDragging() {
