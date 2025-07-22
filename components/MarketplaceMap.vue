@@ -116,19 +116,19 @@ export default {
     },
 
     checkCommandOrControl(event) {
-      // const wasPressed = this.isCommandOrControlPressed;
-      // this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
-      //
-      // if (wasPressed !== this.isCommandOrControlPressed) {
-      //   this.updateOverlayVisibility(event);
-      // }
+      const wasPressed = this.isCommandOrControlPressed;
+      this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
+
+      if (wasPressed !== this.isCommandOrControlPressed) {
+        this.updateOverlayVisibility(event);
+      }
     },
 
     updateOverlayVisibility() {
-      this.showOverlay = this.activeTouches >= 2;
+      // this.showOverlay = this.activeTouches >= 2;
 
-      // this.showOverlay =
-      //   this.isCommandOrControlPressed || this.activeTouches >= 2;
+      this.showOverlay =
+        this.isCommandOrControlPressed || this.activeTouches >= 2;
     },
 
     enableMapDragging() {
