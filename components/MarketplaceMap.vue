@@ -40,10 +40,9 @@
       </LMap>
 
       <div
-        v-show="!isOverlayHidden"
         :class="[
-          'absolute inset-0 bg-black/30',
-          isOverlayHidden && 'pointer-events-none',
+          'absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out',
+          isOverlayHidden && 'pointer-events-none opacity-0',
         ]"
       ></div>
     </div>
