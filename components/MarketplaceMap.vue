@@ -41,8 +41,8 @@
 
       <div
         :class="[
-          'absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out',
-          !isOverlayHidden && 'pointer-events-none opacity-0',
+          'pointer-events-auto absolute inset-0 bg-black/30 transition-opacity duration-300 ease-in-out',
+          isOverlayHidden && 'pointer-events-none opacity-0',
         ]"
       ></div>
     </div>
