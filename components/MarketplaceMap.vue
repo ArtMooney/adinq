@@ -42,7 +42,12 @@
         />
       </LMap>
 
-      <div v-show="!hideOverlay" class="absolute inset-0 bg-black/50"></div>
+      <div
+        :class="[
+          'absolute inset-0 bg-black/50',
+          hideOverlay && 'pointer-events-none hidden',
+        ]"
+      ></div>
     </div>
   </ClientOnly>
 </template>
