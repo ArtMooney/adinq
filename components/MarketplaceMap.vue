@@ -44,8 +44,8 @@
 
       <div
         :class="[
-          'absolute inset-0 bg-black/50',
-          hideOverlay && 'pointer-events-none hidden',
+          'pointer-events-none absolute inset-0 bg-black/50',
+          hideOverlay && 'hidden',
         ]"
       ></div>
     </div>
@@ -98,6 +98,10 @@ export default {
     handleStart(event) {
       this.activeTouches = event.touches.length;
 
+      // if (event.touches.length >= 2) {
+      //   event.preventDefault();
+      // }
+
       this.updateOverlayVisibility();
     },
 
@@ -123,8 +127,6 @@ export default {
     },
 
     updateOverlayVisibility() {
-      console.log(this.activeTouches >= 2);
-
       this.hideOverlay = this.activeTouches >= 2;
 
       // this.hideOverlay =
