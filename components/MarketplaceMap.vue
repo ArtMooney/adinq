@@ -108,7 +108,8 @@ export default {
 
     handleTouchEnd(event) {
       this.activeTouches = event.touches.length;
-      this.isOverlayHidden = false;
+
+      this.updateOverlayVisibility();
     },
 
     handleTouchMove(event) {
