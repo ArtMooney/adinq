@@ -75,13 +75,12 @@ export default {
       const avgLng =
         this.markers.reduce((sum, m) => sum + m.lng, 0) / this.markers.length;
 
-      console.log(avgLat, avgLng);
       return [avgLat, avgLng];
     },
   },
 
   mounted() {
-    console.log(this.getMarkers());
+    this.getMarkers();
 
     window.addEventListener("keydown", this.checkCommandOrControl);
     window.addEventListener("keyup", this.checkCommandOrControl);
