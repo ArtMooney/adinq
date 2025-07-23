@@ -44,8 +44,7 @@
 
       <div
         :class="[
-          'absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',
-          showOverlay && 'pointer-events-none opacity-0',
+          'pointer-events-none absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',
         ]"
       >
         Använd ⌘ + scrolla för att zooma på kartan
@@ -67,6 +66,7 @@ export default {
       isCommandOrControlPressed: false,
       activeTouches: 0,
       scrollTimeout: null,
+      isScrolling: false,
       showOverlay: false,
     };
   },
@@ -89,14 +89,26 @@ export default {
 
     window.addEventListener("keydown", this.checkCommandOrControl);
     window.addEventListener("keyup", this.checkCommandOrControl);
+    window.addEventListener("scroll", this.handleScroll);
   },
 
   beforeUnmount() {
     window.removeEventListener("keydown", this.checkCommandOrControl);
     window.removeEventListener("keyup", this.checkCommandOrControl);
+    window.removeEventListener("scroll", this.handleScroll);
   },
 
   methods: {
+    handleScroll() {
+      this.isScrolling = true;
+
+      clearTimeout(this.scrollTimeout);
+
+      this.scrollTimeout = setTimeout(() => {
+        this.isScrolling = false;
+      }, 150);
+    },
+
     handleStart(event) {
       this.activeTouches = event.touches.length;
 
