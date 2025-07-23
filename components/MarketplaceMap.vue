@@ -1,10 +1,10 @@
 <template>
   <ClientOnly>
     <div
-      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
       @touchstart="handleStart"
       @touchend="handleEnd"
       @touchmove="handleMove"
+      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
       tabindex="0"
     >
       <div
@@ -45,7 +45,7 @@
       <div
         :class="[
           'absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',
-          !showOverlay && 'pointer-events-none opacity-0',
+          showOverlay && 'pointer-events-none opacity-0',
         ]"
       >
         Använd ⌘ + scrolla för att zooma på kartan
@@ -137,26 +137,6 @@ export default {
       //   this.isCommandOrControlPressed || this.activeTouches >= 2;
     },
 
-    enableMapDragging() {
-      if (!this.$refs.map?.leafletObject) return;
-
-      const map = this.$refs.map.leafletObject;
-
-      map.dragging.enable();
-      map.touchZoom.enable();
-      map.scrollWheelZoom.enable();
-    },
-
-    disableMapDragging() {
-      if (!this.$refs.map?.leafletObject) return;
-
-      const map = this.$refs.map.leafletObject;
-
-      map.dragging.disable();
-      map.touchZoom.disable();
-      map.scrollWheelZoom.disable();
-    },
-
     async getMarkers() {
       this.loading = true;
 
@@ -206,15 +186,5 @@ export default {
       this.markers = [];
     },
   },
-
-  // watch: {
-  //   showOverlay() {
-  //     if (this.showOverlay) {
-  //       this.enableMapDragging();
-  //     } else {
-  //       this.disableMapDragging();
-  //     }
-  //   },
-  // },
 };
 </script>
