@@ -8,7 +8,7 @@
       tabindex="0"
     >
       <div
-        class="pointer-events-none absolute top-4 right-4 z-[1000] flex gap-4 bg-neutral-400 p-8"
+        class="pointer-events-none absolute top-4 right-4 z-600 flex gap-4 bg-neutral-400 p-8"
       >
         <input
           v-model="searchTerm"
@@ -22,9 +22,20 @@
         <div class="mt-4">{{ showOverlay }}</div>
       </div>
 
+      <div
+        :class="[
+          'absolute inset-0 z-500 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',
+          showOverlay
+            ? 'pointer-events-none opacity-0'
+            : 'pointer-events-auto opacity-100',
+        ]"
+      >
+        Använd ⌘ + scrolla för att zooma på kartan
+      </div>
+
       <LMap
         ref="map"
-        class="relative grow transform-gpu"
+        class="relative min-h-screen"
         :zoom="zoom"
         :center="center"
         :use-global-leaflet="false"
@@ -41,14 +52,6 @@
           :lat-lng="[marker.lat, marker.lng]"
         />
       </LMap>
-
-      <div
-        :class="[
-          'pointer-events-none absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',
-        ]"
-      >
-        Använd ⌘ + scrolla för att zooma på kartan
-      </div>
     </div>
   </ClientOnly>
 </template>
