@@ -13,12 +13,10 @@
 
         <button @click="getMarkers" class="primary">Sök</button>
         <button @click="resetSearch" class="primary">Rensa</button>
-        <div class="mt-4">{{ activeTouches }}</div>
-        <div class="mt-4">{{ showOverlay }}</div>
       </div>
 
       <LMap
-        ref="map"
+        v-if="gestureHandlingLoaded"
         class="relative min-h-screen"
         :zoom="zoom"
         :center="center"
@@ -51,11 +49,7 @@ export default {
       markers: [],
       loading: false,
       zoom: 6,
-      isCommandOrControlPressed: false,
-      activeTouches: 0,
-      scrollTimeout: null,
-      isScrolling: false,
-      showOverlay: false,
+      gestureHandlingLoaded: false,
     };
   },
 
@@ -72,85 +66,17 @@ export default {
     },
   },
 
-  async mounted() {
+  created() {
     if (process.client) {
-      try {
-        const L = (await import("leaflet")).default;
-        const { GestureHandling } = await import("leaflet-gesture-handling");
-        await import(
-          "leaflet-gesture-handling/dist/leaflet-gesture-handling.css"
-        );
-
-        L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
-      } catch (error) {
-        console.error("Failed to load gesture handling:", error);
-      }
+      this.loadGestureHandling();
     }
-
-    this.getMarkers();
-
-    window.addEventListener("keydown", this.checkCommandOrControl);
-    window.addEventListener("keyup", this.checkCommandOrControl);
-    // window.addEventListener("scroll", this.handleScroll);
   },
 
-  beforeUnmount() {
-    window.removeEventListener("keydown", this.checkCommandOrControl);
-    window.removeEventListener("keyup", this.checkCommandOrControl);
-    // window.removeEventListener("scroll", this.handleScroll);
+  async mounted() {
+    await this.getMarkers();
   },
 
   methods: {
-    handleScroll() {
-      this.isScrolling = true;
-
-      clearTimeout(this.scrollTimeout);
-
-      this.scrollTimeout = setTimeout(() => {
-        this.isScrolling = false;
-      }, 150);
-    },
-
-    handleStart(event) {
-      this.activeTouches = event.touches.length;
-
-      if (event.touches.length >= 2) {
-        event.preventDefault();
-      }
-
-      this.updateOverlayVisibility();
-    },
-
-    handleEnd(event) {
-      this.activeTouches = event.touches.length;
-
-      this.updateOverlayVisibility();
-    },
-
-    handleMove(event) {
-      if (event.touches.length >= 2) {
-        event.preventDefault();
-      }
-
-      this.updateOverlayVisibility();
-    },
-
-    checkCommandOrControl(event) {
-      // const wasPressed = this.isCommandOrControlPressed;
-      // this.isCommandOrControlPressed = event.metaKey || event.ctrlKey;
-      //
-      // if (wasPressed !== this.isCommandOrControlPressed) {
-      //   this.updateOverlayVisibility(event);
-      // }
-    },
-
-    updateOverlayVisibility() {
-      this.showOverlay = this.activeTouches >= 2;
-
-      // this.showOverlay =
-      //   this.isCommandOrControlPressed || this.activeTouches >= 2;
-    },
-
     async getMarkers() {
       this.loading = true;
 
@@ -198,6 +124,22 @@ export default {
     resetSearch() {
       this.searchTerm = "";
       this.markers = [];
+    },
+
+    async loadGestureHandling() {
+      try {
+        const L = (await import("leaflet")).default;
+        const { GestureHandling } = await import("leaflet-gesture-handling");
+        await import(
+          "leaflet-gesture-handling/dist/leaflet-gesture-handling.css"
+        );
+
+        L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
+      } catch (error) {
+        console.error("Failed to load gesture handling:", error);
+      } finally {
+        this.gestureHandlingLoaded = true;
+      }
     },
   },
 };
