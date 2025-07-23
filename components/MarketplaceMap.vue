@@ -4,9 +4,7 @@
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
       tabindex="0"
     >
-      <div
-        class="pointer-events-none absolute top-4 right-4 z-600 flex gap-4 bg-neutral-400 p-8"
-      >
+      <div class="absolute top-4 right-4 z-600 flex gap-4 bg-neutral-400 p-8">
         <input
           v-model="searchTerm"
           @keyup.enter="getMarkers"
@@ -24,7 +22,7 @@
         class="relative min-h-screen"
         :zoom="zoom"
         :center="center"
-        :use-global-leaflet="false"
+        :use-global-leaflet="true"
         :options="{ gestureHandling: true }"
       >
         <LTileLayer
@@ -74,7 +72,21 @@ export default {
     },
   },
 
-  mounted() {
+  async mounted() {
+    if (process.client) {
+      try {
+        const L = (await import("leaflet")).default;
+        const { GestureHandling } = await import("leaflet-gesture-handling");
+        await import(
+          "leaflet-gesture-handling/dist/leaflet-gesture-handling.css"
+        );
+
+        L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
+      } catch (error) {
+        console.error("Failed to load gesture handling:", error);
+      }
+    }
+
     this.getMarkers();
 
     window.addEventListener("keydown", this.checkCommandOrControl);
