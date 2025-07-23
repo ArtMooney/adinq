@@ -1,9 +1,6 @@
 <template>
   <ClientOnly>
     <div
-      @touchstart="handleStart"
-      @touchend="handleEnd"
-      @touchmove="handleMove"
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
       tabindex="0"
     >
@@ -22,23 +19,13 @@
         <div class="mt-4">{{ showOverlay }}</div>
       </div>
 
-      <div
-        :class="[
-          'absolute inset-0 z-500 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',
-          showOverlay
-            ? 'pointer-events-none opacity-0'
-            : 'pointer-events-auto opacity-100',
-        ]"
-      >
-        Använd ⌘ + scrolla för att zooma på kartan
-      </div>
-
       <LMap
         ref="map"
         class="relative min-h-screen"
         :zoom="zoom"
         :center="center"
         :use-global-leaflet="false"
+        :options="{ gestureHandling: true }"
       >
         <LTileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -92,13 +79,13 @@ export default {
 
     window.addEventListener("keydown", this.checkCommandOrControl);
     window.addEventListener("keyup", this.checkCommandOrControl);
-    window.addEventListener("scroll", this.handleScroll);
+    // window.addEventListener("scroll", this.handleScroll);
   },
 
   beforeUnmount() {
     window.removeEventListener("keydown", this.checkCommandOrControl);
     window.removeEventListener("keyup", this.checkCommandOrControl);
-    window.removeEventListener("scroll", this.handleScroll);
+    // window.removeEventListener("scroll", this.handleScroll);
   },
 
   methods: {
