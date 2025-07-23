@@ -8,7 +8,7 @@
       tabindex="0"
     >
       <div
-        class="absolute top-4 right-4 z-[1000] flex gap-4 bg-neutral-400 p-8"
+        class="pointer-events-none absolute top-4 right-4 z-[1000] flex gap-4 bg-neutral-400 p-8"
       >
         <input
           v-model="searchTerm"
@@ -103,12 +103,20 @@ export default {
 
   methods: {
     handleStart(event) {
+      this.enableMapDragging();
+
       this.activeTouches = event.touches.length;
+
+      if (event.touches.length >= 2) {
+        event.preventDefault();
+      }
 
       this.updateOverlayVisibility();
     },
 
     handleEnd(event) {
+      this.disableMapDragging();
+
       this.activeTouches = event.touches.length;
 
       this.updateOverlayVisibility();
@@ -208,14 +216,14 @@ export default {
     },
   },
 
-  watch: {
-    showOverlay() {
-      if (this.showOverlay) {
-        this.enableMapDragging();
-      } else {
-        this.disableMapDragging();
-      }
-    },
-  },
+  // watch: {
+  //   showOverlay() {
+  //     if (this.showOverlay) {
+  //       this.enableMapDragging();
+  //     } else {
+  //       this.disableMapDragging();
+  //     }
+  //   },
+  // },
 };
 </script>
