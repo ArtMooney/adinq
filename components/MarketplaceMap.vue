@@ -28,11 +28,6 @@
         :zoom="zoom"
         :center="center"
         :use-global-leaflet="false"
-        :options="{
-          dragging: false,
-          touchZoom: false,
-          scrollWheelZoom: false,
-        }"
       >
         <LTileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -47,14 +42,14 @@
         />
       </LMap>
 
-      <!--      <div-->
-      <!--        :class="[-->
-      <!--          'pointer-events-none absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',-->
-      <!--          showOverlay && 'opacity-0',-->
-      <!--        ]"-->
-      <!--      >-->
-      <!--        Använd ⌘ + scrolla för att zooma på kartan-->
-      <!--      </div>-->
+      <div
+        :class="[
+          'absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300 ease-in-out',
+          !showOverlay && 'pointer-events-none opacity-0',
+        ]"
+      >
+        Använd ⌘ + scrolla för att zooma på kartan
+      </div>
     </div>
   </ClientOnly>
 </template>
@@ -103,8 +98,6 @@ export default {
 
   methods: {
     handleStart(event) {
-      this.enableMapDragging();
-
       this.activeTouches = event.touches.length;
 
       if (event.touches.length >= 2) {
@@ -115,8 +108,6 @@ export default {
     },
 
     handleEnd(event) {
-      this.disableMapDragging();
-
       this.activeTouches = event.touches.length;
 
       this.updateOverlayVisibility();
