@@ -1,20 +1,9 @@
 <template>
   <ClientOnly>
     <div
-      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
+      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-row justify-between"
       tabindex="0"
     >
-      <div class="absolute top-4 right-4 z-600 flex gap-4 bg-neutral-400 p-8">
-        <input
-          v-model="searchTerm"
-          @keyup.enter="getMarkers"
-          placeholder="Sök ort (t.ex. Stockholm)"
-        />
-
-        <button @click="getMarkers" class="primary">Sök</button>
-        <button @click="resetSearch" class="primary">Rensa</button>
-      </div>
-
       <LMap
         v-if="gestureHandlingLoaded"
         class="relative min-h-screen"
@@ -35,6 +24,30 @@
           :lat-lng="[marker.lat, marker.lng]"
         />
       </LMap>
+
+      <div class="bg-neutral-500 p-4">
+        <input
+          v-model="searchCity"
+          type="search"
+          placeholder="Sök..."
+          class="mb-4 w-full placeholder-neutral-400"
+        />
+
+        <div
+          v-if="searchCity"
+          v-for="marker in markers"
+          :key="marker.title"
+          class="mx-2 text-sm leading-6 whitespace-nowrap text-neutral-300 hover:text-white"
+        >
+          {{ marker.title }}
+        </div>
+
+        <div
+          class="mx-2 text-sm leading-6 whitespace-nowrap text-neutral-300 hover:text-white"
+        >
+          Visar alla marknadsplatser
+        </div>
+      </div>
     </div>
   </ClientOnly>
 </template>
@@ -45,7 +58,7 @@ export default {
 
   data() {
     return {
-      searchTerm: "",
+      searchCity: "",
       markers: [],
       loading: false,
       zoom: 6,
@@ -66,13 +79,11 @@ export default {
     },
   },
 
-  created() {
+  async created() {
     if (process.client) {
       this.loadGestureHandling();
     }
-  },
 
-  async mounted() {
     await this.getMarkers();
   },
 
@@ -82,7 +93,7 @@ export default {
 
       try {
         const response = await $fetch(
-          `https://data.adinq.se/external/mp-data/?prjname=${encodeURIComponent(this.searchTerm)}`,
+          `https://data.adinq.se/external/mp-data/?prjname=`,
           { responseType: "text" },
         );
 
@@ -98,7 +109,7 @@ export default {
           lng: parseFloat(marker.lng),
         }));
 
-        // console.log(this.markers);
+        console.log(this.markers);
 
         return this.markers;
       } catch (error) {
@@ -119,11 +130,6 @@ export default {
         .replace(/Ã©/g, "é")
         .replace(/Ã¸/g, "ø")
         .replace(/Ã /g, "à");
-    },
-
-    resetSearch() {
-      this.searchTerm = "";
-      this.markers = [];
     },
 
     async loadGestureHandling() {
