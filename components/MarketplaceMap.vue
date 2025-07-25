@@ -82,12 +82,14 @@ export default {
 
   computed: {
     center() {
-      if (this.markers.length === 0) return [59.3293, 18.0686];
+      if (this.filteredMarkers.length === 0) return [59.3293, 18.0686];
 
       const avgLat =
-        this.markers.reduce((sum, m) => sum + m.lat, 0) / this.markers.length;
+        this.filteredMarkers.reduce((sum, m) => sum + m.lat, 0) /
+        this.filteredMarkers.length;
       const avgLng =
-        this.markers.reduce((sum, m) => sum + m.lng, 0) / this.markers.length;
+        this.filteredMarkers.reduce((sum, m) => sum + m.lng, 0) /
+        this.filteredMarkers.length;
 
       return [avgLat, avgLng];
     },
