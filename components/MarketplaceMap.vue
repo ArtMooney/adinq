@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <div
-      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-row justify-between"
+      class="flex-cols relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen"
       tabindex="0"
     >
       <LMap
@@ -25,27 +25,44 @@
         />
       </LMap>
 
-      <div class="bg-neutral-500 p-4">
-        <input
-          v-model="searchCity"
-          type="search"
-          placeholder="Sök..."
-          class="mb-4 w-full placeholder-neutral-400"
-        />
+      <div
+        class="group absolute top-4 right-4 z-600 min-h-52 grow cursor-pointer overflow-x-hidden overflow-y-auto rounded border border-white/25 shadow-xl"
+      >
+        <div
+          class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-60"
+        ></div>
 
         <div
-          v-if="searchCity"
-          v-for="marker in markers"
-          :key="marker.title"
-          class="mx-2 text-sm leading-6 whitespace-nowrap text-neutral-300 hover:text-white"
+          class="relative w-96 max-w-96 rounded bg-neutral-900 p-4 pb-12 sm:p-8"
         >
-          {{ marker.title }}
-        </div>
+          <Icon
+            name="la:search-location"
+            class="relative mb-3 h-10 max-h-10 min-h-10 w-10 max-w-10 min-w-10 text-zinc-500"
+            :style="{ color: '#e44b50' }"
+          ></Icon>
 
-        <div
-          class="mx-2 text-sm leading-6 whitespace-nowrap text-neutral-300 hover:text-white"
-        >
-          Visar alla marknadsplatser
+          <input
+            v-model="searchCity"
+            type="search"
+            placeholder="Sök..."
+            class="mb-6 w-full placeholder-neutral-400"
+          />
+
+          <div
+            v-if="searchCity"
+            v-for="marker in markers"
+            :key="marker.title"
+            class="w-full text-sm leading-6 whitespace-nowrap text-neutral-300 hover:text-white"
+          >
+            {{ marker.title }}
+          </div>
+
+          <div
+            v-if="!searchCity"
+            class="text-sm leading-6 whitespace-nowrap text-neutral-300 hover:text-white"
+          >
+            Visar alla marknadsplatser
+          </div>
         </div>
       </div>
     </div>
@@ -76,6 +93,12 @@ export default {
         this.markers.reduce((sum, m) => sum + m.lng, 0) / this.markers.length;
 
       return [avgLat, avgLng];
+    },
+
+    filteredMarkers() {
+      return this.markers.filter((marker) =>
+        marker.title.toLowerCase().includes(this.searchCity.toLowerCase()),
+      );
     },
   },
 
