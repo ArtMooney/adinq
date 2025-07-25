@@ -17,11 +17,11 @@
           attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
 
-        <LMarker :lat-lng="[59.3293, 18.0686]" />
         <LMarker
-          v-for="marker in markers"
+          v-for="marker in filteredMarkers"
           :key="marker.title"
           :lat-lng="[marker.lat, marker.lng]"
+          :icon="icons[marker.type] || icons.default"
         />
       </LMap>
 
@@ -76,6 +76,7 @@ export default {
       loading: false,
       zoom: 6,
       gestureHandlingLoaded: false,
+      icons: {},
     };
   },
 
@@ -108,6 +109,43 @@ export default {
     }
 
     await this.getMarkers();
+  },
+
+  async mounted() {
+    const L = (await import("leaflet")).default;
+
+    this.icons = {
+      hemkop: L.icon({
+        iconUrl: "/images/pins/hemkop.png",
+        iconSize: [28, 45],
+        iconAnchor: [14, 45],
+      }),
+      ica: L.icon({
+        iconUrl: "/images/pins/ica.png",
+        iconSize: [28, 45],
+        iconAnchor: [14, 45],
+      }),
+      coop: L.icon({
+        iconUrl: "/images/pins/coop.png",
+        iconSize: [28, 45],
+        iconAnchor: [14, 45],
+      }),
+      willys: L.icon({
+        iconUrl: "/images/pins/willys.png",
+        iconSize: [28, 45],
+        iconAnchor: [14, 45],
+      }),
+      storbild: L.icon({
+        iconUrl: "/images/pins/storbild.png",
+        iconSize: [38, 37],
+        iconAnchor: [19, 37],
+      }),
+      default: L.icon({
+        iconUrl: "/images/pins/green.png",
+        iconSize: [28, 45],
+        iconAnchor: [14, 45],
+      }),
+    };
   },
 
   methods: {
