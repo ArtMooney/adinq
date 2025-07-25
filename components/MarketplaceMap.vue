@@ -26,12 +26,8 @@
       </LMap>
 
       <div
-        class="group absolute top-4 right-4 z-600 min-h-52 grow cursor-pointer overflow-x-hidden overflow-y-auto rounded border border-white/25 shadow-xl"
+        class="absolute top-4 right-4 z-600 min-h-52 grow cursor-pointer overflow-x-hidden overflow-y-auto rounded border border-white/25 shadow-xl"
       >
-        <div
-          class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-60"
-        ></div>
-
         <div
           class="relative w-96 max-w-96 rounded bg-neutral-900 p-4 pb-12 sm:p-8"
         >
@@ -50,7 +46,7 @@
 
           <div
             v-if="searchCity"
-            v-for="marker in markers"
+            v-for="marker in filteredMarkers"
             :key="marker.title"
             class="w-full text-sm leading-6 whitespace-nowrap text-neutral-300 hover:text-white"
           >
@@ -59,7 +55,7 @@
 
           <div
             v-if="!searchCity"
-            class="text-sm leading-6 whitespace-nowrap text-neutral-300 hover:text-white"
+            class="text-sm leading-6 whitespace-nowrap text-neutral-300"
           >
             Visar alla marknadsplatser
           </div>
@@ -96,9 +92,13 @@ export default {
     },
 
     filteredMarkers() {
-      return this.markers.filter((marker) =>
-        marker.title.toLowerCase().includes(this.searchCity.toLowerCase()),
-      );
+      return [
+        ...this.markers.filter((marker) => {
+          return marker.title
+            .toLowerCase()
+            .includes(this.searchCity.toLowerCase());
+        }),
+      ].sort((a, b) => a.title.localeCompare(b.title));
     },
   },
 
