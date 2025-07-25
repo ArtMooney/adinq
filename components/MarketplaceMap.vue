@@ -9,6 +9,7 @@
         class="relative min-h-screen"
         :zoom="zoom"
         :center="center"
+        :bounds="bounds"
         :use-global-leaflet="true"
         :options="{ gestureHandling: true }"
       >
@@ -77,6 +78,7 @@ export default {
       zoom: 6,
       gestureHandlingLoaded: false,
       icons: {},
+      L: null,
     };
   },
 
@@ -92,6 +94,17 @@ export default {
         this.filteredMarkers.length;
 
       return [avgLat, avgLng];
+    },
+
+    bounds() {
+      if (!this.L || this.filteredMarkers.length === 0) return null;
+
+      const positions = this.filteredMarkers.map((marker) => [
+        marker.lat,
+        marker.lng,
+      ]);
+
+      return this.L.latLngBounds(positions);
     },
 
     filteredMarkers() {
@@ -114,7 +127,7 @@ export default {
   },
 
   async mounted() {
-    const L = (await import("leaflet")).default;
+    this.L = (await import("leaflet")).default;
 
     this.icons = {
       hemkop: L.icon({
@@ -172,7 +185,7 @@ export default {
           lng: parseFloat(marker.lng),
         }));
 
-        console.log(this.markers);
+        // console.log(this.markers);
 
         return this.markers;
       } catch (error) {
