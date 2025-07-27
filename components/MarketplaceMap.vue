@@ -8,8 +8,8 @@
         v-if="gestureHandlingLoaded"
         class="relative min-h-screen"
         :zoom="zoom"
-        :center="center"
-        :bounds="bounds"
+        :center="centerDebounced"
+        :bounds="boundsDebounced"
         :use-global-leaflet="true"
         :options="{ gestureHandling: true }"
       >
@@ -80,6 +80,8 @@ export default {
       gestureHandlingLoaded: false,
       icons: {},
       L: null,
+      centerDebounced: [],
+      boundsDebounced: null,
     };
   },
 
@@ -124,6 +126,8 @@ export default {
       this.loadGestureHandling();
     }
 
+    this.centerDebounced = this.center;
+    this.boundsDebounced = this.bounds;
     await this.getMarkers();
   },
 
@@ -223,6 +227,25 @@ export default {
       } finally {
         this.gestureHandlingLoaded = true;
       }
+    },
+
+    debounce() {
+      clearTimeout(this.debounceTimeout);
+      this.debounceTimeout = setTimeout(() => {
+        this.$nextTick(() => {
+          this.centerDebounced = this.center;
+          this.boundsDebounced = this.bounds;
+        });
+      }, 200);
+    },
+  },
+
+  watch: {
+    center() {
+      this.debounce();
+    },
+    bounds() {
+      this.debounce();
     },
   },
 };
