@@ -1,33 +1,10 @@
 <template>
   <ClientOnly>
     <div
-      class="flex-cols relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen"
-      tabindex="0"
+      class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
     >
-      <LMap
-        v-if="gestureHandlingLoaded"
-        class="relative min-h-screen"
-        :zoom="zoom"
-        :center="centerDebounced"
-        :bounds="boundsDebounced"
-        :use-global-leaflet="true"
-        :options="{ gestureHandling: true }"
-      >
-        <LTileLayer
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        />
-
-        <LMarker
-          v-for="marker in filteredMarkers"
-          :key="marker.title"
-          :lat-lng="[marker.lat, marker.lng]"
-          :icon="icons[marker.type] || icons.default"
-        />
-      </LMap>
-
       <div
-        class="absolute top-4 right-4 z-600 grow cursor-pointer overflow-x-hidden overflow-y-auto rounded border border-white/25 bg-neutral-900 shadow-xl"
+        class="top-4 right-4 z-600 grow cursor-pointer overflow-x-hidden overflow-y-auto rounded border border-white/25 bg-neutral-900 shadow-xl md:absolute"
       >
         <div
           class="relative flex max-h-[calc(100vh-3rem)] w-96 max-w-96 flex-col gap-4 rounded p-8"
@@ -63,6 +40,28 @@
           </div>
         </div>
       </div>
+
+      <LMap
+        v-if="gestureHandlingLoaded"
+        class="relative min-h-screen"
+        :zoom="zoom"
+        :center="centerDebounced"
+        :bounds="boundsDebounced"
+        :use-global-leaflet="true"
+        :options="{ gestureHandling: true }"
+      >
+        <LTileLayer
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        />
+
+        <LMarker
+          v-for="marker in filteredMarkers"
+          :key="marker.title"
+          :lat-lng="[marker.lat, marker.lng]"
+          :icon="icons[marker.type] || icons.default"
+        />
+      </LMap>
     </div>
   </ClientOnly>
 </template>
@@ -189,8 +188,6 @@ export default {
           lat: parseFloat(marker.lat),
           lng: parseFloat(marker.lng),
         }));
-
-        // console.log(this.markers);
 
         return this.markers;
       } catch (error) {
