@@ -84,7 +84,6 @@ export default defineNuxtConfig({
         },
       ];
     },
-    sitemap: "https://adinq.se/sitemap.xml",
   },
 
   site: {
