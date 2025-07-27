@@ -176,7 +176,7 @@ definePageMeta({
       </div>
 
       <div class="flex justify-start pt-8">
-        <button @click="sendForm" type="submit" class="white">
+        <button @click="sendForm" type="submit" class="white !text-black">
           {{ buttonText }}
         </button>
       </div>

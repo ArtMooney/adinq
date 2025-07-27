@@ -77,7 +77,9 @@ const galleryBigscreens = gallery.value.filter(
 
   <div id="info" class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
     <div class="grid items-center gap-8 lg:grid-cols-2">
-      <div class="mx-8 mb-8 flex flex-col gap-6 lg:mb-0">
+      <div
+        class="mx-2 mb-8 flex flex-col gap-6 text-center lg:mb-0 lg:text-left"
+      >
         <p>
           Stort eller litet företag? Vi har lösningar för det mesta. Nej vi kan
           inte trolla men vi har en bred kompetens och vi försöker alltid skapa
