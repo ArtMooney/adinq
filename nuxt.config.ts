@@ -88,11 +88,10 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: "https://adinq.se",
+    url: process.env.CF_PAGES_URL || "https://adinq.se",
   },
 
   sitemap: {
-    hostname: "https://adinq.pages.dev",
     gzip: true,
   },
 
