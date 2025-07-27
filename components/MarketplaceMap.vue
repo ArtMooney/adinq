@@ -27,14 +27,14 @@
       </LMap>
 
       <div
-        class="absolute top-4 right-4 z-600 min-h-52 grow cursor-pointer overflow-x-hidden overflow-y-auto rounded border border-white/25 shadow-xl"
+        class="absolute top-4 right-4 z-600 grow cursor-pointer overflow-x-hidden overflow-y-auto rounded border border-white/25 bg-neutral-900 shadow-xl"
       >
         <div
-          class="relative w-96 max-w-96 rounded bg-neutral-900 p-4 pb-12 sm:p-8"
+          class="relative flex max-h-[calc(100vh-3rem)] w-96 max-w-96 flex-col gap-4 rounded p-8"
         >
           <Icon
             name="la:search-location"
-            class="relative mb-3 h-10 max-h-10 min-h-10 w-10 max-w-10 min-w-10 text-zinc-500"
+            class="h-10 max-h-10 min-h-10 w-10 max-w-10 min-w-10 text-zinc-500"
             :style="{ color: '#e44b50' }"
           ></Icon>
 
@@ -42,16 +42,17 @@
             v-model="searchCity"
             type="search"
             placeholder="Sök..."
-            class="mb-6 w-full placeholder-neutral-400"
+            class="w-full placeholder-neutral-400"
           />
 
-          <div
-            v-if="searchCity"
-            v-for="marker in filteredMarkers"
-            :key="marker.title"
-            class="w-full text-sm leading-6 whitespace-nowrap text-neutral-300 hover:text-white"
-          >
-            {{ marker.title }}
+          <div v-if="searchCity" class="pb-12">
+            <div
+              v-for="marker in filteredMarkers"
+              :key="marker.title"
+              class="w-full text-sm leading-6 whitespace-nowrap text-neutral-300 hover:text-white"
+            >
+              {{ marker.title }}
+            </div>
           </div>
 
           <div
