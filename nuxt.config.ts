@@ -64,19 +64,26 @@ export default defineNuxtConfig({
   },
 
   robots: {
-    rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        sitemap: "https://adinq.se/sitemap.xml",
-      },
-      {
-        userAgent: "*",
-        disallow: "/",
-        comment: "Disallow all robots on adinq.pages.dev and its subdomains",
-      },
-    ],
-    disallowNonStandardSchemes: true,
+    rules: () => {
+      if (
+        process.env.NUXT_PUBLIC_SITE_URL?.includes("pages.dev") ||
+        process.env.CF_PAGES_URL?.includes("pages.dev")
+      ) {
+        return [
+          {
+            userAgent: "*",
+            disallow: "/",
+          },
+        ];
+      }
+
+      return [
+        {
+          userAgent: "*",
+          allow: "/",
+        },
+      ];
+    },
     sitemap: "https://adinq.se/sitemap.xml",
   },
 
@@ -85,7 +92,7 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    hostname: "https://adinq.se",
+    hostname: "https://adinq.pages.dev",
     gzip: true,
   },
 
