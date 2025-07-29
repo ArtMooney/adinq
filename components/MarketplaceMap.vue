@@ -4,10 +4,10 @@
       class="relative mx-[calc(-50vw+50%)] flex min-h-screen w-screen flex-col"
     >
       <div
-        class="top-4 right-4 z-600 grow cursor-pointer overflow-x-hidden overflow-y-auto rounded border border-white/25 bg-neutral-900 shadow-xl md:absolute"
+        class="top-4 right-4 z-600 grow cursor-pointer overflow-x-hidden overflow-y-auto border-white/25 bg-neutral-900 shadow-xl sm:absolute sm:rounded sm:border"
       >
         <div
-          class="relative flex max-h-[calc(100vh-3rem)] w-96 max-w-96 flex-col gap-4 rounded p-8"
+          class="relative flex max-h-[calc(100vh-3rem)] w-full flex-col gap-4 rounded p-8 sm:w-96 sm:max-w-96"
         >
           <Icon
             name="la:search-location"
@@ -22,7 +22,7 @@
             class="w-full placeholder-neutral-400"
           />
 
-          <div v-if="searchCity" class="pb-12">
+          <div v-if="searchCity" class="max-h-[20rem] sm:max-h-max">
             <div
               v-for="marker in filteredMarkers"
               :key="marker.title"
