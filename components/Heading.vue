@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative mx-[calc(-50vw+50%)] min-h-80 w-screen"
+    class="relative mx-[calc(-50vw+50%)] w-screen"
     :style="{
       height: `${windowHeight - navHeight}px`,
     }"
@@ -17,6 +17,7 @@ export default {
 
   data() {
     return {
+      windowWidth: 0,
       windowHeight: 0,
     };
   },
@@ -38,6 +39,11 @@ export default {
 
   methods: {
     handleResize() {
+      if (this.windowWidth === window.innerWidth) {
+        return;
+      }
+      
+      this.windowWidth = window.innerWidth;
       this.windowHeight = window.innerHeight;
     },
   },
