@@ -33,25 +33,7 @@
         <NavbarLink text="Kontakta oss" route="/kontakta-oss"></NavbarLink>
       </div>
 
-      <p
-        class="mt-12 flex flex-wrap justify-center text-xs leading-5 sm:mx-12 md:col-span-3 md:mt-20 md:justify-self-center"
-      >
-        <span class="opacity-40">ADinQ AB</span>
-        <span class="px-3 opacity-35">|</span>
-        <span class="opacity-40">Fabriksgatan 11, plan 3</span>
-        <span class="px-3 opacity-35">|</span>
-        <span class="opacity-40">503 38 Borås</span>
-        <span class="px-3 opacity-35">|</span>
-        <a class="underline opacity-40 hover:opacity-50" href="tel:033-7222400"
-          >Tel. 033-72 22 400</a
-        >
-        <span class="px-3 opacity-35">|</span>
-        <a
-          class="underline opacity-40 hover:opacity-50"
-          href="mailto:info@adinq.se"
-          >E-post: info@adinq.se</a
-        >
-      </p>
+      <CompanyInfo />
 
       <div
         class="col-span-1 my-4 h-px w-2/3 justify-self-center bg-gray-200/30 md:col-span-3 xl:w-1/3"
