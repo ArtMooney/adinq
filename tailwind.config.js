@@ -115,7 +115,7 @@ export default {
       });
     }),
   ],
-  safelist: [],
+  safelist: ["border-l", "border-white", "pl-3"],
   corePlugins: {
     preflight: true,
   },
