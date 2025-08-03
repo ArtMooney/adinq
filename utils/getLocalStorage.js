@@ -1,4 +1,6 @@
 export function getLocalStorage(name) {
+  if (!process.client) return null;
+
   const itemStr = localStorage.getItem(name);
 
   if (!itemStr) {
