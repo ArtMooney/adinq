@@ -14,34 +14,31 @@
     >
       <div>Login</div>
 
-      <CmsInput
+      <input
         v-model="loginEmail"
-        @update-value="loginEmail = $event"
         name="email"
         type="email"
-        placeholder-text="Enter email address"
-        :required="true"
+        placeholder="Enter email address"
+        required
         autocomplete="email"
       />
 
-      <CmsInput
+      <input
         v-model="loginPassword"
-        @update-value="loginPassword = $event"
         name="password"
         type="password"
-        placeholder-text="Enter password"
+        placeholder="Enter password"
         autocomplete="current-password"
       />
 
-      <CmsButton
+      <button
         @click="loginForm"
-        :text="buttonText"
-        link=""
-        hash=""
         type="submit"
         data-wait="Please wait..."
         class="mt-4 !bg-[#548b63] text-white hover:!bg-[#6bad7d]"
-      />
+      >
+        {{ buttonText }}
+      </button>
 
       <div
         @click="$emit('resetPasswordPanel')"
@@ -65,9 +62,11 @@ export default {
   name: "LoginPanel",
 
   data() {
+    const config = useRuntimeConfig();
+
     return {
-      userName: `${import.meta.env.VITE_USERNAME}`,
-      userPass: `${import.meta.env.VITE_USERPASS}`,
+      userName: config.public.userName,
+      userPass: config.public.userPass,
       loginEmail: "",
       loginPassword: "",
       showStatusMessage: false,
@@ -102,31 +101,38 @@ export default {
         const savedText = this.buttonText;
         this.buttonText = event.target.dataset.wait;
 
-        const res = await fetch("/login", {
-          method: "POST",
-          headers: {
-            Authorization: "Basic " + btoa(`${this.userName}:${this.userPass}`),
-          },
-          body: JSON.stringify({
-            email: this.loginEmail,
-            password: this.loginPassword,
-          }),
-        });
+        let res = null;
+        let error = null;
 
-        const jsonResponse = await res.json();
+        try {
+          res = await $fetch("/api/login", {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Basic " + btoa(this.userName + ":" + this.userPass),
+            },
+            body: JSON.stringify({
+              email: this.loginEmail,
+              password: this.loginPassword,
+            }),
+          });
+        } catch (err) {
+          error = err;
+          this.errorMessage = true;
+        }
 
-        if (jsonResponse === "ok") {
+        if (res.success) {
           this.showStatusMessage = false;
 
           this.setLocalStorage(
-            "borashv-cms",
+            "adinq-cms",
             { email: this.loginEmail, password: this.loginPassword },
             1000 * 60 * 43200,
           );
 
           this.buttonText = savedText;
           this.$emit("status", "ok");
-        } else if (jsonResponse === "error") {
+        } else if (error) {
           this.statusMessage =
             "Your email or password was not correct, please try again.";
           this.showStatusMessage = true;
