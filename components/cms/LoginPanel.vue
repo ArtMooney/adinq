@@ -101,11 +101,8 @@ export default {
         const savedText = this.buttonText;
         this.buttonText = event.target.dataset.wait;
 
-        let res = null;
-        let error = null;
-
         try {
-          res = await $fetch("/api/login", {
+          const res = await $fetch("/api/login", {
             method: "POST",
             headers: {
               Authorization:
@@ -116,12 +113,7 @@ export default {
               password: this.loginPassword,
             }),
           });
-        } catch (err) {
-          error = err;
-          this.errorMessage = true;
-        }
 
-        if (res.success) {
           this.showStatusMessage = false;
 
           this.setLocalStorage(
@@ -132,16 +124,9 @@ export default {
 
           this.buttonText = savedText;
           this.$emit("status", "ok");
-        } else if (error) {
+        } catch (err) {
           this.statusMessage =
-            "Your email or password was not correct, please try again.";
-          this.showStatusMessage = true;
-          this.buttonText = savedText;
-
-          this.clearErrorWhenClicked();
-        } else {
-          this.statusMessage =
-            "Something went wrong while logging in, please try again.";
+            err.statusMessage || "Something went wrong. Please try again.";
           this.showStatusMessage = true;
           this.buttonText = savedText;
 
