@@ -38,9 +38,9 @@ export default {
     };
   },
 
-  async created() {
-    if (getLocalStorage("borashv-cms")) {
-      this.login = getLocalStorage("borashv-cms");
+  async mounted() {
+    if (getLocalStorage("adinq-cms")) {
+      this.login = getLocalStorage("adinq-cms");
     }
 
     this.$emit("loadingFlag", true);

@@ -44,7 +44,7 @@ export default {
     };
   },
 
-  async created() {
+  async mounted() {
     this.loginHandler();
   },
 

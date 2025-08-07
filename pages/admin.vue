@@ -23,7 +23,7 @@ definePageMeta({
       @status="handleLoginStatus"
       class="mx-auto w-full max-w-screen-xl"
     />
-    <!--    <CmsMain v-if="panel === 'cms'" />-->
+    <CmsMain v-if="panel === 'cms'" />
   </div>
 </template>
 
@@ -33,11 +33,11 @@ export default {
 
   data() {
     return {
-      panel: "login",
+      panel: "",
     };
   },
 
-  created() {
+  mounted() {
     if (getLocalStorage("adinq-cms")) {
       this.panel = "cms";
     }

@@ -1,47 +1,40 @@
-<!--<script setup>-->
-<!--import Navbar from "./Navbar.vue";-->
-<!--import TableList from "./TableList.vue";-->
-<!--import AddRemoveItems from "./AddRemoveItems.vue";-->
-<!--import Items from "./Items.vue";-->
-<!--</script>-->
-
 <template>
   <Teleport to="body">
     <div
       class="absolute top-0 left-0 z-20 min-h-screen w-full min-w-[300px] bg-[#363636] px-4 pb-24"
     >
-      <Navbar />
+      <CmsNavbar />
       <CmsTableList
         @loading-flag="loadingFlag = $event"
         @schema="schema = $event"
       />
-      <CmsAddRemoveItems
-        :items="items"
-        :schema="schema"
-        :editing-new-item="editingNewItem"
-        @items="items = $event"
-        @show-item="showItem = $event"
-        @item-open="itemOpen = $event"
-        @editing-new-item="editingNewItem = $event"
-        @save-new-item-order="saveNewItemOrder = $event"
-      />
-      <CmsItems
-        :items="items"
-        :schema="schema"
-        :show-item="showItem"
-        :item-open="itemOpen"
-        :save-flag="saveFlag"
-        :loading-flag="loadingFlag"
-        :editing-new-item="editingNewItem"
-        :save-new-item-order="saveNewItemOrder"
-        @items="items = $event"
-        @show-item="showItem = $event"
-        @item-open="itemOpen = $event"
-        @save-flag="saveFlag = $event"
-        @loading-flag="loadingFlag = $event"
-        @editing-new-item="editingNewItem = $event"
-        @save-new-item-order="saveNewItemOrder = $event"
-      />
+      <!--      <CmsAddRemoveItems-->
+      <!--        :items="items"-->
+      <!--        :schema="schema"-->
+      <!--        :editing-new-item="editingNewItem"-->
+      <!--        @items="items = $event"-->
+      <!--        @show-item="showItem = $event"-->
+      <!--        @item-open="itemOpen = $event"-->
+      <!--        @editing-new-item="editingNewItem = $event"-->
+      <!--        @save-new-item-order="saveNewItemOrder = $event"-->
+      <!--      />-->
+      <!--      <CmsItems-->
+      <!--        :items="items"-->
+      <!--        :schema="schema"-->
+      <!--        :show-item="showItem"-->
+      <!--        :item-open="itemOpen"-->
+      <!--        :save-flag="saveFlag"-->
+      <!--        :loading-flag="loadingFlag"-->
+      <!--        :editing-new-item="editingNewItem"-->
+      <!--        :save-new-item-order="saveNewItemOrder"-->
+      <!--        @items="items = $event"-->
+      <!--        @show-item="showItem = $event"-->
+      <!--        @item-open="itemOpen = $event"-->
+      <!--        @save-flag="saveFlag = $event"-->
+      <!--        @loading-flag="loadingFlag = $event"-->
+      <!--        @editing-new-item="editingNewItem = $event"-->
+      <!--        @save-new-item-order="saveNewItemOrder = $event"-->
+      <!--      />-->
 
       <div
         v-if="saveFlag || loadingFlag"
