@@ -62,18 +62,18 @@ export default {
     },
 
     async listTables() {
-      const res = await fetch("/list-tables", {
-        method: "POST",
-        headers: {
-          Authorization: "Basic " + btoa(`${this.userName}:${this.userPass}`),
-        },
-        body: JSON.stringify({
-          email: this.login.email,
-          password: this.login.password,
-        }),
-      });
-
-      return await res.json();
+      try {
+        return await $fetch("/api/tables", {
+          method: "POST",
+          headers: {
+            Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
+          },
+          body: JSON.stringify({
+            email: this.login.email,
+            password: this.login.password,
+          }),
+        });
+      } catch (err) {}
     },
   },
 };
