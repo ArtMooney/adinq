@@ -1,8 +1,3 @@
-<!--<script setup>-->
-<!--import { listFields } from "~/utils/listFields.js";-->
-<!--import { getLocalStorageClient } from "~/utils/getLocalStorage.js";-->
-<!--</script>-->
-
 <template>
   <div
     class="mx-auto mt-8 flex max-w-screen-md flex-wrap justify-center gap-4 text-base"
@@ -46,7 +41,7 @@ export default {
     this.$emit("loadingFlag", true);
 
     this.tables = await this.listTables();
-    const schema = await listFields(this.tables[this.tableIndex].id);
+    const schema = await this.listFields(this.tables[this.tableIndex].id);
 
     this.$emit("schema", schema);
   },
@@ -56,7 +51,7 @@ export default {
       this.$emit("loadingFlag", true);
 
       this.tableIndex = index;
-      const schema = await listFields(this.tables[this.tableIndex].id);
+      const schema = await this.listFields(this.tables[this.tableIndex].id);
 
       this.$emit("schema", schema);
     },
@@ -71,6 +66,22 @@ export default {
           body: JSON.stringify({
             email: this.login.email,
             password: this.login.password,
+          }),
+        });
+      } catch (err) {}
+    },
+
+    async listFields(tableid) {
+      try {
+        return await $fetch("/api/fields", {
+          method: "POST",
+          headers: {
+            Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
+          },
+          body: JSON.stringify({
+            email: this.login.email,
+            password: this.login.password,
+            table_id: tableid,
           }),
         });
       } catch (err) {}
