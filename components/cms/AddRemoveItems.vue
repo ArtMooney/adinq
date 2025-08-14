@@ -1,7 +1,3 @@
-<!--<script setup>-->
-<!--import { listTable } from "~/utils/listTable.js";-->
-<!--</script>-->
-
 <template>
   <div
     class="mx-auto mt-8 flex max-w-screen-md flex-wrap justify-center gap-4 text-center text-base select-none"
@@ -81,7 +77,11 @@ export default {
   },
 
   data() {
+    const config = useRuntimeConfig();
+
     return {
+      userName: config.public.userName,
+      userPass: config.public.userPass,
       showDateList: false,
       order: false,
     };
@@ -145,13 +145,11 @@ export default {
       if (this.schema.length > 0) {
         this.order = !this.order;
 
-        let items = await listTable(
+        let items = await this.listRows(
           this.schema[0].table_id,
-          fieldName,
           this.order,
+          fieldName,
         );
-
-        items = items.results;
 
         // parse to-from date-fields to json array
         for (const item of items) {
@@ -167,6 +165,25 @@ export default {
         this.$emit("items", JSON.parse(JSON.stringify(items)));
         this.$emit("saveNewItemOrder", true);
         this.showDateList = false;
+      }
+    },
+
+    async listRows(tableid, orderBy, asc, search) {
+      try {
+        return await $fetch("/api/rows", {
+          method: "POST",
+          headers: {
+            Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
+          },
+          body: JSON.stringify({
+            table_id: tableid,
+            asc: asc,
+            order_by: orderBy,
+            search: search,
+          }),
+        });
+      } catch (err) {
+        console.log(err);
       }
     },
   },
