@@ -1,0 +1,33 @@
+import { checkLogin } from "~/server/utils/check-login.js";
+import { listRows } from "~/server/db/baserow/list-rows.js";
+
+export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
+  const headers = getHeaders(event);
+
+  if (!(await checkLogin(headers, config.userName, config.userPass))) {
+    throw createError({
+      statusCode: 401,
+      statusMessage: "Unauthorized",
+    });
+  }
+
+  const body = await readBody(event);
+
+  if (parseInt(body?.table_id) === config.baserowCmsUsersId) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: "Table ID is not allowed",
+    });
+  }
+
+  const rows = await listRows(
+    config.baserowToken,
+    body?.table_id,
+    body?.asc,
+    body?.order_by,
+    body?.search,
+  );
+
+  return rows.results;
+});
