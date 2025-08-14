@@ -1,11 +1,6 @@
 <script setup>
 import { Drag, DropList } from "vue-easy-dnd";
 import "vue-easy-dnd/dist/dnd.css";
-// import ItemTitle from "./ItemTitle.vue";
-// import LoadingSpinner from "../LoadingSpinner.vue";
-// import Input from "./Input.vue";
-// import { getLocalStorageClient } from "~/utils/getLocalStorage.js";
-// import { listTable } from "~/utils/listTable.js";
 </script>
 
 <template>
@@ -15,8 +10,8 @@ import "vue-easy-dnd/dist/dnd.css";
   >
     <CmsLoadingSpinner
       v-if="loadingFlag"
-      class="!h-12 !w-12 justify-self-center py-12"
-      color="#fac725"
+      size="large"
+      class="justify-self-center"
     />
 
     <div v-if="!items.length && !loadingFlag" class="py-16 text-center">
@@ -41,7 +36,7 @@ import "vue-easy-dnd/dist/dnd.css";
           :key="item"
           handle=".dragdrop-handle"
         >
-          <ItemTitle
+          <CmsItemTitle
             :item="item"
             :index="index"
             :show-item="showItem"
@@ -146,9 +141,11 @@ export default {
   },
 
   data() {
+    const config = useRuntimeConfig();
+
     return {
-      userName: `${import.meta.env.VITE_USERNAME}`,
-      userPass: `${import.meta.env.VITE_USERPASS}`,
+      userName: config.public.userName,
+      userPass: config.public.userPass,
       login: {},
       dragDelay: 0,
       dragVibration: 100,
@@ -160,12 +157,12 @@ export default {
     };
   },
 
-  async created() {
+  async mounted() {
     if (getLocalStorage("adinq-cms")) {
       this.login = getLocalStorage("adinq-cms");
     }
 
-    this.loadData();
+    await this.loadData();
   },
 
   methods: {
@@ -173,8 +170,7 @@ export default {
       this.$emit("loadingFlag", true);
 
       if (this.schema.length > 0) {
-        let items = await listTable(this.schema[0].table_id);
-        items = items.results;
+        let items = await this.listRows(this.schema[0].table_id);
 
         // parse to-from date-fields to json array
         for (const item of items) {
@@ -189,6 +185,25 @@ export default {
 
         this.$emit("items", JSON.parse(JSON.stringify(items)));
         this.$emit("loadingFlag", false);
+      }
+    },
+
+    async listRows(tableid, orderBy, asc, search) {
+      try {
+        return await $fetch("/api/rows", {
+          method: "POST",
+          headers: {
+            Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
+          },
+          body: JSON.stringify({
+            table_id: tableid,
+            asc: asc,
+            order_by: orderBy,
+            search: search,
+          }),
+        });
+      } catch (err) {
+        console.log(err);
       }
     },
 
