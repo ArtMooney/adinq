@@ -5,15 +5,18 @@
       @reset-password-panel="resetPasswordSwitch"
       @status="$emit('status', $event)"
     />
+
     <CmsResetPasswordPanel
       v-if="panel === 'resetPassword'"
       @login-switch="loginSwitch"
     />
+
     <CmsNewPasswordPanel
       v-if="panel === 'newPassword'"
       :validation="validationCode"
       @login-switch="loginSwitch"
     />
+
     <CmsLoadingSpinner v-if="panel === 'loading'" class="justify-self-center" />
 
     <div class="flex flex-col items-center px-4 md:px-8">
@@ -45,7 +48,7 @@ export default {
   },
 
   async mounted() {
-    this.loginHandler();
+    await this.loginHandler();
   },
 
   methods: {

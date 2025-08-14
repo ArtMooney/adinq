@@ -23,6 +23,7 @@ definePageMeta({
       @status="handleLoginStatus"
       class="mx-auto w-full max-w-screen-xl"
     />
+
     <CmsMain v-if="panel === 'cms'" />
   </div>
 </template>
@@ -33,7 +34,7 @@ export default {
 
   data() {
     return {
-      panel: "",
+      panel: "login",
     };
   },
 
