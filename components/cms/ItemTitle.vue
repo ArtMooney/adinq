@@ -1,10 +1,3 @@
-<!--<script setup>-->
-<!--import LoadingSpinner from "../LoadingSpinner.vue";-->
-<!--import { IonIcon } from "@ionic/vue";-->
-<!--import { grid, chevronDownOutline } from "ionicons/icons";-->
-<!--import ItemTitleButtons from "./ItemTitleButtons.vue";-->
-<!--</script>-->
-
 <template>
   <div class="col-span-2 flex justify-between">
     <div class="flex cursor-pointer items-center gap-4">

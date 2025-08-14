@@ -1,10 +1,3 @@
-<!--<script setup>-->
-<!--import Button from "../../elements/Button.vue";-->
-<!--import Input from "../../elements/Input.vue";-->
-<!--import { requiredFields } from "~/utils/requiredFields.js";-->
-<!--import { emailValidator } from "~/utils/emailValidator.js";-->
-<!--</script>-->
-
 <template>
   <div class="flex flex-col items-center px-4 py-12 md:px-8">
     <form
