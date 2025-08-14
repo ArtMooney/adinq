@@ -45,10 +45,7 @@ export default defineEventHandler(async (event) => {
   const user = users.results.find((user) => user.email === body.email);
 
   if (!user) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: "Email not found",
-    });
+    return "ok"; // User not found, return same as if ok is a security measure
   }
 
   user["reset-id"] = generateUserId(users);
