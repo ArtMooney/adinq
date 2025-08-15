@@ -74,7 +74,7 @@ const { data: testimonials, error } = await useFetch("/api/testimonials", {
         :message="testimonial?.text"
         :logo="testimonial?.logo[0]"
         :att="testimonial?.att"
-        :client="testimonial?.client"
+        :client="testimonial?.title"
         :link="testimonial?.link"
       ></TestimonialBlob>
     </div>
