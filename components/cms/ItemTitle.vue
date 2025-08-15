@@ -1,6 +1,6 @@
 <template>
-  <div class="col-span-2 flex justify-between">
-    <div class="flex cursor-pointer items-center gap-4">
+  <div class="col-span-2 flex cursor-pointer justify-between">
+    <div class="flex items-center gap-4">
       <Icon
         name="fa7-solid:grid-vertical"
         class="dragdrop-handle h-5 min-h-5 w-5 min-w-5 shrink-0 cursor-grabbing text-white"
