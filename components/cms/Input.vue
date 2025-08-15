@@ -15,13 +15,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
     @click.stop
     v-model="item[input.name]"
     :type="getInputType(input.type)"
-    :class="[
-      getInputType(input.type) === 'checkbox'
-        ? 'h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500'
-        : 'border border-white/25 bg-[#4a4644] p-2',
-      isEmailValid ? 'bg-pink-800/50' : '',
-      isPhoneNumberValid ? 'bg-pink-800/50' : '',
-    ]"
+    :class="[isEmailValid && 'error', isPhoneNumberValid && 'error']"
     :name="input.name"
     autocomplete="off"
   />
@@ -44,17 +38,15 @@ import "@vuepic/vue-datepicker/dist/main.css";
     v-if="input.name !== 'index' && getInputType(input.type) === 'textarea'"
     @click.stop
     v-model="item[input.name]"
-    class="h-40 border border-white/25 bg-[#4a4644] p-2"
     :name="input.name"
     autocomplete="off"
   ></textarea>
 
   <div
     v-if="input.name !== 'index' && getInputType(input.type) === 'file'"
-    class="flex items-center gap-1 justify-self-start"
+    class="my-1 flex items-center gap-1 justify-self-start"
   >
     <input
-      v-if="input.name !== 'index' && getInputType(input.type) === 'file'"
       @click.stop
       @change="handleFileInput($event, input.name, item)"
       :id="`${input.name}-${index}`"
@@ -69,7 +61,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
     <label
       @click.stop
       :for="`${input.name}-${index}`"
-      class="cursor-pointer text-sm text-white underline"
+      class="m-0 cursor-pointer p-0 text-sm underline"
     >
       {{ displayFilename(item[input.name], input.name) }}
     </label>
