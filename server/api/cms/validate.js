@@ -1,6 +1,6 @@
-import { checkLogin } from "../utils/check-login.js";
-import { listTables } from "../db/baserow/list-tables.js";
-import { listRows } from "../db/baserow/list-rows.js";
+import { checkLogin } from "~/server/utils/check-login.js";
+import { listTables } from "~/server/db/baserow/list-tables.js";
+import { listRows } from "~/server/db/baserow/list-rows.js";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -15,10 +15,10 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event);
 
-  if (!body?.email || !body?.password) {
+  if (!body?.validation) {
     throw createError({
       statusCode: 400,
-      statusMessage: "Missing email or password",
+      statusMessage: "Missing a validation code",
     });
   }
 
@@ -37,19 +37,14 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const user = await listRows(config.baserowToken, usersId, body.email);
+  const user = await listRows(config.baserowToken, usersId, body.validation);
 
-  if (user.results.length === 0 || user.results[0].password !== body.password) {
+  if (!user || user.results.length === 0) {
     throw createError({
-      statusCode: 401,
-      statusMessage: "Error logging in",
+      statusCode: 404,
+      statusMessage: "Invalid validation code",
     });
   }
 
-  return {
-    success: true,
-    data: {
-      message: "Logged in successfully",
-    },
-  };
+  return "ok";
 });

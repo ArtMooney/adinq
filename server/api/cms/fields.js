@@ -1,4 +1,4 @@
-import { checkLogin } from "../utils/check-login.js";
+import { checkLogin } from "~/server/utils/check-login.js";
 import { listFields } from "~/server/db/baserow/list-fields.js";
 
 export default defineEventHandler(async (event) => {

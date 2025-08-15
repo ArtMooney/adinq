@@ -1,10 +1,10 @@
-import { checkLogin } from "../utils/check-login.js";
-import { listTables } from "../db/baserow/list-tables.js";
-import { listRows } from "../db/baserow/list-rows.js";
-import { updateRow } from "../db/baserow/update-row.js";
-import { generateUserId } from "../utils/generate-user-id.js";
+import { checkLogin } from "~/server/utils/check-login.js";
+import { listTables } from "~/server/db/baserow/list-tables.js";
+import { listRows } from "~/server/db/baserow/list-rows.js";
+import { updateRow } from "~/server/db/baserow/update-row.js";
+import { generateUserId } from "~/server/utils/generate-user-id.js";
 import { sendEmail } from "~/server/utils/mailgun/send-email.js";
-import { messageEmailReset } from "../content/message-email-reset.js";
+import { messageEmailReset } from "~/server/content/message-email-reset.js";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();

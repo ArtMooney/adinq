@@ -1,4 +1,4 @@
-import { checkLogin } from "../utils/check-login.js";
+import { checkLogin } from "~/server/utils/check-login.js";
 import { listTables } from "~/server/db/baserow/list-tables.js";
 import { listRows } from "~/server/db/baserow/list-rows.js";
 
@@ -28,38 +28,28 @@ export default defineEventHandler(async (event) => {
     config.baserowDbId,
   );
 
-  const users = schema.find((table) => table.name === "CMS users")?.id;
+  const usersId = schema.find((table) => table.name === "CMS users")?.id;
 
-  if (!users) {
+  if (!usersId) {
     throw createError({
       statusCode: 500,
-      statusMessage: "No users id found",
+      statusMessage: "CMS users table not found",
     });
   }
 
-  const tables = schema.filter((table) => table.name !== "CMS users");
-
-  if (tables.length === 0) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: "No tables found",
-    });
-  }
-
-  const user = await listRows(
-    config.baserowToken,
-    users,
-    null,
-    null,
-    body.email,
-  );
+  const user = await listRows(config.baserowToken, usersId, body.email);
 
   if (user.results.length === 0 || user.results[0].password !== body.password) {
     throw createError({
       statusCode: 401,
-      statusMessage: "Login credentials are incorrect",
+      statusMessage: "Error logging in",
     });
   }
 
-  return tables;
+  return {
+    success: true,
+    data: {
+      message: "Logged in successfully",
+    },
+  };
 });

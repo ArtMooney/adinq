@@ -1,9 +1,9 @@
-import { checkLogin } from "../utils/check-login.js";
-import { listTables } from "../db/baserow/list-tables.js";
-import { listRows } from "../db/baserow/list-rows.js";
-import { updateRow } from "../db/baserow/update-row.js";
+import { checkLogin } from "~/server/utils/check-login.js";
+import { listTables } from "~/server/db/baserow/list-tables.js";
+import { listRows } from "~/server/db/baserow/list-rows.js";
+import { updateRow } from "~/server/db/baserow/update-row.js";
 import { sendEmail } from "~/server/utils/mailgun/send-email.js";
-import { messageNewPassword } from "../content/message-new-password.js";
+import { messageNewPassword } from "~/server/content/message-new-password.js";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
