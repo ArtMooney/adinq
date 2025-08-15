@@ -7,12 +7,11 @@
     >
       <div>Reset password</div>
 
-      <CmsInput
+      <input
         v-model="loginEmail"
-        @update-value="loginEmail = $event"
         name="email"
         type="email"
-        placeholder-text="Enter email address"
+        placeholder="Enter email address"
         autocomplete="email"
       />
 
@@ -79,20 +78,19 @@ export default {
         const savedText = this.buttonText;
         this.buttonText = event.target.dataset.wait;
 
-        const res = await fetch("/reset", {
-          method: "POST",
-          headers: {
-            Authorization: "Basic " + btoa(`${this.userName}:${this.userPass}`),
-          },
-          body: JSON.stringify({
-            email: this.loginEmail,
-            pageuri: window.location.href,
-          }),
-        });
+        try {
+          const res = await $fetch("/api/reset", {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Basic " + btoa(this.userName + ":" + this.userPass),
+            },
+            body: JSON.stringify({
+              email: this.loginEmail,
+              pageuri: window.location.href,
+            }),
+          });
 
-        const jsonResponse = await res.json();
-
-        if (jsonResponse === "ok") {
           this.statusMessage =
             "An email has been sent to your registered email address with a link to reset your password.";
           this.showStatusMessage = true;
@@ -101,16 +99,9 @@ export default {
           this.$emit("status", "ok");
           this.loginEmail = "";
           this.clearErrorWhenClicked();
-        } else if (jsonResponse === "error") {
+        } catch (err) {
           this.statusMessage =
-            "Your email does not exist in the system, please try again.";
-          this.showStatusMessage = true;
-          this.buttonText = savedText;
-
-          this.clearErrorWhenClicked();
-        } else {
-          this.statusMessage =
-            "Something went wrong while communicating with the server, please try again.";
+            err.statusMessage || "Something went wrong. Please try again.";
           this.showStatusMessage = true;
           this.buttonText = savedText;
 
