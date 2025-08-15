@@ -31,6 +31,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
     auto-apply=""
     :name="input.name"
     :range="isToFromType(input.name)"
+    class="[&_div]:!font-body [&_input]:!font-body [&_button]:!p-0 [&_div]:!text-xs [&_input]:!border-white/25 [&_input]:!bg-transparent [&_input]:!py-3 [&_input]:!text-sm [&_input]:!text-white"
   >
   </VueDatePicker>
 
@@ -225,26 +226,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.dp__menu {
-  background: #e6e6e6 !important;
-  font-size: 14px !important;
-}
-
-.dp__input {
-  background: #4a4644 !important;
-  font-size: 14px !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  border-radius: 0 !important;
-  color: white !important;
-}
-
-.dp__cell_inner {
-  font-size: 12px !important;
-}
-
-.dp__month_year_select {
-  font-size: 16px !important;
-}
-</style>
