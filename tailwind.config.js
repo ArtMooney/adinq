@@ -146,6 +146,27 @@ export default {
           "@apply min-h-28 rounded border border-white/25 px-4 py-3 placeholder:text-neutral-600 focus:border-white/50 focus:outline-none":
             {},
         },
+
+        "select, .select": {
+          "@apply w-full px-3.5 py-3 outline outline-white/25 rounded transition-all duration-200 ease-in-out":
+            {},
+          "-webkit-appearance": "none",
+          "-moz-appearance": "none",
+          "background-image":
+            "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='gray' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\") !important",
+          "background-position": "right 1rem center !important",
+          "background-repeat": "no-repeat",
+          "background-size": "1.4rem",
+          "&:hover": {
+            "@apply border-gray-400": {},
+          },
+          "&:disabled, &.disabled": {
+            "@apply bg-neutral-200 text-neutral-600 cursor-not-allowed": {},
+          },
+          "&.error, &:user-invalid": {
+            "@apply bg-rose-100 outline-rose-700 text-rose-700": {},
+          },
+        },
       });
     }),
   ],
