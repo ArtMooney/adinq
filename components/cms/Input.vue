@@ -1,8 +1,6 @@
 <script setup>
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
-// import { IonIcon } from "@ionic/vue";
-// import { closeCircleOutline } from "ionicons/icons";
 </script>
 
 <template>
@@ -53,7 +51,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
 
   <div
     v-if="input.name !== 'index' && getInputType(input.type) === 'file'"
-    class="flex gap-1 justify-self-start"
+    class="flex items-center gap-1 justify-self-start"
   >
     <input
       v-if="input.name !== 'index' && getInputType(input.type) === 'file'"
@@ -76,13 +74,13 @@ import "@vuepic/vue-datepicker/dist/main.css";
       {{ displayFilename(item[input.name], input.name) }}
     </label>
 
-    <!--    <ion-icon-->
-    <!--      @click.stop="-->
-    <!--        removeFile(item, index, `${input.name}-${index}`, input.name)-->
-    <!--      "-->
-    <!--      :icon="closeCircleOutline"-->
-    <!--      class="h-4 w-4 cursor-pointer px-0.5 text-red-600"-->
-    <!--    ></ion-icon>-->
+    <Icon
+      @click.stop="
+        removeFile(item, index, `${input.name}-${index}`, input.name)
+      "
+      name="ion:close-circle-outline"
+      class="h-4 min-h-4 w-4 min-w-4 cursor-pointer px-0.5 text-red-500"
+    ></Icon>
   </div>
 </template>
 
