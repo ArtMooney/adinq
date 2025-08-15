@@ -41,8 +41,8 @@ export default defineEventHandler(async (event) => {
 
   if (!user || user.results.length === 0) {
     throw createError({
-      statusCode: 500,
-      statusMessage: "Error validating user",
+      statusCode: 404,
+      statusMessage: "Invalid validation code",
     });
   }
 
