@@ -62,23 +62,21 @@ export default {
         if (varCheck[0] === "validation" && varCheck[1]) {
           this.panel = "loading";
 
-          const res = await fetch("/validate", {
-            method: "POST",
-            headers: {
-              Authorization:
-                "Basic " + btoa(`${this.userName}:${this.userPass}`),
-            },
-            body: JSON.stringify({
-              validation: varCheck[1],
-            }),
-          });
+          try {
+            const res = await $fetch("/api/validate", {
+              method: "POST",
+              headers: {
+                Authorization:
+                  "Basic " + btoa(this.userName + ":" + this.userPass),
+              },
+              body: JSON.stringify({
+                validation: varCheck[1],
+              }),
+            });
 
-          const jsonResponse = await res.json();
-
-          if (jsonResponse === "ok") {
             isPasswordSwitch = true;
             this.validationCode = varCheck[1];
-          } else {
+          } catch (err) {
             this.showStatusMessage = true;
             this.clearErrorWhenClicked();
           }
