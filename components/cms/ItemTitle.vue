@@ -1,16 +1,16 @@
 <template>
   <div class="col-span-2 flex justify-between">
     <div class="flex cursor-pointer items-center gap-4">
-      <!--      <ion-icon-->
-      <!--        :icon="grid"-->
-      <!--        class="dragdrop-handle h-6 w-6 shrink-0 cursor-grabbing text-white"-->
-      <!--      ></ion-icon>-->
+      <Icon
+        name="fa7-solid:grid-vertical"
+        class="dragdrop-handle h-5 min-h-5 w-5 min-w-5 shrink-0 cursor-grabbing text-white"
+      ></Icon>
 
       <div
         class="word-break-all font-gunplay pointer-events-none mr-4 hyphens-auto"
         lang="sv"
       >
-        {{ item.titel ? item.titel : item.name }}
+        {{ item.title ? item.title : item.name }}
       </div>
     </div>
 
@@ -29,12 +29,12 @@
       />
 
       <div class="flex items-center gap-2">
-        <!--        <ion-icon-->
-        <!--          v-if="!saveAllFlag && (index !== showItem || !saveFlag)"-->
-        <!--          :icon="chevronDownOutline"-->
-        <!--          class="h-6 w-6 text-white transition-transform duration-300 ease-in-out"-->
-        <!--          :class="[index === showItem && itemOpen ? 'rotate-180' : '']"-->
-        <!--        ></ion-icon>-->
+        <Icon
+          v-if="!saveAllFlag && (index !== showItem || !saveFlag)"
+          name="ion:chevron-down"
+          class="h-6 min-h-6 w-6 min-w-6 text-white transition-transform duration-300 ease-in-out"
+          :class="[index === showItem && itemOpen ? 'rotate-180' : '']"
+        ></Icon>
 
         <CmsLoadingSpinner
           v-if="(index === showItem && saveFlag) || saveAllFlag"
