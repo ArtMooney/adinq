@@ -10,6 +10,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
       getInputType(input.type) !== 'textarea' &&
       getInputType(input.type) !== 'file' &&
       getInputType(input.type) !== 'date' &&
+      getInputType(input.type) !== 'select' &&
       !isToFromType(input.name)
     "
     @click.stop
@@ -75,6 +76,16 @@ import "@vuepic/vue-datepicker/dist/main.css";
       class="h-4 min-h-4 w-4 min-w-4 cursor-pointer px-0.5 text-red-500"
     ></Icon>
   </div>
+
+  <select
+    v-if="input.name !== 'index' && getInputType(input.type) === 'select'"
+    :name="input.name"
+    v-model="item[input.name].value"
+  >
+    <option v-for="option in input.select_options" :value="option.value">
+      {{ option.value }}
+    </option>
+  </select>
 </template>
 
 <script>
@@ -142,6 +153,8 @@ export default {
         inputType = "checkbox";
       } else if (type === "file") {
         inputType = "file";
+      } else if (type === "single_select") {
+        inputType = "select";
       }
 
       return inputType;
