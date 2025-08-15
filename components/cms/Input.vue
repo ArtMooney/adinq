@@ -80,7 +80,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
   <select
     v-if="input.name !== 'index' && getInputType(input.type) === 'select'"
     :name="input.name"
-    v-model="item[input.name].value"
+    v-model="selectValue"
   >
     <option v-for="option in input.select_options" :value="option.value">
       {{ option.value }}
@@ -138,6 +138,17 @@ export default {
         !this.internationalPhoneReg.test(this.item[this.input.name]) &&
         this.item[this.input.name] !== ""
       );
+    },
+
+    selectValue: {
+      get() {
+        return this.item[this.input.name]?.value || "";
+      },
+      set(newValue) {
+        if (this.item[this.input.name]) {
+          this.item[this.input.name].value = newValue;
+        }
+      },
     },
   },
 
