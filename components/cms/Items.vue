@@ -266,42 +266,38 @@ export default {
           JSON.parse(JSON.stringify(this.items[index])),
         );
 
-        const res = await fetch(
-          !this.editingNewItem ? "/save-item" : "/add-item",
-          {
-            method: "POST",
-            headers: {
-              Authorization:
-                "Basic " + btoa(`${this.userName}:${this.userPass}`),
+        try {
+          const res = await $fetch(
+            !this.editingNewItem ? "/api/cms/save-item" : "/add-item",
+            {
+              method: "POST",
+              headers: {
+                Authorization:
+                  "Basic " + btoa(this.userName + ":" + this.userPass),
+              },
+              body: JSON.stringify({
+                email: this.login.email,
+                password: this.login.password,
+                item: item,
+                schema: this.schema,
+              }),
             },
-            body: JSON.stringify({
-              email: this.login.email,
-              password: this.login.password,
-              item: item,
-              schema: this.schema,
-            }),
-          },
-        );
+          );
 
-        const response = await res.json();
+          if (this.editingNewItem) {
+            const items = JSON.parse(JSON.stringify(this.items));
+            items[index] = res;
+            this.$emit("items", items);
+          }
 
-        if (response.error) {
-          console.log(response.error);
+          this.$emit("itemOpen", false);
           this.$emit("saveFlag", false);
-
-          return;
+          this.$emit("editingNewItem", false);
+          this.editingItem = false;
+        } catch (err) {
+          console.log(err);
+          this.$emit("saveFlag", false);
         }
-
-        if (this.editingNewItem) {
-          const items = JSON.parse(JSON.stringify(this.items));
-          items[index] = response;
-          this.$emit("items", items);
-        }
-
-        this.$emit("itemOpen", false);
-        this.$emit("saveFlag", false);
-        this.$emit("editingNewItem", false);
-        this.editingItem = false;
       }
     },
 
