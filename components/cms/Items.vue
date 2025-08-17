@@ -268,7 +268,7 @@ export default {
 
         try {
           const res = await $fetch(
-            !this.editingNewItem ? "/api/cms/save-item" : "/add-item",
+            !this.editingNewItem ? "/api/cms/save-item" : "/api/cms/add-item",
             {
               method: "POST",
               headers: {
