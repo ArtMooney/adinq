@@ -6,7 +6,6 @@
       :src="videoSrc"
       :poster="poster"
       class="aspect-video w-full rounded"
-      muted
       playsinline
       preload="none"
     ></video>
