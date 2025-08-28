@@ -37,7 +37,7 @@ definePageMeta({
           preload="auto"
           class="h-full w-full object-cover"
         >
-          <source src="../public/videos/slow-motion-crowd.mp4" />
+          <source src="/videos/slow-motion-crowd.mp4" />
         </video>
       </ClientOnly>
 

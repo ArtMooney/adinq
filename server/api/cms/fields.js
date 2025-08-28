@@ -1,5 +1,5 @@
-import { checkLogin } from "~/server/utils/check-login.js";
-import { listFields } from "~/server/db/baserow/list-fields.js";
+import { checkLogin } from "~~/server/utils/check-login.js";
+import { listFields } from "~~/server/db/baserow/list-fields.js";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();

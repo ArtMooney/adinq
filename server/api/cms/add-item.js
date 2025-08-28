@@ -1,6 +1,6 @@
-import { checkLogin } from "~/server/utils/check-login.js";
-import { createRow } from "~/server/db/baserow/create-row.js";
-import { uploadFile } from "~/server/db/baserow/upload-file.js";
+import { checkLogin } from "~~/server/utils/check-login.js";
+import { createRow } from "~~/server/db/baserow/create-row.js";
+import { uploadFile } from "~~/server/db/baserow/upload-file.js";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
