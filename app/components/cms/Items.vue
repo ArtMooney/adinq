@@ -231,32 +231,29 @@ export default {
         item = this.processDateFormats(item);
       }
 
-      const res = await fetch("/save-all-items", {
-        method: "POST",
-        headers: {
-          Authorization: "Basic " + btoa(`${this.userName}:${this.userPass}`),
-        },
-        body: JSON.stringify({
-          email: this.login.email,
-          password: this.login.password,
-          items: { items: items },
-          schema: this.schema,
-        }),
-      });
+      try {
+        const res = await $fetch("/api/cms/save-all-items", {
+          method: "POST",
+          headers: {
+            Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
+          },
+          body: JSON.stringify({
+            email: this.login.email,
+            password: this.login.password,
+            items: { items: items },
+            schema: this.schema,
+          }),
+        });
 
-      const response = await res.json();
-
-      if (response.error) {
-        console.log(response.error);
+        this.$emit("itemOpen", false);
         this.$emit("saveFlag", false);
         this.saveAllFlag = false;
+      } catch (err) {
+        console.log(err);
 
-        return;
+        this.$emit("saveFlag", false);
+        this.saveAllFlag = false;
       }
-
-      this.$emit("itemOpen", false);
-      this.$emit("saveFlag", false);
-      this.saveAllFlag = false;
     },
 
     async saveItem(index) {
