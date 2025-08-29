@@ -147,8 +147,8 @@ export default {
 
         let items = await this.listRows(
           this.schema[0].table_id,
-          this.order,
           fieldName,
+          this.order,
         );
 
         // parse to-from date-fields to json array
