@@ -229,6 +229,14 @@ export default {
       for (let [index, item] of items.entries()) {
         item.index = index.toString();
         item = this.processDateFormats(item);
+
+        for (const field of this.schema) {
+          if (field.type === "single_select" && item[field.name]) {
+            if (typeof item[field.name] === "object") {
+              item[field.name] = item[field.name].value || null;
+            }
+          }
+        }
       }
 
       try {
