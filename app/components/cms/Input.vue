@@ -145,7 +145,9 @@ export default {
         return this.item[this.input.name]?.value || "";
       },
       set(newValue) {
-        if (this.item[this.input.name]) {
+        if (!this.item[this.input.name]) {
+          this.item[this.input.name] = { value: newValue };
+        } else {
           this.item[this.input.name].value = newValue;
         }
       },
