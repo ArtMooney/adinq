@@ -336,34 +336,31 @@ export default {
     async deleteItem(index) {
       this.$emit("saveFlag", true);
 
-      const res = await fetch("/delete-item", {
-        method: "POST",
-        headers: {
-          Authorization: "Basic " + btoa(`${this.userName}:${this.userPass}`),
-        },
-        body: JSON.stringify({
-          email: this.login.email,
-          password: this.login.password,
-          table_id: this.schema.find((item) => item.table_id)?.table_id,
-          row_id: this.items[index].id,
-        }),
-      });
+      try {
+        const res = await $fetch("/api/cms/delete-item", {
+          method: "POST",
+          headers: {
+            Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
+          },
+          body: JSON.stringify({
+            email: this.login.email,
+            password: this.login.password,
+            table_id: this.schema.find((item) => item.table_id)?.table_id,
+            row_id: this.items[index].id,
+          }),
+        });
 
-      const response = await res.json();
-
-      if (response.error) {
-        console.log(response.error);
+        const items = JSON.parse(JSON.stringify(this.items));
+        items.splice(index, 1);
+        this.editingItem = false;
+        this.$emit("itemOpen", false);
+        this.$emit("items", JSON.parse(JSON.stringify(items)));
         this.$emit("saveFlag", false);
+      } catch (err) {
+        console.log(err);
 
-        return;
+        this.$emit("saveFlag", false);
       }
-
-      const items = JSON.parse(JSON.stringify(this.items));
-      items.splice(index, 1);
-      this.editingItem = false;
-      this.$emit("itemOpen", false);
-      this.$emit("items", JSON.parse(JSON.stringify(items)));
-      this.$emit("saveFlag", false);
     },
 
     processDateFormats(item) {
