@@ -119,6 +119,8 @@ export default {
           fields[field.name] = [];
         } else if (field.name.split("|")[1] === "to-from") {
           fields[field.name] = [];
+        } else if (field.type === "single_select") {
+          fields[field.name] = null;
         } else {
           fields[field.name] = "";
         }
