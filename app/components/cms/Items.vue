@@ -197,8 +197,8 @@ export default {
           },
           body: JSON.stringify({
             table_id: tableid,
-            asc: asc,
-            order_by: orderBy,
+            asc: true,
+            order_by: "index",
             search: search,
           }),
         });
