@@ -1,19 +1,23 @@
 export async function getToken(username, password) {
-  let headersList = {
-    Accept: "*/*",
-    "Content-Type": "application/json",
-  };
+  const url = `https://api.baserow.io/api/user/token-auth/`;
 
-  let bodyContent = JSON.stringify({
-    username: username,
-    password: password,
-  });
+  try {
+    return await $fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "*/*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
 
-  let response = await fetch("https://api.baserow.io/api/user/token-auth/", {
-    method: "POST",
-    body: bodyContent,
-    headers: headersList,
-  });
-
-  return await response.json();
+      retry: 3,
+      retryDelay: 1000,
+      retryStatusCodes: [408, 429, 500, 502, 503, 504],
+    });
+  } catch (error) {
+    throw new Error(`Network error: ${error.message}`);
+  }
 }
