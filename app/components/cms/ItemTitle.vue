@@ -10,7 +10,7 @@
         class="word-break-all font-gunplay pointer-events-none mr-4 hyphens-auto"
         lang="sv"
       >
-        {{ item.title ? item.title : item.name }}
+        {{ item?.name ? item?.name : item?.title }}
       </div>
     </div>
 
