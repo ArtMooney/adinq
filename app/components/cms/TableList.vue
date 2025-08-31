@@ -45,8 +45,6 @@ export default {
     this.tables = await this.listTables();
     const schema = await this.listFields(this.tables[this.tableIndex].id);
 
-    console.log("table list", schema);
-
     this.$emit("schema", schema);
   },
 
