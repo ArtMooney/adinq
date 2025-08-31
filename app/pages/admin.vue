@@ -19,12 +19,12 @@ definePageMeta({
 <template>
   <div class="flex h-full w-full grow items-center justify-center">
     <CmsLogin
-      v-if="panel === 'login'"
+      v-if="panel === 'login' && !hasLogin"
       @status="handleLoginStatus"
       class="mx-auto w-full max-w-screen-xl"
     />
 
-    <CmsMain v-if="panel === 'cms'" :login="login" />
+    <CmsMain v-if="panel === 'cms' && hasLogin" :login="login" />
   </div>
 </template>
 
@@ -37,6 +37,12 @@ export default {
       panel: "",
       login: {},
     };
+  },
+
+  computed: {
+    hasLogin() {
+      return Object.keys(this.login).length > 0;
+    },
   },
 
   mounted() {
