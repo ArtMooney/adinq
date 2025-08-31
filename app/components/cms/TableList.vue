@@ -43,10 +43,7 @@ export default {
     this.$emit("loadingFlag", true);
 
     this.tables = await this.listTables();
-    console.log("TABLES", this.tables);
-
     const schema = await this.listFields(this.tables[this.tableIndex].id);
-    console.log("SCHEMA", schema);
 
     this.$emit("schema", schema);
   },
@@ -62,7 +59,6 @@ export default {
     },
 
     async listTables() {
-      console.log("LIST TABLES", this.login);
       try {
         return await $fetch("/api/cms/tables", {
           method: "POST",
