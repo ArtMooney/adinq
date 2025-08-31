@@ -69,15 +69,6 @@ export default {
   },
 
   methods: {
-    setLocalStorage(name, value, ttl) {
-      const now = new Date();
-      const item = {
-        value: value,
-        expiry: now.getTime() + ttl,
-      };
-      localStorage.setItem(name, JSON.stringify(item));
-    },
-
     async loginForm(event) {
       if (!emailValidator(event.target.parentElement)) {
         this.statusMessage =
@@ -109,7 +100,7 @@ export default {
 
           this.showStatusMessage = false;
 
-          this.setLocalStorage(
+          setLocalStorage(
             "adinq-cms",
             { email: this.loginEmail, password: this.loginPassword },
             1000 * 60 * 43200,

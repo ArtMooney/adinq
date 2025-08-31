@@ -59,6 +59,10 @@ export default {
   ],
 
   props: {
+    login: {
+      type: Object,
+      required: true,
+    },
     items: {
       type: Array,
       required: false,
@@ -178,6 +182,8 @@ export default {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
           },
           body: JSON.stringify({
+            email: this.login.email,
+            password: this.login.password,
             table_id: tableid,
             asc: asc,
             order_by: orderBy,

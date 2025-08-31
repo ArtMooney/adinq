@@ -24,7 +24,7 @@ definePageMeta({
       class="mx-auto w-full max-w-screen-xl"
     />
 
-    <CmsMain v-if="panel === 'cms'" />
+    <CmsMain v-if="panel === 'cms'" :login="login" />
   </div>
 </template>
 
@@ -34,20 +34,30 @@ export default {
 
   data() {
     return {
-      panel: "login",
+      panel: "",
+      login: {},
     };
   },
 
   mounted() {
-    if (getLocalStorage("adinq-cms")) {
-      this.panel = "cms";
-    }
+    this.checkLogin();
   },
 
   methods: {
     handleLoginStatus(status) {
       if (status === "ok") {
+        this.checkLogin();
         this.panel = "cms";
+      } else {
+        this.login = {};
+        this.panel = "login";
+      }
+    },
+
+    checkLogin() {
+      if (getLocalStorage("adinq-cms")) {
+        this.panel = "cms";
+        this.login = getLocalStorage("adinq-cms");
       } else {
         this.panel = "login";
       }

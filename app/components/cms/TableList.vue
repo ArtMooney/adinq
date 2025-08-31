@@ -21,6 +21,13 @@
 export default {
   name: "TableList",
 
+  props: {
+    login: {
+      type: Object,
+      required: true,
+    },
+  },
+
   data() {
     const config = useRuntimeConfig();
 
@@ -28,16 +35,11 @@ export default {
       userName: config.public.userName,
       userPass: config.public.userPass,
       tableIndex: 0,
-      login: {},
       tables: [],
     };
   },
 
   async mounted() {
-    if (getLocalStorage("adinq-cms")) {
-      this.login = getLocalStorage("adinq-cms");
-    }
-
     this.$emit("loadingFlag", true);
 
     this.tables = await this.listTables();

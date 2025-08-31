@@ -1,10 +1,10 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
-import { listTables } from "~~/server/db/baserow/list-tables.js";
 import { listRows } from "~~/server/db/baserow/list-rows.js";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const headers = getHeaders(event);
+  const body = await readBody(event);
 
   if (!(await checkLogin(headers, config.userName, config.userPass))) {
     throw createError({
@@ -13,8 +13,6 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const body = await readBody(event);
-
   if (!body?.validation) {
     throw createError({
       statusCode: 400,
@@ -22,22 +20,11 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const schema = await listTables(
-    config.baserowUsername,
-    config.baserowPassword,
-    config.baserowDbId,
+  const user = await listRows(
+    config.baserowToken,
+    config.baserowCmsUsersId,
+    body.validation,
   );
-
-  const usersId = schema.find((table) => table.name === "CMS users")?.id;
-
-  if (!usersId) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: "CMS users table not found",
-    });
-  }
-
-  const user = await listRows(config.baserowToken, usersId, body.validation);
 
   if (!user || user.results.length === 0) {
     throw createError({

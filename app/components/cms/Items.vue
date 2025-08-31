@@ -100,6 +100,10 @@ export default {
   ],
 
   props: {
+    login: {
+      type: Object,
+      required: true,
+    },
     schema: {
       type: Array,
       required: false,
@@ -146,7 +150,6 @@ export default {
     return {
       userName: config.public.userName,
       userPass: config.public.userPass,
-      login: {},
       dragDelay: 0,
       dragVibration: 100,
       editingItem: false,
@@ -158,10 +161,6 @@ export default {
   },
 
   async mounted() {
-    if (getLocalStorage("adinq-cms")) {
-      this.login = getLocalStorage("adinq-cms");
-    }
-
     await this.loadData();
   },
 
@@ -196,6 +195,8 @@ export default {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
           },
           body: JSON.stringify({
+            email: this.login.email,
+            password: this.login.password,
             table_id: tableid,
             asc: true,
             order_by: "index",

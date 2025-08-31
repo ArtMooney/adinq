@@ -1,5 +1,4 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
-import { listTables } from "~~/server/db/baserow/list-tables.js";
 import { listRows } from "~~/server/db/baserow/list-rows.js";
 import { updateRow } from "~~/server/db/baserow/update-row.js";
 import { sendEmail } from "~~/server/utils/mailgun/send-email.js";
@@ -8,6 +7,7 @@ import { messageNewPassword } from "~~/server/content/message-new-password.js";
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const headers = getHeaders(event);
+  const body = await readBody(event);
 
   if (!(await checkLogin(headers, config.userName, config.userPass))) {
     throw createError({
@@ -16,8 +16,6 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const body = await readBody(event);
-
   if (!body.password || !body.validation) {
     throw createError({
       statusCode: 400,
@@ -25,24 +23,9 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const schema = await listTables(
-    config.baserowUsername,
-    config.baserowPassword,
-    config.baserowDbId,
-  );
-
-  const usersId = schema.find((table) => table.name === "CMS users")?.id;
-
-  if (!usersId) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: "CMS users table not found",
-    });
-  }
-
   const user = await listRows(
     config.baserowToken,
-    usersId,
+    config.baserowCmsUsersId,
     null,
     null,
     body.validation,
@@ -59,7 +42,7 @@ export default defineEventHandler(async (event) => {
   user.results[0]["reset-id"] = "";
   const savePassword = await updateRow(
     config.baserowToken,
-    usersId,
+    config.baserowCmsUsersId,
     user.results[0].id,
     user.results[0],
   );
