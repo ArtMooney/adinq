@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mx-auto mt-8 flex max-w-screen-md flex-wrap justify-center gap-4 text-center text-base select-none"
+    class="mx-auto my-12 flex max-w-screen-md flex-wrap justify-center gap-4 text-center text-base select-none"
   >
     <div>Add, edit or remove content below</div>
 

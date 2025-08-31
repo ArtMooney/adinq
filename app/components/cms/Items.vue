@@ -11,7 +11,7 @@ import "vue-easy-dnd/dist/dnd.css";
     <CmsLoadingSpinner
       v-if="loadingFlag"
       size="large"
-      class="justify-self-center"
+      class="mx-auto justify-self-center"
     />
 
     <div v-if="!items.length && !loadingFlag" class="py-16 text-center">

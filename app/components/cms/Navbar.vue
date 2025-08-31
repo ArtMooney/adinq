@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-between px-2 py-1 text-base">
+  <div class="flex items-center justify-between px-2 py-4 text-base">
     <Icon
       name="system-uicons:home-door"
       @click="backHomepage"
@@ -8,7 +8,7 @@
 
     <div class="flex flex-col items-center gap-2 text-center sm:flex-row">
       <h1 class="mb-0 text-2xl sm:text-4xl">{{ cmsName }}</h1>
-      <div class="text-xs">by FrameCore</div>
+      <div class="hidden text-xs sm:block">by FrameCore</div>
     </div>
 
     <div class="relative">
