@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
   );
 
   const tables = schema.filter(
-    (table) => table.id !== config.baserowCmsUsersId,
+    (table) => table.id !== parseInt(config.baserowCmsUsersId),
   );
 
   if (tables.length === 0) {
