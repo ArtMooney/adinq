@@ -169,7 +169,6 @@ export default {
       this.$emit("loadingFlag", true);
 
       if (this.schema.length > 0) {
-        console.log(this.schema);
         let items = await this.listRows(this.schema[0].table_id);
 
         // parse to-from date-fields to json array
