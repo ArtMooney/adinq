@@ -21,12 +21,12 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  if (parseInt(body?.table_id) === config.baserowCmsUsersId) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: "Table ID is not allowed",
-    });
-  }
+  // if (parseInt(body?.table_id) === config.baserowCmsUsersId) {
+  //   throw createError({
+  //     statusCode: 500,
+  //     statusMessage: "Table ID is not allowed",
+  //   });
+  // }
 
   const rows = await listRows(
     config.baserowToken,
