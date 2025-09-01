@@ -308,8 +308,6 @@ export default {
           this.$emit("saveFlag", false);
           this.$emit("editingNewItem", false);
           this.editingItem = false;
-
-          clearNuxtData();
         } catch (err) {
           console.log(err);
           this.$emit("saveFlag", false);
