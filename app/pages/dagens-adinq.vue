@@ -26,16 +26,16 @@ const { data: colleagues, error } = await useFetch("/api/team", {
   default: () => [],
 });
 
-const colleaguesManagement = colleagues.value.filter(
-  (colleague) => colleague.department.value === "management",
+const colleaguesManagement = colleagues?.value.filter(
+  (colleague) => colleague?.department?.value === "management",
 );
 
-const colleaguesSales = colleagues.value.filter(
-  (colleague) => colleague.department.value === "sales",
+const colleaguesSales = colleagues?.value.filter(
+  (colleague) => colleague?.department?.value === "sales",
 );
 
-const colleaguesProduction = colleagues.value.filter(
-  (colleague) => colleague.department.value === "production",
+const colleaguesProduction = colleagues?.value.filter(
+  (colleague) => colleague?.department?.value === "production",
 );
 </script>
 

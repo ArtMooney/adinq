@@ -18,18 +18,18 @@
               ...imageTransformStyle,
             }"
             role="img"
-            :aria-label="`bild på vår kollega ${colleague.name}`"
+            :aria-label="`bild på vår kollega ${colleague?.name}`"
           ></div>
         </div>
 
         <div
           class="my-3 flex h-full flex-col items-center justify-center gap-0.5 p-2 text-center text-sm"
         >
-          <p class="mb-1 font-bold">{{ colleague.name }}</p>
-          <p>{{ colleague.title }}</p>
+          <p class="mb-1 font-bold">{{ colleague?.name }}</p>
+          <p>{{ colleague?.title }}</p>
           <a
             v-if="colleague?.phone"
-            :href="`tel:${colleague.phone}`"
+            :href="`tel:${colleague?.phone}`"
             class="flex items-center gap-1"
           >
             <Icon
@@ -37,11 +37,11 @@
               class="h-4.5 min-h-4.5 w-4.5 min-w-4.5"
             ></Icon>
 
-            <span class="underline">{{ colleague.phone }}</span></a
+            <span class="underline">{{ colleague?.phone }}</span></a
           >
           <a
             v-if="colleague?.email"
-            :href="`mailto:${colleague.email}`"
+            :href="`mailto:${colleague?.email}`"
             class="flex items-center gap-1"
           >
             <Icon
@@ -49,7 +49,7 @@
               class="h-3 min-h-3 w-3 min-w-3"
             ></Icon>
 
-            <span class="underline">{{ colleague.email }}</span></a
+            <span class="underline">{{ colleague?.email }}</span></a
           >
         </div>
       </div>
