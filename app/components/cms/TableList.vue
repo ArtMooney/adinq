@@ -70,7 +70,12 @@ export default {
             password: this.login.password,
           }),
         });
-      } catch (err) {}
+      } catch (err) {
+        if (err.status === 401) {
+          deleteLocalStorage("adinq-cms");
+          location.reload();
+        }
+      }
     },
 
     async listFields(tableid) {
@@ -86,7 +91,12 @@ export default {
             table_id: tableid,
           }),
         });
-      } catch (err) {}
+      } catch (err) {
+        if (err.status === 401) {
+          deleteLocalStorage("adinq-cms");
+          location.reload();
+        }
+      }
     },
   },
 };
