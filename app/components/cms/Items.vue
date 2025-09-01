@@ -309,7 +309,7 @@ export default {
           this.$emit("editingNewItem", false);
           this.editingItem = false;
 
-          await clearNuxtData(["team-data"]);
+          await clearNuxtData();
         } catch (err) {
           console.log(err);
           this.$emit("saveFlag", false);
