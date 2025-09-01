@@ -23,6 +23,7 @@ const { data: colleagues, error } = await useFetch("/api/team", {
     Authorization:
       "Basic " + btoa(config.public.userName + ":" + config.public.userPass),
   },
+  key: "team-data",
   default: () => [],
 });
 
