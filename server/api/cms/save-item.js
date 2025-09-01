@@ -40,6 +40,16 @@ export default defineEventHandler(async (event) => {
     }
   }
 
+  await $fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${config.cfAccountId}/pages/projects/adinq/purge_cache`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${config.cfCacheToken}`,
+      },
+    },
+  );
+
   return await updateRow(
     config.baserowToken,
     body.schema.find((item) => item.table_id)?.table_id,

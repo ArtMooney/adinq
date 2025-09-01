@@ -31,6 +31,8 @@ export default defineNuxtConfig({
     baserowPassword: process.env.NUXT_BASEROW_PASSWORD,
     baserowDbId: process.env.NUXT_BASEROW_DB_ID,
     baserowCmsUsersId: process.env.NUXT_BASEROW_CMS_USERS_ID,
+    cfCacheToken: process.env.NUXT_CF_CACHE_TOKEN,
+    cfAccountId: process.env.NUXT_CF_ACCOUNT_ID,
 
     public: {
       userName: process.env.NUXT_PUBLIC_USERNAME,

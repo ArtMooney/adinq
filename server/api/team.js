@@ -15,7 +15,6 @@ export default defineEventHandler(async (event) => {
   try {
     const data = await listRows(config.baserowToken, "546565");
 
-    setHeader(event, "Cache-Control", "no-cache");
     return data.results;
   } catch (error) {
     throw createError({
