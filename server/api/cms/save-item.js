@@ -40,8 +40,6 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  await clearNuxtData(["team-data"]);
-
   return await updateRow(
     config.baserowToken,
     body.schema.find((item) => item.table_id)?.table_id,
