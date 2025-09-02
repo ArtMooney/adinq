@@ -2,18 +2,17 @@
   <div
     class="mx-auto mt-8 flex max-w-screen-md flex-wrap justify-center gap-4 text-base"
   >
-    <div v-for="(table, index) of tables">
-      <div
-        @click="changeTable(index)"
-        :class="[
-          tableIndex === index
-            ? 'cursor-pointer border-b-2 border-white hover:bg-gradient-to-r hover:from-[#ff6363] hover:via-[#b776e5] hover:to-white hover:bg-clip-text hover:text-transparent'
-            : 'cursor-pointer hover:bg-gradient-to-r hover:from-[#ff6363] hover:via-[#b776e5] hover:to-white hover:bg-clip-text hover:text-transparent',
-        ]"
-      >
-        {{ table.name }}
-      </div>
-    </div>
+    <label class="flex w-full flex-col gap-2">
+      <p class="font-semibold text-white/50 italic">
+        Choose content table to edit
+      </p>
+
+      <select v-model="tableIndex">
+        <option v-for="(table, index) of tables" :value="index">
+          {{ table.name }}
+        </option>
+      </select>
+    </label>
   </div>
 </template>
 
@@ -49,15 +48,6 @@ export default {
   },
 
   methods: {
-    async changeTable(index) {
-      this.$emit("loadingFlag", true);
-
-      this.tableIndex = index;
-      const schema = await this.listFields(this.tables[this.tableIndex].id);
-
-      this.$emit("schema", schema);
-    },
-
     async listTables() {
       try {
         return await $fetch("/api/cms/tables", {
@@ -97,6 +87,14 @@ export default {
           location.reload();
         }
       }
+    },
+  },
+
+  watch: {
+    async tableIndex() {
+      this.$emit("loadingFlag", true);
+      const schema = await this.listFields(this.tables[this.tableIndex].id);
+      this.$emit("schema", schema);
     },
   },
 };
