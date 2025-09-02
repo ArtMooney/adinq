@@ -1,9 +1,9 @@
 <template>
-  <div class="flex items-center justify-between px-2 py-4 text-base">
+  <div class="flex items-center justify-between px-2 py-8 text-base sm:py-4">
     <Icon
       name="system-uicons:home-door"
       @click="backHomepage"
-      class="h-7 min-h-7 w-7 min-w-7 shrink-0 cursor-pointer hover:text-white/75"
+      class="mb-1.5 h-7 min-h-7 w-7 min-w-7 shrink-0 cursor-pointer hover:text-white/75"
     ></Icon>
 
     <div class="flex flex-col items-center gap-2 text-center sm:flex-row">
@@ -15,7 +15,7 @@
       <Icon
         name="famicons:cog-sharp"
         @click="cmsSettingsMenu = !cmsSettingsMenu"
-        class="h-8 min-h-8 w-8 min-w-8 shrink-0 cursor-pointer hover:text-white/75"
+        class="h-7 min-h-7 w-7 min-w-7 shrink-0 cursor-pointer hover:text-white/75"
       ></Icon>
 
       <div
