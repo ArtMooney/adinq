@@ -51,22 +51,28 @@ import "vue-easy-dnd/dist/dnd.css";
           />
 
           <div
-            class="col-span-2 grid grid-cols-[0.15fr,1fr] gap-3 text-sm"
+            class="col-span-2 flex flex-col gap-3 text-sm"
             v-show="itemOpen && showItem === index"
             @click.stop
           >
-            <div class="col-span-2 my-4 h-px w-full bg-white/25"></div>
+            <div class="my-4 h-px w-full bg-white/25"></div>
 
-            <template v-for="(input, inputIndex) of schema">
-              <div v-if="input.name !== 'index'" class="whitespace-nowrap">
+            <label
+              v-for="(input, inputIndex) of schema"
+              class="flex flex-col gap-1"
+            >
+              <p class="font-semibold text-white/50 italic">
                 {{
-                  input.name.includes("|")
-                    ? input.name.split("|")[0]
-                    : input.name
+                  input.name !== "index"
+                    ? input.name.includes("|")
+                      ? input.name.split("|")[0]
+                      : input.name
+                    : null
                 }}
-              </div>
+              </p>
 
               <CmsInput
+                v-if="input.name !== 'index'"
                 :input="input"
                 :item="item"
                 :index="index"
@@ -75,7 +81,7 @@ import "vue-easy-dnd/dist/dnd.css";
                 @save-flag="$emit('saveFlag', $event)"
                 @input-error="handleInputError($event, inputIndex)"
               />
-            </template>
+            </label>
           </div>
         </drag>
       </template>
