@@ -1,34 +1,20 @@
-import { getToken } from "./get-token.js";
+export async function listFields(token, table_id) {
+  const url = `https://api.baserow.io/api/database/fields/table/${table_id}/`;
 
-export async function listFields(username, password, table_id) {
-  const token = await getToken(username, password);
+  try {
+    return await $fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "*/*",
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
 
-  const headersList = {
-    Accept: "*/*",
-    Authorization: "JWT " + token.token,
-  };
-
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    try {
-      let response = await fetch(
-        `https://api.baserow.io/api/database/fields/table/${table_id}/`,
-        {
-          method: "GET",
-          headers: headersList,
-        },
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      return await response.json();
-    } catch (error) {
-      if (attempt < 3) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-      } else {
-        return null;
-      }
-    }
+      retry: 3,
+      retryDelay: 1000,
+      retryStatusCodes: [408, 429, 500, 502, 503, 504],
+    });
+  } catch (error) {
+    throw new Error(`Network error: ${error.message}`);
   }
 }

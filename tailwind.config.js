@@ -103,14 +103,69 @@ export default {
           },
         },
 
+        "label, .label": {
+          "@apply block text-white mb-2": {},
+        },
+
         "input, .input": {
-          "@apply rounded text-sm border border-white/25 px-4 py-3 placeholder:text-neutral-600 focus:border-white/50 focus:outline-none":
+          "@apply rounded border border-white/25 px-4 py-3 placeholder:text-neutral-600 focus:border-white/50 focus:outline-none":
             {},
+          "&.error, &:user-invalid": {
+            "@apply !bg-rose-100 outline-rose-700 text-rose-700": {},
+          },
+        },
+
+        "input[type='checkbox'], .checkbox": {
+          "@apply w-5 h-5 max-w-5 max-h-5 outline-1 outline-black bg-white rounded cursor-pointer appearance-none box-border p-0 m-0":
+            {},
+          "&:focus": {
+            "@apply outline-1": {},
+          },
+          "&:checked": {
+            "background-image":
+              "url(\"data:image/svg+xml,%3csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M18.2222 6L20 7.71429L10.2222 18L4 12L5.77778 10.2857L10.2222 13.7143L18.2222 6Z' fill='black'/%3e%3c/svg%3e\")",
+            "background-size": "100% 100%",
+            "background-position": "center",
+            "background-repeat": "no-repeat",
+          },
+        },
+
+        "input[type='radio'], .radio": {
+          "@apply w-5 h-5 max-w-5 max-h-5 outline-1 outline-black bg-white rounded-full cursor-pointer appearance-none box-border p-0 m-0":
+            {},
+          "&:focus": {
+            "@apply outline-1": {},
+          },
+          "&:checked": {
+            "@apply bg-black": {},
+            "box-shadow": "inset 0 0 0 3px white",
+          },
         },
 
         "textarea, .textarea": {
-          "@apply min-h-28 rounded text-sm border border-white/25 px-4 py-3 placeholder:text-neutral-600 focus:border-white/50 focus:outline-none":
+          "@apply min-h-28 rounded border border-white/25 px-4 py-3 placeholder:text-neutral-600 focus:border-white/50 focus:outline-none":
             {},
+        },
+
+        "select, .select": {
+          "@apply w-full px-3.5 py-3 outline outline-white/25 rounded transition-all duration-200 ease-in-out":
+            {},
+          "-webkit-appearance": "none",
+          "-moz-appearance": "none",
+          "background-image":
+            "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='gray' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\") !important",
+          "background-position": "right 1rem center !important",
+          "background-repeat": "no-repeat",
+          "background-size": "1.4rem",
+          "&:hover": {
+            "@apply border-gray-400": {},
+          },
+          "&:disabled, &.disabled": {
+            "@apply bg-neutral-200 text-neutral-600 cursor-not-allowed": {},
+          },
+          "&.error, &:user-invalid": {
+            "@apply bg-rose-100 outline-rose-700 text-rose-700": {},
+          },
         },
       });
     }),
