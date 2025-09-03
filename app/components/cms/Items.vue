@@ -33,6 +33,7 @@ import "vue-easy-dnd/dist/dnd.css";
           class="mb-4 grid grid-cols-2 rounded bg-black/25 p-4 shadow-[3px_4px_12px_rgba(0,0,0,0.22)] hover:bg-[#242424]"
           v-show="!loadingFlag"
           :ref="`list-item-${index}`"
+          :id="`list-item-${index}`"
           :key="item"
           handle=".dragdrop-handle"
         >
@@ -88,7 +89,6 @@ import "vue-easy-dnd/dist/dnd.css";
       <template v-slot:feedback="{ data }"></template>
     </drop-list>
   </div>
-  <div id="items-list-bottom"></div>
 </template>
 
 <script>

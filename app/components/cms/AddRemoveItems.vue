@@ -143,7 +143,7 @@ export default {
       this.$emit("editingNewItem", true);
 
       this.$router.push({
-        hash: "#items-list-bottom",
+        hash: `#list-item-${items.length - 1}`,
       });
     },
 
