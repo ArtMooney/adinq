@@ -31,6 +31,7 @@
         <NavbarLink text="Varför oss" route="/varfor-oss"></NavbarLink>
         <NavbarLink text="Priser" route="/priser"></NavbarLink>
         <NavbarLink text="Kontakta oss" route="/kontakta-oss"></NavbarLink>
+        <NavbarLink text="Admin" route="/admin"></NavbarLink>
       </div>
 
       <CompanyInfo />
