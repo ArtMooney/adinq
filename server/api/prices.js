@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const data = await listRows(config.baserowToken, "598477");
+    const data = await listRows(config.baserowToken, "598477", true, "index");
 
     return data.results;
   } catch (error) {
