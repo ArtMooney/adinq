@@ -63,7 +63,7 @@ export default {
     },
 
     iconOrder() {
-      return Number(this.data.order);
+      return Number(this.data.index);
     },
   },
 };
