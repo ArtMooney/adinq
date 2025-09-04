@@ -11,16 +11,16 @@ useHead({
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "AdvertisingAgency",
-        name: "Adinq",
+        name: "ADinQ",
         image: "https://www.adinq.se/images/adinq-presentation-poster.webp",
         url: "https://www.adinq.se",
         telephone: "",
         email: "",
         address: {
           "@type": "PostalAddress",
-          streetAddress: "",
-          addressLocality: "",
-          postalCode: "",
+          streetAddress: "Fabriksgatan 11, plan 3",
+          addressLocality: "Borås",
+          postalCode: "503 38",
           addressCountry: "SE",
         },
         description:
