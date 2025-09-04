@@ -78,7 +78,7 @@ const { data: prices, error } = await useFetch("/api/prices", {
       class="relative mt-32 grid gap-8 px-4 py-8 sm:px-8 lg:grid-cols-2 xl:grid-cols-3"
     >
       <NuxtImg
-        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        src="background-bricks-flowers.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-15"
         sizes="1000px md:2000px"
@@ -110,7 +110,7 @@ const { data: prices, error } = await useFetch("/api/prices", {
       </h3>
 
       <NuxtImg
-        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        src="background-bricks-flowers.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-15"
         sizes="1000px md:2000px"

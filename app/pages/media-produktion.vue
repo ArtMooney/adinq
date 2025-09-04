@@ -39,7 +39,7 @@ const galleryBigscreens = gallery.value.filter(
   <Heading>
     <template #heading-content>
       <NuxtImg
-        src="raychan-NWyxR75AkFY-unsplash.jpg"
+        src="camera-at-ocean-shore.jpg"
         alt=""
         class="h-full w-full object-cover"
         sizes="1000px md:2000px"
@@ -125,7 +125,7 @@ const galleryBigscreens = gallery.value.filter(
 
     <div class="relative mt-32 grid gap-8 p-8">
       <NuxtImg
-        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        src="background-bricks-flowers.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-15"
         sizes="1000px md:2000px"

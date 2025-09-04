@@ -43,7 +43,7 @@ const colleaguesProduction = colleagues?.value.filter(
   <div class="relative px-4 pb-32 md:px-8">
     <div class="absolute inset-0 mx-[calc(-50vw+50%)] w-screen overflow-hidden">
       <NuxtImg
-        src="guillaume-le-louarn-uC21aXJ7yQs-unsplash.jpg"
+        src="sky-full-of-stars.jpg"
         sizes="1000px md:2000px"
         width="4000"
         height="6000"
@@ -89,7 +89,7 @@ const colleaguesProduction = colleagues?.value.filter(
       class="relative mt-32 transform-gpu rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] will-change-transform backface-hidden sm:px-12"
     >
       <NuxtImg
-        src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
+        src="underwater-light-streaks.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
@@ -116,7 +116,7 @@ const colleaguesProduction = colleagues?.value.filter(
       class="relative mt-32 transform-gpu rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] will-change-transform backface-hidden sm:px-12"
     >
       <NuxtImg
-        src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
+        src="underwater-light-streaks.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
@@ -143,7 +143,7 @@ const colleaguesProduction = colleagues?.value.filter(
       class="relative mt-32 transform-gpu rounded border border-white/25 px-4 py-32 backdrop-blur-[2px] will-change-transform backface-hidden sm:px-12"
     >
       <NuxtImg
-        src="jeremy-bishop-6Y1Cm5NJOJo-unsplash.jpg"
+        src="underwater-light-streaks.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"

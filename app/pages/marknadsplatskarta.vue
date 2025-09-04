@@ -20,7 +20,7 @@ definePageMeta({
   <Heading>
     <template #heading-content>
       <NuxtImg
-        src="geranimo-OomNPPv1Rpk-unsplash.jpg"
+        src="small-house-on-island.jpg"
         alt=""
         class="h-full w-full object-cover"
         sizes="1000px md:2000px"

@@ -20,7 +20,7 @@ definePageMeta({
   <Heading>
     <template #heading-content>
       <NuxtImg
-        src="tara-clark-Gk8LG7dsHWA-unsplash.jpg"
+        src="grocery-shopping.jpg"
         alt=""
         class="h-full w-full object-cover"
         sizes="1000px md:2000px"
@@ -57,7 +57,7 @@ definePageMeta({
   <div id="info" class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
     <div class="relative grid gap-8 p-4 sm:p-8">
       <NuxtImg
-        src="birmingham-museums-trust-BPWZ01FtySg-unsplash.jpg"
+        src="background-bricks-flowers.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-15"
         sizes="1000px md:2000px"

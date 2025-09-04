@@ -20,7 +20,7 @@ definePageMeta({
   <Heading>
     <template #heading-content>
       <NuxtImg
-        src="krakenimages-Y5bvRlcCx8k-unsplash.jpg"
+        src="hands-holding-each-others-arms.jpg"
         alt=""
         class="h-full w-full object-cover"
         sizes="1000px md:2000px"

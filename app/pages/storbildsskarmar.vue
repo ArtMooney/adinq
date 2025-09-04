@@ -20,7 +20,7 @@ definePageMeta({
   <Heading>
     <template #heading-content>
       <NuxtImg
-        src="personalgraphic-com-fseahNq6zic-unsplash.jpg"
+        src="billboard-at-bus-stop.jpg"
         alt=""
         class="h-full w-full object-cover"
         sizes="1000px md:2000px"
@@ -55,7 +55,7 @@ definePageMeta({
   <div id="info" class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
     <div class="relative grid items-center gap-8 p-4 sm:p-8 lg:grid-cols-3">
       <NuxtImg
-        src="angele-kamp--OQbUQce54k-unsplash.jpg"
+        src="background-bricks.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-10"
         sizes="1000px md:2000px"
@@ -73,7 +73,7 @@ definePageMeta({
       ></IconBlob>
 
       <NuxtImg
-        src="vertical-billboard-9083310.jpg"
+        src="billboard-on-business-street.jpg"
         alt=""
         sizes="1000px md:2000px"
         width="3968"
