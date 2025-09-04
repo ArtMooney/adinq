@@ -348,7 +348,7 @@ export default {
             email: this.login.email,
             password: this.login.password,
             table_id: this.schema.find((item) => item.table_id)?.table_id,
-            row_id: this.items[index].id,
+            row_id: this.localItems[index].id,
           }),
         });
 
