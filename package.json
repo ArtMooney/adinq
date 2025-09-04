@@ -22,7 +22,6 @@
         "tailwindcss": "^4.1.11",
         "vue": "latest",
         "vue-draggable-next": "^2.3.0",
-        "vue-easy-dnd": "^2.2.2",
         "vue-router": "latest"
     },
     "devDependencies": {
