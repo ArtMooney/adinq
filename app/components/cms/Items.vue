@@ -1,6 +1,5 @@
 <script setup>
-import { Drag, DropList } from "vue-easy-dnd";
-import "vue-easy-dnd/dist/dnd.css";
+import { VueDraggableNext } from "vue-draggable-next";
 </script>
 
 <template>
@@ -18,76 +17,71 @@ import "vue-easy-dnd/dist/dnd.css";
       No items found
     </div>
 
-    <drop-list
-      :items="items"
-      @reorder="
-        $event.apply(items);
-        saveAllItems();
-      "
+    <VueDraggableNext
+      v-model="localItems"
+      :delay="dragDelay"
+      :animation="200"
+      handle=".dragdrop-handle"
+      @end="saveAllItems"
     >
-      <template v-slot:item="{ item, index }">
-        <drag
-          :delay="dragDelay"
-          :vibration="dragVibration"
-          @click="handleClick($event, item, index)"
-          class="mb-4 grid grid-cols-2 rounded bg-black/25 p-4 shadow-[3px_4px_12px_rgba(0,0,0,0.22)] hover:bg-[#242424]"
-          v-show="!loadingFlag"
-          :ref="`list-item-${index}`"
-          :id="`list-item-${index}`"
-          :key="item"
-          handle=".dragdrop-handle"
+      <div
+        v-for="(item, index) of localItems"
+        @click="handleClick($event, item, index)"
+        class="mb-4 grid grid-cols-2 rounded bg-black/25 p-4 shadow-[3px_4px_12px_rgba(0,0,0,0.22)] hover:bg-[#242424]"
+        v-show="!loadingFlag"
+        :ref="`list-item-${index}`"
+        :id="`list-item-${index}`"
+        :key="item"
+      >
+        <CmsItemTitle
+          :item="item"
+          :index="index"
+          :show-item="showItem"
+          :item-open="itemOpen"
+          :save-flag="saveFlag"
+          :save-all-flag="saveAllFlag"
+          :editing-new-item="editingNewItem"
+          :input-error="inputError"
+          @save-item="saveItem($event)"
+          @cancel-item="cancelItem($event)"
+          @delete-item="deleteItem($event)"
+        />
+
+        <div
+          class="col-span-2 flex flex-col gap-3 text-sm"
+          v-show="itemOpen && showItem === index"
+          @click.stop
         >
-          <CmsItemTitle
-            :item="item"
-            :index="index"
-            :show-item="showItem"
-            :item-open="itemOpen"
-            :save-flag="saveFlag"
-            :save-all-flag="saveAllFlag"
-            :editing-new-item="editingNewItem"
-            :input-error="inputError"
-            @save-item="saveItem($event)"
-            @cancel-item="cancelItem($event)"
-            @delete-item="deleteItem($event)"
-          />
+          <div class="my-4 h-px w-full bg-white/25"></div>
 
-          <div
-            class="col-span-2 flex flex-col gap-3 text-sm"
-            v-show="itemOpen && showItem === index"
-            @click.stop
+          <label
+            v-for="(input, inputIndex) of schema"
+            class="flex flex-col gap-1"
           >
-            <div class="my-4 h-px w-full bg-white/25"></div>
+            <p class="font-semibold text-white/50 italic">
+              {{
+                input.name !== "index"
+                  ? input.name.includes("|")
+                    ? input.name.split("|")[0]
+                    : input.name
+                  : null
+              }}
+            </p>
 
-            <label
-              v-for="(input, inputIndex) of schema"
-              class="flex flex-col gap-1"
-            >
-              <p class="font-semibold text-white/50 italic">
-                {{
-                  input.name !== "index"
-                    ? input.name.includes("|")
-                      ? input.name.split("|")[0]
-                      : input.name
-                    : null
-                }}
-              </p>
-
-              <CmsInput
-                v-if="input.name !== 'index'"
-                :input="input"
-                :item="item"
-                :index="index"
-                :item-open="itemOpen"
-                @show-item="$emit('showItem', $event)"
-                @save-flag="$emit('saveFlag', $event)"
-                @input-error="handleInputError($event, inputIndex)"
-              />
-            </label>
-          </div>
-        </drag>
-      </template>
-      <template v-slot:feedback="{ data }"></template>
-    </drop-list>
+            <CmsInput
+              v-if="input.name !== 'index'"
+              :input="input"
+              :item="item"
+              :index="index"
+              :item-open="itemOpen"
+              @show-item="$emit('showItem', $event)"
+              @save-flag="$emit('saveFlag', $event)"
+              @input-error="handleInputError($event, inputIndex)"
+            />
+          </label>
+        </div>
+      </div>
+    </VueDraggableNext>
   </div>
 </template>
 
@@ -156,6 +150,7 @@ export default {
     return {
       userName: config.public.userName,
       userPass: config.public.userPass,
+      localItems: [],
       dragDelay: 0,
       dragVibration: 100,
       editingItem: false,
@@ -231,7 +226,7 @@ export default {
     async saveAllItems() {
       this.$emit("saveFlag", true);
       this.saveAllFlag = true;
-      const items = JSON.parse(JSON.stringify(this.items));
+      const items = JSON.parse(JSON.stringify(this.localItems));
 
       for (let [index, item] of items.entries()) {
         item.index = index.toString();
@@ -275,7 +270,7 @@ export default {
       if (index === this.showItem) {
         this.$emit("saveFlag", true);
         const item = this.processDateFormats(
-          JSON.parse(JSON.stringify(this.items[index])),
+          JSON.parse(JSON.stringify(this.localItems[index])),
         );
 
         for (const field of this.schema) {
@@ -305,7 +300,7 @@ export default {
           );
 
           if (this.editingNewItem) {
-            const items = JSON.parse(JSON.stringify(this.items));
+            const items = JSON.parse(JSON.stringify(this.localItems));
             items[index] = res;
             this.$emit("items", items);
           }
@@ -323,7 +318,7 @@ export default {
 
     cancelItem(index) {
       if (this.editingNewItem) {
-        const items = JSON.parse(JSON.stringify(this.items));
+        const items = JSON.parse(JSON.stringify(this.localItems));
         items.pop();
 
         this.$emit("items", JSON.parse(JSON.stringify(items)));
@@ -331,7 +326,7 @@ export default {
         this.$emit("editingNewItem", false);
         this.editingItem = false;
       } else if (index === this.showItem) {
-        const items = JSON.parse(JSON.stringify(this.items));
+        const items = JSON.parse(JSON.stringify(this.localItems));
         items[index] = this.itemCopy;
 
         this.$emit("itemOpen", false);
@@ -353,11 +348,11 @@ export default {
             email: this.login.email,
             password: this.login.password,
             table_id: this.schema.find((item) => item.table_id)?.table_id,
-            row_id: this.items[index].id,
+            row_id: this.localItems[index].id,
           }),
         });
 
-        const items = JSON.parse(JSON.stringify(this.items));
+        const items = JSON.parse(JSON.stringify(this.localItems));
         items.splice(index, 1);
         this.editingItem = false;
         this.$emit("itemOpen", false);
@@ -423,6 +418,8 @@ export default {
 
     items: {
       handler(newVal, oldVal) {
+        this.localItems = JSON.parse(JSON.stringify(newVal));
+
         if (!this.itemOpen) return;
 
         if (
@@ -434,6 +431,7 @@ export default {
           this.editingItem = true;
         }
       },
+      immediate: true,
       deep: true,
     },
 
