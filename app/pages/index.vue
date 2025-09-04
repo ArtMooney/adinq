@@ -1,14 +1,29 @@
 <script setup>
 useSeoMeta({
-  title: "",
-  description: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
+  title:
+    "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
+  description:
+    "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande - vi har lösningen för er digitala marknadsföring.",
+  ogTitle:
+    "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
+  ogDescription:
+    "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande - vi har lösningen för er digitala marknadsföring.",
+  ogImage: "https://www.adinq.se/images/adinq-presentation-poster.webp",
+  ogUrl: "https://www.adinq.se/",
+  ogType: "website",
+  ogSiteName: "Adinq",
+  ogLocale: "sv_SE",
+  twitterCard: "summary_large_image",
+  twitterTitle:
+    "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
+  twitterDescription:
+    "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande.",
+  twitterImage: "https://www.adinq.se/images/adinq-presentation-poster.webp",
+  keywords:
+    "DOOH, Digital Out of Home, digital reklam, utomhusreklam, digital marknadsföring, Adinq, digital skärm, reklam Sverige",
+  robots: "index, follow",
+  author: "Adinq",
+  language: "sv-SE",
 });
 
 definePageMeta({
