@@ -1,7 +1,8 @@
 <script setup>
 useSeoMeta({
-  title: "",
+  title: "Access",
   description: "",
+  robots: "noindex, nofollow",
   ogTitle: "",
   ogDescription: "",
   ogImage: "",

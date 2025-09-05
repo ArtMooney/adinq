@@ -1,14 +1,17 @@
 <script setup>
 useSeoMeta({
-  title: "",
-  description: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
+  title: "Reklamfilm & Media Produktion för storbildsskärmar | Adinq",
+  description:
+    "Vi producerar reklamfilmer och slides för storbildsskärmar och DOOH. Allt under samma tak - från idé till färdig film. Perfekt för butiks-TV och sociala medier.",
+  ogTitle: "Reklamfilm & Media Produktion för storbildsskärmar",
+  ogDescription:
+    "Vi producerar reklamfilmer och slides för storbildsskärmar och DOOH. Allt under samma tak för ditt företag.",
+  ogImage: "https://www.adinq.se/camera-at-ocean-shore.jpg",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Reklamfilm & Media Produktion för storbildsskärmar",
+  twitterDescription:
+    "Vi producerar reklamfilmer och slides för storbildsskärmar och DOOH.",
+  twitterImage: "https://www.adinq.se/camera-at-ocean-shore.jpg",
 });
 
 definePageMeta({

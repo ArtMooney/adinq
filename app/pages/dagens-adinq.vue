@@ -1,14 +1,17 @@
 <script setup>
 useSeoMeta({
-  title: "",
-  description: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
+  title: "Om Adinq - Vårt team | Digital marknadsföring och DOOH",
+  description:
+    "Träffa teamet bakom Adinq - experter inom digital marknadsföring och DOOH media. Företagsledning, försäljning, produktion och marknadsföring som hjälper er nå ut digitalt.",
+  ogTitle: "Om Adinq - Vårt team",
+  ogDescription:
+    "Träffa teamet bakom Adinq som hjälper företag nå ut digitalt lokalt, regionalt och rikstäckande genom DOOH media.",
+  ogImage: "https://www.adinq.se/sky-full-of-stars.jpg",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Om Adinq - Vårt team",
+  twitterDescription:
+    "Träffa teamet bakom Adinq - experter inom digital marknadsföring och DOOH media.",
+  twitterImage: "https://www.adinq.se/sky-full-of-stars.jpg",
 });
 
 definePageMeta({

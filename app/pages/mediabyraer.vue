@@ -1,14 +1,17 @@
 <script setup>
 useSeoMeta({
-  title: "",
-  description: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
+  title: "DOOH för Mediebyråer - En naturlig del i mediemixen | Adinq",
+  description:
+    "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige. 140+ visningar per dag, filmer som inte går att zappa bort. Perfekt komplement till era kampanjer.",
+  ogTitle: "DOOH för Mediebyråer - En naturlig del i mediemixen",
+  ogDescription:
+    "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige.",
+  ogImage: "https://www.adinq.se/air-balloons-on-blue-sky.jpg",
+  twitterCard: "summary_large_image",
+  twitterTitle: "DOOH för Mediebyråer - En naturlig del i mediemixen",
+  twitterDescription:
+    "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige.",
+  twitterImage: "https://www.adinq.se/air-balloons-on-blue-sky.jpg",
 });
 
 definePageMeta({

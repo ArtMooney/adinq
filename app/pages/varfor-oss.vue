@@ -1,14 +1,17 @@
 <script setup>
 useSeoMeta({
-  title: "",
-  description: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
+  title: "Varför välja Adinq? | Tränga igenom mediebruset med DOOH",
+  description:
+    "Vi fångar ögonblicket då människor står still - sysslolösa en kort stund i vardagen. Varumärkesexponering på digitala annonsytor där människorna finns. Syns på rätt sätt!",
+  ogTitle: "Varför välja Adinq? | Tränga igenom mediebruset med DOOH",
+  ogDescription:
+    "Vi fångar ögonblicket då människor står still och möjliggör varumärkesexponering där människorna finns.",
+  ogImage: "https://www.adinq.se/crowd-at-concert.jpg",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Varför välja Adinq? | Tränga igenom mediebruset",
+  twitterDescription:
+    "Vi fångar ögonblicket då människor står still och möjliggör varumärkesexponering där människorna finns.",
+  twitterImage: "https://www.adinq.se/crowd-at-concert.jpg",
 });
 
 definePageMeta({

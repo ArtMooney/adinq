@@ -1,14 +1,17 @@
 <script setup>
 useSeoMeta({
-  title: "",
-  description: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
+  title: "Priser för DOOH & Butiks-TV reklam | Kostnader & prisexempel",
+  description:
+    "Se prisexempel för DOOH och butiks-TV reklam. Priser varierar beroende på täckning och sändningstid. Transparenta kostnader för storbildsskärmar och digital utomhusreklam.",
+  ogTitle: "Priser för DOOH & Butiks-TV reklam",
+  ogDescription:
+    "Se prisexempel för DOOH och butiks-TV reklam. Transparenta kostnader för digital utomhusreklam.",
+  ogImage: "https://www.adinq.se/priser-handslag.jpg",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Priser för DOOH & Butiks-TV reklam",
+  twitterDescription:
+    "Se prisexempel för DOOH och butiks-TV reklam. Transparenta kostnader för digital utomhusreklam.",
+  twitterImage: "https://www.adinq.se/priser-handslag.jpg",
 });
 
 definePageMeta({

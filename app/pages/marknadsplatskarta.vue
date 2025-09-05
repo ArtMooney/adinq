@@ -1,14 +1,17 @@
 <script setup>
 useSeoMeta({
-  title: "",
-  description: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
+  title: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige | Adinq",
+  description:
+    "Sök bland våra många marknadsplatser över hela Sverige. Interaktiv karta som visar var Adinq har digitala reklamplatser och DOOH-skärmar. Navigera enkelt för att hitta platser nära dig.",
+  ogTitle: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige",
+  ogDescription:
+    "Interaktiv karta som visar var Adinq har digitala reklamplatser och DOOH-skärmar över hela Sverige.",
+  ogImage: "https://www.adinq.se/small-house-on-island.jpg",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige",
+  twitterDescription:
+    "Interaktiv karta som visar var Adinq har digitala reklamplatser över hela Sverige.",
+  twitterImage: "https://www.adinq.se/small-house-on-island.jpg",
 });
 
 definePageMeta({

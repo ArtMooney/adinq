@@ -1,14 +1,18 @@
 <script setup>
 useSeoMeta({
-  title: "",
-  description: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
+  title:
+    "Kommersialisera din fastighet med DOOH | Storbildsskärmar & utomhusmedia",
+  description:
+    "Öka intäkterna från din fastighet med storbildsskärmar och DOOH utomhusmedia. Vi hjälper fastighetsägare, markägare och skärmägare med installation, montage och mediaförsäljning.",
+  ogTitle: "Kommersialisera din fastighet med DOOH",
+  ogDescription:
+    "Öka intäkterna från din fastighet med storbildsskärmar och DOOH utomhusmedia. Installation, montage och mediaförsäljning.",
+  ogImage: "https://www.adinq.se/city-stockholm.jpg",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Kommersialisera din fastighet med DOOH",
+  twitterDescription:
+    "Öka intäkterna från din fastighet med storbildsskärmar och DOOH utomhusmedia.",
+  twitterImage: "https://www.adinq.se/city-stockholm.jpg",
 });
 
 definePageMeta({

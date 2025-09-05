@@ -1,14 +1,17 @@
 <script setup>
 useSeoMeta({
-  title: "",
-  description: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
+  title: "Kontakta oss - Adinq | Digital marknadsföring & DOOH i Borås",
+  description:
+    "Få personlig hjälp från vårt team i Borås. Kontakta oss för frågor om digital marknadsföring, DOOH, butiks-TV och kommersialisering av fastigheter. Vi svarar snabbt!",
+  ogTitle: "Kontakta Adinq - Personlig hjälp från vårt team i Borås",
+  ogDescription:
+    "Få personlig hjälp från vårt team i Borås. Kontakta oss för frågor om digital marknadsföring och DOOH.",
+  ogImage: "https://www.adinq.se/hands-holding-each-others-arms.jpg",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Kontakta Adinq - Personlig hjälp från vårt team i Borås",
+  twitterDescription:
+    "Få personlig hjälp från vårt team i Borås. Kontakta oss för digital marknadsföring och DOOH.",
+  twitterImage: "https://www.adinq.se/hands-holding-each-others-arms.jpg",
 });
 
 definePageMeta({

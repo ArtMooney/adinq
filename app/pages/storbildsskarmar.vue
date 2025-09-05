@@ -1,14 +1,17 @@
 <script setup>
 useSeoMeta({
-  title: "",
-  description: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
+  title: "Storbildsskärmar - Tydlig DOOH reklam utomhus | Adinq",
+  description:
+    "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns - stort, tydligt och icke-påtvingande. Flera orter i Sverige. Vi producerar även era slides.",
+  ogTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
+  ogDescription:
+    "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns på flera orter i Sverige.",
+  ogImage: "https://www.adinq.se/billboard-at-bus-stop.jpg",
+  twitterCard: "summary_large_image",
+  twitterTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
+  twitterDescription:
+    "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns.",
+  twitterImage: "https://www.adinq.se/billboard-at-bus-stop.jpg",
 });
 
 definePageMeta({
