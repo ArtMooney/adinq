@@ -81,7 +81,7 @@ definePageMeta({
       <IconBlob
         icon="streamline-ultimate-color:business-deal-handshake-1"
         title="Hur vi jobbar"
-        message="Vi har ett ingående samarbete med teknikbolaget LEDventure.se som är specialiserade på montage och utrustning för DOOH, som bland annat storbildsskärmar och LEDperimetrar."
+        message="Vi har ett ingående samarbete med teknikbolaget Pro-Led som är specialiserade på montage och utrustning för DOOH, som bland annat storbildsskärmar och LEDperimetrar."
         link=""
       ></IconBlob>
 
