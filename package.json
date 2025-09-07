@@ -25,20 +25,9 @@
         "vue-router": "latest"
     },
     "devDependencies": {
-        "@iconify-json/bi": "^1.2.6",
-        "@iconify-json/emojione": "^1.2.3",
-        "@iconify-json/emojione-v1": "^1.2.1",
-        "@iconify-json/fa": "^1.2.1",
-        "@iconify-json/fluent": "^1.2.25",
-        "@iconify-json/fxemoji": "^1.2.2",
-        "@iconify-json/la": "^1.2.1",
-        "@iconify-json/ph": "^1.2.2",
-        "@iconify-json/streamline": "^1.2.5",
-        "@iconify-json/streamline-kameleon-color": "^1.2.2",
-        "@iconify-json/streamline-ultimate-color": "^1.2.2",
-        "@iconify-json/teenyicons": "^1.2.2",
-        "@nuxt/icon": "^1.15.0",
+        "@iconify/json": "^2.2.382",
         "prettier": "^3.6.2",
-        "prettier-plugin-tailwindcss": "^0.6.13"
+        "prettier-plugin-tailwindcss": "^0.6.13",
+        "unplugin-icons": "^22.2.0"
     }
 }

@@ -42,8 +42,8 @@ export default defineNuxtConfig({
     "@nuxtjs/robots",
     "@nuxtjs/sitemap",
     "@nuxt/image",
-    "@nuxt/icon",
     "@nuxtjs/leaflet",
+    "unplugin-icons/nuxt",
   ],
 
   image: {
@@ -61,10 +61,6 @@ export default defineNuxtConfig({
     densities: [1, 2],
     staticFilename: "[name]-[width]-[height]-[format].[ext]",
     provider: "ipxStatic",
-  },
-
-  icon: {
-    serverBundle: "local",
   },
 
   robots: {
