@@ -39,15 +39,15 @@ import IconEmojioneV1GrowingHeart from "~icons/emojione-v1/growing-heart";
       />
 
       <div
-        class="mt-8 mb-12 flex w-full items-center justify-center gap-8 md:col-span-3"
+        class="mt-8 mb-12 flex w-full flex-col items-center justify-center gap-8 md:col-span-3 md:flex-row"
       >
         <NuxtImg
           src="creditsafe-adinq.png"
-          class="h-auto w-36 max-w-36 min-w-36"
+          class="h-auto w-32 max-w-32 min-w-32"
         ></NuxtImg>
         <NuxtImg
           src="gasell-logo-inv-2024.png"
-          class="h-auto w-40 max-w-40 min-w-40"
+          class="-mt-4 mb-2 h-auto w-40 max-w-40 min-w-40 md:mt-0"
         ></NuxtImg>
       </div>
 
