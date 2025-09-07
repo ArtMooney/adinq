@@ -1,6 +1,6 @@
 <script setup>
 useSeoMeta({
-  title: "Access",
+  title: "Admin",
   description: "",
   robots: "noindex, nofollow",
   ogTitle: "",
