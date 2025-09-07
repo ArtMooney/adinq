@@ -1,4 +1,7 @@
 <script setup>
+import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
+import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regular";
+
 useSeoMeta({
   title: "Varför välja Adinq? | Tränga igenom mediebruset med DOOH",
   description:
@@ -44,10 +47,9 @@ definePageMeta({
           :to="{ path: '/varfor-oss', hash: '#varfor' }"
           class="absolute bottom-8 flex w-full items-center justify-center"
         >
-          <Icon
-            name="qlementine-icons:chevron-double-down-16"
+          <IconQlementineIconsChevronDoubleDown16
             class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-          ></Icon>
+          ></IconQlementineIconsChevronDoubleDown16>
         </NuxtLink>
       </div>
     </template>
@@ -57,11 +59,10 @@ definePageMeta({
     <div
       class="relative mx-auto flex w-full flex-col items-center justify-center gap-8 text-center sm:max-w-lg lg:mb-0 lg:max-w-4xl"
     >
-      <Icon
-        name="fluent:comment-quote-20-regular"
+      <IconFluentCommentQuote20Regular
         class="h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20 sm:absolute sm:-top-16 sm:-left-16"
         style="color: #aaaaaa"
-      ></Icon>
+      ></IconFluentCommentQuote20Regular>
 
       <p>
         "Hos människan, -det är här allt börjar. Att påverka och skapa

@@ -1,3 +1,8 @@
+<script setup>
+import IconFluentPhone48Filled from "~icons/fluent/phone-48-filled";
+import IconStreamlineSendEmailSolid from "~icons/streamline/send-email-solid";
+</script>
+
 <template>
   <div class="group relative max-w-64 sm:max-w-none">
     <div
@@ -32,10 +37,9 @@
             :href="`tel:${colleague?.phone}`"
             class="flex items-center gap-1"
           >
-            <Icon
-              name="fluent:phone-48-filled"
+            <IconFluentPhone48Filled
               class="h-4.5 min-h-4.5 w-4.5 min-w-4.5"
-            ></Icon>
+            ></IconFluentPhone48Filled>
 
             <span class="underline">{{ colleague?.phone }}</span></a
           >
@@ -44,10 +48,9 @@
             :href="`mailto:${colleague?.email}`"
             class="flex items-center gap-1"
           >
-            <Icon
-              name="streamline:send-email-solid"
+            <IconStreamlineSendEmailSolid
               class="h-3 min-h-3 w-3 min-w-3"
-            ></Icon>
+            ></IconStreamlineSendEmailSolid>
 
             <span class="underline">{{ colleague?.email }}</span></a
           >

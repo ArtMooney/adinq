@@ -1,10 +1,15 @@
+<script setup>
+import IconSystemUiconsHomeDoor from "~icons/system-uicons/home-door";
+import IconFamiconsCogSharp from "~icons/famicons/cog-sharp";
+</script>
+
 <template>
   <div class="flex items-center justify-between px-2 py-8 text-base sm:py-4">
-    <Icon
+    <IconSystemUiconsHomeDoor
       name="system-uicons:home-door"
       @click="backHomepage"
       class="mb-1.5 h-7 min-h-7 w-7 min-w-7 shrink-0 cursor-pointer hover:text-white/75"
-    ></Icon>
+    ></IconSystemUiconsHomeDoor>
 
     <div class="flex flex-col items-center gap-2 text-center sm:flex-row">
       <h1 class="mb-0 text-2xl sm:text-4xl">{{ cmsName }}</h1>
@@ -12,11 +17,10 @@
     </div>
 
     <div class="relative">
-      <Icon
-        name="famicons:cog-sharp"
+      <IconFamiconsCogSharp
         @click="cmsSettingsMenu = !cmsSettingsMenu"
         class="h-7 min-h-7 w-7 min-w-7 shrink-0 cursor-pointer hover:text-white/75"
-      ></Icon>
+      ></IconFamiconsCogSharp>
 
       <div
         v-if="cmsSettingsMenu"

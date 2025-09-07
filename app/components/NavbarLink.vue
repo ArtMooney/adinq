@@ -1,7 +1,6 @@
 <template>
   <NuxtLink
     :to="route"
-    @click="showNavbar = false"
     class="group relative flex cursor-pointer flex-row-reverse items-center gap-2 xl:flex-row"
   >
     <div
@@ -13,7 +12,11 @@
       v-if="icon"
       class="relative flex h-7 min-h-7 w-7 min-w-7 items-center justify-center rounded-full border-2 border-white/15 bg-neutral-800 p-1"
     >
-      <Icon :name="icon" class="h-full w-full" />
+      <component
+        v-if="iconComponent"
+        :is="iconComponent"
+        class="h-full w-full"
+      ></component>
     </div>
 
     <div
@@ -25,6 +28,13 @@
 </template>
 
 <script>
+import IconHeroiconsHome from "~icons/heroicons/home";
+import IconPhFilmSlateLight from "~icons/ph/film-slate-light";
+import IconFluentPeople32Regular from "~icons/fluent/people-32-regular";
+import IconFamiconsChatbubbleEllipsesOutline from "~icons/famicons/chatbubble-ellipses-outline";
+import IconProiconsChatQuestion from "~icons/proicons/chat-question";
+import IconHugeiconsmMoneyBag01 from "~icons/hugeicons/money-bag-01";
+
 export default {
   name: "NavbarLink",
 
@@ -48,6 +58,24 @@ export default {
     currentPath() {
       return this.$route.path;
     },
+
+    iconComponent() {
+      return this.iconMap[this.icon] || null;
+    },
+  },
+
+  data() {
+    return {
+      iconMap: {
+        "heroicons:home": IconHeroiconsHome,
+        "ph:film-slate-light": IconPhFilmSlateLight,
+        "fluent:people-32-regular": IconFluentPeople32Regular,
+        "famicons:chatbubble-ellipses-outline":
+          IconFamiconsChatbubbleEllipsesOutline,
+        "proicons:chat-question": IconProiconsChatQuestion,
+        "hugeicons:money-bag-01": IconHugeiconsmMoneyBag01,
+      },
+    };
   },
 };
 </script>

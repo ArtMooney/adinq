@@ -1,3 +1,7 @@
+<script setup>
+import IconHeroiconsXMark20Solid from "~icons/heroicons/x-mark-20-solid";
+</script>
+
 <template>
   <div class="fixed inset-0 z-10 flex items-center justify-center bg-black/90">
     <ClientOnly>
@@ -19,10 +23,9 @@
       Något gick tyvärr fel när videon skulle visas
     </div>
 
-    <Icon
-      name="heroicons:x-mark-20-solid"
+    <IconHeroiconsXMark20Solid
       @click="handleClose"
-      class="absolute top-3 right-4 h-8 min-h-8 w-8 min-w-8 bg-[skyblue]"
+      class="absolute top-3 right-4 h-8 min-h-8 w-8 min-w-8 cursor-pointer"
     />
   </div>
 </template>

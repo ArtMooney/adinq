@@ -1,3 +1,7 @@
+<script setup>
+import IconLaSearchLocation from "~icons/la/search-location";
+</script>
+
 <template>
   <ClientOnly>
     <div
@@ -9,11 +13,10 @@
         <div
           class="relative flex max-h-120 w-full flex-col gap-4 rounded p-8 lg:max-h-[calc(100vh-3rem)] lg:w-96 lg:max-w-96"
         >
-          <Icon
-            name="la:search-location"
+          <IconLaSearchLocation
             class="h-10 max-h-10 min-h-10 w-10 max-w-10 min-w-10 text-zinc-500"
             :style="{ color: '#e44b50' }"
-          ></Icon>
+          ></IconLaSearchLocation>
 
           <input
             v-model="searchCity"

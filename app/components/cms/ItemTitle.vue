@@ -1,10 +1,14 @@
+<script setup>
+import IconFa7SolidGridVertical from "~icons/fa7-solid/grid-vertical";
+import IconIonChevronDown from "~icons/ion/chevron-down";
+</script>
+
 <template>
   <div class="col-span-2 flex cursor-pointer justify-between">
     <div class="flex items-center gap-4">
-      <Icon
-        name="fa7-solid:grid-vertical"
+      <IconFa7SolidGridVertical
         class="dragdrop-handle h-5 min-h-5 w-5 min-w-5 shrink-0 cursor-grabbing text-white"
-      ></Icon>
+      ></IconFa7SolidGridVertical>
 
       <div
         class="word-break-all font-gunplay pointer-events-none mr-4 hyphens-auto"
@@ -29,12 +33,12 @@
       />
 
       <div class="flex items-center gap-2">
-        <Icon
+        <IconIonChevronDown
           v-if="!saveAllFlag && (index !== showItem || !saveFlag)"
           name="ion:chevron-down"
           class="h-6 min-h-6 w-6 min-w-6 text-white transition-transform duration-300 ease-in-out"
           :class="[index === showItem && itemOpen ? 'rotate-180' : '']"
-        ></Icon>
+        ></IconIonChevronDown>
 
         <CmsLoadingSpinner
           v-if="(index === showItem && saveFlag) || saveAllFlag"

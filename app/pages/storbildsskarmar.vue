@@ -1,4 +1,6 @@
 <script setup>
+import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
+
 useSeoMeta({
   title: "Storbildsskärmar - Tydlig DOOH reklam utomhus | Adinq",
   description:
@@ -46,10 +48,10 @@ definePageMeta({
           :to="{ path: '/storbildsskarmar', hash: '#info' }"
           class="absolute bottom-8 flex w-full items-center justify-center"
         >
-          <Icon
+          <IconQlementineIconsChevronDoubleDown16
             name="qlementine-icons:chevron-double-down-16"
             class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-          ></Icon>
+          ></IconQlementineIconsChevronDoubleDown16>
         </NuxtLink>
       </div>
     </template>

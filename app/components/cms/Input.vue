@@ -1,6 +1,7 @@
 <script setup>
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 </script>
 
 <template>
@@ -68,13 +69,12 @@ import "@vuepic/vue-datepicker/dist/main.css";
       {{ displayFilename(item[input.name], input.name) }}
     </label>
 
-    <Icon
+    <IconCloseCircleOutline
       @click.stop="
         removeFile(item, index, `${input.name}-${index}`, input.name)
       "
-      name="ion:close-circle-outline"
       class="h-4 min-h-4 w-4 min-w-4 cursor-pointer px-0.5 text-red-500"
-    ></Icon>
+    ></IconCloseCircleOutline>
   </div>
 
   <select

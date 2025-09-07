@@ -1,4 +1,6 @@
 <script setup>
+import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
+
 useSeoMeta({
   title: "Om Adinq - Vårt team | Digital marknadsföring och DOOH",
   description:
@@ -78,10 +80,9 @@ const colleaguesProduction = colleagues?.value.filter(
             :to="{ path: '/dagens-adinq', hash: '#medarbetare' }"
             class="absolute bottom-8 flex w-full items-center justify-center"
           >
-            <Icon
-              name="qlementine-icons:chevron-double-down-16"
+            <IconQlementineIconsChevronDoubleDown16
               class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-            ></Icon>
+            ></IconQlementineIconsChevronDoubleDown16>
           </NuxtLink>
         </div>
       </template>

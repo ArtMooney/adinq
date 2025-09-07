@@ -1,4 +1,6 @@
 <script setup>
+import IconChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
+
 useSeoMeta({
   title:
     "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
@@ -76,10 +78,9 @@ definePageMeta({
           :to="{ path: '/', hash: '#services' }"
           class="absolute bottom-8 flex w-full items-center justify-center"
         >
-          <Icon
-            name="qlementine-icons:chevron-double-down-16"
+          <IconChevronDoubleDown16
             class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
-          ></Icon>
+          ></IconChevronDoubleDown16>
         </NuxtLink>
       </div>
     </template>

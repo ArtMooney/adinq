@@ -1,3 +1,8 @@
+<script setup>
+import IconHeroiconsBars2 from "~icons/heroicons/bars-2";
+import IconIconoirXmark from "~icons/iconoir/xmark";
+</script>
+
 <template>
   <div
     id="navbar"
@@ -22,8 +27,7 @@
         />
       </router-link>
 
-      <Icon
-        name="heroicons:bars-2"
+      <IconHeroiconsBars2
         @click="showNavbar = !showNavbar"
         class="block h-8 min-h-8 w-8 min-w-8 cursor-pointer xl:!hidden"
       />
@@ -37,10 +41,9 @@
           resizing && 'transition-none',
         ]"
       >
-        <Icon
+        <IconIconoirXmark
           v-if="showNavbar"
           @click="showNavbar = !showNavbar"
-          name="iconoir:xmark"
           class="absolute top-4 right-4 h-8 min-h-8 w-8 min-w-8 cursor-pointer"
           :class="[showNavbar && 'xl:!hidden']"
         />

@@ -1,3 +1,7 @@
+<script setup>
+import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regular";
+</script>
+
 <template>
   <NuxtLink
     :to="link"
@@ -26,11 +30,10 @@
       ></NuxtImg>
     </div>
 
-    <Icon
-      name="fluent:comment-quote-20-regular"
+    <IconFluentCommentQuote20Regular
       class="absolute -top-10 -left-10 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
       style="color: #ffffff"
-    ></Icon>
+    ></IconFluentCommentQuote20Regular>
   </NuxtLink>
 </template>
 

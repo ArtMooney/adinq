@@ -1,3 +1,9 @@
+<script setup>
+import IconFaFacebookSquare from "~icons/fa/facebook-square";
+import IconFaLinkedinSquare from "~icons/fa/linkedin-square";
+import IconFaYoutubeSquare from "~icons/fa/youtube-square";
+</script>
+
 <template>
   <div class="flex items-center justify-center gap-2">
     <a
@@ -5,8 +11,7 @@
       target="_blank"
       rel="noopener"
     >
-      <Icon
-        name="fa:facebook-square"
+      <IconFaFacebookSquare
         class="h-6 min-h-6 w-6 min-w-6 opacity-60 transition-opacity duration-300 hover:opacity-75"
       />
     </a>
@@ -16,8 +21,7 @@
       target="_blank"
       rel="noopener"
     >
-      <Icon
-        name="fa:linkedin-square"
+      <IconFaLinkedinSquare
         class="h-6 min-h-6 w-6 min-w-6 opacity-60 transition-opacity duration-300 hover:opacity-75"
       />
     </a>
@@ -27,8 +31,7 @@
       target="_blank"
       rel="noopener"
     >
-      <Icon
-        name="fa:youtube-square"
+      <IconFaYoutubeSquare
         class="h-6 min-h-6 w-6 min-w-6 opacity-60 transition-opacity duration-300 hover:opacity-75"
       />
     </a>

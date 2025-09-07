@@ -1,3 +1,7 @@
+<script setup>
+import IconEmojioneGrowingHeart from "~icons/emojione-v1/growing-heart";
+</script>
+
 <template>
   <div
     ref="footer"
@@ -60,9 +64,7 @@
       >
         Powered by
         <span
-          ><Icon
-            name="emojione-v1:growing-heart"
-            class="h-4 min-h-4 w-4 min-w-4 px-3"
+          ><IconEmojioneGrowingHeart class="h-4 min-h-4 w-4 min-w-4 px-3"
         /></span>
         FrameCore
       </a>

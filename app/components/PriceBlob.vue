@@ -10,18 +10,12 @@
     <div
       class="relative flex h-full w-full flex-col gap-2 rounded bg-neutral-900 p-8 pb-12"
     >
-      <Icon
+      <component
         v-if="iconOrder < 4"
-        :name="
-          iconOrder === 1
-            ? 'emojione:money-bag'
-            : iconOrder === 2
-              ? 'emojione:handshake-medium-light-skin-tone'
-              : 'streamline-kameleon-color:chart-pie'
-        "
+        :is="iconComponent"
         class="relative mb-3 h-14 max-h-14 min-h-14 w-14 max-w-14 min-w-14"
         :style="{ color: '#6293a5' }"
-      ></Icon>
+      ></component>
 
       <div v-if="iconOrder < 4" class="mb-6 h-[1px] w-2/3 bg-white/25"></div>
 
@@ -47,6 +41,10 @@
 </template>
 
 <script>
+import IconEmojioneMoneyBag from "~icons/emojione/money-bag";
+import IconEmojioneHandshakeMediumLightSkinTone from "~icons/emojione/handshake-medium-light-skin-tone";
+import IconStreamlineKameleonColorChartPie from "~icons/streamline-kameleon-color/chart-pie";
+
 export default {
   name: "PriceBlob",
 
@@ -57,6 +55,18 @@ export default {
     },
   },
 
+  data() {
+    return {
+      iconMap: {
+        "emojione:money-bag": IconEmojioneMoneyBag,
+        "emojione:handshake-medium-light-skin-tone":
+          IconEmojioneHandshakeMediumLightSkinTone,
+        "streamline-kameleon-color:chart-pie":
+          IconStreamlineKameleonColorChartPie,
+      },
+    };
+  },
+
   computed: {
     formattedDetails() {
       return this.data.details.replace(/\n/g, "<br>");
@@ -64,6 +74,16 @@ export default {
 
     iconOrder() {
       return Number(this.data.index);
+    },
+
+    iconComponent() {
+      const iconName =
+        this.iconOrder === 1
+          ? "emojione:money-bag"
+          : this.iconOrder === 2
+            ? "emojione:handshake-medium-light-skin-tone"
+            : "streamline-kameleon-color:chart-pie";
+      return this.iconMap[iconName] || null;
     },
   },
 };
