@@ -6,7 +6,6 @@ import IconFamiconsCogSharp from "~icons/famicons/cog-sharp";
 <template>
   <div class="flex items-center justify-between px-2 py-8 text-base sm:py-4">
     <IconSystemUiconsHomeDoor
-      name="system-uicons:home-door"
       @click="backHomepage"
       class="mb-1.5 h-7 min-h-7 w-7 min-w-7 shrink-0 cursor-pointer hover:text-white/75"
     ></IconSystemUiconsHomeDoor>

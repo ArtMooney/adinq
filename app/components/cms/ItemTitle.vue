@@ -35,7 +35,6 @@ import IconIonChevronDown from "~icons/ion/chevron-down";
       <div class="flex items-center gap-2">
         <IconIonChevronDown
           v-if="!saveAllFlag && (index !== showItem || !saveFlag)"
-          name="ion:chevron-down"
           class="h-6 min-h-6 w-6 min-w-6 text-white transition-transform duration-300 ease-in-out"
           :class="[index === showItem && itemOpen ? 'rotate-180' : '']"
         ></IconIonChevronDown>

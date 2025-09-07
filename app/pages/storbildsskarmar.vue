@@ -49,7 +49,6 @@ definePageMeta({
           class="absolute bottom-8 flex w-full items-center justify-center"
         >
           <IconQlementineIconsChevronDoubleDown16
-            name="qlementine-icons:chevron-double-down-16"
             class="h-12 min-h-12 w-12 min-w-12 cursor-pointer opacity-70 hover:opacity-100"
           ></IconQlementineIconsChevronDoubleDown16>
         </NuxtLink>
