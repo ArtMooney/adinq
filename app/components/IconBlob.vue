@@ -48,6 +48,8 @@ import IconHugeiconscContact01 from "~icons/hugeicons/contact-01";
 import IconPhFilmReelLight from "~icons/ph/film-reel-light";
 import IconBiCameraReels from "~icons/bi/camera-reels";
 import IconTeenyiconsHeadsetOutline from "~icons/teenyicons/headset-outline";
+import IconStreamlineUltimateColorSavingMoneyFlower from "~icons/streamline-ultimate-color/saving-money-flower";
+import IconStreamlineUltimateColorColorPalette2 from "~icons/streamline-ultimate-color/color-palette-2";
 
 export default {
   name: "IconBlob",
@@ -104,6 +106,10 @@ export default {
         "ph:film-reel-light": IconPhFilmReelLight,
         "bi:camera-reels": IconBiCameraReels,
         "teenyicons:headset-outline": IconTeenyiconsHeadsetOutline,
+        "streamline-ultimate-color:saving-money-flower":
+          IconStreamlineUltimateColorSavingMoneyFlower,
+        "streamline-ultimate-color:color-palette-2":
+          IconStreamlineUltimateColorColorPalette2,
       },
     };
   },
