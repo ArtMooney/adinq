@@ -1,7 +1,7 @@
 <template>
   <div
     ref="companyInfo"
-    class="mt-12 flex w-2/3 flex-wrap justify-center gap-x-3 gap-y-2 justify-self-center text-xs md:col-span-3 md:mt-20 [&>a]:underline [&>a]:opacity-40 [&>a]:hover:opacity-50 [&>p]:opacity-40"
+    class="flex w-2/3 flex-wrap justify-center gap-x-3 gap-y-2 justify-self-center text-xs md:col-span-3 [&>a]:underline [&>a]:opacity-40 [&>a]:hover:opacity-50 [&>p]:opacity-40"
   >
     <p>ADinQ AB</p>
     <p>Fabriksgatan 11, plan 3</p>

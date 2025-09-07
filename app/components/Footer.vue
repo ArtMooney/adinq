@@ -14,12 +14,8 @@
         />
       </NuxtLink>
 
-      <SocialMediaIcons
-        class="row-start-3 my-12 md:col-start-3 md:col-end-4 md:row-start-auto md:mt-3 md:justify-self-end"
-      />
-
       <div
-        class="flex flex-col flex-wrap items-center justify-center gap-x-4 gap-y-2 justify-self-center sm:mx-12 md:col-span-3 md:mx-0 lg:-mt-8 lg:flex-row"
+        class="mt-4 flex flex-col flex-wrap items-center justify-center gap-x-4 gap-y-2 justify-self-center sm:mx-12 md:mx-0 lg:flex-row"
       >
         <NavbarLink text="Hem" route="/"></NavbarLink>
         <NavbarLink
@@ -32,6 +28,23 @@
         <NavbarLink text="Priser" route="/priser"></NavbarLink>
         <NavbarLink text="Kontakta oss" route="/kontakta-oss"></NavbarLink>
         <NavbarLink text="Admin" route="/admin"></NavbarLink>
+      </div>
+
+      <SocialMediaIcons
+        class="row-start-3 my-12 md:col-start-3 md:col-end-4 md:row-start-auto md:mt-3 md:justify-self-end"
+      />
+
+      <div
+        class="mt-8 mb-12 flex w-full items-center justify-center gap-8 md:col-span-3"
+      >
+        <NuxtImg
+          src="creditsafe-adinq.png"
+          class="h-auto w-36 max-w-36 min-w-36"
+        ></NuxtImg>
+        <NuxtImg
+          src="gasell-logo-inv-2024.png"
+          class="h-auto w-40 max-w-40 min-w-40"
+        ></NuxtImg>
       </div>
 
       <CompanyInfo />
