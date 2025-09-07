@@ -181,7 +181,7 @@ export default {
 
         this.markers = func() || [];
 
-        this.markers = this.markers.map((marker) => ({
+        this.markers = this.removeSelectedMarkers().map((marker) => ({
           ...marker,
           title: this.fixEncoding(marker.title),
           description: this.fixEncoding(marker.description),
@@ -234,6 +234,31 @@ export default {
           this.boundsDebounced = this.bounds;
         });
       }, 200);
+    },
+
+    removeSelectedMarkers() {
+      const markers = [];
+      const excludeList = [
+        "Storbild_ i Hova",
+        "Storbild_ i Laxå",
+        "Storbild_ i Grums",
+        "Storbild_s Travet i Årjäng",
+        "Storbild_ i Lindesberg södra",
+        "Storbild_ i Lindesberg norra",
+        "Storbild_ i Flen",
+        "Storbild_ Hallsta krog E18 i Hallstahammar",
+        "Storbild_ Rv218 i Trosa",
+        "Sorbild_Flygfyrens Handelsplats i Norrtälje",
+        "Storbild_Knutby Torg i Norrtälje",
+      ];
+
+      for (const marker of this.markers) {
+        if (marker.type !== "storbild" || !excludeList.includes(marker.title)) {
+          markers.push(marker);
+        }
+      }
+
+      return markers;
     },
   },
 
