@@ -1,5 +1,5 @@
 <script setup>
-import IconEmojioneGrowingHeart from "~icons/emojione-v1/growing-heart";
+import IconEmojioneV1GrowingHeart from "~icons/emojione-v1/growing-heart";
 </script>
 
 <template>
@@ -64,8 +64,8 @@ import IconEmojioneGrowingHeart from "~icons/emojione-v1/growing-heart";
       >
         Powered by
         <span
-          ><IconEmojioneGrowingHeart class="h-4 min-h-4 w-4 min-w-4 px-3"
-        /></span>
+          ><IconEmojioneV1GrowingHeart class="mx-1.5 h-4 min-h-4 w-4 min-w-4" />
+        </span>
         FrameCore
       </a>
     </div>
