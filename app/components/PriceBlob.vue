@@ -11,21 +11,21 @@
       class="relative flex h-full w-full flex-col gap-2 rounded bg-neutral-900 p-8 pb-12"
     >
       <component
-        v-if="iconOrder < 4"
+        v-if="iconOrder < 3"
         :is="iconComponent"
         class="relative mb-3 h-14 max-h-14 min-h-14 w-14 max-w-14 min-w-14"
         :style="{ color: '#6293a5' }"
       ></component>
 
-      <div v-if="iconOrder < 4" class="mb-6 h-[1px] w-2/3 bg-white/25"></div>
+      <div v-if="iconOrder < 3" class="mb-6 h-[1px] w-2/3 bg-white/25"></div>
 
       <p
         :class="[
           'bg-gradient-to-r to-transparent text-xl',
-          iconOrder === 1 && 'from-red-400/75',
-          iconOrder === 2 && 'from-yellow-400/75',
-          iconOrder === 3 && 'from-blue-400/75',
-          iconOrder > 3 && 'mb-2 underline',
+          iconOrder === 0 && 'from-red-400/75',
+          iconOrder === 1 && 'from-yellow-400/75',
+          iconOrder === 2 && 'from-blue-400/75',
+          iconOrder > 2 && 'mb-2 underline',
         ]"
       >
         {{ data.title }}
@@ -33,7 +33,7 @@
       <p>{{ data.monthly }}</p>
       <p>{{ data.total }}</p>
 
-      <div v-if="iconOrder > 3" class="mt-6 h-[1px] w-2/3 bg-white/25"></div>
+      <div v-if="iconOrder > 2" class="mt-6 h-[1px] w-2/3 bg-white/25"></div>
 
       <p class="mt-6 text-sm" v-html="formattedDetails"></p>
     </div>
