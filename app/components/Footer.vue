@@ -44,10 +44,19 @@ import IconEmojioneV1GrowingHeart from "~icons/emojione-v1/growing-heart";
         <NuxtImg
           src="creditsafe-adinq.png"
           class="h-auto w-32 max-w-32 min-w-32"
+          sizes="350px md:709px"
+          width="709"
+          height="308"
+          format="webp"
         ></NuxtImg>
+
         <NuxtImg
           src="gasell-logo-inv-2024.png"
           class="-mt-4 mb-2 h-auto w-40 max-w-40 min-w-40 md:mt-0"
+          sizes="350 md:1000px"
+          width="7626"
+          height="3508"
+          format="webp"
         ></NuxtImg>
       </div>
 
