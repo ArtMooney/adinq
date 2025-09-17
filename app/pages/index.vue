@@ -108,12 +108,12 @@ definePageMeta({
 
     <VideoBlob
       v-if="sweVersion"
-      video-Link="https://qcard.adinq.se/?i=1747390713"
+      video-Link="https://qcard.adinq.se/?i=1758120106"
       poster="images/adinq-presentation-poster.webp"
     ></VideoBlob>
     <VideoBlob
       v-if="!sweVersion"
-      video-Link="https://qcard.adinq.se/?i=1747391059"
+      video-Link="https://qcard.adinq.se/?i=1758120027"
       poster="images/adinq-presentation-poster.webp"
     ></VideoBlob>
 
