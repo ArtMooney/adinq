@@ -32,11 +32,11 @@ const { data: gallery, error } = await useFetch("/api/media-productions", {
 });
 
 const galleryStores = gallery.value.filter(
-  (qcard) => qcard.filmtyp.value === "butiksfilm",
+  (qcard) => qcard?.filmtyp?.value === "butiksfilm",
 );
 
 const galleryBigscreens = gallery.value.filter(
-  (qcard) => qcard.filmtyp.value === "storbildsfilm",
+  (qcard) => qcard?.filmtyp?.value === "storbildsfilm",
 );
 </script>
 
