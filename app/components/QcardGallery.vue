@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col rounded border border-white/25 bg-neutral-800 p-8">
     <div class="relative">
-      <div class="columns-1 gap-8 sm:columns-2 md:columns-3">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
         <div
           v-if="galleryData"
           class="group relative mb-6 cursor-pointer"
