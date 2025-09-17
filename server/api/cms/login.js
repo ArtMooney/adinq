@@ -23,6 +23,8 @@ export default defineEventHandler(async (event) => {
   const user = await listRows(
     config.baserowToken,
     config.baserowCmsUsersId,
+    null,
+    null,
     body.email,
   );
 
