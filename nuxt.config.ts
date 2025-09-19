@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     mailgunApiKey: process.env.NUXT_MAILGUN_API_KEY,
     emailFrom: process.env.NUXT_EMAIL_FROM,
     emailTo: process.env.NUXT_EMAIL_TO,
+    unsubscribeTo: process.env.NUXT_UNSUBSCRIBE_TO,
     userName: process.env.NUXT_USERNAME,
     userPass: process.env.NUXT_USERPASS,
     baserowToken: process.env.NUXT_BASEROW_TOKEN,

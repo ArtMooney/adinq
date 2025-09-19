@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
 
   const toOwner = await sendEmail(
     config.emailFrom,
-    config.emailTo,
+    config.unsubscribeTo,
     "Kan ni vara snälla och avregistrera mig från maillistan?",
     JSON.stringify(formDataJson, null, 2),
     config.mailgunApiKey,
