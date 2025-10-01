@@ -49,8 +49,12 @@ export default {
 
   methods: {
     clickedQcard(event, index) {
-      this.lightboxUrl = this.galleryData[index]["q-card-link"];
-      this.showQcardLightbox = true;
+      const link = this.galleryData[index]["q-card-link"];
+
+      if (link) {
+        this.lightboxUrl = link;
+        this.showQcardLightbox = true;
+      }
     },
   },
 };
