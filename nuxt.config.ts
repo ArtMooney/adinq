@@ -98,6 +98,8 @@ export default defineNuxtConfig({
   app: {
     keepalive: true,
     head: {
+      charset: "utf-8",
+      viewport: "width=device-width, initial-scale=1",
       link: [
         {
           rel: "icon",
@@ -114,56 +116,12 @@ export default defineNuxtConfig({
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
         { rel: "manifest", href: "/site.webmanifest" },
-        { rel: "canonical", href: "https://adinq.se/" },
       ],
-      charset: "utf-8",
-      viewport: "width=device-width, initial-scale=1",
-      title: "",
       meta: [
         {
           name: "viewport",
           content:
             "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
-        },
-        {
-          name: "description",
-          content: "",
-        },
-        {
-          name: "keywords",
-          content: "",
-        },
-
-        // Open Graph / Facebook
-        { property: "og:type", content: "website" },
-        { property: "og:url", content: "https://adinq.se/" },
-        {
-          property: "og:title",
-          content: "",
-        },
-        {
-          property: "og:description",
-          content: "",
-        },
-        {
-          property: "og:image",
-          content: "https://adinq.se/og-image.jpg",
-        },
-
-        // Twitter
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:url", content: "https://adinq.se/" },
-        {
-          name: "twitter:title",
-          content: "",
-        },
-        {
-          name: "twitter:description",
-          content: "",
-        },
-        {
-          name: "twitter:image",
-          content: "https://adinq.se/twitter-image.jpg",
         },
       ],
     },
