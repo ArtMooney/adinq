@@ -5,3 +5,7 @@ compatibility_date = "2025-10-16"
 binding = "DB"
 database_name = "adinq"
 database_id = "be5a8ded-ef98-4e3e-9ae8-7000377b57f8"
+
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "adinq"
