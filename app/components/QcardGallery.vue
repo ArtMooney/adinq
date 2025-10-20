@@ -12,7 +12,7 @@
           ></div>
 
           <img
-            :src="qcard.screenshot[0]?.thumbnails?.card_cover?.url"
+            :src="qcard?.screenshot"
             @click="clickedQcard($event, index)"
             class="relative h-full w-full object-cover transition-[filter] duration-300 ease-in-out group-hover:brightness-80"
           />
@@ -49,7 +49,7 @@ export default {
 
   methods: {
     clickedQcard(event, index) {
-      const link = this.galleryData[index]["q-card-link"];
+      const link = this.galleryData[index]?.qCardLink;
 
       if (link) {
         this.lightboxUrl = link;
