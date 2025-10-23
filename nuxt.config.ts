@@ -48,20 +48,24 @@ export default defineNuxtConfig({
   ],
 
   image: {
-    dir: "assets/images",
-    quality: 80,
+    provider: "weserv",
+
+    weserv: {
+      baseURL: "https://pub-6465f3f6f7ff4bd1b0effc5bb094b802.r2.dev",
+      modifiers: {
+        format: "webp",
+        quality: 65,
+      },
+    },
+
     screens: {
       xs: 320,
       sm: 640,
       md: 768,
       lg: 1024,
       xl: 1280,
-      xxl: 1536,
       "2xl": 1536,
     },
-    densities: [1, 2],
-    staticFilename: "[name]-[width]-[height]-[format].[ext]",
-    provider: "ipxStatic",
   },
 
   robots: {
