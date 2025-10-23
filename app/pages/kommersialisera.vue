@@ -29,9 +29,9 @@ definePageMeta({
         src="city-stockholm.jpg"
         alt=""
         class="h-full w-full object-cover"
-        sizes="1000px md:2000px"
-        width="5472"
-        height="3648"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2000"
+        height="1333"
         densities="x1"
         format="webp"
       />
@@ -66,9 +66,9 @@ definePageMeta({
         src="background-bricks-flowers.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-15"
-        sizes="1000px md:2000px"
-        width="2912"
-        height="2032"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2003"
+        height="3000"
         format="webp"
       />
 

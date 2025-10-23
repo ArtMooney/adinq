@@ -92,8 +92,8 @@ const { data: testimonials, error } = await useFetch("/api/testimonials", {
         alt="flat and transparent background layer with clouds"
         class="parallax-clouds h-[300vh] w-full transform-gpu object-cover opacity-5 will-change-transform backface-hidden"
         sizes="1000px md:2000px"
-        width="3006"
-        height="2000"
+        width="2000"
+        height="3006"
         densities="x1"
         format="webp"
       />

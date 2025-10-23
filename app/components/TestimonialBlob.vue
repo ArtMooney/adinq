@@ -27,6 +27,9 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
       <NuxtImg
         :src="logo?.url"
         class="relative mt-8 h-14 max-h-14 min-h-14 max-w-40 object-contain lg:absolute lg:right-6 lg:bottom-6 lg:mt-0"
+        sizes="250px"
+        densities="x1"
+        format="webp"
       ></NuxtImg>
     </div>
 

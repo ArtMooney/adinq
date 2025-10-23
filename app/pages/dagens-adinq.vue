@@ -97,8 +97,8 @@ const colleaguesProduction = colleagues?.value.filter(
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
-        width="6000"
-        height="4000"
+        width="2335"
+        height="3500"
         format="webp"
       />
 
@@ -124,8 +124,8 @@ const colleaguesProduction = colleagues?.value.filter(
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
-        width="6000"
-        height="4000"
+        width="2335"
+        height="3500"
         format="webp"
       />
 
@@ -151,8 +151,8 @@ const colleaguesProduction = colleagues?.value.filter(
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
-        width="6000"
-        height="4000"
+        width="2335"
+        height="3500"
         format="webp"
       />
 
