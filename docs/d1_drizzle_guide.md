@@ -17,6 +17,8 @@ npx drizzle-kit studio
 ### 1. Generate migrations after schema changes
 ```bash
 npx drizzle-kit generate
+and then
+npx drizzle-kit migrate
 ```
 
 ### 2. Apply migrations locally
