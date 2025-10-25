@@ -10,7 +10,13 @@ function getLocalDbPath() {
   try {
     if (!fs.existsSync(wranglerDir)) {
       throw new Error(
-        "Wrangler database directory not found. Run `npm run dev` or `wrangler dev` first.",
+        `Wrangler database directory not found.
+        
+Run this command first to create the LOCAL database:
+  npx wrangler d1 execute [database-name] --local --command="SELECT 1"
+  
+Note: --local flag ensures this runs against your local dev database, not production.
+This will initialize the local D1 database structure.`,
       );
     }
 
@@ -18,15 +24,25 @@ function getLocalDbPath() {
     const sqliteFile = files.find((file) => file.endsWith(".sqlite"));
 
     if (!sqliteFile) {
-      throw new Error("No .sqlite file found in Wrangler directory.");
+      throw new Error(
+        `No .sqlite file found in ${wranglerDir}
+        
+Run this command to create it:
+  npx wrangler d1 execute [database-name] --local --command="SELECT 1"`,
+      );
     }
 
     return path.join(wranglerDir, sqliteFile);
   } catch (error) {
-    console.error("❌ Could not find local database.");
+    console.error("\n❌ Could not find local database.");
+    console.error("\n💡 To fix this, run:");
     console.error(
-      "💡 Make sure to run `npm run dev` or `wrangler dev` first to create the local database.",
+      '   npx wrangler d1 execute [database-name] --local --command="SELECT 1"',
     );
+    console.error(
+      "\n   (Replace [database-name] with your database name from wrangler.toml)",
+    );
+    console.error("\n   Then run your drizzle-kit command again.\n");
     throw error;
   }
 }
