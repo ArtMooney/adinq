@@ -4,7 +4,7 @@ compatibility_date = "2025-10-16"
 [[d1_databases]]
 binding = "DB"
 database_name = "adinq"
-database_id = "be5a8ded-ef98-4e3e-9ae8-7000377b57f8"
+database_id = "07b19823-78d6-4d2b-b8e4-b9dc6c537091"
 
 [[r2_buckets]]
 binding = "FILES"
