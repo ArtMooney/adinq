@@ -57,11 +57,23 @@ npx wrangler d1 export [d1_database_name] --local --output=[filename].sql
 ### Import to Cloudflare D1 from file
 ```bash
 npx wrangler d1 execute [d1_database_name] --remote --file=./[filename].sql
+
+if there is already tables, only use data from the file with
+grep "^INSERT" [db_name].sql > [file_data_only].sql
+
+and then
+npx wrangler d1 execute [d1_database_name] --remote --file=./[file_data_only].sql
 ```
 
 ### Import to local database from file
 ```bash
 npx wrangler d1 execute [d1_database_name] --local --file=./[filename].sql
+
+if there is already tables, only use data from the file with
+grep "^INSERT" [db_name].sql > [file_data_only].sql
+
+and then
+npx wrangler d1 execute [d1_database_name] --local --file=./[file_data_only].sql
 ```
 
 ### Sync from Cloudflare D1 to local
