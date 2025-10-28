@@ -5,6 +5,7 @@ compatibility_date = "2025-10-16"
 binding = "DB"
 database_name = "adinq"
 database_id = "07b19823-78d6-4d2b-b8e4-b9dc6c537091"
+migrations_dir = "migrations"
 
 [[r2_buckets]]
 binding = "FILES"
