@@ -59,11 +59,10 @@ export default defineConfig({
         },
       }
     : {
-        driver: "d1-http",
+        dialect: "sqlite",
         dbCredentials: {
-          accountId: process.env.NUXT_CLOUDFLARE_ACCOUNT_ID!,
-          databaseId: process.env.NUXT_CLOUDFLARE_DATABASE_ID!,
-          token: process.env.NUXT_CLOUDFLARE_D1_TOKEN!,
+          wranglerConfigPath: "./wrangler.toml",
+          databaseName: "adinq",
         },
       }),
 });
