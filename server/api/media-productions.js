@@ -14,5 +14,5 @@ export default defineEventHandler(async (event) => {
   }
 
   const db = useDrizzle(event.context.cloudflare.env.DB);
-  return db.select().from(mediaproduktioner);
+  return await db.select().from(mediaproduktioner).all();
 });
