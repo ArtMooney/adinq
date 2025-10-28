@@ -8,6 +8,7 @@ export const users = sqliteTable("users", {
     .notNull(),
   updatedAt: text("updated_at")
     .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
     .notNull(),
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
@@ -26,6 +27,7 @@ export const mediaproduktioner = sqliteTable("mediaproduktioner", {
     .notNull(),
   updatedAt: text("updated_at")
     .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
 
@@ -46,6 +48,7 @@ export const medarbetare = sqliteTable("medarbetare", {
     .notNull(),
   updatedAt: text("updated_at")
     .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
 
@@ -62,6 +65,7 @@ export const kundutlatanden = sqliteTable("kundutlatanden", {
     .notNull(),
   updatedAt: text("updated_at")
     .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
 
@@ -77,5 +81,6 @@ export const prisexempel = sqliteTable("prisexempel", {
     .notNull(),
   updatedAt: text("updated_at")
     .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
