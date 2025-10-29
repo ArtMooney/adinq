@@ -1,6 +1,8 @@
 <script setup>
 import IconFluentPhone48Filled from "~icons/fluent/phone-48-filled";
 import IconStreamlineSendEmailSolid from "~icons/streamline/send-email-solid";
+
+const image = useImage();
 </script>
 
 <template>
@@ -19,7 +21,7 @@ import IconStreamlineSendEmailSolid from "~icons/streamline/send-email-solid";
           <div
             class="absolute inset-0 h-full w-full saturate-50"
             :style="{
-              backgroundImage: `url(${colleague?.photo[0]?.url})`,
+              backgroundImage: `url(${image(`/cms-images/${colleague?.photo}`, { format: 'webp', quality: 65 })})`,
               ...imageTransformStyle,
             }"
             role="img"
