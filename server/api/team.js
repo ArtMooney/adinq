@@ -1,5 +1,6 @@
 import { checkLogin } from "../utils/check-login.js";
-import { listRows } from "../db/baserow/list-rows.js";
+import { useDrizzle } from "~~/server/db/client.ts";
+import { medarbetare } from "~~/server/db/schema.ts";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -12,14 +13,6 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  try {
-    const data = await listRows(config.baserowToken, "546565");
-
-    return data.results;
-  } catch (error) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: "Getting team data failed",
-    });
-  }
+  const db = useDrizzle(event.context.cloudflare.env.DB);
+  return await db.select().from(medarbetare).all();
 });
