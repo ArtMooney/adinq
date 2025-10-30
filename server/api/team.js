@@ -14,5 +14,5 @@ export default defineEventHandler(async (event) => {
   }
 
   const db = useDrizzle(event.context.cloudflare.env.DB);
-  return await db.select().from(medarbetare).all();
+  return db.select().from(medarbetare).all();
 });
