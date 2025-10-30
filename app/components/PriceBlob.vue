@@ -28,10 +28,10 @@
           iconOrder > 2 && 'mb-2 underline',
         ]"
       >
-        {{ data.title }}
+        {{ data?.title }}
       </p>
-      <p>{{ data.monthly }}</p>
-      <p>{{ data.total }}</p>
+      <p>{{ data?.monthly }}</p>
+      <p>{{ data?.total }}</p>
 
       <div v-if="iconOrder > 2" class="mt-6 h-[1px] w-2/3 bg-white/25"></div>
 
@@ -73,7 +73,7 @@ export default {
     },
 
     iconOrder() {
-      return Number(this.data.index);
+      return Number(this.data?.sortOrder);
     },
 
     iconComponent() {
