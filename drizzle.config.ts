@@ -39,9 +39,6 @@ Run this command to create it:
     console.error(
       '   npx wrangler d1 execute [database-name] --local --command="SELECT 1"',
     );
-    console.error(
-      "\n   (Replace [database-name] with your database name from wrangler.toml)",
-    );
     console.error("\n   Then run your drizzle-kit command again.\n");
     throw error;
   }
@@ -59,10 +56,11 @@ export default defineConfig({
         },
       }
     : {
-        dialect: "sqlite",
+        driver: "d1-http",
         dbCredentials: {
-          wranglerConfigPath: "./wrangler.toml",
-          databaseName: "adinq",
+          accountId: process.env.NUXT_CLOUDFLARE_ACCOUNT_ID,
+          databaseId: process.env.NUXT_CLOUDFLARE_DATABASE_ID,
+          token: process.env.NUXT_CLOUDFLARE_D1_TOKEN,
         },
       }),
 });
