@@ -37,12 +37,12 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const savePassword = await db
-    .update(users)
-    .set({ password: body.password, resetId: "" })
-    .where(eq(users.id, user[0].id));
-
-  if (savePassword.error) {
+  try {
+    await db
+      .update(users)
+      .set({ password: body.password, resetId: "" })
+      .where(eq(users.id, user[0].id));
+  } catch (error) {
     throw createError({
       statusCode: 500,
       statusMessage: "Error saving password",
