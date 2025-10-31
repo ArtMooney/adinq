@@ -1,5 +1,7 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
-import { listRows } from "~~/server/db/baserow/list-rows.js";
+import { useDrizzle } from "~~/server/db/client.ts";
+import { users } from "~~/server/db/schema.ts";
+import { like } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -20,15 +22,13 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const user = await listRows(
-    config.baserowToken,
-    config.baserowCmsUsersId,
-    null,
-    null,
-    body.email,
-  );
+  const db = useDrizzle(event.context.cloudflare.env.DB);
+  const user = await db
+    .select()
+    .from(users)
+    .where(like(users.email, body.email));
 
-  if (user.results.length === 0 || user.results[0].password !== body.password) {
+  if (user.length === 0 || user[0].password !== body.password) {
     throw createError({
       statusCode: 401,
       statusMessage: "Error logging in",
