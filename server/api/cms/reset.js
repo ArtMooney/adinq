@@ -1,9 +1,10 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
-import { listRows } from "~~/server/db/baserow/list-rows.js";
-import { updateRow } from "~~/server/db/baserow/update-row.js";
-import { generateUserId } from "~~/server/utils/generate-user-id.js";
+import { randomUUID } from "crypto";
 import { sendEmail } from "~~/server/utils/mailgun/send-email.js";
 import { messageEmailReset } from "~~/server/content/message-email-reset.js";
+import { useDrizzle } from "~~/server/db/client.ts";
+import { users } from "~~/server/db/schema.ts";
+import { eq, like } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -24,20 +25,20 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const users = await listRows(config.baserowToken, config.baserowCmsUsersId);
-  const user = users.results.find((user) => user.email === body.email);
+  const db = useDrizzle(event.context.cloudflare.env.DB);
+  const user = await db
+    .select()
+    .from(users)
+    .where(like(users.email, body.email));
 
   if (!user) {
     return "ok"; // User not found, return same as if ok is a security measure
   }
 
-  user["reset-id"] = generateUserId(users);
-  const saveUser = await updateRow(
-    config.baserowToken,
-    config.baserowCmsUsersId,
-    user.id,
-    user,
-  );
+  const saveUser = await db
+    .update(users)
+    .set({ resetId: randomUUID() })
+    .where(eq(users.id, user[0].id));
 
   if (saveUser.error) {
     throw createError({
@@ -50,7 +51,7 @@ export default defineEventHandler(async (event) => {
     config.emailFrom,
     body.email,
     "Change password for your account on Simple CMS",
-    await messageEmailReset(body.pageuri, user["reset-id"]),
+    await messageEmailReset(body.pageuri, user[0].resetId),
     config.mailgunApiKey,
   );
 
