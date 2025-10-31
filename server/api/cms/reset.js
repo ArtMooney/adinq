@@ -35,9 +35,10 @@ export default defineEventHandler(async (event) => {
     return "ok"; // User not found, return same as if ok is a security measure
   }
 
+  const resetId = randomUUID();
   const saveUser = await db
     .update(users)
-    .set({ resetId: randomUUID() })
+    .set({ resetId: resetId })
     .where(eq(users.id, user[0].id));
 
   if (saveUser.error) {
@@ -51,7 +52,7 @@ export default defineEventHandler(async (event) => {
     config.emailFrom,
     body.email,
     "Change password for your account on Simple CMS",
-    await messageEmailReset(body.pageuri, user[0].resetId),
+    await messageEmailReset(body.pageuri, resetId),
     config.mailgunApiKey,
   );
 
