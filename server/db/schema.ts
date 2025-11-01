@@ -84,3 +84,10 @@ export const prisexempel = sqliteTable("prisexempel", {
     .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
+
+export const cmsTables = [
+  "kundutlatanden",
+  "prisexempel",
+  "medarbetare",
+  "mediaproduktioner",
+];
