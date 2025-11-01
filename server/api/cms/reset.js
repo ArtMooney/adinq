@@ -36,12 +36,13 @@ export default defineEventHandler(async (event) => {
   }
 
   const resetId = randomUUID();
-  const saveUser = await db
-    .update(users)
-    .set({ resetId: resetId })
-    .where(eq(users.id, user[0].id));
 
-  if (saveUser.error) {
+  try {
+    await db
+      .update(users)
+      .set({ resetId: resetId })
+      .where(eq(users.id, user[0].id));
+  } catch (error) {
     throw createError({
       statusCode: 500,
       statusMessage: "Error saving user",
