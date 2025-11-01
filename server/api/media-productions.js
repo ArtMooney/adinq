@@ -1,6 +1,6 @@
-import { checkLogin } from "../utils/check-login.js";
-import { useDrizzle } from "../db/client";
-import { mediaproduktioner } from "../db/schema";
+import { checkLogin } from "~~/server/utils/check-login.js";
+import { useDrizzle } from "~~/server/db/client.ts";
+import { mediaproduktioner } from "~~/server/db/schema.ts";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
