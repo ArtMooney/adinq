@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  if (!(await checkAuthentication(config, body?.email, body?.password))) {
+  if (!(await checkAuthentication(event, body?.email, body?.password))) {
     throw createError({
       statusCode: 401,
       statusMessage: "Failed to login",
