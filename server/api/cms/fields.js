@@ -29,5 +29,9 @@ export default defineEventHandler(async (event) => {
   }
   const table = schema[tableName];
   const columns = getTableColumns(table);
-  return Object.keys(columns);
+
+  return Object.keys(columns).map((key) => ({
+    name: key,
+    type: columns[key].getSQLType(),
+  }));
 });
