@@ -109,6 +109,10 @@ export default {
       required: false,
       default: [],
     },
+    tableId: {
+      type: String,
+      required: true,
+    },
     loadingFlag: {
       type: Boolean,
       required: false,
@@ -170,7 +174,7 @@ export default {
       this.$emit("loadingFlag", true);
 
       if (this.schema.length > 0) {
-        let items = await this.listRows(this.schema[0].table_id);
+        let items = await this.listRows(this.tableId);
 
         // parse to-from date-fields to json array
         for (const item of items) {
@@ -188,7 +192,7 @@ export default {
       }
     },
 
-    async listRows(tableid, orderBy, asc, search) {
+    async listRows(tableid) {
       try {
         return await $fetch("/api/cms/rows", {
           method: "POST",
@@ -200,8 +204,7 @@ export default {
             password: this.login.password,
             table_id: tableid,
             asc: true,
-            order_by: "index",
-            search: search,
+            order_by: "sortOrder",
           }),
         });
       } catch (err) {
