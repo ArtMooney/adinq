@@ -1,6 +1,6 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
 import { checkAuthentication } from "~~/server/utils/check-authentication.js";
-import { listTables } from "~~/server/db/baserow/list-tables.js";
+import { cmsTables } from "~~/server/db/schema.ts";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -14,29 +14,19 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  if (!(await checkAuthentication(config, body?.email, body?.password))) {
+  if (!(await checkAuthentication(event, body?.email, body?.password))) {
     throw createError({
       statusCode: 401,
       statusMessage: "Failed to login",
     });
   }
 
-  const schema = await listTables(
-    config.baserowUsername,
-    config.baserowPassword,
-    config.baserowDbId,
-  );
-
-  const tables = schema.filter(
-    (table) => table.id !== parseInt(config.baserowCmsUsersId),
-  );
-
-  if (tables.length === 0) {
+  if (cmsTables.length === 0) {
     throw createError({
       statusCode: 500,
       statusMessage: "No tables found",
     });
   }
 
-  return tables;
+  return cmsTables;
 });
