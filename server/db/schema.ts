@@ -86,8 +86,8 @@ export const prisexempel = sqliteTable("prisexempel", {
 });
 
 export const cmsTables = [
-  "kundutlatanden",
-  "prisexempel",
-  "medarbetare",
-  "mediaproduktioner",
+  { id: "kundutlatanden", name: "Kundutlåtanden" },
+  { id: "prisexempel", name: "Prisexempel" },
+  { id: "medarbetare", name: "Medarbetare" },
+  { id: "mediaproduktioner", name: "Mediaproduktioner" },
 ];
