@@ -73,6 +73,10 @@ export default {
       required: false,
       default: [],
     },
+    tableId: {
+      type: String,
+      required: true,
+    },
     editingNewItem: {
       type: Boolean,
       required: false,

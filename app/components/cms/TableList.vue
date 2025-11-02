@@ -45,6 +45,7 @@ export default {
     const schema = await this.listFields(this.tables[this.tableIndex].id);
 
     this.$emit("schema", schema);
+    this.$emit("tableId", this.tables[this.tableIndex].id);
   },
 
   methods: {
@@ -95,6 +96,7 @@ export default {
       this.$emit("loadingFlag", true);
       const schema = await this.listFields(this.tables[this.tableIndex].id);
       this.$emit("schema", schema);
+      this.$emit("tableId", this.tables[this.tableIndex].id);
     },
   },
 };
