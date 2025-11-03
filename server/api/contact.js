@@ -1,4 +1,5 @@
 import { sendEmail } from "../utils/mailgun/send-email.js";
+import { messageEmailBody } from "../content/message-email-body.js";
 import { messageContact } from "../content/message-contact.js";
 import { checkLogin } from "../utils/check-login.js";
 
@@ -27,7 +28,7 @@ export default defineEventHandler(async (event) => {
     config.emailFrom,
     config.emailTo,
     "Kontakt via hemsidan",
-    JSON.stringify(formDataJson, null, 2),
+    await messageEmailBody(formDataJson),
     config.mailgunApiKey,
   );
 
