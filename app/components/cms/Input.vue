@@ -7,7 +7,8 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 <template>
   <input
     v-if="
-      input.name !== 'index' &&
+      input.name !== 'id' &&
+      input.name !== 'sortOrder' &&
       getInputType(input.type) !== 'textarea' &&
       getInputType(input.type) !== 'file' &&
       getInputType(input.type) !== 'date' &&
@@ -24,7 +25,8 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 
   <VueDatePicker
     v-if="
-      input.name !== 'index' &&
+      input.name !== 'id' &&
+      input.name !== 'sortOrder' &&
       (getInputType(input.type) === 'date' || isToFromType(input.name))
     "
     v-model="item[input.name]"
@@ -38,7 +40,11 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
   </VueDatePicker>
 
   <textarea
-    v-if="input.name !== 'index' && getInputType(input.type) === 'textarea'"
+    v-if="
+      input.name !== 'id' &&
+      input.name !== 'sortOrder' &&
+      getInputType(input.type) === 'textarea'
+    "
     @click.stop
     v-model="item[input.name]"
     :name="input.name"
@@ -46,7 +52,11 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
   ></textarea>
 
   <div
-    v-if="input.name !== 'index' && getInputType(input.type) === 'file'"
+    v-if="
+      input.name !== 'id' &&
+      input.name !== 'sortOrder' &&
+      getInputType(input.type) === 'file'
+    "
     class="my-1 flex items-center gap-1 justify-self-start"
   >
     <input
@@ -78,7 +88,11 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
   </div>
 
   <select
-    v-if="input.name !== 'index' && getInputType(input.type) === 'select'"
+    v-if="
+      input.name !== 'id' &&
+      input.name !== 'sortOrder' &&
+      getInputType(input.type) === 'select'
+    "
     :name="input.name"
     v-model="selectValue"
   >
