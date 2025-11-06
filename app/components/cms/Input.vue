@@ -7,11 +7,10 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 <template>
   <input
     v-if="
-      input.name !== 'id' &&
-      input.name !== 'sortOrder' &&
+      neverVisibleFields &&
       input.type.value !== 'textarea' &&
+      input.type.value !== 'file' &&
       input.type.value !== 'fileImg' &&
-      input.type.value !== 'fileDoc' &&
       input.type.value !== 'date' &&
       input.type.value !== 'dateToFrom' &&
       input.type.value !== 'select'
@@ -25,8 +24,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 
   <VueDatePicker
     v-if="
-      input.name !== 'id' &&
-      input.name !== 'sortOrder' &&
+      neverVisibleFields &&
       (input.type.value === 'date' || input.type.value === 'dateToFrom')
     "
     v-model="item[input.name]"
@@ -40,11 +38,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
   </VueDatePicker>
 
   <textarea
-    v-if="
-      input.name !== 'id' &&
-      input.name !== 'sortOrder' &&
-      input.type.value === 'textarea'
-    "
+    v-if="neverVisibleFields && input.type.value === 'textarea'"
     @click.stop
     v-model="item[input.name]"
     :name="input.name"
@@ -53,11 +47,10 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 
   <div
     v-if="
-      input.name !== 'id' &&
-      input.name !== 'sortOrder' &&
-      (input.type.value === 'fileImg' || input.type.value === 'fileDoc')
+      neverVisibleFields &&
+      (input.type.value === 'file' || input.type.value === 'fileImg')
     "
-    class="my-1 flex items-center gap-1 justify-self-start"
+    class="my-1 flex items-center justify-between gap-1 justify-self-start"
   >
     <input
       @click.stop
@@ -67,37 +60,39 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
       class="hidden"
       type="file"
       :name="`${input.name}`"
-      :accept="
-        input.type.value === 'fileImg'
-          ? '.jpg, .jpeg, .png'
-          : input.type.value === 'fileDoc'
-            ? '.pdf'
-            : ''
-      "
+      :accept="input.type.value === 'fileImg' ? '.jpg, .jpeg, .png' : ''"
       autocomplete="off"
     />
 
     <label
       @click.stop
       :for="`${input.name}-${index}`"
-      class="m-0 cursor-pointer p-0 text-sm underline"
+      class="relative m-0 cursor-pointer p-0 text-sm underline"
     >
-      {{ displayFilename(item[input.name], input.type.value) }}
+      <span v-if="!item[input.name]?.length > 0">{{
+        chooseFilenameText(input.type.value)
+      }}</span>
+
+      <NuxtImg
+        v-if="item[input.name]?.length > 0"
+        :src="`cms-images/${item[input.name]}`"
+        alt="an image slot with an image selected by the user"
+        class="h-20 min-h-20 w-20 min-w-20 object-cover"
+        sizes="80px"
+        densities="x1"
+        format="webp"
+      />
     </label>
 
     <IconCloseCircleOutline
       v-if="item[input.name]?.length > 0"
-      @click.stop="removeFile(`${input.name}-${index}`, input.name)"
-      class="h-4 min-h-4 w-4 min-w-4 cursor-pointer px-0.5 text-red-500"
+      @click.stop.prevent="removeFile(`${input.name}-${index}`, input.name)"
+      class="h-6 min-h-6 w-6 min-w-6 cursor-pointer px-0.5 text-white"
     ></IconCloseCircleOutline>
   </div>
 
   <select
-    v-if="
-      input.name !== 'id' &&
-      input.name !== 'sortOrder' &&
-      input.type.value === 'select'
-    "
+    v-if="neverVisibleFields && input.type.value === 'select'"
     :name="input.name"
     v-model="selectValue"
   >
@@ -134,6 +129,10 @@ export default {
   },
 
   computed: {
+    neverVisibleFields() {
+      return this.input.name !== "id" && this.input.name !== "sortOrder";
+    },
+
     selectValue: {
       get() {
         return this.item[this.input.name] || "";
@@ -179,12 +178,8 @@ export default {
       });
     },
 
-    displayFilename(filename, inputType) {
-      if (filename?.length > 0) {
-        return filename;
-      }
-
-      return inputType === "fileDoc"
+    chooseFilenameText(inputType) {
+      return inputType === "file"
         ? "Click here to choose a file."
         : "Click here to choose an image.";
     },
