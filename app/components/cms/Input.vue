@@ -9,16 +9,16 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
     v-if="
       input.name !== 'id' &&
       input.name !== 'sortOrder' &&
-      getInputType(input.type) !== 'textarea' &&
-      getInputType(input.type) !== 'file' &&
-      getInputType(input.type) !== 'date' &&
-      getInputType(input.type) !== 'select' &&
-      !isToFromType(input.name)
+      input.type.value !== 'textarea' &&
+      input.type.value !== 'fileImg' &&
+      input.type.value !== 'fileDoc' &&
+      input.type.value !== 'date' &&
+      input.type.value !== 'dateToFrom' &&
+      input.type.value !== 'select'
     "
     @click.stop
     v-model="item[input.name]"
-    :type="getInputType(input.type)"
-    :class="[isEmailValid && 'error', isPhoneNumberValid && 'error']"
+    :type="input.type.value"
     :name="input.name"
     autocomplete="off"
   />
@@ -27,14 +27,14 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
     v-if="
       input.name !== 'id' &&
       input.name !== 'sortOrder' &&
-      (getInputType(input.type) === 'date' || isToFromType(input.name))
+      (input.type.value === 'date' || input.type.value === 'dateToFrom')
     "
     v-model="item[input.name]"
     :format="'yyyy-MM-dd'"
     locale="sv"
     auto-apply=""
     :name="input.name"
-    :range="isToFromType(input.name)"
+    :range="input.type.value === 'dateToFrom'"
     class="[&_div]:!font-body [&_input]:!font-body [&_button]:!p-0 [&_div]:!text-xs [&_input]:!border-white/25 [&_input]:!bg-transparent [&_input]:!py-3 [&_input]:!text-sm [&_input]:!text-white"
   >
   </VueDatePicker>
@@ -43,7 +43,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
     v-if="
       input.name !== 'id' &&
       input.name !== 'sortOrder' &&
-      getInputType(input.type) === 'textarea'
+      input.type.value === 'textarea'
     "
     @click.stop
     v-model="item[input.name]"
@@ -55,7 +55,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
     v-if="
       input.name !== 'id' &&
       input.name !== 'sortOrder' &&
-      getInputType(input.type) === 'file'
+      (input.type.value === 'fileImg' || input.type.value === 'fileDoc')
     "
     class="my-1 flex items-center gap-1 justify-self-start"
   >
@@ -65,9 +65,15 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
       :id="`${input.name}-${index}`"
       :ref="`${input.name}-${index}`"
       class="hidden"
-      :type="getInputType(input.type)"
+      type="file"
       :name="`${input.name}`"
-      :accept="isToFromType(input.name) ? '.jpg, .jpeg, .png' : ''"
+      :accept="
+        input.type.value === 'fileImg'
+          ? '.jpg, .jpeg, .png'
+          : input.type.value === 'fileDoc'
+            ? '.pdf'
+            : ''
+      "
       autocomplete="off"
     />
 
@@ -76,13 +82,11 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
       :for="`${input.name}-${index}`"
       class="m-0 cursor-pointer p-0 text-sm underline"
     >
-      {{ displayFilename(item[input.name], input.name) }}
+      {{ displayFilename(item[input.name], input.type.value) }}
     </label>
 
     <IconCloseCircleOutline
-      @click.stop="
-        removeFile(item, index, `${input.name}-${index}`, input.name)
-      "
+      @click.stop="removeFile(`${input.name}-${index}`, input.name)"
       class="h-4 min-h-4 w-4 min-w-4 cursor-pointer px-0.5 text-red-500"
     ></IconCloseCircleOutline>
   </div>
@@ -91,12 +95,12 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
     v-if="
       input.name !== 'id' &&
       input.name !== 'sortOrder' &&
-      getInputType(input.type) === 'select'
+      input.type.value === 'select'
     "
     :name="input.name"
     v-model="selectValue"
   >
-    <option v-for="option in input.select_options" :value="option.value">
+    <option v-for="option in input.type.select_options" :value="option.value">
       {{ option.value }}
     </option>
   </select>
@@ -128,75 +132,18 @@ export default {
     },
   },
 
-  data() {
-    return {
-      emailReg:
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
-      internationalPhoneReg:
-        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-    };
-  },
-
   computed: {
-    isEmailValid() {
-      return (
-        this.input.type === "email" &&
-        !this.emailReg.test(this.item[this.input.name]) &&
-        this.item[this.input.name] !== ""
-      );
-    },
-
-    isPhoneNumberValid() {
-      return (
-        this.input.type === "phone_number" &&
-        !this.internationalPhoneReg.test(this.item[this.input.name]) &&
-        this.item[this.input.name] !== ""
-      );
-    },
-
     selectValue: {
       get() {
-        return this.item[this.input.name]?.value || "";
+        return this.item[this.input.name] || "";
       },
       set(newValue) {
-        if (!this.item[this.input.name]) {
-          this.item[this.input.name] = { value: newValue };
-        } else {
-          this.item[this.input.name].value = newValue;
-        }
+        this.item[this.input.name] = newValue;
       },
     },
   },
 
   methods: {
-    getInputType(type) {
-      let inputType = "text";
-
-      if (type === "long_text") {
-        inputType = "textarea";
-      } else if (type === "date") {
-        inputType = "date";
-      } else if (type === "boolean") {
-        inputType = "checkbox";
-      } else if (type === "file") {
-        inputType = "file";
-      } else if (type === "single_select") {
-        inputType = "select";
-      }
-
-      return inputType;
-    },
-
-    isToFromType(inputName) {
-      return !!(
-        inputName.includes("|") && inputName.split("|")[1] === "to-from"
-      );
-    },
-
-    isDocType(inputName) {
-      return !!(inputName.includes("|") && inputName.split("|")[1] === "doc");
-    },
-
     async handleFileInput(event, name, item) {
       if (!event.target.files[0].name) return;
 
@@ -231,7 +178,7 @@ export default {
       });
     },
 
-    displayFilename(filename, inputName) {
+    displayFilename(filename, inputType) {
       if (filename && filename.length > 0) {
         if (filename[0].visible_name) {
           return filename[0].visible_name;
@@ -240,28 +187,14 @@ export default {
         }
       }
 
-      return this.isDocType(inputName)
+      return inputType === "fileDoc"
         ? "Click here to choose a file."
         : "Click here to choose an image.";
     },
 
-    removeFile(item, index, inputName, fieldName) {
+    removeFile(inputName, fieldName) {
       this.$refs[inputName].value = "";
       this.item[fieldName] = [];
-    },
-  },
-
-  watch: {
-    isEmailValid(newVal) {
-      if (this.itemOpen) {
-        this.$emit("inputError", this.isEmailValid);
-      }
-    },
-
-    isPhoneNumberValid(newVal) {
-      if (this.itemOpen) {
-        this.$emit("inputError", this.isPhoneNumberValid);
-      }
     },
   },
 };
