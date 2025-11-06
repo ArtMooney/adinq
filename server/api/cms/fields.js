@@ -26,7 +26,10 @@ export default defineEventHandler(async (event) => {
   const tableName = body?.table_id;
 
   if (!cmsTables.some((t) => t.id === tableName)) {
-    throw createError({ statusCode: 400, statusMessage: "Invalid table" });
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Invalid table",
+    });
   }
 
   const table = schema[tableName];
