@@ -70,10 +70,7 @@ export default defineNuxtConfig({
 
   robots: {
     rules: () => {
-      if (
-        process.env.NUXT_PUBLIC_SITE_URL?.includes("pages.dev") ||
-        process.env.CF_PAGES_URL?.includes("pages.dev")
-      ) {
+      if (process.env.CF_PAGES_BRANCH !== "main") {
         return [
           {
             userAgent: "*",
@@ -92,7 +89,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: process.env.CF_PAGES_URL || "https://adinq.se",
+    url: process.env.NUXT_PUBLIC_SITE_URL || process.env.CF_PAGES_URL,
   },
 
   sitemap: {
@@ -121,6 +118,12 @@ export default defineNuxtConfig({
         { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
         { rel: "manifest", href: "/site.webmanifest" },
       ],
+      // meta: [
+      //   {
+      //     name: "google-site-verification",
+      //     content: "",
+      //   },
+      // ],
     },
   },
 });
