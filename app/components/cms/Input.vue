@@ -32,7 +32,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
     v-model="item[input.name]"
     :format="'yyyy-MM-dd'"
     locale="sv"
-    auto-apply=""
+    auto-apply
     :name="input.name"
     :range="input.type.value === 'dateToFrom'"
     class="[&_div]:!font-body [&_input]:!font-body [&_button]:!p-0 [&_div]:!text-xs [&_input]:!border-white/25 [&_input]:!bg-transparent [&_input]:!py-3 [&_input]:!text-sm [&_input]:!text-white"
@@ -86,6 +86,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
     </label>
 
     <IconCloseCircleOutline
+      v-if="item[input.name]?.length > 0"
       @click.stop="removeFile(`${input.name}-${index}`, input.name)"
       class="h-4 min-h-4 w-4 min-w-4 cursor-pointer px-0.5 text-red-500"
     ></IconCloseCircleOutline>
@@ -179,12 +180,8 @@ export default {
     },
 
     displayFilename(filename, inputType) {
-      if (filename && filename.length > 0) {
-        if (filename[0].visible_name) {
-          return filename[0].visible_name;
-        } else if (filename[0].name) {
-          return filename[0].name;
-        }
+      if (filename?.length > 0) {
+        return filename;
       }
 
       return inputType === "fileDoc"
