@@ -78,9 +78,16 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
           chooseFilenameText(input.type.value)
         }}</span>
 
+        <span v-if="typeof item[input?.name] === 'object'">
+          {{ item[input?.name][0]?.name }}
+        </span>
+
         <NuxtImg
-          v-if="item[input.name]?.length > 0"
-          :src="`cms-images/${item[input.name]}`"
+          v-if="
+            typeof item[input?.name] === 'string' &&
+            item[input?.name]?.length > 0
+          "
+          :src="`cms-images/${item[input?.name]}`"
           alt="an image slot with an image selected by the user"
           class="h-20 min-h-20 w-20 min-w-20 object-cover"
           sizes="80px"
@@ -89,7 +96,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
         />
 
         <IconCloseCircleOutline
-          v-if="item[input.name]?.length > 0"
+          v-if="item[input?.name]?.length > 0"
           @click.stop.prevent="removeFile(`${input.name}-${index}`, input.name)"
           class="absolute -top-3 -right-6 h-6 min-h-6 w-6 min-w-6 cursor-pointer px-0.5 text-white"
         ></IconCloseCircleOutline>
