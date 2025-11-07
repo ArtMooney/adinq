@@ -87,13 +87,13 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
           densities="x1"
           format="webp"
         />
-      </label>
 
-      <IconCloseCircleOutline
-        v-if="item[input.name]?.length > 0"
-        @click.stop.prevent="removeFile(`${input.name}-${index}`, input.name)"
-        class="h-6 min-h-6 w-6 min-w-6 cursor-pointer px-0.5 text-white"
-      ></IconCloseCircleOutline>
+        <IconCloseCircleOutline
+          v-if="item[input.name]?.length > 0"
+          @click.stop.prevent="removeFile(`${input.name}-${index}`, input.name)"
+          class="absolute -top-3 -right-6 h-6 min-h-6 w-6 min-w-6 cursor-pointer px-0.5 text-white"
+        ></IconCloseCircleOutline>
+      </label>
     </div>
 
     <select
