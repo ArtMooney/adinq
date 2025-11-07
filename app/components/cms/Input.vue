@@ -5,101 +5,107 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 </script>
 
 <template>
-  <input
-    v-if="
-      neverVisibleFields &&
-      input.type.value !== 'textarea' &&
-      input.type.value !== 'file' &&
-      input.type.value !== 'fileImg' &&
-      input.type.value !== 'date' &&
-      input.type.value !== 'dateToFrom' &&
-      input.type.value !== 'select'
-    "
-    @click.stop
-    v-model="item[input.name]"
-    :type="input.type.value"
-    :name="input.name"
-    autocomplete="off"
-  />
+  <div v-if="neverVisibleFields" class="flex flex-col gap-1">
+    <p class="font-semibold text-white/50 italic">
+      {{ input.name.includes("|") ? input.name.split("|")[0] : input.name }}
+    </p>
 
-  <VueDatePicker
-    v-if="
-      neverVisibleFields &&
-      (input.type.value === 'date' || input.type.value === 'dateToFrom')
-    "
-    v-model="item[input.name]"
-    :format="'yyyy-MM-dd'"
-    locale="sv"
-    auto-apply
-    :name="input.name"
-    :range="input.type.value === 'dateToFrom'"
-    class="[&_div]:!font-body [&_input]:!font-body [&_button]:!p-0 [&_div]:!text-xs [&_input]:!border-white/25 [&_input]:!bg-transparent [&_input]:!py-3 [&_input]:!text-sm [&_input]:!text-white"
-  >
-  </VueDatePicker>
-
-  <textarea
-    v-if="neverVisibleFields && input.type.value === 'textarea'"
-    @click.stop
-    v-model="item[input.name]"
-    :name="input.name"
-    autocomplete="off"
-  ></textarea>
-
-  <div
-    v-if="
-      neverVisibleFields &&
-      (input.type.value === 'file' || input.type.value === 'fileImg')
-    "
-    class="my-1 flex items-center justify-between gap-1 justify-self-start"
-  >
     <input
+      v-if="
+        neverVisibleFields &&
+        input.type.value !== 'textarea' &&
+        input.type.value !== 'file' &&
+        input.type.value !== 'fileImg' &&
+        input.type.value !== 'date' &&
+        input.type.value !== 'dateToFrom' &&
+        input.type.value !== 'select'
+      "
       @click.stop
-      @change="handleFileInput($event, input.name, item)"
-      :id="`${input.name}-${index}`"
-      :ref="`${input.name}-${index}`"
-      class="hidden"
-      type="file"
-      :name="`${input.name}`"
-      :accept="input.type.value === 'fileImg' ? '.jpg, .jpeg, .png' : ''"
+      v-model="item[input.name]"
+      :type="input.type.value"
+      :name="input.name"
       autocomplete="off"
     />
 
-    <label
-      @click.stop
-      :for="`${input.name}-${index}`"
-      class="relative m-0 cursor-pointer p-0 text-sm underline"
+    <VueDatePicker
+      v-if="
+        neverVisibleFields &&
+        (input.type.value === 'date' || input.type.value === 'dateToFrom')
+      "
+      v-model="item[input.name]"
+      :format="'yyyy-MM-dd'"
+      locale="sv"
+      auto-apply
+      :name="input.name"
+      :range="input.type.value === 'dateToFrom'"
+      class="[&_div]:!font-body [&_input]:!font-body [&_button]:!p-0 [&_div]:!text-xs [&_input]:!border-white/25 [&_input]:!bg-transparent [&_input]:!py-3 [&_input]:!text-sm [&_input]:!text-white"
     >
-      <span v-if="!item[input.name]?.length > 0">{{
-        chooseFilenameText(input.type.value)
-      }}</span>
+    </VueDatePicker>
 
-      <NuxtImg
-        v-if="item[input.name]?.length > 0"
-        :src="`cms-images/${item[input.name]}`"
-        alt="an image slot with an image selected by the user"
-        class="h-20 min-h-20 w-20 min-w-20 object-cover"
-        sizes="80px"
-        densities="x1"
-        format="webp"
+    <textarea
+      v-if="neverVisibleFields && input.type.value === 'textarea'"
+      @click.stop
+      v-model="item[input.name]"
+      :name="input.name"
+      autocomplete="off"
+    ></textarea>
+
+    <div
+      v-if="
+        neverVisibleFields &&
+        (input.type.value === 'file' || input.type.value === 'fileImg')
+      "
+      class="my-1 flex items-center justify-between gap-1 justify-self-start"
+    >
+      <input
+        @click.stop
+        @change="handleFileInput($event, input.name, item)"
+        :id="`${input.name}-${index}`"
+        :ref="`${input.name}-${index}`"
+        class="hidden"
+        type="file"
+        :name="`${input.name}`"
+        :accept="input.type.value === 'fileImg' ? '.jpg, .jpeg, .png' : ''"
+        autocomplete="off"
       />
-    </label>
 
-    <IconCloseCircleOutline
-      v-if="item[input.name]?.length > 0"
-      @click.stop.prevent="removeFile(`${input.name}-${index}`, input.name)"
-      class="h-6 min-h-6 w-6 min-w-6 cursor-pointer px-0.5 text-white"
-    ></IconCloseCircleOutline>
+      <label
+        @click.stop
+        :for="`${input.name}-${index}`"
+        class="relative m-0 cursor-pointer p-0 text-sm underline"
+      >
+        <span v-if="!item[input.name]?.length > 0">{{
+          chooseFilenameText(input.type.value)
+        }}</span>
+
+        <NuxtImg
+          v-if="item[input.name]?.length > 0"
+          :src="`cms-images/${item[input.name]}`"
+          alt="an image slot with an image selected by the user"
+          class="h-20 min-h-20 w-20 min-w-20 object-cover"
+          sizes="80px"
+          densities="x1"
+          format="webp"
+        />
+      </label>
+
+      <IconCloseCircleOutline
+        v-if="item[input.name]?.length > 0"
+        @click.stop.prevent="removeFile(`${input.name}-${index}`, input.name)"
+        class="h-6 min-h-6 w-6 min-w-6 cursor-pointer px-0.5 text-white"
+      ></IconCloseCircleOutline>
+    </div>
+
+    <select
+      v-if="neverVisibleFields && input.type.value === 'select'"
+      :name="input.name"
+      v-model="selectValue"
+    >
+      <option v-for="option in input.type.select_options" :value="option.value">
+        {{ option.value }}
+      </option>
+    </select>
   </div>
-
-  <select
-    v-if="neverVisibleFields && input.type.value === 'select'"
-    :name="input.name"
-    v-model="selectValue"
-  >
-    <option v-for="option in input.type.select_options" :value="option.value">
-      {{ option.value }}
-    </option>
-  </select>
 </template>
 
 <script>
@@ -130,7 +136,12 @@ export default {
 
   computed: {
     neverVisibleFields() {
-      return this.input.name !== "id" && this.input.name !== "sortOrder";
+      return (
+        this.input.name !== "id" &&
+        this.input.name !== "sortOrder" &&
+        this.input.name !== "createdAt" &&
+        this.input.name !== "updatedAt"
+      );
     },
 
     selectValue: {
