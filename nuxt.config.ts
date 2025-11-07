@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: "cloudflare-pages",
+    preset: "cloudflare_pages",
     prerender: {
       crawlLinks: false,
       ignore: [],
