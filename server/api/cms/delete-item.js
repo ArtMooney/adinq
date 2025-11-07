@@ -1,6 +1,9 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
 import { checkAuthentication } from "~~/server/utils/check-authentication.js";
-import { deleteRow } from "~~/server/db/baserow/delete-row.js";
+import { useDrizzle } from "~~/server/db/client.ts";
+import * as schema from "~~/server/db/schema.ts";
+import { cmsTables } from "~~/server/db/schema.ts";
+import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -21,12 +24,27 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  if (parseInt(body?.table_id) === parseInt(config.baserowCmsUsersId)) {
+  const tableName = body?.table_id;
+
+  if (!cmsTables.some((t) => t.id === tableName)) {
     throw createError({
-      statusCode: 500,
-      statusMessage: "Table ID is not allowed",
+      statusCode: 400,
+      statusMessage: "Invalid table",
     });
   }
 
-  return await deleteRow(config.baserowToken, body.table_id, body.row_id);
+  const db = useDrizzle(event.context.cloudflare.env.DB);
+
+  try {
+    await db
+      .delete(schema[tableName])
+      .where(eq(schema[tableName].id, body.row_id));
+
+    return { success: true };
+  } catch (error) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Failed to delete item",
+    });
+  }
 });

@@ -330,7 +330,7 @@ export default {
           body: JSON.stringify({
             email: this.login.email,
             password: this.login.password,
-            table_id: this.schema.find((item) => item.table_id)?.table_id,
+            table_id: this.tableId,
             row_id: this.localItems[index].id,
           }),
         });
