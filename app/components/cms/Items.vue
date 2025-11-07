@@ -285,6 +285,7 @@ export default {
                 password: this.login.password,
                 item: item,
                 schema: this.schema,
+                table_id: this.tableId,
               }),
             },
           );

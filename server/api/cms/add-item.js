@@ -1,7 +1,9 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
 import { checkAuthentication } from "~~/server/utils/check-authentication.js";
-import { createRow } from "~~/server/db/baserow/create-row.js";
-import { uploadFile } from "~~/server/db/baserow/upload-file.js";
+import { uploadFile } from "~~/server/api/cms/upload-file.js";
+import { useDrizzle } from "~~/server/db/client.ts";
+import * as schema from "~~/server/db/schema.ts";
+import { cmsTables } from "~~/server/db/schema.ts";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -22,27 +24,49 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const bucket = event.context.cloudflare?.env.FILES;
+  if (!bucket) {
+    throw createError({
+      statusCode: 500,
+      message: "R2-binding saknas",
+    });
+  }
+
   for (const field of body.schema) {
     if (body.item[field.name]) {
       if (
-        field.type === "file" &&
-        body.item[field.name].length > 0 &&
-        !body.item[field.name][0].url
+        (field?.type?.value === "file" || field?.type?.value === "fileImg") &&
+        body?.item[field?.name][0]?.file?.length > 0
       ) {
-        const file = await uploadFile(
-          config.baserowToken,
+        body.item[field.name] = await uploadFile(
+          bucket,
           body.item[field.name][0].name,
           body.item[field.name][0].file,
+          body.item[field.name][0].contentType,
         );
-
-        body.item[field.name] = [file];
       }
     }
   }
 
-  return await createRow(
-    config.baserowToken,
-    body.schema.find((item) => item.table_id)?.table_id,
-    body.item,
-  );
+  const tableName = body?.table_id;
+
+  if (!cmsTables.some((t) => t.id === tableName)) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Invalid table",
+    });
+  }
+
+  const db = useDrizzle(event.context.cloudflare.env.DB);
+
+  try {
+    await db.insert(schema[tableName]).values(body.item);
+
+    return { success: true };
+  } catch (error) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Failed to insert data",
+    });
+  }
 });

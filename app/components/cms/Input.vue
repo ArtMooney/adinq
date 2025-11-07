@@ -158,10 +158,15 @@ export default {
     async handleFileInput(event, name, item) {
       if (!event.target.files[0].name) return;
 
+      const { base64, contentType } = await this.readEncodeFiles(
+        event.target.files,
+      );
+
       item[name] = [
         {
           name: event.target.files[0].name,
-          file: await this.readEncodeFiles(event.target.files),
+          file: base64,
+          contentType,
         },
       ];
     },
@@ -173,15 +178,16 @@ export default {
           let reader = new FileReader();
 
           reader.onload = function (e) {
-            let base64Data = e.target.result.split(",")[1];
-            resolve(base64Data);
+            let dataUrl = e.target.result;
+            let contentType = dataUrl.split(";")[0].split(":")[1];
+            let base64Data = dataUrl.split(",")[1];
+            resolve({ base64: base64Data, contentType });
           };
 
           reader.onerror = function (error) {
             reject(error);
           };
 
-          // Read the file as a data URL, which will be Base64-encoded
           reader.readAsDataURL(selectedFile);
         } else {
           reject(new Error("No files to process."));
