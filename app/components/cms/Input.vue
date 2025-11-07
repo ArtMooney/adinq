@@ -130,11 +130,6 @@ export default {
       type: Object,
       required: true,
     },
-    itemOpen: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
     index: {
       type: Number,
       required: true,
@@ -161,6 +156,16 @@ export default {
     },
   },
 
+  data() {
+    return {
+      itemBackup: null,
+    };
+  },
+
+  mounted() {
+    this.itemBackup = JSON.parse(JSON.stringify(this.item));
+  },
+
   methods: {
     async handleFileInput(event, name, item) {
       if (!event.target.files[0].name) return;
@@ -172,6 +177,7 @@ export default {
       item[name] = [
         {
           name: event.target.files[0].name,
+          backupName: this.itemBackup[name] || "",
           file: base64,
           contentType,
         },
@@ -210,7 +216,11 @@ export default {
 
     removeFile(inputName, fieldName) {
       this.$refs[inputName].value = "";
-      this.item[fieldName] = [];
+      this.item[fieldName] = [
+        {
+          backupName: this.itemBackup[this.input?.name] || "",
+        },
+      ];
     },
   },
 };

@@ -60,7 +60,6 @@ import { VueDraggableNext } from "vue-draggable-next";
               :input="input"
               :item="item"
               :index="index"
-              :item-open="itemOpen"
               @show-item="$emit('showItem', $event)"
               @save-flag="$emit('saveFlag', $event)"
               @input-error="handleInputError($event, inputIndex)"
@@ -282,12 +281,10 @@ export default {
             },
           );
 
-          if (this.editingNewItem) {
-            const items = JSON.parse(JSON.stringify(this.localItems));
-            items[index] = res;
-            this.$emit("items", items);
-          }
+          const items = JSON.parse(JSON.stringify(this.localItems));
+          items[index] = res;
 
+          this.$emit("items", items);
           this.$emit("itemOpen", false);
           this.$emit("saveFlag", false);
           this.$emit("editingNewItem", false);
