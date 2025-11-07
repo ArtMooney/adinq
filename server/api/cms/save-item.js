@@ -1,7 +1,11 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
 import { checkAuthentication } from "~~/server/utils/check-authentication.js";
-import { updateRow } from "~~/server/db/baserow/update-row.js";
-import { uploadFile } from "~~/server/db/baserow/upload-file.js";
+import { uploadFile } from "~~/server/api/cms/upload-file.js";
+import { deleteIfExists } from "~~/server/api/cms/delete-if-exists.js";
+import { cmsTables } from "~~/server/db/schema.ts";
+import { useDrizzle } from "~~/server/db/client.ts";
+import * as schema from "~~/server/db/schema.ts";
+import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -22,28 +26,61 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const bucket = event.context.cloudflare?.env.FILES;
+  if (!bucket) {
+    throw createError({
+      statusCode: 500,
+      message: "R2-binding saknas",
+    });
+  }
+
   for (const field of body.schema) {
     if (body.item[field.name]) {
-      if (
-        field.type === "file" &&
-        body.item[field.name].length > 0 &&
-        !body.item[field.name][0].url
-      ) {
-        const file = await uploadFile(
-          config.baserowToken,
-          body.item[field.name][0].name,
-          body.item[field.name][0].file,
-        );
+      if (field?.type?.value === "file" || field?.type?.value === "fileImg") {
+        if (body?.item[field?.name][0]?.backupName) {
+          await deleteIfExists(
+            bucket,
+            `cms-images/${body.item[field.name][0].backupName}`,
+          );
+        }
 
-        body.item[field.name] = [file];
+        if (body?.item[field?.name][0]?.file?.length > 0) {
+          body.item[field.name] = await uploadFile(
+            bucket,
+            body.item[field.name][0].name,
+            body.item[field.name][0].file,
+            body.item[field.name][0].contentType,
+          );
+        } else {
+          body.item[field.name] = "";
+        }
       }
     }
   }
 
-  return await updateRow(
-    config.baserowToken,
-    body.schema.find((item) => item.table_id)?.table_id,
-    body.item.id,
-    body.item,
-  );
+  const tableName = body?.table_id;
+
+  if (!cmsTables.some((t) => t.id === tableName)) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Invalid table",
+    });
+  }
+
+  const db = useDrizzle(event.context.cloudflare.env.DB);
+
+  try {
+    const updatedItem = await db
+      .update(schema[tableName])
+      .set(body.item)
+      .where(eq(schema[tableName].id, body.item.id))
+      .returning();
+
+    return updatedItem[0];
+  } catch (error) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Failed to update item",
+    });
+  }
 });
