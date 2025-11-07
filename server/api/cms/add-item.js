@@ -60,9 +60,12 @@ export default defineEventHandler(async (event) => {
   const db = useDrizzle(event.context.cloudflare.env.DB);
 
   try {
-    await db.insert(schema[tableName]).values(body.item);
+    const insertedItem = await db
+      .insert(schema[tableName])
+      .values(body.item)
+      .returning();
 
-    return { success: true };
+    return insertedItem[0];
   } catch (error) {
     throw createError({
       statusCode: 400,
