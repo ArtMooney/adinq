@@ -69,7 +69,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     throw createError({
       statusCode: 400,
-      statusMessage: "Failed to insert data",
+      statusMessage: "Failed to insert item",
     });
   }
 });
