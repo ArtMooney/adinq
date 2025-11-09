@@ -218,16 +218,8 @@ export default {
       const items = JSON.parse(JSON.stringify(this.localItems));
 
       for (let [index, item] of items.entries()) {
-        item.index = index.toString();
+        item.sortOrder = index.toString();
         item = this.processDateFormats(item);
-
-        for (const field of this.schema) {
-          if (field.type === "single_select" && item[field.name]) {
-            if (typeof item[field.name] === "object") {
-              item[field.name] = item[field.name].value || null;
-            }
-          }
-        }
       }
 
       try {
@@ -239,8 +231,9 @@ export default {
           body: JSON.stringify({
             email: this.login.email,
             password: this.login.password,
-            items: { items: items },
+            items: items,
             schema: this.schema,
+            table_id: this.tableId,
           }),
         });
 
