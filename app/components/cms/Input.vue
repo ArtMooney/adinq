@@ -69,17 +69,26 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
         autocomplete="off"
       />
 
+      <div class="fixed top-0 left-0 z-10 bg-black p-8">
+        {{ item[input?.name] }}
+      </div>
+
       <label
         @click.stop
         :for="`${input.name}-${index}`"
         class="relative m-0 cursor-pointer p-0 text-sm underline"
       >
-        <span v-if="!item[input.name]?.length > 0">{{
-          chooseFilenameText(input.type.value)
-        }}</span>
+        <span
+          v-if="
+            (!item[input.name]?.length || !item[input.name][0]?.name) &&
+            typeof item[input?.name] !== 'string'
+          "
+        >
+          {{ chooseFilenameText(input.type.value) }}
+        </span>
 
         <span v-if="typeof item[input?.name] === 'object'">
-          {{ item[input?.name][0]?.name }}
+          {{ item[input?.name]?.[0]?.name }}
         </span>
 
         <NuxtImg
@@ -96,7 +105,9 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
         />
 
         <IconCloseCircleOutline
-          v-if="item[input?.name]?.length > 0"
+          v-if="
+            item[input?.name]?.length > 0 && !item[input?.name][0]?.backupName
+          "
           @click.stop.prevent="removeFile(`${input.name}-${index}`, input.name)"
           class="absolute -top-3 -right-6 h-6 min-h-6 w-6 min-w-6 cursor-pointer px-0.5 text-white"
         ></IconCloseCircleOutline>
