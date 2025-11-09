@@ -327,8 +327,9 @@ export default {
           body: JSON.stringify({
             email: this.login.email,
             password: this.login.password,
+            item: this.localItems[index],
+            schema: this.schema,
             table_id: this.tableId,
-            row_id: this.localItems[index].id,
           }),
         });
 

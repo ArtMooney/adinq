@@ -4,6 +4,7 @@ import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
 import { cmsTables } from "~~/server/db/schema.ts";
 import { eq } from "drizzle-orm";
+import { deleteIfExists } from "~~/server/api/cms/delete-if-exists.js";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -33,12 +34,30 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const bucket = event.context.cloudflare?.env.FILES;
+  if (!bucket) {
+    throw createError({
+      statusCode: 500,
+      message: "R2-binding is missing",
+    });
+  }
+
+  for (const field of body.schema) {
+    if (body.item[field.name]) {
+      if (field?.type?.value === "file" || field?.type?.value === "fileImg") {
+        if (body?.item[field?.name]) {
+          await deleteIfExists(bucket, `test/${body.item[field.name]}`);
+        }
+      }
+    }
+  }
+
   const db = useDrizzle(event.context.cloudflare.env.DB);
 
   try {
     await db
       .delete(schema[tableName])
-      .where(eq(schema[tableName].id, body.row_id));
+      .where(eq(schema[tableName].id, body.item.id));
 
     return { success: true };
   } catch (error) {
