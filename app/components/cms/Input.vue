@@ -69,10 +69,6 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
         autocomplete="off"
       />
 
-      <div class="fixed top-0 left-0 z-10 bg-black p-8">
-        {{ item[input?.name] }}
-      </div>
-
       <label
         @click.stop
         :for="`${input.name}-${index}`"
