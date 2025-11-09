@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
   if (!bucket) {
     throw createError({
       statusCode: 500,
-      message: "R2-binding saknas",
+      message: "R2-binding is missing",
     });
   }
 
