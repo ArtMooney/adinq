@@ -11,8 +11,6 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate:local": "USE_LOCAL_DB=true drizzle-kit migrate",
     "db:migrate:remote": "drizzle-kit migrate",
-    "db:push:local": "USE_LOCAL_DB=true drizzle-kit push",
-    "db:push:remote": "drizzle-kit push",
     "db:studio:local": "USE_LOCAL_DB=true drizzle-kit studio",
     "db:studio:remote": "drizzle-kit studio",
     "db:export:remote": "wrangler d1 export adinq --remote --output=backup-remote.sql",
@@ -27,27 +25,27 @@
   "dependencies": {
     "@nuxt/image": "^1.11.0",
     "@nuxtjs/leaflet": "^1.2.6",
-    "@nuxtjs/robots": "^5.3.0",
-    "@nuxtjs/sitemap": "^7.4.3",
-    "@tailwindcss/vite": "^4.1.11",
+    "@nuxtjs/robots": "^5.5.6",
+    "@nuxtjs/sitemap": "^7.4.7",
+    "@tailwindcss/vite": "^4.1.17",
     "@vuepic/vue-datepicker": "^11.0.2",
     "drizzle-orm": "^0.44.7",
     "leaflet-gesture-handling": "^1.2.2",
-    "nuxt": "^4.0.3",
-    "plyr": "^3.7.8",
-    "tailwindcss": "^4.1.12",
+    "nuxt": "^4.2.1",
+    "plyr": "^3.8.3",
+    "tailwindcss": "^4.1.17",
     "vue": "latest",
     "vue-draggable-next": "^2.3.0",
     "vue-router": "latest"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20251011.0",
-    "@iconify/json": "^2.2.382",
+    "@cloudflare/workers-types": "^4.20251109.0",
+    "@iconify/json": "^2.2.405",
     "better-sqlite3": "^12.4.1",
     "drizzle-kit": "^0.31.6",
     "prettier": "^3.6.2",
-    "prettier-plugin-tailwindcss": "^0.6.13",
-    "unplugin-icons": "^22.2.0",
-    "wrangler": "^4.43.0"
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "unplugin-icons": "^22.5.0",
+    "wrangler": "^4.46.0"
   }
 }
