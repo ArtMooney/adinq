@@ -1,6 +1,7 @@
 <script setup>
-import VueDatePicker from "@vuepic/vue-datepicker";
+import { VueDatePicker } from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+import sv from "date-fns/locale/sv";
 import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 </script>
 
@@ -33,10 +34,10 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
         (input.type.value === 'date' || input.type.value === 'dateToFrom')
       "
       v-model="item[input.name]"
-      :format="'yyyy-MM-dd'"
-      locale="sv"
+      :formats="{ input: 'yyyy-MM-dd' }"
+      :locale="sv"
       auto-apply
-      :name="input.name"
+      :input-attrs="{ name: input.name }"
       :range="input.type.value === 'dateToFrom'"
       class="[&_div]:!font-body [&_input]:!font-body [&_button]:!p-0 [&_div]:!text-xs [&_input]:!border-white/25 [&_input]:!bg-transparent [&_input]:!py-3 [&_input]:!text-sm [&_input]:!text-white"
     >
