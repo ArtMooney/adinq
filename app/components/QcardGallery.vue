@@ -12,7 +12,7 @@
           ></div>
 
           <NuxtImg
-            :src="`cms-images/${qcard?.screenshot}`"
+            :src="`cms-files/${qcard?.screenshot}`"
             @click="clickedQcard($event, index)"
             class="relative h-full w-full object-cover transition-[filter] duration-300 ease-in-out group-hover:brightness-80"
             sizes="520px sm:300px md:450px"

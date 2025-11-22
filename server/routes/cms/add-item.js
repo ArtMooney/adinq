@@ -1,6 +1,6 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
-import { checkAuthentication } from "~~/server/utils/check-authentication.js";
-import { uploadFile } from "~~/server/api/cms/upload-file.js";
+import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
+import { uploadFile } from "~~/server/routes/cms/r2/upload-file.js";
 import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
 import { cmsTables } from "~~/server/db/schema.ts";
@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
   for (const field of body.schema) {
     if (body.item[field.name]) {
       if (
-        (field?.type?.value === "file" || field?.type?.value === "fileImg") &&
+        (field?.type === "file" || field?.type === "fileImg") &&
         body?.item[field?.name][0]?.file?.length > 0
       ) {
         body.item[field.name] = await uploadFile(

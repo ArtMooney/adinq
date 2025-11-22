@@ -6,56 +6,51 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 </script>
 
 <template>
-  <div v-if="neverVisibleFields" class="flex flex-col gap-1">
+  <div v-if="!input.hidden" class="flex flex-col gap-1">
     <p class="font-semibold text-white/50 italic">
-      {{ input.name.includes("|") ? input.name.split("|")[0] : input.name }}
+      {{ input.label }}
     </p>
 
     <input
       v-if="
-        neverVisibleFields &&
-        input.type.value !== 'textarea' &&
-        input.type.value !== 'file' &&
-        input.type.value !== 'fileImg' &&
-        input.type.value !== 'date' &&
-        input.type.value !== 'dateToFrom' &&
-        input.type.value !== 'select'
+        input.type !== 'textarea' &&
+        input.type !== 'file' &&
+        input.type !== 'fileImg' &&
+        input.type !== 'date' &&
+        input.type !== 'dateRange' &&
+        input.type !== 'select'
       "
       @click.stop
       v-model="item[input.name]"
-      :type="input.type.value"
+      :type="input.type"
       :name="input.name"
       autocomplete="off"
+      :required="input.required"
     />
 
     <VueDatePicker
-      v-if="
-        neverVisibleFields &&
-        (input.type.value === 'date' || input.type.value === 'dateToFrom')
-      "
+      v-if="input.type === 'date' || input.type === 'dateRange'"
       v-model="item[input.name]"
       :formats="{ input: 'yyyy-MM-dd' }"
       :locale="sv"
       auto-apply
-      :input-attrs="{ name: input.name }"
-      :range="input.type.value === 'dateToFrom'"
+      :input-attrs="{ name: input.name, required: input.required }"
+      :range="input.type === 'dateRange'"
       class="[&_div]:!font-body [&_input]:!font-body [&_button]:!p-0 [&_div]:!text-xs [&_input]:!border-white/25 [&_input]:!bg-transparent [&_input]:!py-3 [&_input]:!text-sm [&_input]:!text-white"
     >
     </VueDatePicker>
 
     <textarea
-      v-if="neverVisibleFields && input.type.value === 'textarea'"
+      v-if="input.type === 'textarea'"
       @click.stop
       v-model="item[input.name]"
       :name="input.name"
       autocomplete="off"
+      :required="input.required"
     ></textarea>
 
     <div
-      v-if="
-        neverVisibleFields &&
-        (input.type.value === 'file' || input.type.value === 'fileImg')
-      "
+      v-if="input.type === 'file' || input.type === 'fileImg'"
       class="my-1 flex items-center justify-between gap-1 justify-self-start"
     >
       <input
@@ -66,8 +61,9 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
         class="hidden"
         type="file"
         :name="`${input.name}`"
-        :accept="input.type.value === 'fileImg' ? '.jpg, .jpeg, .png' : ''"
+        :accept="input.type === 'fileImg' ? '.jpg, .jpeg, .png' : ''"
         autocomplete="off"
+        :required="input.required"
       />
 
       <label
@@ -75,25 +71,17 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
         :for="`${input.name}-${index}`"
         class="relative m-0 cursor-pointer p-0 text-sm underline"
       >
-        <span
-          v-if="
-            (!item[input.name]?.length || !item[input.name][0]?.name) &&
-            typeof item[input?.name] !== 'string'
-          "
-        >
-          {{ chooseFilenameText(input.type.value) }}
-        </span>
-
-        <span v-if="typeof item[input?.name] === 'object'">
-          {{ item[input?.name]?.[0]?.name }}
+        <span class="max-w-xs truncate sm:max-w-md">
+          {{ fileInputText(item, input) }}
         </span>
 
         <NuxtImg
           v-if="
-            typeof item[input?.name] === 'string' &&
-            item[input?.name]?.length > 0
+            item[input?.name] &&
+            input.type === 'fileImg' &&
+            typeof item[input?.name] === 'string'
           "
-          :src="`cms-images/${item[input?.name]}`"
+          :src="`cms-files/${item[input.name]}`"
           alt="an image slot with an image selected by the user"
           class="h-20 min-h-20 w-20 min-w-20 object-cover"
           sizes="80px"
@@ -102,9 +90,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
         />
 
         <IconCloseCircleOutline
-          v-if="
-            item[input?.name]?.length > 0 && !item[input?.name][0]?.backupName
-          "
+          v-if="isCloseIcon"
           @click.stop.prevent="removeFile(`${input.name}-${index}`, input.name)"
           class="absolute -top-3 -right-6 h-6 min-h-6 w-6 min-w-6 cursor-pointer px-0.5 text-white"
         ></IconCloseCircleOutline>
@@ -112,11 +98,12 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
     </div>
 
     <select
-      v-if="neverVisibleFields && input.type.value === 'select'"
+      v-if="input.type === 'select'"
       :name="input.name"
       v-model="selectValue"
+      :required="input.required"
     >
-      <option v-for="option in input.type.select_options" :value="option.value">
+      <option v-for="option in input.select_options" :value="option.value">
         {{ option.value }}
       </option>
     </select>
@@ -125,7 +112,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 
 <script>
 export default {
-  name: "Input",
+  name: "Inputs",
 
   emits: ["showItem", "saveFlag", "inputError"],
 
@@ -145,15 +132,6 @@ export default {
   },
 
   computed: {
-    neverVisibleFields() {
-      return (
-        this.input.name !== "id" &&
-        this.input.name !== "sortOrder" &&
-        this.input.name !== "createdAt" &&
-        this.input.name !== "updatedAt"
-      );
-    },
-
     selectValue: {
       get() {
         return this.item[this.input.name] || "";
@@ -166,12 +144,8 @@ export default {
 
   data() {
     return {
-      itemBackup: null,
+      isCloseIcon: false,
     };
-  },
-
-  mounted() {
-    this.itemBackup = JSON.parse(JSON.stringify(this.item));
   },
 
   methods: {
@@ -185,7 +159,6 @@ export default {
       item[name] = [
         {
           name: event.target.files[0].name,
-          backupName: this.itemBackup[name] || "",
           file: base64,
           contentType,
         },
@@ -216,7 +189,27 @@ export default {
       });
     },
 
-    chooseFilenameText(inputType) {
+    fileInputText(item, input) {
+      const filename = item[input?.name];
+      const inputType = input.type;
+      const isObject = typeof filename === "object";
+
+      if (filename && !isObject) {
+        this.isCloseIcon = true;
+
+        if (inputType === "fileImg") {
+          return "";
+        }
+
+        return filename;
+      }
+
+      if (filename && isObject && filename[0]?.name) {
+        this.isCloseIcon = true;
+        return filename[0]?.name;
+      }
+
+      this.isCloseIcon = false;
       return inputType === "file"
         ? "Click here to choose a file."
         : "Click here to choose an image.";
@@ -224,11 +217,7 @@ export default {
 
     removeFile(inputName, fieldName) {
       this.$refs[inputName].value = "";
-      this.item[fieldName] = [
-        {
-          backupName: this.itemBackup[this.input?.name] || "",
-        },
-      ];
+      this.item[fieldName] = "";
     },
   },
 };

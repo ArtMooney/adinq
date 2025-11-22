@@ -3,6 +3,9 @@ import { sql } from "drizzle-orm";
 
 export const users = sqliteTable("users", {
   id: integer("id").primaryKey({ autoIncrement: true }),
+  email: text("email").notNull().unique(),
+  password: text("password").notNull(),
+  resetId: text("reset_id"),
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
@@ -10,17 +13,14 @@ export const users = sqliteTable("users", {
     .default(sql`CURRENT_TIMESTAMP`)
     .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
     .notNull(),
-  email: text("email").notNull().unique(),
-  password: text("password").notNull(),
-  resetId: text("reset_id"),
 });
 
 export const mediaproduktioner = sqliteTable("mediaproduktioner", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   title: text("title").notNull(),
-  qCardLink: text("q-card-link"),
+  qCardLink: text("qcard_link"),
   screenshot: text("screenshot"),
-  filmtyp: text("filmtyp"),
+  filmType: text("film_type"),
   sortOrder: integer("sort_order"),
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
@@ -39,10 +39,10 @@ export const medarbetare = sqliteTable("medarbetare", {
   email: text("email"),
   photo: text("photo"),
   department: text("department"),
-  sortOrder: integer("sort_order"),
   adjustx: real("adjustx"),
   adjusty: real("adjusty"),
   zoom: real("zoom"),
+  sortOrder: integer("sort_order"),
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
@@ -93,72 +93,99 @@ export const cmsTables = [
 ];
 
 export const fieldTypes = {
-  users: {
-    id: { value: "integer" },
-    createdAt: { value: "date" },
-    updatedAt: { value: "date" },
-    email: { value: "text" },
-    password: { value: "text" },
-    resetId: { value: "text" },
-  },
-
   mediaproduktioner: {
-    id: { value: "integer" },
-    title: { value: "text" },
-    qCardLink: { value: "text" },
-    screenshot: { value: "fileImg" },
-    filmtyp: {
-      value: "select",
-      select_options: [{ value: "butiksfilm" }, { value: "storbildsfilm" }],
+    id: { type: "integer", label: "", required: true, hidden: true },
+    title: { type: "text", label: "Titel", required: true, hidden: false },
+    qCardLink: {
+      type: "text",
+      label: "Q-Card Link",
+      required: false,
+      hidden: false,
     },
-    sortOrder: { value: "integer" },
-    createdAt: { value: "date" },
-    updatedAt: { value: "date" },
+    screenshot: {
+      type: "fileImg",
+      label: "Screenshot",
+      required: false,
+      hidden: false,
+    },
+    filmType: {
+      type: "select",
+      label: "Filmtype",
+      select_options: [{ value: "butiksfilm" }, { value: "storbildsfilm" }],
+      required: false,
+      hidden: false,
+    },
+    sortOrder: { type: "integer", label: "", required: true, hidden: true },
+    createdAt: { type: "date", label: "", required: true, hidden: true },
+    updatedAt: { type: "date", label: "", required: true, hidden: true },
   },
 
   medarbetare: {
-    id: { value: "integer" },
-    name: { value: "text" },
-    title: { value: "text" },
-    phone: { value: "text" },
-    email: { value: "text" },
-    photo: { value: "fileImg" },
+    id: { type: "integer", label: "", required: true, hidden: true },
+    name: { type: "text", label: "Name", required: true, hidden: false },
+    title: { type: "text", label: "Title", required: false, hidden: false },
+    phone: { type: "text", label: "Phone", required: false, hidden: false },
+    email: { type: "text", label: "E-mail", required: false, hidden: false },
+    photo: { type: "fileImg", label: "Photo", required: false, hidden: false },
     department: {
-      value: "select",
+      type: "select",
+      label: "Department",
       select_options: [
         { value: "management" },
         { value: "sales" },
         { value: "production" },
       ],
+      required: false,
+      hidden: false,
     },
-    sortOrder: { value: "integer" },
-    adjustx: { value: "real" },
-    adjusty: { value: "real" },
-    zoom: { value: "real" },
-    createdAt: { value: "date" },
-    updatedAt: { value: "date" },
+    adjustx: {
+      type: "real",
+      label: "Adjustment X",
+      required: false,
+      hidden: false,
+    },
+    adjusty: {
+      type: "real",
+      label: "Adjustment Y",
+      required: false,
+      hidden: false,
+    },
+    zoom: { type: "real", label: "Zoom", required: false, hidden: false },
+    sortOrder: { type: "integer", label: "", required: true, hidden: true },
+    createdAt: { type: "date", label: "", required: true, hidden: true },
+    updatedAt: { type: "date", label: "", required: true, hidden: true },
   },
 
   kundutlatanden: {
-    id: { value: "integer" },
-    title: { value: "text" },
-    text: { value: "textarea" },
-    att: { value: "text" },
-    logo: { value: "fileImg" },
-    link: { value: "text" },
-    sortOrder: { value: "integer" },
-    createdAt: { value: "date" },
-    updatedAt: { value: "date" },
+    id: { type: "integer", label: "", required: true, hidden: true },
+    title: { type: "text", label: "Title", required: true, hidden: false },
+    text: { type: "textarea", label: "Text", required: false, hidden: false },
+    att: { type: "text", label: "Att", required: false, hidden: false },
+    logo: { type: "fileImg", label: "Logo", required: false, hidden: false },
+    link: { type: "text", label: "Link", required: false, hidden: false },
+    sortOrder: { type: "integer", label: "", required: true, hidden: true },
+    createdAt: { type: "date", label: "", required: true, hidden: true },
+    updatedAt: { type: "date", label: "", required: true, hidden: true },
   },
 
   prisexempel: {
-    id: { value: "integer" },
-    title: { value: "text" },
-    monthly: { value: "text" },
-    total: { value: "text" },
-    details: { value: "textarea" },
-    sortOrder: { value: "integer" },
-    createdAt: { value: "date" },
-    updatedAt: { value: "date" },
+    id: { type: "integer", label: "", required: true, hidden: true },
+    title: { type: "text", label: "Title", required: true, hidden: false },
+    monthly: {
+      type: "text",
+      label: "Monthly Fee",
+      required: false,
+      hidden: false,
+    },
+    total: { type: "text", label: "Total", required: false, hidden: false },
+    details: {
+      type: "textarea",
+      label: "Details",
+      required: false,
+      hidden: false,
+    },
+    sortOrder: { type: "integer", label: "", required: true, hidden: true },
+    createdAt: { type: "date", label: "", required: true, hidden: true },
+    updatedAt: { type: "date", label: "", required: true, hidden: true },
   },
 };

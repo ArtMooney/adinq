@@ -1,4 +1,5 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
+import { verifyPassword } from "~~/server/routes/cms/utils/password.js";
 import { useDrizzle } from "~~/server/db/client.ts";
 import { users } from "~~/server/db/schema.ts";
 import { like } from "drizzle-orm";
@@ -28,7 +29,10 @@ export default defineEventHandler(async (event) => {
     .from(users)
     .where(like(users.email, body.email));
 
-  if (user.length === 0 || user[0].password !== body.password) {
+  const passwordValid =
+    user.length > 0 && (await verifyPassword(body.password, user[0].password));
+
+  if (!passwordValid) {
     throw createError({
       statusCode: 401,
       statusMessage: "Error logging in",

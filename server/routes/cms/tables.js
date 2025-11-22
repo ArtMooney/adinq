@@ -1,5 +1,5 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
-import { checkAuthentication } from "~~/server/utils/check-authentication.js";
+import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
 import { cmsTables } from "~~/server/db/schema.ts";
 
 export default defineEventHandler(async (event) => {

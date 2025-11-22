@@ -1,4 +1,4 @@
-import { fileExists } from "~~/server/api/cms/file-exists.js";
+import { fileExists } from "~~/server/routes/cms/r2/file-exists.js";
 
 export async function deleteIfExists(bucket, key) {
   try {
@@ -9,6 +9,6 @@ export async function deleteIfExists(bucket, key) {
 
     return false;
   } catch (error) {
-    throw new Error(`Fel vid borttagning: ${error.message}`);
+    throw new Error(`Error removing file: ${error.message}`);
   }
 }

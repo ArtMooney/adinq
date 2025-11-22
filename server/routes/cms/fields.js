@@ -1,9 +1,8 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
-import { checkAuthentication } from "~~/server/utils/check-authentication.js";
+import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
 import * as schema from "~~/server/db/schema.ts";
-import { cmsTables } from "~~/server/db/schema.ts";
-import { asc } from "drizzle-orm";
-import { useDrizzle } from "~~/server/db/client.ts";
+import { cmsTables, fieldTypes } from "~~/server/db/schema.ts";
+import { getTableColumns } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -33,10 +32,16 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const db = useDrizzle(event.context.cloudflare.env.DB);
-  return db
-    .select()
-    .from(schema[tableName])
-    .orderBy(asc(schema[tableName].sortOrder))
-    .all();
+  const table = schema[tableName];
+  const columns = getTableColumns(table);
+  const fields = fieldTypes[tableName];
+
+  return Object.keys(columns).map((key) => ({
+    name: key,
+    type: fields[key].type,
+    select_options: fields[key].select_options,
+    label: fields[key].label,
+    required: fields[key].required,
+    hidden: fields[key].hidden,
+  }));
 });

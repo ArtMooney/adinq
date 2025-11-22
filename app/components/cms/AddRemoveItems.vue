@@ -35,10 +35,10 @@
           <div v-if="getDateList.length < 1" class="w-full text-right">-</div>
           <div
             v-for="date of getDateList"
-            @click="sortDateFields(date.fieldName)"
+            @click="sortDateFields(date.name)"
             class="w-full cursor-pointer py-1 text-right hover:bg-white/25"
           >
-            {{ date.name }}
+            {{ date.label }}
           </div>
         </div>
       </div>
@@ -100,10 +100,13 @@ export default {
       const dateList = [];
 
       for (const field of this.schema) {
-        if (field.type === "date" || field.name.split("|")[0] === "datum") {
+        if (
+          (field.type === "date" || field.type === "dateRange") &&
+          !field.hidden
+        ) {
           dateList.push({
-            name: field.name.split("|")[0],
-            fieldName: field.name,
+            name: field.name,
+            label: field.label,
           });
         }
       }
@@ -136,35 +139,20 @@ export default {
     },
 
     async sortDateFields(fieldName) {
-      if (this.schema.length > 0) {
-        this.order = !this.order;
+      if (!this.schema.length) return;
 
-        let items = await this.listRows(
-          this.schema[0].table_id,
-          fieldName,
-          this.order,
-        );
+      this.order = !this.order;
 
-        // parse to-from date-fields to json array
-        for (const item of items) {
-          for (const field of Object.entries(item)) {
-            if (field[0].includes("|") && field[0].includes("to-from")) {
-              if (item[field[0]]) {
-                item[field[0]] = JSON.parse(item[field[0]]);
-              }
-            }
-          }
-        }
+      let items = await this.listRows(this.tableId, fieldName, this.order);
 
-        this.$emit("items", JSON.parse(JSON.stringify(items)));
-        this.$emit("saveNewItemOrder", true);
-        this.showDateList = false;
-      }
+      this.$emit("items", JSON.parse(JSON.stringify(items)));
+      this.$emit("saveNewItemOrder", true);
+      this.showDateList = false;
     },
 
-    async listRows(tableid, orderBy, asc, search) {
+    async listRows(tableid, fieldName, asc) {
       try {
-        return await $fetch("/api/cms/rows", {
+        return await $fetch("/cms/rows", {
           method: "POST",
           headers: {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
@@ -173,9 +161,8 @@ export default {
             email: this.login.email,
             password: this.login.password,
             table_id: tableid,
+            field_name: fieldName,
             asc: asc,
-            order_by: orderBy,
-            search: search,
           }),
         });
       } catch (err) {

@@ -25,7 +25,7 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
       <p class="italic">{{ client }}</p>
 
       <NuxtImg
-        :src="`cms-images/${logo}`"
+        :src="`cms-files/${logo}`"
         class="relative mt-8 h-14 max-h-14 min-h-14 max-w-40 object-contain lg:absolute lg:right-6 lg:bottom-6 lg:mt-0"
         sizes="250px"
         densities="x1"

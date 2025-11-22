@@ -1,7 +1,7 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
 import { randomUUID } from "crypto";
 import { sendEmail } from "~~/server/utils/mailgun/send-email.js";
-import { messageEmailReset } from "~~/server/content/message-email-reset.js";
+import { messageEmailReset } from "~~/server/routes/cms/content/message-email-reset.js";
 import { useDrizzle } from "~~/server/db/client.ts";
 import { users } from "~~/server/db/schema.ts";
 import { eq, like } from "drizzle-orm";

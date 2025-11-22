@@ -1,7 +1,7 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
-import { checkAuthentication } from "~~/server/utils/check-authentication.js";
-import { uploadFile } from "~~/server/api/cms/upload-file.js";
-import { deleteIfExists } from "~~/server/api/cms/delete-if-exists.js";
+import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
+import { uploadFile } from "~~/server/routes/cms/r2/upload-file.js";
+import { deleteIfExists } from "~~/server/routes/cms/r2/delete-if-exists.js";
 import { cmsTables } from "~~/server/db/schema.ts";
 import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
@@ -26,6 +26,9 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const db = useDrizzle(event.context.cloudflare.env.DB);
+  const tableName = body?.table_id;
+
   const bucket = event.context.cloudflare?.env.FILES;
   if (!bucket) {
     throw createError({
@@ -34,32 +37,6 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  for (const field of body.schema) {
-    if (body.item[field.name]) {
-      if (field?.type?.value === "file" || field?.type?.value === "fileImg") {
-        if (body?.item[field?.name][0]?.backupName) {
-          await deleteIfExists(
-            bucket,
-            `cms-images/${body.item[field.name][0].backupName}`,
-          );
-        }
-
-        if (body?.item[field?.name][0]?.file?.length > 0) {
-          body.item[field.name] = await uploadFile(
-            bucket,
-            body.item[field.name][0].name,
-            body.item[field.name][0].file,
-            body.item[field.name][0].contentType,
-          );
-        } else {
-          body.item[field.name] = "";
-        }
-      }
-    }
-  }
-
-  const tableName = body?.table_id;
-
   if (!cmsTables.some((t) => t.id === tableName)) {
     throw createError({
       statusCode: 400,
@@ -67,7 +44,37 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const db = useDrizzle(event.context.cloudflare.env.DB);
+  const currentStoredItem = await db
+    .select()
+    .from(schema[tableName])
+    .where(eq(schema[tableName].id, body.item.id))
+    .get();
+
+  for (const field of body.schema) {
+    if (currentStoredItem[field.name]) {
+      if (field?.type === "file" || field?.type === "fileImg") {
+        if (currentStoredItem[field?.name] !== body.item[field.name]) {
+          await deleteIfExists(
+            bucket,
+            `cms-files/${currentStoredItem[field.name]}`,
+          );
+        }
+      }
+    }
+
+    if (body.item[field.name]) {
+      if (field?.type === "file" || field?.type === "fileImg") {
+        if (body?.item[field?.name][0]?.file?.length > 0) {
+          body.item[field.name] = await uploadFile(
+            bucket,
+            body.item[field.name][0].name,
+            body.item[field.name][0].file,
+            body.item[field.name][0].contentType,
+          );
+        }
+      }
+    }
+  }
 
   try {
     const updatedItem = await db

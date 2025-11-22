@@ -1,10 +1,10 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
-import { checkAuthentication } from "~~/server/utils/check-authentication.js";
+import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
 import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
 import { cmsTables } from "~~/server/db/schema.ts";
 import { eq } from "drizzle-orm";
-import { deleteIfExists } from "~~/server/api/cms/delete-if-exists.js";
+import { deleteIfExists } from "~~/server/routes/cms/r2/delete-if-exists.js";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -25,6 +25,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const db = useDrizzle(event.context.cloudflare.env.DB);
   const tableName = body?.table_id;
 
   if (!cmsTables.some((t) => t.id === tableName)) {
@@ -42,17 +43,24 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const currentStoredItem = await db
+    .select()
+    .from(schema[tableName])
+    .where(eq(schema[tableName].id, body.item.id))
+    .get();
+
   for (const field of body.schema) {
-    if (body.item[field.name]) {
-      if (field?.type?.value === "file" || field?.type?.value === "fileImg") {
-        if (body?.item[field?.name]) {
-          await deleteIfExists(bucket, `test/${body.item[field.name]}`);
+    if (currentStoredItem[field.name]) {
+      if (field?.type === "file" || field?.type === "fileImg") {
+        if (currentStoredItem[field?.name]) {
+          await deleteIfExists(
+            bucket,
+            `cms-files/${currentStoredItem[field.name]}`,
+          );
         }
       }
     }
   }
-
-  const db = useDrizzle(event.context.cloudflare.env.DB);
 
   try {
     await db

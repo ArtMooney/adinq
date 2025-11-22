@@ -21,7 +21,7 @@ const image = useImage();
           <div
             class="absolute inset-0 h-full w-full saturate-50"
             :style="{
-              backgroundImage: `url(${image(`/cms-images/${colleague?.photo}`, { format: 'webp', quality: 65 })})`,
+              backgroundImage: `url(${image(`/cms-files/${colleague?.photo}`, { format: 'webp', quality: 65 })})`,
               ...imageTransformStyle,
             }"
             role="img"

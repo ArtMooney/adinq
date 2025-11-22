@@ -11,7 +11,7 @@ import IconIonChevronDown from "~icons/ion/chevron-down";
       ></IconFa7SolidGridVertical>
 
       <div
-        class="word-break-all font-gunplay pointer-events-none mr-4 hyphens-auto"
+        class="word-break-all font-heading pointer-events-none mr-4 hyphens-auto"
         lang="sv"
       >
         {{ item?.name ? item?.name : item?.title }}

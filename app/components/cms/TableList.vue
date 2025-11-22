@@ -51,7 +51,7 @@ export default {
   methods: {
     async listTables() {
       try {
-        return await $fetch("/api/cms/tables", {
+        return await $fetch("/cms/tables", {
           method: "POST",
           headers: {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
@@ -71,7 +71,7 @@ export default {
 
     async listFields(tableid) {
       try {
-        return await $fetch("/api/cms/fields", {
+        return await $fetch("/cms/fields", {
           method: "POST",
           headers: {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),

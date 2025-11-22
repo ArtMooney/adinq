@@ -1,6 +1,7 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
+import { hashPassword } from "~~/server/routes/cms/utils/password.js";
 import { sendEmail } from "~~/server/utils/mailgun/send-email.js";
-import { messageNewPassword } from "~~/server/content/message-new-password.js";
+import { messageNewPassword } from "~~/server/routes/cms/content/message-new-password.js";
 import { useDrizzle } from "~~/server/db/client.ts";
 import { users } from "~~/server/db/schema.ts";
 import { eq, like } from "drizzle-orm";
@@ -37,10 +38,12 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const hashedPassword = await hashPassword(body.password);
+
   try {
     await db
       .update(users)
-      .set({ password: body.password, resetId: "" })
+      .set({ password: hashedPassword, resetId: "" })
       .where(eq(users.id, user[0].id));
   } catch (error) {
     throw createError({

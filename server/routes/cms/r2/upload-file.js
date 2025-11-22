@@ -8,14 +8,21 @@ export async function uploadFile(bucket, fileName, base64Data, contentType) {
     }
 
     const byteArray = new Uint8Array(byteNumbers);
-    const key = `${fileName}-${Date.now()}`;
 
-    await bucket.put(`cms-images/${key}`, byteArray, {
+    const lastDotIndex = fileName.lastIndexOf(".");
+    const hasExtension = lastDotIndex > 0 && lastDotIndex < fileName.length - 1;
+
+    const baseName = hasExtension ? fileName.slice(0, lastDotIndex) : fileName;
+    const extension = hasExtension ? fileName.slice(lastDotIndex) : "";
+
+    const key = `${baseName}-${Date.now()}${extension}`;
+
+    await bucket.put(`cms-files/${key}`, byteArray, {
       httpMetadata: { contentType: contentType || "application/octet-stream" },
     });
 
     return key;
   } catch (error) {
-    throw new Error(`Uppladdningsfel: ${error.message}`);
+    throw new Error(`Error uploading file: ${error.message}`);
   }
 }
