@@ -28,7 +28,7 @@ definePageMeta({
         src="billboard-at-bus-stop.jpg"
         alt=""
         class="h-full w-full object-cover"
-        sizes="1000px md:2000px"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
         width="2500"
         height="2500"
         densities="x1"
@@ -62,9 +62,9 @@ definePageMeta({
         src="background-bricks.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-10"
-        sizes="1000px md:2000px"
-        width="3456"
-        height="5184"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2000"
+        height="3000"
         format="webp"
       />
 
@@ -79,9 +79,9 @@ definePageMeta({
       <NuxtImg
         src="billboard-on-business-street.jpg"
         alt=""
-        sizes="1000px md:2000px"
-        width="3968"
-        height="4800"
+        sizes="500px sm:640px md:500px"
+        width="2480"
+        height="3000"
         format="webp"
         class="relative"
       />

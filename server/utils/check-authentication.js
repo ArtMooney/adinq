@@ -1,15 +1,12 @@
-import { listRows } from "~~/server/db/baserow/list-rows.js";
+import { useDrizzle } from "~~/server/db/client.ts";
+import { users } from "~~/server/db/schema.ts";
+import { like } from "drizzle-orm";
 
-export async function checkAuthentication(config, email, password) {
+export async function checkAuthentication(event, email, password) {
   if (!email || !password) return false;
 
-  const user = await listRows(
-    config.baserowToken,
-    config.baserowCmsUsersId,
-    null,
-    null,
-    email,
-  );
+  const db = useDrizzle(event.context.cloudflare.env.DB);
+  const user = await db.select().from(users).where(like(users.email, email));
 
-  return user.results.length > 0 && user.results[0].password === password;
+  return user && user[0].password === password;
 }

@@ -28,9 +28,9 @@ definePageMeta({
         src="grocery-shopping.jpg"
         alt=""
         class="h-full w-full object-cover"
-        sizes="1000px md:2000px"
-        width="4000"
-        height="4000"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2500"
+        height="2500"
         densities="x1"
         format="webp"
       />
@@ -64,9 +64,9 @@ definePageMeta({
         src="background-bricks-flowers.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-15"
-        sizes="1000px md:2000px"
-        width="2912"
-        height="2032"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2003"
+        height="3000"
         format="webp"
       />
 

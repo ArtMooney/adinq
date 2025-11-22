@@ -28,9 +28,9 @@ definePageMeta({
         src="small-house-on-island.jpg"
         alt=""
         class="h-full w-full object-cover"
-        sizes="1000px md:2000px"
-        width="3992"
-        height="2992"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2000"
+        height="1499"
         densities="x1"
         format="webp"
       />

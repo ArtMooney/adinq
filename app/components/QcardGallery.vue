@@ -11,10 +11,13 @@
             class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-60"
           ></div>
 
-          <img
-            :src="qcard.screenshot[0]?.thumbnails?.card_cover?.url"
+          <NuxtImg
+            :src="`cms-files/${qcard?.screenshot}`"
             @click="clickedQcard($event, index)"
             class="relative h-full w-full object-cover transition-[filter] duration-300 ease-in-out group-hover:brightness-80"
+            sizes="520px sm:300px md:450px"
+            densities="x1"
+            format="webp"
           />
         </div>
       </div>
@@ -49,7 +52,7 @@ export default {
 
   methods: {
     clickedQcard(event, index) {
-      const link = this.galleryData[index]["q-card-link"];
+      const link = this.galleryData[index]?.qCardLink;
 
       if (link) {
         this.lightboxUrl = link;

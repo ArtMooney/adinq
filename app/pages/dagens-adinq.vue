@@ -32,15 +32,15 @@ const { data: colleagues, error } = await useFetch("/api/team", {
 });
 
 const colleaguesManagement = colleagues?.value.filter(
-  (colleague) => colleague?.department?.value === "management",
+  (colleague) => colleague?.department === "management",
 );
 
 const colleaguesSales = colleagues?.value.filter(
-  (colleague) => colleague?.department?.value === "sales",
+  (colleague) => colleague?.department === "sales",
 );
 
 const colleaguesProduction = colleagues?.value.filter(
-  (colleague) => colleague?.department?.value === "production",
+  (colleague) => colleague?.department === "production",
 );
 </script>
 
@@ -97,8 +97,8 @@ const colleaguesProduction = colleagues?.value.filter(
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
-        width="6000"
-        height="4000"
+        width="2335"
+        height="3500"
         format="webp"
       />
 
@@ -109,7 +109,7 @@ const colleaguesProduction = colleagues?.value.filter(
       <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
         <ColleagueCard
           v-for="colleague in colleaguesManagement"
-          :key="colleague.id"
+          :key="colleague?.id"
           :colleague="colleague"
           class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] xl:w-[calc(25%-1.5rem)]"
         />
@@ -124,8 +124,8 @@ const colleaguesProduction = colleagues?.value.filter(
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
-        width="6000"
-        height="4000"
+        width="2335"
+        height="3500"
         format="webp"
       />
 
@@ -136,7 +136,7 @@ const colleaguesProduction = colleagues?.value.filter(
       <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
         <ColleagueCard
           v-for="colleague in colleaguesSales"
-          :key="colleague.id"
+          :key="colleague?.id"
           :colleague="colleague"
           class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] xl:w-[calc(25%-1.5rem)]"
         />
@@ -151,8 +151,8 @@ const colleaguesProduction = colleagues?.value.filter(
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-50 saturate-25"
         sizes="1000px md:2000px"
-        width="6000"
-        height="4000"
+        width="2335"
+        height="3500"
         format="webp"
       />
 
@@ -163,7 +163,7 @@ const colleaguesProduction = colleagues?.value.filter(
       <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
         <ColleagueCard
           v-for="colleague in colleaguesProduction"
-          :key="colleague.id"
+          :key="colleague?.id"
           :colleague="colleague"
           class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] xl:w-[calc(25%-1.5rem)]"
         />

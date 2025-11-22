@@ -86,7 +86,7 @@ export default {
         this.buttonText = event.target.dataset.wait;
 
         try {
-          const res = await $fetch("/api/cms/login", {
+          const res = await $fetch("/cms/login", {
             method: "POST",
             headers: {
               Authorization:

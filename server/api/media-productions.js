@@ -1,5 +1,6 @@
-import { checkLogin } from "../utils/check-login.js";
-import { listRows } from "../db/baserow/list-rows.js";
+import { checkLogin } from "~~/server/utils/check-login.js";
+import { useDrizzle } from "~~/server/db/client.ts";
+import { mediaproduktioner } from "~~/server/db/schema.ts";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -12,19 +13,6 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  try {
-    const galleryData = await listRows(
-      config.baserowToken,
-      "534306",
-      true,
-      "index",
-    );
-
-    return galleryData.results;
-  } catch (error) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: "Getting media gallery data failed",
-    });
-  }
+  const db = useDrizzle(event.context.cloudflare.env.DB);
+  return db.select().from(mediaproduktioner).all();
 });

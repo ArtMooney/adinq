@@ -1,5 +1,7 @@
 import { checkLogin } from "../utils/check-login.js";
-import { listRows } from "../db/baserow/list-rows.js";
+import { useDrizzle } from "~~/server/db/client.ts";
+import { asc, desc } from "drizzle-orm";
+import { prisexempel } from "~~/server/db/schema.ts";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -12,14 +14,10 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  try {
-    const data = await listRows(config.baserowToken, "598477", true, "index");
-
-    return data.results;
-  } catch (error) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: "Getting prices data failed",
-    });
-  }
+  const db = useDrizzle(event.context.cloudflare.env.DB);
+  return db
+    .select()
+    .from(prisexempel)
+    .orderBy(asc(prisexempel.sortOrder))
+    .all();
 });

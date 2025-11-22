@@ -45,12 +45,13 @@ export default {
     const schema = await this.listFields(this.tables[this.tableIndex].id);
 
     this.$emit("schema", schema);
+    this.$emit("tableId", this.tables[this.tableIndex].id);
   },
 
   methods: {
     async listTables() {
       try {
-        return await $fetch("/api/cms/tables", {
+        return await $fetch("/cms/tables", {
           method: "POST",
           headers: {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
@@ -70,7 +71,7 @@ export default {
 
     async listFields(tableid) {
       try {
-        return await $fetch("/api/cms/fields", {
+        return await $fetch("/cms/fields", {
           method: "POST",
           headers: {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
@@ -95,6 +96,7 @@ export default {
       this.$emit("loadingFlag", true);
       const schema = await this.listFields(this.tables[this.tableIndex].id);
       this.$emit("schema", schema);
+      this.$emit("tableId", this.tables[this.tableIndex].id);
     },
   },
 };

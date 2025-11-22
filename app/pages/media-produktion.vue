@@ -32,11 +32,11 @@ const { data: gallery, error } = await useFetch("/api/media-productions", {
 });
 
 const galleryStores = gallery.value.filter(
-  (qcard) => qcard?.filmtyp?.value === "butiksfilm",
+  (qcard) => qcard?.filmType === "butiksfilm",
 );
 
 const galleryBigscreens = gallery.value.filter(
-  (qcard) => qcard?.filmtyp?.value === "storbildsfilm",
+  (qcard) => qcard?.filmType === "storbildsfilm",
 );
 </script>
 
@@ -47,9 +47,9 @@ const galleryBigscreens = gallery.value.filter(
         src="camera-at-ocean-shore.jpg"
         alt=""
         class="h-full w-full object-cover"
-        sizes="1000px md:2000px"
-        width="3992"
-        height="6240"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="1919"
+        height="3000"
         densities="x1"
         format="webp"
       />
@@ -132,9 +132,9 @@ const galleryBigscreens = gallery.value.filter(
         src="background-bricks-flowers.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-15"
-        sizes="1000px md:2000px"
-        width="2912"
-        height="2032"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2003"
+        height="3000"
         format="webp"
       />
 

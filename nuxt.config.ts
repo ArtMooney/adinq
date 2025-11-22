@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: "cloudflare-pages",
+    preset: "cloudflare_pages",
     prerender: {
       crawlLinks: false,
       ignore: [],
@@ -48,28 +48,29 @@ export default defineNuxtConfig({
   ],
 
   image: {
-    dir: "assets/images",
-    quality: 80,
+    provider: "weserv",
+
+    weserv: {
+      baseURL: "https://pub-6465f3f6f7ff4bd1b0effc5bb094b802.r2.dev",
+      modifiers: {
+        format: "webp",
+        quality: 65,
+      },
+    },
+
     screens: {
       xs: 320,
       sm: 640,
       md: 768,
       lg: 1024,
       xl: 1280,
-      xxl: 1536,
       "2xl": 1536,
     },
-    densities: [1, 2],
-    staticFilename: "[name]-[width]-[height]-[format].[ext]",
-    provider: "ipxStatic",
   },
 
   robots: {
     rules: () => {
-      if (
-        process.env.NUXT_PUBLIC_SITE_URL?.includes("pages.dev") ||
-        process.env.CF_PAGES_URL?.includes("pages.dev")
-      ) {
+      if (process.env.CF_PAGES_BRANCH !== "main") {
         return [
           {
             userAgent: "*",
@@ -88,7 +89,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: process.env.CF_PAGES_URL || "https://adinq.se",
+    url: process.env.NUXT_PUBLIC_SITE_URL || process.env.CF_PAGES_URL,
   },
 
   sitemap: {
@@ -98,6 +99,8 @@ export default defineNuxtConfig({
   app: {
     keepalive: true,
     head: {
+      charset: "utf-8",
+      viewport: "width=device-width, initial-scale=1",
       link: [
         {
           rel: "icon",
@@ -114,58 +117,13 @@ export default defineNuxtConfig({
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
         { rel: "manifest", href: "/site.webmanifest" },
-        { rel: "canonical", href: "https://adinq.se/" },
       ],
-      charset: "utf-8",
-      viewport: "width=device-width, initial-scale=1",
-      title: "",
-      meta: [
-        {
-          name: "viewport",
-          content:
-            "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
-        },
-        {
-          name: "description",
-          content: "",
-        },
-        {
-          name: "keywords",
-          content: "",
-        },
-
-        // Open Graph / Facebook
-        { property: "og:type", content: "website" },
-        { property: "og:url", content: "https://adinq.se/" },
-        {
-          property: "og:title",
-          content: "",
-        },
-        {
-          property: "og:description",
-          content: "",
-        },
-        {
-          property: "og:image",
-          content: "https://adinq.se/og-image.jpg",
-        },
-
-        // Twitter
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:url", content: "https://adinq.se/" },
-        {
-          name: "twitter:title",
-          content: "",
-        },
-        {
-          name: "twitter:description",
-          content: "",
-        },
-        {
-          name: "twitter:image",
-          content: "https://adinq.se/twitter-image.jpg",
-        },
-      ],
+      // meta: [
+      //   {
+      //     name: "google-site-verification",
+      //     content: "",
+      //   },
+      // ],
     },
   },
 });

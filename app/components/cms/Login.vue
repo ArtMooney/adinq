@@ -63,7 +63,7 @@ export default {
           this.panel = "loading";
 
           try {
-            const res = await $fetch("/api/cms/validate", {
+            const res = await $fetch("/cms/validate", {
               method: "POST",
               headers: {
                 Authorization:

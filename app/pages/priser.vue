@@ -39,9 +39,9 @@ const { data: prices, error } = await useFetch("/api/prices", {
         src="priser-handslag.jpg"
         alt=""
         class="h-full w-full object-cover"
-        sizes="1000px md:2000px"
-        width="7360"
-        height="4912"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2000"
+        height="1335"
         densities="x1"
         format="webp"
       />
@@ -85,9 +85,9 @@ const { data: prices, error } = await useFetch("/api/prices", {
         src="background-bricks-flowers.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-15"
-        sizes="1000px md:2000px"
-        width="2483"
-        height="3718"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2003"
+        height="3000"
         format="webp"
       />
 
@@ -117,9 +117,9 @@ const { data: prices, error } = await useFetch("/api/prices", {
         src="background-bricks-flowers.jpg"
         alt=""
         class="absolute inset-0 h-full w-full object-cover opacity-15"
-        sizes="1000px md:2000px"
-        width="2483"
-        height="3718"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2003"
+        height="3000"
         format="webp"
       />
 

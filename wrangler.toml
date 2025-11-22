@@ -1,0 +1,16 @@
+name = "adinq"
+compatibility_date = "2025-10-16"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "adinq"
+database_id = "65ee90e3-1801-41b7-8927-a2d704a6ebd4"
+#preview_database_id = "preview-database-id"
+migrations_dir = "migrations"
+#remote = true
+
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "adinq"
+#preview_bucket_name = "adinq-dev"
+remote = true

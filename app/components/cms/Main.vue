@@ -8,11 +8,13 @@
         :login="login"
         @loading-flag="loadingFlag = $event"
         @schema="schema = $event"
+        @table-id="tableId = $event"
       />
       <CmsAddRemoveItems
         :login="login"
         :items="items"
         :schema="schema"
+        :tableId="tableId"
         :editing-new-item="editingNewItem"
         @items="items = $event"
         @show-item="showItem = $event"
@@ -24,6 +26,7 @@
         :login="login"
         :items="items"
         :schema="schema"
+        :tableId="tableId"
         :show-item="showItem"
         :item-open="itemOpen"
         :save-flag="saveFlag"
@@ -64,6 +67,7 @@ export default {
     return {
       items: [],
       schema: [],
+      tableId: "",
       showItem: 0,
       itemOpen: false,
       saveFlag: false,

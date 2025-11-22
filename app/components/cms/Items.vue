@@ -47,39 +47,29 @@ import { VueDraggableNext } from "vue-draggable-next";
           @delete-item="deleteItem($event)"
         />
 
-        <div
-          class="col-span-2 flex flex-col gap-3 text-sm"
-          v-show="itemOpen && showItem === index"
+        <form
+          @submit.prevent="saveItem(index)"
+          :ref="`formEl${index}`"
           @click.stop
+          v-show="itemOpen && showItem === index"
+          class="col-span-2 flex flex-col gap-3 text-sm"
         >
           <div class="my-4 h-px w-full bg-white/25"></div>
 
-          <label
-            v-for="(input, inputIndex) of schema"
-            class="flex flex-col gap-1"
-          >
-            <p class="font-semibold text-white/50 italic">
-              {{
-                input.name !== "index"
-                  ? input.name.includes("|")
-                    ? input.name.split("|")[0]
-                    : input.name
-                  : null
-              }}
-            </p>
-
-            <CmsInput
+          <template v-for="(input, inputIndex) of schema">
+            <CmsInputs
               v-if="input.name !== 'index'"
               :input="input"
               :item="item"
               :index="index"
-              :item-open="itemOpen"
               @show-item="$emit('showItem', $event)"
               @save-flag="$emit('saveFlag', $event)"
               @input-error="handleInputError($event, inputIndex)"
             />
-          </label>
-        </div>
+          </template>
+
+          <button type="submit" class="hidden"></button>
+        </form>
       </div>
     </VueDraggableNext>
   </div>
@@ -108,6 +98,10 @@ export default {
       type: Array,
       required: false,
       default: [],
+    },
+    tableId: {
+      type: String,
+      required: true,
     },
     loadingFlag: {
       type: Boolean,
@@ -170,27 +164,16 @@ export default {
       this.$emit("loadingFlag", true);
 
       if (this.schema.length > 0) {
-        let items = await this.listRows(this.schema[0].table_id);
-
-        // parse to-from date-fields to json array
-        for (const item of items) {
-          for (const field of Object.entries(item)) {
-            if (field[0].includes("|") && field[0].includes("to-from")) {
-              if (item[field[0]]) {
-                item[field[0]] = JSON.parse(item[field[0]]);
-              }
-            }
-          }
-        }
+        let items = await this.listRows(this.tableId);
 
         this.$emit("items", JSON.parse(JSON.stringify(items)));
         this.$emit("loadingFlag", false);
       }
     },
 
-    async listRows(tableid, orderBy, asc, search) {
+    async listRows(tableid) {
       try {
-        return await $fetch("/api/cms/rows", {
+        return await $fetch("/cms/rows", {
           method: "POST",
           headers: {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
@@ -200,8 +183,7 @@ export default {
             password: this.login.password,
             table_id: tableid,
             asc: true,
-            order_by: "index",
-            search: search,
+            order_by: "sortOrder",
           }),
         });
       } catch (err) {
@@ -229,20 +211,11 @@ export default {
       const items = JSON.parse(JSON.stringify(this.localItems));
 
       for (let [index, item] of items.entries()) {
-        item.index = index.toString();
-        item = this.processDateFormats(item);
-
-        for (const field of this.schema) {
-          if (field.type === "single_select" && item[field.name]) {
-            if (typeof item[field.name] === "object") {
-              item[field.name] = item[field.name].value || null;
-            }
-          }
-        }
+        item.sortOrder = index.toString();
       }
 
       try {
-        const res = await $fetch("/api/cms/save-all-items", {
+        const res = await $fetch("/cms/save-all-items", {
           method: "POST",
           headers: {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
@@ -250,8 +223,9 @@ export default {
           body: JSON.stringify({
             email: this.login.email,
             password: this.login.password,
-            items: { items: items },
+            items: items,
             schema: this.schema,
+            table_id: this.tableId,
           }),
         });
 
@@ -267,52 +241,48 @@ export default {
     },
 
     async saveItem(index) {
-      if (index === this.showItem) {
-        this.$emit("saveFlag", true);
-        const item = this.processDateFormats(
-          JSON.parse(JSON.stringify(this.localItems[index])),
+      if (index !== this.showItem) return;
+
+      const item = this.localItems[index];
+      const form = this.$refs[`formEl${index}`][0];
+
+      if (!this.validateFields(item)) {
+        form?.reportValidity();
+        return;
+      }
+
+      this.$emit("saveFlag", true);
+
+      try {
+        const res = await $fetch(
+          this.editingNewItem ? "/cms/add-item" : "/cms/save-item",
+          {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Basic " + btoa(this.userName + ":" + this.userPass),
+            },
+            body: JSON.stringify({
+              email: this.login.email,
+              password: this.login.password,
+              item: this.localItems[index],
+              schema: this.schema,
+              table_id: this.tableId,
+            }),
+          },
         );
 
-        for (const field of this.schema) {
-          if (field.type === "single_select" && item[field.name]) {
-            if (typeof item[field.name] === "object") {
-              item[field.name] = item[field.name].value || null;
-            }
-          }
-        }
+        const items = JSON.parse(JSON.stringify(this.localItems));
+        items[index] = res;
 
-        try {
-          const res = await $fetch(
-            !this.editingNewItem ? "/api/cms/save-item" : "/api/cms/add-item",
-            {
-              method: "POST",
-              headers: {
-                Authorization:
-                  "Basic " + btoa(this.userName + ":" + this.userPass),
-              },
-              body: JSON.stringify({
-                email: this.login.email,
-                password: this.login.password,
-                item: item,
-                schema: this.schema,
-              }),
-            },
-          );
-
-          if (this.editingNewItem) {
-            const items = JSON.parse(JSON.stringify(this.localItems));
-            items[index] = res;
-            this.$emit("items", items);
-          }
-
-          this.$emit("itemOpen", false);
-          this.$emit("saveFlag", false);
-          this.$emit("editingNewItem", false);
-          this.editingItem = false;
-        } catch (err) {
-          console.log(err);
-          this.$emit("saveFlag", false);
-        }
+        this.$emit("items", items);
+        this.$emit("itemOpen", false);
+        this.$emit("saveFlag", false);
+        this.$emit("editingNewItem", false);
+        this.editingItem = false;
+      } catch (err) {
+        console.log(err);
+        this.$emit("saveFlag", false);
       }
     },
 
@@ -339,7 +309,7 @@ export default {
       this.$emit("saveFlag", true);
 
       try {
-        const res = await $fetch("/api/cms/delete-item", {
+        const res = await $fetch("/cms/delete-item", {
           method: "POST",
           headers: {
             Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
@@ -347,8 +317,9 @@ export default {
           body: JSON.stringify({
             email: this.login.email,
             password: this.login.password,
-            table_id: this.schema.find((item) => item.table_id)?.table_id,
-            row_id: this.localItems[index].id,
+            item: this.localItems[index],
+            schema: this.schema,
+            table_id: this.tableId,
           }),
         });
 
@@ -365,36 +336,47 @@ export default {
       }
     },
 
-    processDateFormats(item) {
-      for (const field of this.schema) {
-        if (field.type === "date") {
-          item[field.name] = this.convertDateToIso(item[field.name]);
-        }
-
-        if (field.name.includes("|") && field.name.includes("to-from")) {
-          item[field.name] = JSON.stringify(item[field.name]);
-        }
-      }
-
-      return item;
-    },
-
-    convertDateToIso(date) {
-      if (!date) return null;
-
-      const originalDate = date;
-      const isoDatePattern = /^\d{4}-\d{2}-\d{2}$/;
-
-      if (isoDatePattern.test(originalDate)) {
-        return originalDate;
-      } else {
-        return new Date(originalDate).toISOString().split("T")[0]; // extract only the date part
-      }
-    },
-
     handleInputError(event, index) {
       this.inputErrorIndex[index] = event;
       this.inputError = !!this.inputErrorIndex.find((input) => input);
+    },
+
+    validateFields(item) {
+      for (const config of this.schema) {
+        if (config.hidden) continue;
+        if (!config.required) continue;
+
+        const key = config.name;
+        const value = item[key];
+
+        if (value === undefined || value === null) {
+          return false;
+        }
+
+        if (typeof value === "string" && value.trim() === "") {
+          return false;
+        }
+
+        if (Array.isArray(value) && value.length === 0) {
+          return false;
+        }
+
+        if (
+          typeof value === "object" &&
+          value !== null &&
+          !Array.isArray(value)
+        ) {
+          if (!value.name && !value.file) {
+            return false;
+          }
+        }
+
+        if (config.type === "checkbox" && value === false) {
+          return false;
+        }
+      }
+
+      return true;
     },
   },
 
@@ -417,7 +399,7 @@ export default {
     },
 
     items: {
-      handler(newVal, oldVal) {
+      handler(newVal) {
         this.localItems = JSON.parse(JSON.stringify(newVal));
 
         if (!this.itemOpen) return;
@@ -431,7 +413,25 @@ export default {
           this.editingItem = true;
         }
       },
+
       immediate: true,
+      deep: true,
+    },
+
+    localItems: {
+      handler(newVal) {
+        if (!this.itemOpen) return;
+
+        if (
+          JSON.stringify(newVal[this.showItem]) ===
+          JSON.stringify(this.itemCopy)
+        ) {
+          this.editingItem = false;
+        } else {
+          this.editingItem = true;
+        }
+      },
+
       deep: true,
     },
 

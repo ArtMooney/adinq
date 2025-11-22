@@ -28,9 +28,9 @@ definePageMeta({
         src="hands-holding-each-others-arms.jpg"
         alt=""
         class="h-full w-full object-cover"
-        sizes="1000px md:2000px"
-        width="6336"
-        height="9504"
+        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
+        width="2000"
+        height="3000"
         densities="x1"
         format="webp"
       />
