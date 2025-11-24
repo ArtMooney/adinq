@@ -36,6 +36,8 @@ export default defineNuxtConfig({
     public: {
       userName: process.env.NUXT_PUBLIC_USERNAME,
       userPass: process.env.NUXT_PUBLIC_USERPASS,
+      imageBaseUrl: process.env.NUXT_IMAGE_BASE_URL,
+      publicSiteUrl: process.env.NUXT_PUBLIC_SITE_URL,
     },
   },
 
@@ -51,7 +53,7 @@ export default defineNuxtConfig({
     provider: "weserv",
 
     weserv: {
-      baseURL: "https://pub-6465f3f6f7ff4bd1b0effc5bb094b802.r2.dev",
+      baseURL: process.env.NUXT_IMAGE_BASE_URL,
       modifiers: {
         format: "webp",
         quality: 65,

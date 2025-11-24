@@ -1,6 +1,6 @@
 <script setup>
 const config = useRuntimeConfig();
-const siteUrl = config.public.siteUrl || "https://www.adinq.se";
+const siteUrl = config.public.publicSiteUrl;
 
 useHead({
   htmlAttrs: {
