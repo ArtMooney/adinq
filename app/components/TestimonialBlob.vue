@@ -7,7 +7,7 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
     :to="link"
     target="_blank"
     external
-    class="group relative grid w-full cursor-pointer grid-cols-3 rounded shadow-2xl sm:max-w-lg lg:max-w-4xl"
+    class="group relative grid w-full cursor-pointer grid-cols-1 rounded shadow-2xl sm:max-w-lg sm:grid-cols-3 lg:max-w-4xl"
     :style="`transform: translateX(${randomX}px) rotate(${randomRotate}deg)`"
   >
     <div
