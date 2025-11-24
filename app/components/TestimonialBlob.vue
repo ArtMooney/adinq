@@ -7,15 +7,24 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
     :to="link"
     target="_blank"
     external
-    class="group relative w-full cursor-pointer rounded shadow-2xl sm:max-w-lg lg:max-w-4xl"
+    class="group relative grid w-full cursor-pointer grid-cols-3 rounded shadow-2xl sm:max-w-lg lg:max-w-4xl"
     :style="`transform: translateX(${randomX}px) rotate(${randomRotate}deg)`"
   >
     <div
       class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-30"
     ></div>
 
+    <NuxtImg
+      :src="`cms-files/${testData?.screenshot}`"
+      @click="clickedQcard($event, index)"
+      class="relative h-full w-full rounded-l object-cover hover:brightness-120"
+      sizes="520px sm:300px md:450px"
+      densities="x1"
+      format="webp"
+    />
+
     <div
-      class="relative h-full w-full rounded bg-neutral-500/65 p-6 pb-12 backdrop-blur-xs md:p-8"
+      class="relative col-span-2 h-full w-full rounded-r bg-neutral-500/65 p-6 pb-12 backdrop-blur-xs md:p-8"
     >
       <p v-if="message" class="mt-4 md:mt-0">
         {{ message }}
@@ -34,10 +43,15 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
     </div>
 
     <IconFluentCommentQuote20Regular
-      class="absolute -top-10 -left-10 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
-      style="color: #ffffff"
+      class="absolute -top-10 -left-10 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20 text-white"
     ></IconFluentCommentQuote20Regular>
   </NuxtLink>
+
+  <QcardLightbox
+    v-if="showQcardLightbox"
+    :lightboxUrl="lightboxUrl"
+    @close="showQcardLightbox = false"
+  ></QcardLightbox>
 </template>
 
 <script>
@@ -76,6 +90,13 @@ export default {
     return {
       randomX: 0,
       randomRotate: 0,
+      showQcardLightbox: false,
+      lightboxUrl: 0,
+      testData: {
+        screenshot:
+          "r1i8hIRqeEjbqJzAizgw10IKQ8gtbPP2_7e58cd021fda1a357c97e940720d7ba388bd66c7448382edd308cc545c254afe.jpg",
+        qCardLink: "https://qcard.adinq.se/?i=1742905382",
+      },
     };
   },
 
@@ -97,6 +118,15 @@ export default {
       const baseOffset = this.breakpoints.lg ? 3 : 1.5;
 
       return (Math.random() * baseRange - baseOffset).toFixed(1);
+    },
+
+    clickedQcard(event, index) {
+      const link = this.testData?.qCardLink;
+
+      if (link) {
+        this.lightboxUrl = link;
+        this.showQcardLightbox = true;
+      }
     },
   },
 
