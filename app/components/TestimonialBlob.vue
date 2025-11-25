@@ -7,15 +7,29 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
     :to="link"
     target="_blank"
     external
-    class="group relative w-full cursor-pointer rounded shadow-2xl sm:max-w-lg lg:max-w-4xl"
+    class="group relative grid w-full cursor-pointer grid-cols-1 rounded-xl bg-neutral-500/65 shadow-2xl sm:max-w-lg lg:max-w-4xl lg:grid-cols-3"
     :style="`transform: translateX(${randomX}px) rotate(${randomRotate}deg)`"
   >
     <div
       class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-30"
     ></div>
 
+    <div v-if="screenshot" class="m-4 border border-white/25">
+      <NuxtImg
+        :src="`cms-files/${screenshot}`"
+        @click.prevent="clickedQcard($event, index)"
+        class="relative h-full w-full object-cover hover:brightness-110"
+        sizes="520px sm:300px md:450px"
+        densities="x1"
+        format="webp"
+      />
+    </div>
+
     <div
-      class="relative h-full w-full rounded bg-neutral-500/65 p-6 pb-12 backdrop-blur-xs md:p-8"
+      :class="[
+        'relative p-6 pb-12 md:p-8',
+        screenshot ? 'col-span-2' : 'col-span-3',
+      ]"
     >
       <p v-if="message" class="mt-4 md:mt-0">
         {{ message }}
@@ -34,10 +48,15 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
     </div>
 
     <IconFluentCommentQuote20Regular
-      class="absolute -top-10 -left-10 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20"
-      style="color: #ffffff"
+      class="absolute -top-10 -left-10 h-20 max-h-20 min-h-20 w-20 max-w-20 min-w-20 text-white"
     ></IconFluentCommentQuote20Regular>
   </NuxtLink>
+
+  <QcardLightbox
+    v-if="showQcardLightbox"
+    :lightboxUrl="lightboxUrl"
+    @close="showQcardLightbox = false"
+  ></QcardLightbox>
 </template>
 
 <script>
@@ -70,12 +89,22 @@ export default {
       required: false,
       default: "",
     },
+    screenshot: {
+      type: String,
+      required: false,
+    },
+    qCardLink: {
+      type: String,
+      required: false,
+    },
   },
 
   data() {
     return {
       randomX: 0,
       randomRotate: 0,
+      showQcardLightbox: false,
+      lightboxUrl: 0,
     };
   },
 
@@ -97,6 +126,15 @@ export default {
       const baseOffset = this.breakpoints.lg ? 3 : 1.5;
 
       return (Math.random() * baseRange - baseOffset).toFixed(1);
+    },
+
+    clickedQcard(event, index) {
+      const link = this.qCardLink;
+
+      if (link) {
+        this.lightboxUrl = link;
+        this.showQcardLightbox = true;
+      }
     },
   },
 

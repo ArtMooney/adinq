@@ -81,6 +81,8 @@ const { data: testimonials, error } = await useFetch("/api/testimonials", {
         :att="testimonial?.att"
         :client="testimonial?.title"
         :link="testimonial?.link"
+        :screenshot="testimonial?.screenshot"
+        :qCardLink="testimonial?.qCardLink"
       ></TestimonialBlob>
     </div>
 
