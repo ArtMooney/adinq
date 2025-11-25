@@ -17,7 +17,7 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
     <div v-if="screenshot" class="m-4 border border-white/25">
       <NuxtImg
         :src="`cms-files/${screenshot}`"
-        @click="clickedQcard($event, index)"
+        @click.prevent="clickedQcard($event, index)"
         class="relative h-full w-full object-cover hover:brightness-110"
         sizes="520px sm:300px md:450px"
         densities="x1"
