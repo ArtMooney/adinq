@@ -7,25 +7,25 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
     :to="link"
     target="_blank"
     external
-    class="group relative grid w-full cursor-pointer grid-cols-1 rounded shadow-2xl sm:max-w-lg sm:grid-cols-3 lg:max-w-4xl"
+    class="group relative grid w-full cursor-pointer grid-cols-1 rounded-xl bg-neutral-500/65 shadow-2xl sm:max-w-lg lg:max-w-4xl lg:grid-cols-3"
     :style="`transform: translateX(${randomX}px) rotate(${randomRotate}deg)`"
   >
     <div
       class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-30"
     ></div>
 
-    <NuxtImg
-      :src="`cms-files/${testData?.screenshot}`"
-      @click="clickedQcard($event, index)"
-      class="relative h-full w-full rounded-l object-cover hover:brightness-120"
-      sizes="520px sm:300px md:450px"
-      densities="x1"
-      format="webp"
-    />
+    <div class="m-4 border border-white/25">
+      <NuxtImg
+        :src="`cms-files/${testData?.screenshot}`"
+        @click="clickedQcard($event, index)"
+        class="relative h-full w-full object-cover hover:brightness-110"
+        sizes="520px sm:300px md:450px"
+        densities="x1"
+        format="webp"
+      />
+    </div>
 
-    <div
-      class="relative col-span-2 h-full w-full rounded-r bg-neutral-500/65 p-6 pb-12 backdrop-blur-xs md:p-8"
-    >
+    <div class="relative col-span-2 p-6 pb-12 md:p-8">
       <p v-if="message" class="mt-4 md:mt-0">
         {{ message }}
       </p>
