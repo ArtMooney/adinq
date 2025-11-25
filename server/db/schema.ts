@@ -166,7 +166,7 @@ export const fieldTypes = {
     logo: { type: "fileImg", label: "Logo", required: false, hidden: false },
     link: { type: "text", label: "Link", required: false, hidden: false },
     screenshot: {
-      type: "text",
+      type: "fileImg",
       label: "Screenshot",
       required: false,
       hidden: false,
