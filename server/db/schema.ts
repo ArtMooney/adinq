@@ -59,6 +59,8 @@ export const kundutlatanden = sqliteTable("kundutlatanden", {
   att: text("att"),
   logo: text("logo"),
   link: text("link"),
+  screenshot: text("screenshot"),
+  qCardLink: text("qcard_link"),
   sortOrder: integer("sort_order"),
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
@@ -163,6 +165,18 @@ export const fieldTypes = {
     att: { type: "text", label: "Att", required: false, hidden: false },
     logo: { type: "fileImg", label: "Logo", required: false, hidden: false },
     link: { type: "text", label: "Link", required: false, hidden: false },
+    screenshot: {
+      type: "text",
+      label: "Screenshot",
+      required: false,
+      hidden: false,
+    },
+    qCardLink: {
+      type: "text",
+      label: "Q-Card Link",
+      required: false,
+      hidden: false,
+    },
     sortOrder: { type: "integer", label: "", required: true, hidden: true },
     createdAt: { type: "date", label: "", required: true, hidden: true },
     updatedAt: { type: "date", label: "", required: true, hidden: true },
