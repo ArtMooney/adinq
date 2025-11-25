@@ -14,9 +14,9 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
       class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-30"
     ></div>
 
-    <div class="m-4 border border-white/25">
+    <div v-if="screenshot" class="m-4 border border-white/25">
       <NuxtImg
-        :src="`cms-files/${testData?.screenshot}`"
+        :src="`cms-files/${screenshot}`"
         @click="clickedQcard($event, index)"
         class="relative h-full w-full object-cover hover:brightness-110"
         sizes="520px sm:300px md:450px"
@@ -25,7 +25,12 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
       />
     </div>
 
-    <div class="relative col-span-2 p-6 pb-12 md:p-8">
+    <div
+      :class="[
+        'relative p-6 pb-12 md:p-8',
+        screenshot ? 'col-span-2' : 'col-span-3',
+      ]"
+    >
       <p v-if="message" class="mt-4 md:mt-0">
         {{ message }}
       </p>
@@ -84,6 +89,14 @@ export default {
       required: false,
       default: "",
     },
+    screenshot: {
+      type: String,
+      required: false,
+    },
+    qCardLink: {
+      type: String,
+      required: false,
+    },
   },
 
   data() {
@@ -92,11 +105,6 @@ export default {
       randomRotate: 0,
       showQcardLightbox: false,
       lightboxUrl: 0,
-      testData: {
-        screenshot:
-          "r1i8hIRqeEjbqJzAizgw10IKQ8gtbPP2_7e58cd021fda1a357c97e940720d7ba388bd66c7448382edd308cc545c254afe.jpg",
-        qCardLink: "https://qcard.adinq.se/?i=1742905382",
-      },
     };
   },
 
@@ -121,7 +129,7 @@ export default {
     },
 
     clickedQcard(event, index) {
-      const link = this.testData?.qCardLink;
+      const link = this.qCardLink;
 
       if (link) {
         this.lightboxUrl = link;
