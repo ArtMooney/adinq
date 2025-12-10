@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "Om Adinq - Vårt team | Digital marknadsföring och DOOH",
   description:
@@ -8,19 +11,17 @@ useSeoMeta({
   ogTitle: "Om Adinq - Vårt team",
   ogDescription:
     "Träffa teamet bakom Adinq som hjälper företag nå ut digitalt lokalt, regionalt och rikstäckande genom DOOH media.",
-  ogImage: "https://www.adinq.se/sky-full-of-stars.jpg",
+  ogImage: `${imageBaseUrl}/sky-full-of-stars.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Om Adinq - Vårt team",
   twitterDescription:
     "Träffa teamet bakom Adinq - experter inom digital marknadsföring och DOOH media.",
-  twitterImage: "https://www.adinq.se/sky-full-of-stars.jpg",
+  twitterImage: `${imageBaseUrl}/sky-full-of-stars.jpg`,
 });
 
 definePageMeta({
   ssr: true,
 });
-
-const config = useRuntimeConfig();
 
 const { data: colleagues, error } = await useFetch("/api/team", {
   method: "GET",

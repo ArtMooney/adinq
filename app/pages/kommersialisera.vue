@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title:
     "Kommersialisera din fastighet med DOOH | Storbildsskärmar & utomhusmedia",
@@ -9,12 +12,12 @@ useSeoMeta({
   ogTitle: "Kommersialisera din fastighet med DOOH",
   ogDescription:
     "Öka intäkterna från din fastighet med storbildsskärmar och DOOH utomhusmedia. Installation, montage och mediaförsäljning.",
-  ogImage: "https://www.adinq.se/city-stockholm.jpg",
+  ogImage: `${imageBaseUrl}/city-stockholm.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Kommersialisera din fastighet med DOOH",
   twitterDescription:
     "Öka intäkterna från din fastighet med storbildsskärmar och DOOH utomhusmedia.",
-  twitterImage: "https://www.adinq.se/city-stockholm.jpg",
+  twitterImage: `${imageBaseUrl}/city-stockholm.jpg`,
 });
 
 definePageMeta({

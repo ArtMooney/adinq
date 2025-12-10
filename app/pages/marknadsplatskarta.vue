@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige | Adinq",
   description:
@@ -8,12 +11,12 @@ useSeoMeta({
   ogTitle: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige",
   ogDescription:
     "Interaktiv karta som visar var Adinq har digitala reklamplatser och DOOH-skärmar över hela Sverige.",
-  ogImage: "https://www.adinq.se/small-house-on-island.jpg",
+  ogImage: `${imageBaseUrl}/small-house-on-island.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige",
   twitterDescription:
     "Interaktiv karta som visar var Adinq har digitala reklamplatser över hela Sverige.",
-  twitterImage: "https://www.adinq.se/small-house-on-island.jpg",
+  twitterImage: `${imageBaseUrl}/small-house-on-island.jpg`,
 });
 
 definePageMeta({

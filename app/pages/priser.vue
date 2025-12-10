@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "Priser för DOOH & Butiks-TV reklam | Kostnader & prisexempel",
   description:
@@ -8,19 +11,17 @@ useSeoMeta({
   ogTitle: "Priser för DOOH & Butiks-TV reklam",
   ogDescription:
     "Se prisexempel för DOOH och butiks-TV reklam. Transparenta kostnader för digital utomhusreklam.",
-  ogImage: "https://www.adinq.se/priser-handslag.jpg",
+  ogImage: `${imageBaseUrl}/priser-handslag.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Priser för DOOH & Butiks-TV reklam",
   twitterDescription:
     "Se prisexempel för DOOH och butiks-TV reklam. Transparenta kostnader för digital utomhusreklam.",
-  twitterImage: "https://www.adinq.se/priser-handslag.jpg",
+  twitterImage: `${imageBaseUrl}/priser-handslag.jpg`,
 });
 
 definePageMeta({
   ssr: true,
 });
-
-const config = useRuntimeConfig();
 
 const { data: prices, error } = await useFetch("/api/prices", {
   method: "GET",

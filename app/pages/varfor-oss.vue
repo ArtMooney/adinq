@@ -2,6 +2,9 @@
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regular";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "Varför välja Adinq? | Tränga igenom mediebruset med DOOH",
   description:
@@ -9,12 +12,12 @@ useSeoMeta({
   ogTitle: "Varför välja Adinq? | Tränga igenom mediebruset med DOOH",
   ogDescription:
     "Vi fångar ögonblicket då människor står still och möjliggör varumärkesexponering där människorna finns.",
-  ogImage: "https://www.adinq.se/crowd-at-concert.jpg",
+  ogImage: `${imageBaseUrl}/crowd-at-concert.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Varför välja Adinq? | Tränga igenom mediebruset",
   twitterDescription:
     "Vi fångar ögonblicket då människor står still och möjliggör varumärkesexponering där människorna finns.",
-  twitterImage: "https://www.adinq.se/crowd-at-concert.jpg",
+  twitterImage: `${imageBaseUrl}/crowd-at-concert.jpg`,
 });
 
 definePageMeta({

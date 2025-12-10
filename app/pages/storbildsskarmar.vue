@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "Storbildsskärmar - Tydlig DOOH reklam utomhus | Adinq",
   description:
@@ -8,12 +11,12 @@ useSeoMeta({
   ogTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
   ogDescription:
     "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns på flera orter i Sverige.",
-  ogImage: "https://www.adinq.se/billboard-at-bus-stop.jpg",
+  ogImage: `${imageBaseUrl}/billboard-at-bus-stop.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
   twitterDescription:
     "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns.",
-  twitterImage: "https://www.adinq.se/billboard-at-bus-stop.jpg",
+  twitterImage: `${imageBaseUrl}/billboard-at-bus-stop.jpg`,
 });
 
 definePageMeta({
