@@ -28,12 +28,12 @@ definePageMeta({
   <Heading>
     <template #heading-content>
       <NuxtImg
-        src="billboard-at-bus-stop.jpg"
+        src="led-screen-gislaved.jpg"
         alt=""
         class="h-full w-full object-cover"
         sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
-        width="2500"
-        height="2500"
+        width="1280"
+        height="853"
         densities="x1"
         format="webp"
       />
@@ -80,11 +80,11 @@ definePageMeta({
       ></IconBlob>
 
       <NuxtImg
-        src="billboard-on-business-street.jpg"
+        src="led-screen-on-lawn.jpg"
         alt=""
         sizes="500px sm:640px md:500px"
-        width="2480"
-        height="3000"
+        width="750"
+        height="924"
         format="webp"
         class="relative"
       />
