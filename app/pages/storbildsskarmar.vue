@@ -11,12 +11,12 @@ useSeoMeta({
   ogTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
   ogDescription:
     "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns på flera orter i Sverige.",
-  ogImage: `${imageBaseUrl}/billboard-at-bus-stop.jpg`,
+  ogImage: `${imageBaseUrl}/led-screen-gislaved-hq.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
   twitterDescription:
     "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns.",
-  twitterImage: `${imageBaseUrl}/billboard-at-bus-stop.jpg`,
+  twitterImage: `${imageBaseUrl}/led-screen-gislaved-hq.jpg`,
 });
 
 definePageMeta({
