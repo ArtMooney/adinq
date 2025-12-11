@@ -1,6 +1,9 @@
 <script setup>
 import IconChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title:
     "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
@@ -10,7 +13,7 @@ useSeoMeta({
     "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
   ogDescription:
     "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande - vi har lösningen för er digitala marknadsföring.",
-  ogImage: "https://www.adinq.se/images/adinq-presentation-poster.webp",
+  ogImage: `${imageBaseUrl}/adinq-presentation-poster.webp`,
   ogUrl: "https://www.adinq.se/",
   ogType: "website",
   ogSiteName: "Adinq",
@@ -20,7 +23,7 @@ useSeoMeta({
     "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
   twitterDescription:
     "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande.",
-  twitterImage: "https://www.adinq.se/images/adinq-presentation-poster.webp",
+  twitterImage: `${imageBaseUrl}/adinq-presentation-poster.webp`,
   keywords:
     "DOOH, Digital Out of Home, digital reklam, utomhusreklam, digital marknadsföring, Adinq, digital skärm, reklam Sverige",
   robots: "index, follow",
@@ -54,7 +57,7 @@ definePageMeta({
           preload="auto"
           class="h-full w-full object-cover"
         >
-          <source src="/videos/slow-motion-crowd.mp4" />
+          <source :src="`${imageBaseUrl}/slow-motion-crowd.mp4`" />
         </video>
       </ClientOnly>
 
@@ -109,12 +112,12 @@ definePageMeta({
     <VideoBlob
       v-if="sweVersion"
       video-Link="https://qcard.adinq.se/?i=1758120106"
-      poster="images/adinq-presentation-poster.webp"
+      :poster="`${imageBaseUrl}/adinq-presentation-poster.webp`"
     ></VideoBlob>
     <VideoBlob
       v-if="!sweVersion"
       video-Link="https://qcard.adinq.se/?i=1758120027"
-      poster="images/adinq-presentation-poster.webp"
+      :poster="`${imageBaseUrl}/adinq-presentation-poster.webp`"
     ></VideoBlob>
 
     <MarketingChannels></MarketingChannels>

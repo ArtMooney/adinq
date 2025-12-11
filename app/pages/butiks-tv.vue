@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "Butiks-TV - Digital reklam i kassalinjen | 200 butiker i Sverige",
   description:
@@ -8,12 +11,12 @@ useSeoMeta({
   ogTitle: "Butiks-TV - Digital reklam i kassalinjen",
   ogDescription:
     "Nå dina kunder i vardagens få pauser - i kön till kassan. 200 digitala skärmar i livsmedelsbutiker med hög visningsfrekvens.",
-  ogImage: "https://www.adinq.se/grocery-shopping.jpg",
+  ogImage: `${imageBaseUrl}/grocery-shopping.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Butiks-TV - Digital reklam i kassalinjen",
   twitterDescription:
     "Syns där människor finns! Digital reklam i 200 livsmedelsbutiker i Sverige. Hög visningsfrekvens, enkelt att köpa.",
-  twitterImage: "https://www.adinq.se/grocery-shopping.jpg",
+  twitterImage: `${imageBaseUrl}/grocery-shopping.jpg`,
 });
 
 definePageMeta({

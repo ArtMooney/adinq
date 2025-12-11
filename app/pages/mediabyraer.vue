@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "DOOH för Mediebyråer - En naturlig del i mediemixen | Adinq",
   description:
@@ -8,12 +11,12 @@ useSeoMeta({
   ogTitle: "DOOH för Mediebyråer - En naturlig del i mediemixen",
   ogDescription:
     "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige.",
-  ogImage: "https://www.adinq.se/air-balloons-on-blue-sky.jpg",
+  ogImage: `${imageBaseUrl}/air-balloons-on-blue-sky.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "DOOH för Mediebyråer - En naturlig del i mediemixen",
   twitterDescription:
     "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige.",
-  twitterImage: "https://www.adinq.se/air-balloons-on-blue-sky.jpg",
+  twitterImage: `${imageBaseUrl}/air-balloons-on-blue-sky.jpg`,
 });
 
 definePageMeta({

@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "Storbildsskärmar - Tydlig DOOH reklam utomhus | Adinq",
   description:
@@ -8,12 +11,12 @@ useSeoMeta({
   ogTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
   ogDescription:
     "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns på flera orter i Sverige.",
-  ogImage: "https://www.adinq.se/billboard-at-bus-stop.jpg",
+  ogImage: `${imageBaseUrl}/led-screen-gislaved-hq.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
   twitterDescription:
     "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns.",
-  twitterImage: "https://www.adinq.se/billboard-at-bus-stop.jpg",
+  twitterImage: `${imageBaseUrl}/led-screen-gislaved-hq.jpg`,
 });
 
 definePageMeta({
@@ -25,12 +28,12 @@ definePageMeta({
   <Heading>
     <template #heading-content>
       <NuxtImg
-        src="billboard-at-bus-stop.jpg"
+        src="led-screen-gislaved-hq.jpg"
         alt=""
         class="h-full w-full object-cover"
-        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
-        width="2500"
-        height="2500"
+        sizes="768px lg:1024px xl:1280px 2xl:1536px"
+        width="2000"
+        height="1333"
         densities="x1"
         format="webp"
       />
@@ -77,11 +80,11 @@ definePageMeta({
       ></IconBlob>
 
       <NuxtImg
-        src="billboard-on-business-street.jpg"
+        src="led-screen-on-lawn.jpg"
         alt=""
         sizes="500px sm:640px md:500px"
-        width="2480"
-        height="3000"
+        width="750"
+        height="924"
         format="webp"
         class="relative"
       />

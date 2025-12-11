@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "Kundutlåtanden - Vad säger våra kunder? | Adinq DOOH",
   description:
@@ -8,20 +11,17 @@ useSeoMeta({
   ogTitle: "Kundutlåtanden - Vad säger våra kunder om Adinq?",
   ogDescription:
     "Läs vad våra nöjda kunder säger om Adinq och våra digitala marknadsföringstjänster inom DOOH och butiks-TV.",
-  ogImage: "https://www.adinq.se/roads-gothenburg-evening.jpg",
+  ogImage: `${imageBaseUrl}/roads-gothenburg-evening.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Kundutlåtanden - Vad säger våra kunder om Adinq?",
   twitterDescription:
     "Läs vad våra nöjda kunder säger om Adinq och våra digitala marknadsföringstjänster.",
-  twitterImage:
-    "https://www.adinq.se/high-traffic-roads-gothenburg-evening.jpg",
+  twitterImage: `${imageBaseUrl}/high-traffic-roads-gothenburg-evening.jpg`,
 });
 
 definePageMeta({
   ssr: true,
 });
-
-const config = useRuntimeConfig();
 
 const { data: testimonials, error } = await useFetch("/api/testimonials", {
   method: "GET",

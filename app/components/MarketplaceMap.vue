@@ -74,6 +74,8 @@ export default {
   name: "MarketplaceMap",
 
   data() {
+    const config = useRuntimeConfig();
+
     return {
       searchCity: "",
       markers: [],
@@ -84,6 +86,7 @@ export default {
       L: null,
       centerDebounced: [],
       boundsDebounced: null,
+      imageBaseUrl: config.public.imageBaseUrl,
     };
   },
 
@@ -138,32 +141,32 @@ export default {
 
     this.icons = {
       hemkop: L.icon({
-        iconUrl: "/images/pins/hemkop.png",
+        iconUrl: `${this.imageBaseUrl}/pins/hemkop.png`,
         iconSize: [28, 45],
         iconAnchor: [14, 45],
       }),
       ica: L.icon({
-        iconUrl: "/images/pins/ica.png",
+        iconUrl: `${this.imageBaseUrl}/pins/ica.png`,
         iconSize: [28, 45],
         iconAnchor: [14, 45],
       }),
       coop: L.icon({
-        iconUrl: "/images/pins/coop.png",
+        iconUrl: `${this.imageBaseUrl}/pins/coop.png`,
         iconSize: [28, 45],
         iconAnchor: [14, 45],
       }),
       willys: L.icon({
-        iconUrl: "/images/pins/willys.png",
+        iconUrl: `${this.imageBaseUrl}/pins/willys.png`,
         iconSize: [28, 45],
         iconAnchor: [14, 45],
       }),
       storbild: L.icon({
-        iconUrl: "/images/pins/storbild.png",
+        iconUrl: `${this.imageBaseUrl}/pins/storbild.png`,
         iconSize: [38, 37],
         iconAnchor: [19, 37],
       }),
       default: L.icon({
-        iconUrl: "/images/pins/green.png",
+        iconUrl: `${this.imageBaseUrl}/pins/green.png`,
         iconSize: [28, 45],
         iconAnchor: [14, 45],
       }),
@@ -244,6 +247,7 @@ export default {
     center() {
       this.debounce();
     },
+
     bounds() {
       this.debounce();
     },

@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "Kontakta oss - Adinq | Digital marknadsföring & DOOH i Borås",
   description:
@@ -8,12 +11,12 @@ useSeoMeta({
   ogTitle: "Kontakta Adinq - Personlig hjälp från vårt team i Borås",
   ogDescription:
     "Få personlig hjälp från vårt team i Borås. Kontakta oss för frågor om digital marknadsföring och DOOH.",
-  ogImage: "https://www.adinq.se/hands-holding-each-others-arms.jpg",
+  ogImage: `${imageBaseUrl}/hands-holding-each-others-arms.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Kontakta Adinq - Personlig hjälp från vårt team i Borås",
   twitterDescription:
     "Få personlig hjälp från vårt team i Borås. Kontakta oss för digital marknadsföring och DOOH.",
-  twitterImage: "https://www.adinq.se/hands-holding-each-others-arms.jpg",
+  twitterImage: `${imageBaseUrl}/hands-holding-each-others-arms.jpg`,
 });
 
 definePageMeta({

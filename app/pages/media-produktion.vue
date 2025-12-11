@@ -1,6 +1,9 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
+const config = useRuntimeConfig();
+const imageBaseUrl = config.public.imageBaseUrl;
+
 useSeoMeta({
   title: "Reklamfilm & Media Produktion för storbildsskärmar | Adinq",
   description:
@@ -8,19 +11,17 @@ useSeoMeta({
   ogTitle: "Reklamfilm & Media Produktion för storbildsskärmar",
   ogDescription:
     "Vi producerar reklamfilmer och slides för storbildsskärmar och DOOH. Allt under samma tak för ditt företag.",
-  ogImage: "https://www.adinq.se/camera-at-ocean-shore.jpg",
+  ogImage: `${imageBaseUrl}/camera-at-ocean-shore.jpg`,
   twitterCard: "summary_large_image",
   twitterTitle: "Reklamfilm & Media Produktion för storbildsskärmar",
   twitterDescription:
     "Vi producerar reklamfilmer och slides för storbildsskärmar och DOOH.",
-  twitterImage: "https://www.adinq.se/camera-at-ocean-shore.jpg",
+  twitterImage: `${imageBaseUrl}/camera-at-ocean-shore.jpg`,
 });
 
 definePageMeta({
   ssr: true,
 });
-
-const config = useRuntimeConfig();
 
 const { data: gallery, error } = await useFetch("/api/media-productions", {
   method: "GET",
