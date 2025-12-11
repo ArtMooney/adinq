@@ -28,12 +28,12 @@ definePageMeta({
   <Heading>
     <template #heading-content>
       <NuxtImg
-        src="led-screen-gislaved.jpg"
+        src="led-screen-gislaved-hq.jpg"
         alt=""
         class="h-full w-full object-cover"
-        sizes="500px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
-        width="1280"
-        height="853"
+        sizes="768px lg:1024px xl:1280px 2xl:1536px"
+        width="2000"
+        height="1333"
         densities="x1"
         format="webp"
       />
