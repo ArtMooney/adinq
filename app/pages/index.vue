@@ -70,11 +70,7 @@ definePageMeta({
         <h1 class="mx-10 mb-8 md:mx-30">Vi hjälper er att nå ut digitalt!</h1>
 
         <div class="max-w-3xl px-8 text-lg lg:text-2xl">
-          Lokalt, regionalt eller rikstäckande - just DOOH* it!
-        </div>
-
-        <div class="text-l absolute right-3 bottom-2 italic opacity-30">
-          *DOOH - Digital out of Home Media
+          Lokalt, regionalt eller rikstäckande
         </div>
 
         <NuxtLink
