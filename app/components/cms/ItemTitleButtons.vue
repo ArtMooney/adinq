@@ -3,8 +3,9 @@
     <div class="flex items-center gap-2">
       <div
         v-if="
-          (cmsStore.showItem !== index || !cmsStore.editingNewItem) &&
-          !cmsStore.selectedTableIsStatic
+          ((cmsStore.showItem !== index || !cmsStore.editingNewItem) &&
+            !cmsStore.selectedTableIsStatic) ||
+          cmsStore.adminMode
         "
         @click.stop="cmsStore.deleteItem(index)"
         class="rounded border border-white/25 bg-[#8a548b] px-2 py-0.5 text-sm hover:bg-[#b280b4]"

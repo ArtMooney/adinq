@@ -91,7 +91,10 @@ import { VueDraggableNext } from "vue-draggable-next";
 
             <template v-else>
               <CmsInputs
-                v-if="input.name !== 'index' && !cmsStore.selectedTableIsStatic"
+                v-if="
+                  (input.name !== 'index' && !cmsStore.selectedTableIsStatic) ||
+                  cmsStore.adminMode
+                "
                 :input="input"
                 :item="item"
                 :index="index"

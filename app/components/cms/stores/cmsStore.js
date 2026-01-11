@@ -135,10 +135,7 @@ export const useCmsStore = defineStore("cmsStore", {
 
         console.log(err);
       } finally {
-        if (!this.adminMode) {
-          this.selectedTableIsStatic = this.tableId === "static_content";
-        }
-
+        this.selectedTableIsStatic = this.tableId === "static_content";
         this.loadingFlag = false;
       }
     },
