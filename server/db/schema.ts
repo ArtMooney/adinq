@@ -87,7 +87,27 @@ export const prisexempel = sqliteTable("prisexempel", {
     .notNull(),
 });
 
+export const static_content = sqliteTable("static_content", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  title: text("title").notNull(),
+  content: text("content", { mode: "json" }),
+  sortOrder: integer("sort_order"),
+  createdAt: text("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: text("updated_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+});
+
 export const cmsTables = [
+  {
+    id: "static_content",
+    name: "Static Content",
+    viewMode: "list",
+    backupRef: null,
+  },
   {
     id: "mediaproduktioner",
     name: "Mediaproduktioner",
@@ -222,6 +242,20 @@ export const fieldsConfig = {
     createdAt: { type: "date", label: "", required: true, hidden: true },
     updatedAt: { type: "date", label: "", required: true, hidden: true },
   },
+
+  static_content: {
+    id: { type: "integer", label: "", required: true, hidden: true },
+    title: { type: "text", label: "Title", required: true, hidden: false },
+    content: {
+      type: "json",
+      label: "Content",
+      required: false,
+      hidden: false,
+    },
+    sortOrder: { type: "integer", label: "", required: true, hidden: true },
+    createdAt: { type: "date", label: "", required: true, hidden: true },
+    updatedAt: { type: "date", label: "", required: true, hidden: true },
+  },
 };
 
 export const graphConfig = {};
@@ -245,7 +279,13 @@ export const staticContentTypes = {
   "page - Index": {
     header: {
       title: "text",
-      buttonTextOne: "text",
+      subtitle: "text",
+    },
+    videoBlock: {
+      title: "text",
+      videoLinkSwe: "text",
+      videoLinkEng: "text",
+      poster: "fileImg",
     },
   },
   "page - Bokningar": {
