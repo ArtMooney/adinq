@@ -2,8 +2,11 @@
   <div class="col-span-2 flex justify-end gap-2">
     <div class="flex items-center gap-2">
       <div
-        v-if="showItem !== index || !editingNewItem"
-        @click.stop="$emit('deleteItem', index)"
+        v-if="
+          (cmsStore.showItem !== index || !cmsStore.editingNewItem) &&
+          !cmsStore.selectedTableIsStatic
+        "
+        @click.stop="cmsStore.deleteItem(index)"
         class="rounded border border-white/25 bg-[#8a548b] px-2 py-0.5 text-sm hover:bg-[#b280b4]"
       >
         Delete
@@ -11,17 +14,17 @@
     </div>
 
     <div
-      v-if="index === showItem && itemOpen"
-      @click.stop="saveItem(index)"
+      v-if="index === cmsStore.showItem && cmsStore.itemOpen"
+      @click.stop="cmsStore.saveItem(index)"
       class="rounded border border-white/25 bg-[#8a548b] px-2 py-0.5 text-sm hover:bg-[#b280b4]"
-      :class="[inputError ? 'opacity-50' : '']"
+      :class="[cmsStore.inputError ? 'opacity-50' : '']"
     >
       Save
     </div>
 
     <div
-      v-if="index === showItem && itemOpen"
-      @click.stop="$emit('cancelItem', index)"
+      v-if="index === cmsStore.showItem && cmsStore.itemOpen"
+      @click.stop="cmsStore.cancelItem(index)"
       class="rounded border border-white/25 bg-[#8a548b] px-2 py-0.5 text-sm hover:bg-[#b280b4]"
     >
       Cancel
@@ -30,10 +33,10 @@
 </template>
 
 <script>
+import { useCmsStore } from "~/components/cms/stores/cmsStore";
+
 export default {
   name: "ItemTitleButtons",
-
-  emits: ["saveItem", "cancelItem", "deleteItem"],
 
   props: {
     item: {
@@ -44,33 +47,11 @@ export default {
       type: Number,
       required: true,
     },
-    showItem: {
-      type: Number,
-      required: false,
-      default: 0,
-    },
-    itemOpen: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    editingNewItem: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    inputError: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
   },
 
-  methods: {
-    saveItem(index) {
-      if (!this.inputError) {
-        this.$emit("saveItem", index);
-      }
+  computed: {
+    cmsStore() {
+      return useCmsStore();
     },
   },
 };

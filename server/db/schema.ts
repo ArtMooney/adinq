@@ -88,13 +88,33 @@ export const prisexempel = sqliteTable("prisexempel", {
 });
 
 export const cmsTables = [
-  { id: "mediaproduktioner", name: "Mediaproduktioner" },
-  { id: "medarbetare", name: "Medarbetare" },
-  { id: "prisexempel", name: "Prisexempel" },
-  { id: "kundutlatanden", name: "Kundutlåtanden" },
+  {
+    id: "mediaproduktioner",
+    name: "Mediaproduktioner",
+    viewMode: "list",
+    backupRef: null,
+  },
+  {
+    id: "medarbetare",
+    name: "Medarbetare",
+    viewMode: "list",
+    backupRef: null,
+  },
+  {
+    id: "prisexempel",
+    name: "Prisexempel",
+    viewMode: "list",
+    backupRef: null,
+  },
+  {
+    id: "kundutlatanden",
+    name: "Kundutlåtanden",
+    viewMode: "list",
+    backupRef: null,
+  },
 ];
 
-export const fieldTypes = {
+export const fieldsConfig = {
   mediaproduktioner: {
     id: { type: "integer", label: "", required: true, hidden: true },
     title: { type: "text", label: "Titel", required: true, hidden: false },
@@ -201,5 +221,139 @@ export const fieldTypes = {
     sortOrder: { type: "integer", label: "", required: true, hidden: true },
     createdAt: { type: "date", label: "", required: true, hidden: true },
     updatedAt: { type: "date", label: "", required: true, hidden: true },
+  },
+};
+
+export const graphConfig = {};
+
+export const selectorMonths = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+export const staticContentTypes = {
+  "page - Index": {
+    header: {
+      title: "text",
+      buttonTextOne: "text",
+    },
+  },
+  "page - Bokningar": {
+    header: {
+      buttonTextOne: "text",
+      buttonTextTwo: "text",
+    },
+    text_bokningar: {
+      title: "text",
+      text: "textarea",
+    },
+    text_regler: {
+      title: "text",
+      text: "textarea",
+    },
+  },
+  "page - Om Oss": {
+    textBlock: {
+      title: "text",
+      text: "textarea",
+      buttonText: "text",
+    },
+  },
+  "page - Styrelsen": {
+    header: {
+      title: "text",
+    },
+  },
+  "page - Dokument": {
+    header: {
+      title: "text",
+      text: "textarea",
+    },
+  },
+  "page - Hemvarnsgarden": {
+    header: {
+      title: "text",
+      buttonTextOne: "text",
+    },
+    textBlock: {
+      textTodayOne: "textarea",
+      textTodayTwo: "textarea",
+      textThenOne: "textarea",
+      textThenTwo: "textarea",
+    },
+  },
+  "page - Bli Medlem": {
+    textBlock: {
+      title: "text",
+      text: "textarea",
+    },
+  },
+  "page - Kontakta Oss": {
+    textBlock: {
+      title: "text",
+      text: "textarea",
+    },
+  },
+  "component - News": {
+    headings: {
+      title: "text",
+    },
+  },
+  "component - BookingsCalendar": {
+    headings: {
+      title: "text",
+      titleComing: "text",
+    },
+  },
+  "component - ContactBlock": {
+    contact: {
+      mobileLabel: "text",
+      mobile: "text",
+      emailLabel: "text",
+      email: "text",
+      addressLabel: "text",
+      address: "text",
+    },
+  },
+  "component - Contact": {
+    contact: {
+      title: "text",
+      text: "text",
+      button: "text",
+    },
+  },
+  "component - Navbar": {
+    buttons: {
+      button1: "text",
+      button2: "text",
+      button3: "text",
+      button4: "text",
+      button5: "text",
+      button6: "text",
+      button7: "text",
+      button8: "text",
+      button9: "text",
+    },
+  },
+  "component - Footer": {
+    buttons: {
+      button1: "text",
+      button2: "text",
+      button3: "text",
+      button4: "text",
+      button5: "text",
+      button6: "text",
+      button7: "text",
+    },
   },
 };

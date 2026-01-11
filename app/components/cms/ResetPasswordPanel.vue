@@ -15,16 +15,14 @@
         autocomplete="email"
       />
 
-      <CmsButton
+      <button
         @click="resetPasswordForm"
-        :text="buttonText"
-        link=""
-        hash=""
         type="submit"
         data-wait="Please wait..."
-        styling="#548b63"
-        class="mt-4 !bg-[#548b63] text-white hover:!bg-[#6bad7d]"
-      />
+        class="mt-4 bg-[#548b63] text-white hover:bg-[#6bad7d]"
+      >
+        {{ buttonText }}
+      </button>
 
       <div
         @click="$emit('loginSwitch')"
@@ -79,7 +77,7 @@ export default {
         this.buttonText = event.target.dataset.wait;
 
         try {
-          const res = await $fetch("/cms/reset", {
+          await $fetch("/cms/reset", {
             method: "POST",
             headers: {
               Authorization:
@@ -95,8 +93,6 @@ export default {
             "An email has been sent to your registered email address with a link to reset your password.";
           this.showStatusMessage = true;
           this.buttonText = savedText;
-
-          this.$emit("status", "ok");
           this.loginEmail = "";
           this.clearErrorWhenClicked();
         } catch (err) {

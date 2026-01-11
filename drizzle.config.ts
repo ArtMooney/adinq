@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 
 const useLocal = process.env.USE_LOCAL_DB === "true";
+const useDev = process.env.USE_DEV_DB === "true";
 
 function getLocalDbPath() {
   const wranglerDir = "./.wrangler/state/v3/d1/miniflare-D1DatabaseObject";
@@ -59,7 +60,9 @@ export default defineConfig({
         driver: "d1-http",
         dbCredentials: {
           accountId: process.env.NUXT_CLOUDFLARE_ACCOUNT_ID,
-          databaseId: process.env.NUXT_CLOUDFLARE_DATABASE_ID,
+          databaseId: useDev
+            ? process.env.NUXT_CLOUDFLARE_DATABASE_ID_DEV
+            : process.env.NUXT_CLOUDFLARE_DATABASE_ID,
           token: process.env.NUXT_CLOUDFLARE_D1_TOKEN,
         },
       }),

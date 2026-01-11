@@ -1,7 +1,7 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
 import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
 import * as schema from "~~/server/db/schema.ts";
-import { cmsTables, fieldTypes } from "~~/server/db/schema.ts";
+import { cmsTables, fieldsConfig } from "~~/server/db/schema.ts";
 import { getTableColumns } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
 
   const table = schema[tableName];
   const columns = getTableColumns(table);
-  const fields = fieldTypes[tableName];
+  const fields = fieldsConfig[tableName];
 
   return Object.keys(columns).map((key) => ({
     name: key,

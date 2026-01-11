@@ -143,12 +143,12 @@ export default {
         },
 
         "textarea, .textarea": {
-          "@apply min-h-28 rounded border border-white/25 px-4 py-3 placeholder:text-neutral-600 focus:border-white/50 focus:outline-none":
+          "@apply min-h-40 rounded border border-white/25 px-4 py-3 placeholder:text-neutral-600 focus:border-white/50 focus:outline-none":
             {},
         },
 
         "select, .select": {
-          "@apply w-full px-3.5 py-3 outline outline-white/25 rounded transition-all duration-200 ease-in-out":
+          "@apply w-full text-white px-3.5 py-3 outline outline-white/25 rounded transition-all duration-200 ease-in-out":
             {},
           "-webkit-appearance": "none",
           "-moz-appearance": "none",
@@ -161,7 +161,7 @@ export default {
             "@apply border-gray-400": {},
           },
           "&:disabled, &.disabled": {
-            "@apply bg-neutral-200 text-neutral-600 cursor-not-allowed": {},
+            "@apply opacity-50 cursor-not-allowed": {},
           },
           "&.error, &:user-invalid": {
             "@apply bg-rose-100 outline-rose-700 text-rose-700": {},

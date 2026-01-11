@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mx-auto mt-8 flex max-w-screen-md flex-wrap justify-center gap-4 text-base"
+    class="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-4 text-base"
   >
     <label class="flex w-full flex-col gap-2">
       <p class="font-semibold text-white/50 italic">
@@ -8,7 +8,7 @@
       </p>
 
       <select v-model="tableIndex">
-        <option v-for="(table, index) of tables" :value="index">
+        <option v-for="(table, index) of cmsStore.tables" :value="index">
           {{ table.name }}
         </option>
       </select>
@@ -17,86 +17,65 @@
 </template>
 
 <script>
+import { useCmsStore } from "~/components/cms/stores/cmsStore";
+
 export default {
   name: "TableList",
 
-  props: {
-    login: {
-      type: Object,
-      required: true,
-    },
-  },
-
   data() {
-    const config = useRuntimeConfig();
-
     return {
-      userName: config.public.userName,
-      userPass: config.public.userPass,
       tableIndex: 0,
-      tables: [],
     };
   },
 
+  computed: {
+    cmsStore() {
+      return useCmsStore();
+    },
+  },
+
   async mounted() {
-    this.$emit("loadingFlag", true);
-
-    this.tables = await this.listTables();
-    const schema = await this.listFields(this.tables[this.tableIndex].id);
-
-    this.$emit("schema", schema);
-    this.$emit("tableId", this.tables[this.tableIndex].id);
+    await this.cmsStore.loadTables();
+    await this.loadSchema();
   },
 
   methods: {
-    async listTables() {
-      try {
-        return await $fetch("/cms/tables", {
-          method: "POST",
-          headers: {
-            Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
-          },
-          body: JSON.stringify({
-            email: this.login.email,
-            password: this.login.password,
-          }),
-        });
-      } catch (err) {
-        if (err.status === 401) {
-          deleteLocalStorage("adinq-cms");
-          location.reload();
-        }
-      }
+    async loadSchema() {
+      const table = this.cmsStore.tables[this.tableIndex];
+      this.cmsStore.tableId = table.id;
+      this.cmsStore.viewMode = table.viewMode;
+      this.cmsStore.backupRef = table.backupRef;
+
+      await this.cmsStore.loadFields();
+      await this.backupReferencedTable(table);
+      await this.cmsStore.loadRows("asc", "sortOrder");
     },
 
-    async listFields(tableid) {
-      try {
-        return await $fetch("/cms/fields", {
-          method: "POST",
-          headers: {
-            Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
-          },
-          body: JSON.stringify({
-            email: this.login.email,
-            password: this.login.password,
-            table_id: tableid,
-          }),
-        });
-      } catch (err) {
-        if (err.status === 401) {
-          deleteLocalStorage("adinq-cms");
-          location.reload();
-        }
-      }
+    async backupReferencedTable(table) {
+      if (!this.cmsStore.backupRef) return;
+
+      this.cmsStore.tableId = this.cmsStore.backupRef;
+      await this.cmsStore.loadRows("asc", "sortOrder");
+
+      const backupItems = this.cmsStore.items.filter(this.isExpiredItem);
+      this.cmsStore.tableId = table.id;
+      this.cmsStore.items = backupItems;
+      await this.cmsStore.addItems();
+
+      this.cmsStore.tableId = this.cmsStore.backupRef;
+      await this.cmsStore.deleteAllItems();
+
+      this.cmsStore.tableId = table.id;
+    },
+
+    isExpiredItem(item) {
+      return item?.date?.[1] && new Date(item.date[1]) < new Date();
     },
   },
 
   watch: {
     async tableIndex() {
-      this.$emit("loadingFlag", true);
-      const schema = await this.listFields(this.tables[this.tableIndex].id);
-      this.$emit("schema", schema);
-      this.$emit("tableId", this.tables[this.tableIndex].id);
+      await this.loadSchema();
     },
   },
 };

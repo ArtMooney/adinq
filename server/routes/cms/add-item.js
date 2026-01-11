@@ -9,6 +9,7 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const headers = getHeaders(event);
   const body = await readBody(event);
+  const db = useDrizzle(event.context.cloudflare.env.DB);
 
   if (!(await checkLogin(headers, config.userName, config.userPass))) {
     throw createError({
@@ -57,8 +58,6 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const db = useDrizzle(event.context.cloudflare.env.DB);
-
   try {
     const insertedItem = await db
       .insert(schema[tableName])
@@ -69,7 +68,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     throw createError({
       statusCode: 400,
-      statusMessage: "Failed to insert item",
+      statusMessage: "Failed to save item",
     });
   }
 });
