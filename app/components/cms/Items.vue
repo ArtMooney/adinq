@@ -47,7 +47,7 @@ import { VueDraggableNext } from "vue-draggable-next";
 
           <template v-for="input of cmsStore.schema">
             <CmsJsonFields
-              v-if="input.type === 'json'"
+              v-if="input.type === 'json' && staticContentTypes[item.title]"
               :fields="staticContentTypes[item.title]"
               :base-input="input"
               :item="item"
