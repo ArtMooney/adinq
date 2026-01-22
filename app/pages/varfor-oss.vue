@@ -44,7 +44,9 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">Varför välja oss?</h1>
+        <h1 class="mx-10 mb-8 md:mx-30">
+          {{ staticContent.header.title }}
+        </h1>
 
         <NuxtLink
           :to="{ path: '/varfor-oss', hash: '#varfor' }"
@@ -67,24 +69,7 @@ definePageMeta({
         style="color: #aaaaaa"
       ></IconFluentCommentQuote20Regular>
 
-      <p>
-        "Hos människan, -det är här allt börjar. Att påverka och skapa
-        förändring hos individen är mångas önskan. Många aktörer vill ha just
-        din uppmärksamhet, men hur gör man egentligen för att tränga igenom
-        mediebruset i dagens informationssamhälle?
-      </p>
-      <p>
-        Vi på ADinQ tror inte att det finns ett enskilt svar. Flera saker spelar
-        in, på grund av att allt börjar hos just människan. Samhället utvecklas
-        i snabb takt på flera sätt, vilket i sin tur påverkar det mänskliga
-        beteendet. För att hänga med krävs det att man anpassar sig.
-      </p>
-      <p>
-        Vi möjliggör varumärkesexponering på platser där människorna finns. Vi
-        fångar ögonblicket då människor står still, -sysslolösa en kort stund i
-        vardagen. På digitala annonsytor i miljöer utanför människors hem. Vi
-        hjälper er att synas på rätt sätt!"
-      </p>
+      <p v-html="formatText(staticContent.quote.text)"></p>
     </div>
 
     <div class="relative mt-32 grid gap-8 p-8">
@@ -101,7 +86,7 @@ definePageMeta({
       <IconBlob
         icon="hugeicons:contact-01"
         icon-color="#6293a5"
-        message="Kontakta oss för mer info"
+        :message="formatText(staticContent.iconBlob.text)"
         link="/kontakta-oss"
       ></IconBlob>
     </div>
@@ -111,7 +96,22 @@ definePageMeta({
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "VarforOss",
+
+  computed: {
+    staticContent() {
+      return useStaticContentStore().getContentByTitle("page - Varfor oss")
+        .content;
+    },
+  },
+
+  methods: {
+    formatText(text) {
+      return text.replace(/\*/g, "•").replace(/\n/g, "<br>").trim();
+    },
+  },
 };
 </script>

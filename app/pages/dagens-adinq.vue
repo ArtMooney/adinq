@@ -66,7 +66,7 @@ const colleaguesProduction = colleagues?.value.filter(
           class="absolute inset-0 flex flex-col items-center justify-center text-center"
         >
           <h1 class="mx-10 mb-8 md:mx-30">
-            Dagens
+            {{ staticContent.header.title }}
             <span>
               <router-link to="/">
                 <NuxtImg
@@ -104,7 +104,7 @@ const colleaguesProduction = colleagues?.value.filter(
       />
 
       <h3 v-if="colleaguesManagement.length > 0" class="relative text-center">
-        Företagsledning och administration
+        {{ staticContent.colleagues.management }}
       </h3>
 
       <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
@@ -131,7 +131,7 @@ const colleaguesProduction = colleagues?.value.filter(
       />
 
       <h3 v-if="colleaguesSales.length > 0" class="relative text-center">
-        Försäljning
+        {{ staticContent.colleagues.sales }}
       </h3>
 
       <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
@@ -158,7 +158,7 @@ const colleaguesProduction = colleagues?.value.filter(
       />
 
       <h3 v-if="colleaguesProduction.length > 0" class="relative text-center">
-        Produktion och marknadsföring
+        {{ staticContent.colleagues.production }}
       </h3>
 
       <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
@@ -174,6 +174,8 @@ const colleaguesProduction = colleagues?.value.filter(
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "DagensAdinq",
 
@@ -186,6 +188,11 @@ export default {
 
     getFooterHeight() {
       return this.footerHeight();
+    },
+
+    staticContent() {
+      return useStaticContentStore().getContentByTitle("page - Dagens AdinQ")
+        .content;
     },
   },
 

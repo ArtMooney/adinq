@@ -20,7 +20,9 @@ definePageMeta({
 <template>
   <div class="flex h-full w-full grow flex-col items-center justify-center">
     <div class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
-      <h4 v-if="!successMessage" class="text-left">Avregistrera</h4>
+      <h4 v-if="!successMessage" class="text-left">
+        {{ staticContent.form.title }}
+      </h4>
 
       <form
         v-if="!successMessage"
@@ -31,7 +33,7 @@ definePageMeta({
         <input
           name="email"
           type="email"
-          placeholder="Email"
+          :placeholder="staticContent.form.input"
           v-model="formData.email"
           required
           autocomplete="email"
@@ -68,7 +70,7 @@ definePageMeta({
         </div>
 
         <div class="flex justify-start pt-8">
-          <button @click="sendForm" type="submit" class="white !text-black">
+          <button @click="sendForm" type="submit" class="white text-black!">
             {{ buttonText }}
           </button>
         </div>
@@ -93,8 +95,17 @@ definePageMeta({
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "Avregistrera",
+
+  computed: {
+    staticContent() {
+      return useStaticContentStore().getContentByTitle("page - Avregistrera")
+        .content;
+    },
+  },
 
   data() {
     const config = useRuntimeConfig();

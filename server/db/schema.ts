@@ -288,4 +288,76 @@ export const staticContentTypes = {
       poster: "fileImg",
     },
   },
+  "page - MediaProduktion": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+    videoBlock: {
+      text: "textarea",
+      videoLink: "text",
+    },
+    marketingChannels: {
+      title: "text",
+      text_movies: "textarea",
+      text_bigscreens: "textarea",
+    },
+    iconBlob: {
+      block1: "textarea",
+      block2: "textarea",
+      block3: "textarea",
+      block4: "textarea",
+    },
+  },
+  "page - Dagens AdinQ": {
+    header: {
+      title: "text",
+    },
+    colleagues: {
+      management: "text",
+      sales: "text",
+      production: "text",
+    },
+  },
+  "page - Kundutlatanden": {
+    header: {
+      title: "text",
+    },
+  },
+  "page - Varfor oss": {
+    header: {
+      title: "text",
+    },
+    quote: {
+      text: "textarea",
+    },
+    iconBlob: {
+      text: "textarea",
+    },
+  },
+  "page - Priser": {
+    header: {
+      title: "text",
+    },
+    prices: {
+      title: "text",
+      text: "textarea",
+      more: "text",
+    },
+  },
+  "page - Kontakta oss": {
+    header: {
+      title: "text",
+    },
+    contactForm: {
+      title: "text",
+      text: "textarea",
+    },
+  },
+  "page - Avregistrera": {
+    form: {
+      title: "text",
+      input: "text",
+    },
+  },
 };

@@ -61,11 +61,11 @@ const galleryBigscreens = gallery.value.filter(
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
         <h1 class="mx-10 mb-8 md:mx-30">
-          Vi producerar er reklamfilm eller slide för storbildsskärmar!
+          {{ staticContent.header.title }}
         </h1>
 
         <div class="max-w-3xl px-8 text-lg lg:text-2xl">
-          - Vi kan hjälpa er med allt under samma tak!
+          {{ staticContent.header.subtitle }}
         </div>
 
         <NuxtLink
@@ -85,43 +85,32 @@ const galleryBigscreens = gallery.value.filter(
       <div
         class="mx-2 mb-8 flex flex-col gap-6 text-center lg:mb-0 lg:text-left"
       >
-        <p>
-          Stort eller litet företag? Vi har lösningar för det mesta. Nej vi kan
-          inte trolla men vi har en bred kompetens och vi försöker alltid skapa
-          bästa möjliga produktion utifrån ditt företags behov och plånbok här
-          och nu. Vi hjälper er gärna!
-        </p>
-        <p>
-          Vi gör både reklamfilmer och material till storbildsskärmar i olika
-          storlek och komplexitet för våra digitala utomhusmedier.
-        </p>
-        <p>
-          Tänk på att nyttan med en bra film är större än bara en enskild
-          kampanj. Ni kan även fritt använda er film i sociala medier och nå
-          ännu fler människor samtidigt som ni stärker ert varumärke.
-        </p>
+        <p v-html="formatText(staticContent.videoBlock.text)"></p>
       </div>
 
-      <VideoBlob video-Link="https://qcard.adinq.se/?i=1747390713"></VideoBlob>
+      <VideoBlob :video-Link="staticContent.videoBlock.videoLink"></VideoBlob>
     </div>
 
     <h3 id="media-gallery" class="mt-32 text-center">
-      Mer information om våra marknadsföringskanaler
+      {{ staticContent.marketingChannels.title }}
     </h3>
 
-    <p v-if="galleryStores.length > 0" class="text-center">
-      Några exempelfilmer som vi producerat. Ni kan hitta fler genom att klicka
-      på Youtube-länken i övre högra hörnet.
-    </p>
+    <p
+      v-if="galleryStores.length > 0"
+      class="text-center"
+      v-html="formatText(staticContent.marketingChannels.text_movies)"
+    ></p>
 
     <QcardGallery
       v-if="galleryStores.length > 0"
       :galleryData="galleryStores"
     ></QcardGallery>
 
-    <p v-if="galleryBigscreens.length > 0" class="mt-20 text-center">
-      Några exempel på produktioner för storbildsskärmar.
-    </p>
+    <p
+      v-if="galleryBigscreens.length > 0"
+      class="mt-20 text-center"
+      v-html="formatText(staticContent.marketingChannels.text_bigscreens)"
+    ></p>
 
     <QcardGallery
       v-if="galleryBigscreens.length > 0"
@@ -142,28 +131,28 @@ const galleryBigscreens = gallery.value.filter(
       <IconBlob
         icon="ph:film-reel-light"
         icon-color="#e09963"
-        message="En bild säger mer än tusen ord. 10-20 sekunder säger ännu mer. I kombination med enkla, personliga och kärnfulla budskap kan vi hjälpa dig att stärka ditt varumärke hos både befintliga och nya kunder. Effektfulla filmer som passar perfekt att dela på sociala medier."
+        :message="formatText(staticContent.iconBlob.block1)"
         link="/media-produktion#media-gallery"
       ></IconBlob>
 
       <IconBlob
         icon="bi:camera-reels"
         icon-color="#67ac6e"
-        message="Perfekt för dina kampanjer. På en bra grund är det enkelt att byta budskap under året."
+        :message="formatText(staticContent.iconBlob.block2)"
         link="/media-produktion#media-gallery"
       ></IconBlob>
 
       <IconBlob
         icon="teenyicons:headset-outline"
         icon-color="#ac67a6"
-        message="Att önska sina kunder en Glad Påsk, Trevlig Sommar eller God Jul har ett mycket stort värde och stärker din image. Kundvård på ett mycket enkelt sätt och vi hjälper dig gärna!"
+        :message="formatText(staticContent.iconBlob.block3)"
         link="/kundutlatanden"
       ></IconBlob>
 
       <IconBlob
         icon="hugeicons:contact-01"
         icon-color="#6293a5"
-        message="Kontakta oss för mer info"
+        :message="formatText(staticContent.iconBlob.block4)"
         link="/kontakta-oss"
       ></IconBlob>
     </div>
@@ -171,7 +160,22 @@ const galleryBigscreens = gallery.value.filter(
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "MediaProduktion",
+
+  computed: {
+    staticContent() {
+      return useStaticContentStore().getContentByTitle("page - MediaProduktion")
+        .content;
+    },
+  },
+
+  methods: {
+    formatText(text) {
+      return text.replace(/\*/g, "•").replace(/\n/g, "<br>").trim();
+    },
+  },
 };
 </script>

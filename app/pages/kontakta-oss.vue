@@ -43,7 +43,7 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">Kontakta oss</h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <NuxtLink
           :to="{ path: '/kontakta-oss', hash: '#kontakta-oss' }"
@@ -62,13 +62,13 @@ definePageMeta({
     class="my-32 flex max-w-5xl flex-col gap-8 px-4 sm:px-8 lg:mx-auto"
   >
     <h3 class="text-center sm:px-8 md:px-12">
-      Få personlig hjälp från vårt team i Borås
+      {{ staticContent.header.title }}
     </h3>
 
-    <p class="mb-12 text-center sm:px-16 md:px-32">
-      Vårt team i Borås är redo att hjälpa dig. Vi svarar snabbt på telefon och
-      mejl, och ser till att du får den hjälp du behöver.
-    </p>
+    <p
+      class="mb-12 text-center sm:px-16 md:px-32"
+      v-html="formatText(staticContent.contactForm.text)"
+    ></p>
 
     <form
       v-if="contactForm"
@@ -212,8 +212,17 @@ definePageMeta({
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "KontaktaOss",
+
+  computed: {
+    staticContent() {
+      return useStaticContentStore().getContentByTitle("page - Kontakta oss")
+        .content;
+    },
+  },
 
   data() {
     const config = useRuntimeConfig();
@@ -386,6 +395,10 @@ export default {
       });
 
       return formData;
+    },
+
+    formatText(text) {
+      return text.replace(/\*/g, "•").replace(/\n/g, "<br>").trim();
     },
   },
 };
