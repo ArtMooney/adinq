@@ -34,7 +34,7 @@ function setNestedValue(obj, pathArray, value) {
   current[pathArray[pathArray.length - 1]] = value;
 }
 
-export async function handleJsonFieldUploads(bucket, item, schema) {
+export async function handleJsonFileUploads(bucket, item, schema) {
   for (const field of schema) {
     if (field.type === "json" && item[field.name]) {
       const template = staticContentTypes[item.title];
@@ -46,7 +46,7 @@ export async function handleJsonFieldUploads(bucket, item, schema) {
   }
 }
 
-export async function handleJsonFieldDeletions(
+export async function handleJsonDeletePrevious(
   bucket,
   currentStoredItem,
   newItem,
@@ -65,7 +65,7 @@ export async function handleJsonFieldDeletions(
   }
 }
 
-export async function handleJsonFieldDeleteAll(bucket, item, schema) {
+export async function handleJsonFileDeleteAll(bucket, item, schema) {
   for (const field of schema) {
     if (field.type === "json" && item[field.name]) {
       const template = staticContentTypes[item.title];

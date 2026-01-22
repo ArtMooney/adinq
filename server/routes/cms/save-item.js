@@ -3,8 +3,8 @@ import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentica
 import { uploadFile } from "~~/server/routes/cms/r2/upload-file.js";
 import { deleteIfExists } from "~~/server/routes/cms/r2/delete-if-exists.js";
 import {
-  handleJsonFieldUploads,
-  handleJsonFieldDeletions,
+  handleJsonFileUploads,
+  handleJsonDeletePrevious,
 } from "~~/server/routes/cms/utils/json-file-handler.js";
 import { cmsTables } from "~~/server/db/schema.ts";
 import { useDrizzle } from "~~/server/db/client.ts";
@@ -80,14 +80,14 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  await handleJsonFieldDeletions(
+  await handleJsonDeletePrevious(
     bucket,
     currentStoredItem,
     body.item,
     body.schema,
   );
 
-  await handleJsonFieldUploads(bucket, body.item, body.schema);
+  await handleJsonFileUploads(bucket, body.item, body.schema);
 
   try {
     const updatedItem = await db

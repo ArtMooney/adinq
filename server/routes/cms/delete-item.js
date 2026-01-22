@@ -5,7 +5,7 @@ import * as schema from "~~/server/db/schema.ts";
 import { cmsTables } from "~~/server/db/schema.ts";
 import { eq } from "drizzle-orm";
 import { deleteIfExists } from "~~/server/routes/cms/r2/delete-if-exists.js";
-import { handleJsonFieldDeleteAll } from "~~/server/routes/cms/utils/json-file-handler.js";
+import { handleJsonFileDeleteAll } from "~~/server/routes/cms/utils/json-file-handler.js";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -63,7 +63,7 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  await handleJsonFieldDeleteAll(bucket, currentStoredItem, body.schema);
+  await handleJsonFileDeleteAll(bucket, currentStoredItem, body.schema);
 
   try {
     await db
