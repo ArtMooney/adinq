@@ -63,7 +63,7 @@ export default {
       await this.cmsStore.addItems();
 
       this.cmsStore.tableId = this.cmsStore.backupRef;
-      await this.cmsStore.deleteAllItems();
+      await this.cmsStore.deleteItems();
 
       this.cmsStore.tableId = table.id;
     },

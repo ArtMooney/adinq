@@ -291,7 +291,7 @@ export const useCmsStore = defineStore("cmsStore", {
       }
     },
 
-    async deleteAllItems() {
+    async deleteItems() {
       const loginStore = useLoginStore();
       const config = useRuntimeConfig();
 
@@ -299,7 +299,7 @@ export const useCmsStore = defineStore("cmsStore", {
       this.saveAllFlag = true;
 
       try {
-        await $fetch("/cms/delete-all-items", {
+        await $fetch("/cms/delete-items", {
           method: "POST",
           headers: {
             Authorization:
