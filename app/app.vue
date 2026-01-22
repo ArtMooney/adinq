@@ -1,6 +1,10 @@
 <script setup>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 const config = useRuntimeConfig();
 const siteUrl = config.public.publicSiteUrl;
+const staticContentStore = useStaticContentStore();
+await staticContentStore.loadContent();
 
 useHead({
   htmlAttrs: {

@@ -26,7 +26,7 @@ export const useStaticContentStore = defineStore("staticContent", {
       };
 
       try {
-        const { data, error } = await useFetch("/api/static", {
+        const { data, error } = await useFetch("/cms/static", {
           method: "GET",
           headers: authHeaders,
           default: () => [],
