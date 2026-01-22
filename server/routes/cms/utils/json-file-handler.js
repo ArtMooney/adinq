@@ -34,6 +34,49 @@ function setNestedValue(obj, pathArray, value) {
   current[pathArray[pathArray.length - 1]] = value;
 }
 
+export async function handleJsonFieldUploads(bucket, item, schema) {
+  for (const field of schema) {
+    if (field.type === "json" && item[field.name]) {
+      const template = staticContentTypes[item.title];
+
+      if (template) {
+        await processJsonFileUploads(bucket, item[field.name], template);
+      }
+    }
+  }
+}
+
+export async function handleJsonFieldDeletions(
+  bucket,
+  currentStoredItem,
+  newItem,
+  schema,
+) {
+  for (const field of schema) {
+    if (field.type === "json") {
+      const template = staticContentTypes[newItem.title];
+
+      if (template) {
+        const currentJson = currentStoredItem[field.name] || {};
+        const newJson = newItem[field.name] || {};
+        await processJsonFileDeletions(bucket, currentJson, newJson, template);
+      }
+    }
+  }
+}
+
+export async function handleJsonFieldDeleteAll(bucket, item, schema) {
+  for (const field of schema) {
+    if (field.type === "json" && item[field.name]) {
+      const template = staticContentTypes[item.title];
+
+      if (template) {
+        await deleteAllJsonFiles(bucket, item[field.name], template);
+      }
+    }
+  }
+}
+
 async function processJsonFileUploads(bucket, jsonData, template, path = []) {
   if (!template || !jsonData) return;
 
@@ -117,49 +160,6 @@ async function deleteAllJsonFiles(bucket, jsonData, template, path = []) {
       const nestedData = jsonData[key];
       if (nestedData) {
         await deleteAllJsonFiles(bucket, nestedData, value, currentPath);
-      }
-    }
-  }
-}
-
-export async function handleJsonFieldUploads(bucket, item, schema) {
-  for (const field of schema) {
-    if (field.type === "json" && item[field.name]) {
-      const template = staticContentTypes[item.title];
-
-      if (template) {
-        await processJsonFileUploads(bucket, item[field.name], template);
-      }
-    }
-  }
-}
-
-export async function handleJsonFieldDeletions(
-  bucket,
-  currentStoredItem,
-  newItem,
-  schema,
-) {
-  for (const field of schema) {
-    if (field.type === "json") {
-      const template = staticContentTypes[newItem.title];
-
-      if (template) {
-        const currentJson = currentStoredItem[field.name] || {};
-        const newJson = newItem[field.name] || {};
-        await processJsonFileDeletions(bucket, currentJson, newJson, template);
-      }
-    }
-  }
-}
-
-export async function handleJsonFieldDeleteAll(bucket, item, schema) {
-  for (const field of schema) {
-    if (field.type === "json" && item[field.name]) {
-      const template = staticContentTypes[item.title];
-
-      if (template) {
-        await deleteAllJsonFiles(bucket, item[field.name], template);
       }
     }
   }
