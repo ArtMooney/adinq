@@ -360,4 +360,69 @@ export const staticContentTypes = {
       input: "text",
     },
   },
+  "page - Butiks-TV": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+    textBlocks: {
+      block1: {
+        title: "text",
+        text: "textarea",
+      },
+      block2: {
+        title: "text",
+        text: "textarea",
+      },
+      block3: {
+        title: "text",
+        text: "textarea",
+      },
+    },
+  },
+  "page - Storbildsskarmar": {
+    header: {
+      title: "text",
+    },
+    textBlock: {
+      text: "textarea",
+      image: "fileImg",
+    },
+  },
+  "page - Mediebyraer": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+    textBlock: {
+      title: "text",
+      text: "textarea",
+    },
+  },
+  "page - Kommersialisera": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+    textBlocks: {
+      block1: {
+        title: "text",
+        text: "textarea",
+      },
+      block2: {
+        title: "text",
+        text: "textarea",
+      },
+      block3: {
+        title: "text",
+        text: "textarea",
+      },
+    },
+  },
+  "page - Marknadsplatskarta": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+  },
 };

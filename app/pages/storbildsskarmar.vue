@@ -43,9 +43,7 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">
-          Tydlig och bra marknadsföring med Storbildsskärmar!
-        </h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <NuxtLink
           :to="{ path: '/storbildsskarmar', hash: '#info' }"
@@ -74,13 +72,13 @@ definePageMeta({
       <IconBlob
         icon="streamline-ultimate-color:saving-money-flower"
         icon-color="#e09963"
-        message="Att synas på Storbildsskärm är ett fantastiskt bra sätt att synas där människor finns! Ett stort antal passerande människor kombinerat med ett medie som är stort, tydligt och som inte är påtvingande är ett vinnande recept. Vi kan erbjuda er att synas på flera olika orter i Sverige. Vår produktionsavdelning kan även hjälpa er att producera era egna slides som sen kan visas på Storbildsskärmarna."
+        :message="formatText(staticContent.textBlock.text)"
         link=""
         class="relative lg:col-span-2"
       ></IconBlob>
 
       <NuxtImg
-        src="led-screen-on-lawn.jpg"
+        :src="`/cms-files/${staticContent.textBlock.image}`"
         alt=""
         sizes="500px sm:640px md:500px"
         width="750"
@@ -95,7 +93,23 @@ definePageMeta({
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "Storbildsskarmar",
+
+  computed: {
+    staticContent() {
+      return useStaticContentStore().getContentByTitle(
+        "page - Storbildsskarmar",
+      ).content;
+    },
+  },
+
+  methods: {
+    formatText(text) {
+      return text.replace(/\*/g, "•").replace(/\n/g, "<br>").trim();
+    },
+  },
 };
 </script>

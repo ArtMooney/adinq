@@ -44,11 +44,10 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">Kommersialisera din fastighet</h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <div class="max-w-3xl px-8 text-lg lg:text-2xl">
-          Vi hjälper dig att kommersialisera ytor och fastigheter samt att
-          inkludera dem i vårt snabbväxande nätverk av utomhusmedia.
+          {{ staticContent.header.subtitle }}
         </div>
 
         <NuxtLink
@@ -77,22 +76,22 @@ definePageMeta({
 
       <IconBlob
         icon="streamline-ultimate-color:screen-curved"
-        title="För skärmägare"
-        message="Äger ni en eller flera storbildsskärmar eller annan utomhusmedia? Öka era intäkter genom att ansluta er till vårt snabbt växande nätverk av DOOH utomhusmedia där vi öppnar upp en värld av möjligheter för mediaförsäljning till annonsörer och varumärken av alla storlekar. Klicka nedan och kontakta oss så hjälper vi er."
+        :title="staticContent.textBlocks.block1.title"
+        :message="formatText(staticContent.textBlocks.block1.text)"
         link=""
       ></IconBlob>
 
       <IconBlob
         icon="streamline-ultimate-color:business-deal-handshake-1"
-        title="Hur vi jobbar"
-        message="Vi har ett ingående samarbete med teknikbolaget Pro-Led som är specialiserade på montage och utrustning för DOOH, som bland annat storbildsskärmar och LEDperimetrar."
+        :title="staticContent.textBlocks.block2.title"
+        :message="formatText(staticContent.textBlocks.block2.text)"
         link=""
       ></IconBlob>
 
       <IconBlob
         icon="fxemoji:housebuilding"
-        title="För fastighetsägare & markägare"
-        message="Med storbildsskärmar på er fasad kan ni nyttja er byggnads potential mer än ni kanske trodde var möjligt. Det ger även liv och färg till fasaden och skapar intäktsmöjligheter om placeringen är bra där många ser skylten. Vi kan hjälpa er med allt från installation, montage och service när skärmen sitter på plats. Om ni inte bara vill ha egna budskap på skärmen så kan vi även hjälpa till med reklamförsäljning för att ni ska få ut det mesta av er storbildsinvestering."
+        :title="staticContent.textBlocks.block3.title"
+        :message="formatText(staticContent.textBlocks.block3.text)"
         link=""
       ></IconBlob>
     </div>
@@ -102,7 +101,22 @@ definePageMeta({
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "Kommersialisera",
+
+  computed: {
+    staticContent() {
+      return useStaticContentStore().getContentByTitle("page - Kommersialisera")
+        .content;
+    },
+  },
+
+  methods: {
+    formatText(text) {
+      return text.replace(/\*/g, "•").replace(/\n/g, "<br>").trim();
+    },
+  },
 };
 </script>

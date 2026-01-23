@@ -19,15 +19,7 @@
 
       <h6 v-if="title" class="mb-3">{{ title }}</h6>
 
-      <ul v-if="message" class="flex flex-col">
-        <li v-if="typeof message === 'string'">
-          {{ message }}
-        </li>
-
-        <li v-if="Array.isArray(message)" v-for="line in message">
-          {{ line || "\u00A0" }}
-        </li>
-      </ul>
+      <p v-if="message" v-html="formatText(message)"></p>
     </div>
   </NuxtLink>
 </template>
@@ -112,6 +104,12 @@ export default {
           IconStreamlineUltimateColorColorPalette2,
       },
     };
+  },
+
+  methods: {
+    formatText(text) {
+      return text.replace(/\*/g, "•").replace(/\n/g, "<br>").trim();
+    },
   },
 };
 </script>

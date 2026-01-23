@@ -43,12 +43,10 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">
-          Sök bland våra många marknadsplatser över hela Sverige!
-        </h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <div class="max-w-3xl px-8 text-lg lg:text-2xl">
-          Navigera i kartan nedan med mus, touchpad eller på mobilen!
+          {{ staticContent.header.subtitle }}
         </div>
 
         <NuxtLink
@@ -71,7 +69,17 @@ definePageMeta({
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "Marknadsplatskarta",
+
+  computed: {
+    staticContent() {
+      return useStaticContentStore().getContentByTitle(
+        "page - Marknadsplatskarta",
+      ).content;
+    },
+  },
 };
 </script>

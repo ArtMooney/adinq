@@ -60,9 +60,7 @@ const galleryBigscreens = gallery.value.filter(
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">
-          {{ staticContent.header.title }}
-        </h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <div class="max-w-3xl px-8 text-lg lg:text-2xl">
           {{ staticContent.header.subtitle }}

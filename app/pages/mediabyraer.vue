@@ -43,10 +43,10 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">En naturlig del i mediemixen!</h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <div class="max-w-3xl px-8 text-lg lg:text-2xl">
-          Stor flexibilitet - lokala i hela Sverige!
+          {{ staticContent.header.subtitle }}
         </div>
 
         <NuxtLink
@@ -76,18 +76,8 @@ definePageMeta({
       <IconBlob
         icon="streamline-ultimate-color:color-palette-2"
         icon-color="#e09963"
-        title="Butiks TV och digitala storbildskärmar"
-        :message="[
-          'Två kompletterande marknadsplatser. Ett koncept vi är relativt ensamma om och specialiserade på sedan många år.',
-          '',
-          '• Filmerna går inte att klicka eller zappa bort.',
-          '• Du möter folk i en av vardagens få pauser, - i kön till kassan.',
-          '• Hög visningsfrekvens, - från 140 visningar per dag/butik.',
-          '• Enkelt att köpa, enkelt att variera ditt budskap.',
-          '• Köp lokalt på din ort, regionalt eller rikstäckande.',
-          '',
-          'Allt beroende på hur era kunders kampanjer ligger bokade eller vart man vill synas. Vår stora fördel är att vi kan vara lokala i hela Sverige.',
-        ]"
+        :title="staticContent.textBlock.title"
+        :message="formatText(staticContent.textBlock.text)"
         link=""
       ></IconBlob>
     </div>
@@ -97,7 +87,22 @@ definePageMeta({
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "Mediabyraer",
+
+  computed: {
+    staticContent() {
+      return useStaticContentStore().getContentByTitle("page - Mediebyraer")
+        .content;
+    },
+  },
+
+  methods: {
+    formatText(text) {
+      return text.replace(/\*/g, "•").replace(/\n/g, "<br>").trim();
+    },
+  },
 };
 </script>
