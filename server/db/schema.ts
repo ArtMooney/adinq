@@ -425,4 +425,24 @@ export const staticContentTypes = {
       subtitle: "text",
     },
   },
+  "component - Navbar": {
+    buttons: {
+      index: "text",
+      mediaProduktion: "text",
+      kollegor: "text",
+      kundutlatanden: "text",
+      varforOss: "text",
+      priser: "text",
+      kontaktaOss: "text",
+    },
+  },
+  "component - Footer": {
+    index: "text",
+    mediaProduktion: "text",
+    kollegor: "text",
+    kundutlatanden: "text",
+    varforOss: "text",
+    priser: "text",
+    kontaktaOss: "text",
+  },
 };

@@ -142,11 +142,5 @@ export default {
       return useStaticContentStore().getContentByTitle("page - Priser").content;
     },
   },
-
-  methods: {
-    formatText(text) {
-      return text.replace(/\*/g, "•").replace(/\n/g, "<br>").trim();
-    },
-  },
 };
 </script>

@@ -396,10 +396,6 @@ export default {
 
       return formData;
     },
-
-    formatText(text) {
-      return text.replace(/\*/g, "•").replace(/\n/g, "<br>").trim();
-    },
   },
 };
 </script>

@@ -105,11 +105,5 @@ export default {
       ).content;
     },
   },
-
-  methods: {
-    formatText(text) {
-      return text.replace(/\*/g, "•").replace(/\n/g, "<br>").trim();
-    },
-  },
 };
 </script>
