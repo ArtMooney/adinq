@@ -4,7 +4,7 @@
     class="group relative flex cursor-pointer flex-row-reverse items-center gap-2 xl:flex-row"
   >
     <div
-      class="absolute inset-0 transform-gpu bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-90"
+      class="absolute inset-0 transform-gpu bg-linear-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-90"
       :class="[currentPath === route && 'opacity-60']"
     ></div>
 

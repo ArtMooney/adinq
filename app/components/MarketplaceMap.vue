@@ -25,7 +25,7 @@ import IconLaSearchLocation from "~icons/la/search-location";
             class="w-full placeholder-neutral-400"
           />
 
-          <div v-if="searchCity" class="max-h-[20rem] sm:max-h-max">
+          <div v-if="searchCity" class="max-h-80 sm:max-h-max">
             <div
               v-for="marker in filteredMarkers"
               :key="marker.title"

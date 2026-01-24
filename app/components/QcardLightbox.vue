@@ -63,7 +63,7 @@ export default {
   methods: {
     async getQcardVideo() {
       try {
-        const response = await $fetch(
+        return await $fetch(
           `/api/qcard?url=${encodeURIComponent(this.lightboxUrl)}`,
           {
             method: "GET",
@@ -73,8 +73,6 @@ export default {
             },
           },
         );
-
-        return response;
       } catch (err) {
         console.error("Failed to fetch Q-card video:", err);
       }
