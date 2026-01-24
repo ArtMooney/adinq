@@ -3,17 +3,29 @@
     ref="companyInfo"
     class="flex w-2/3 flex-wrap justify-center gap-x-3 gap-y-2 justify-self-center text-xs md:col-span-3 [&>a]:underline [&>a]:opacity-40 [&>a]:hover:opacity-50 [&>p]:opacity-40"
   >
-    <p>ADinQ AB</p>
-    <p>Fabriksgatan 11, plan 3</p>
-    <p>503 38 Borås</p>
-    <a href="tel:033-7222400">Tel. 033-72 22 400</a>
-    <a href="mailto:info@adinq.se">E-post: info@adinq.se</a>
+    <p>{{ staticContent.company }}</p>
+    <p>{{ staticContent.address }}</p>
+    <p>{{ staticContent.address2 }}</p>
+    <a :href="`tel:${staticContent.phone}`">Tel. {{ staticContent.phone }}</a>
+    <a :href="`mailto:${staticContent.email}`"
+      >E-post: {{ staticContent.email }}</a
+    >
   </div>
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "CompanyInfo",
+
+  computed: {
+    staticContent() {
+      return useStaticContentStore().getContentByTitle(
+        "component - CompanyInfo",
+      ).content;
+    },
+  },
 
   mounted() {
     this.addSeparators();

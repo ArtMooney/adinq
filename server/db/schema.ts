@@ -445,4 +445,19 @@ export const staticContentTypes = {
     priser: "text",
     kontaktaOss: "text",
   },
+  "component - CompanyInfo": {
+    company: "text",
+    address: "text",
+    address2: "text",
+    phone: "text",
+    email: "text",
+  },
+  "component - MarketingChannels": {
+    title: "text",
+    butiksTv: "textarea",
+    storbildsskarmar: "textarea",
+    mediebyraer: "textarea",
+    kommersialisera: "textarea",
+    marknadsplatskarta: "textarea",
+  },
 };
