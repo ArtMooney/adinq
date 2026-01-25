@@ -98,6 +98,9 @@ export default defineNuxtConfig({
   app: {
     keepalive: true,
     head: {
+      htmlAttrs: {
+        lang: "sv-SE",
+      },
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
       link: [

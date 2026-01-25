@@ -7,10 +7,6 @@ const staticContentStore = useStaticContentStore();
 await staticContentStore.loadContent();
 
 useHead({
-  htmlAttrs: {
-    lang: "sv",
-  },
-
   script: [
     {
       key: "schema-org-data",
