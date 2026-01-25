@@ -1,23 +1,12 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Kontakta oss").content,
+);
 
-useSeoMeta({
-  title: "Kontakta oss - Adinq | Digital marknadsföring & DOOH i Borås",
-  description:
-    "Få personlig hjälp från vårt team i Borås. Kontakta oss för frågor om digital marknadsföring, DOOH, butiks-TV och kommersialisering av fastigheter. Vi svarar snabbt!",
-  ogTitle: "Kontakta Adinq - Personlig hjälp från vårt team i Borås",
-  ogDescription:
-    "Få personlig hjälp från vårt team i Borås. Kontakta oss för frågor om digital marknadsföring och DOOH.",
-  ogImage: `${imageBaseUrl}/hands-holding-each-others-arms.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Kontakta Adinq - Personlig hjälp från vårt team i Borås",
-  twitterDescription:
-    "Få personlig hjälp från vårt team i Borås. Kontakta oss för digital marknadsföring och DOOH.",
-  twitterImage: `${imageBaseUrl}/hands-holding-each-others-arms.jpg`,
-});
+useCmsSeo("SEO page - Kontakta oss");
 
 definePageMeta({
   ssr: true,
@@ -212,17 +201,8 @@ definePageMeta({
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "KontaktaOss",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - Kontakta oss")
-        .content;
-    },
-  },
 
   data() {
     const config = useRuntimeConfig();

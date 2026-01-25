@@ -1,24 +1,12 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Kommersialisera").content,
+);
 
-useSeoMeta({
-  title:
-    "Kommersialisera din fastighet med DOOH | Storbildsskärmar & utomhusmedia",
-  description:
-    "Öka intäkterna från din fastighet med storbildsskärmar och DOOH utomhusmedia. Vi hjälper fastighetsägare, markägare och skärmägare med installation, montage och mediaförsäljning.",
-  ogTitle: "Kommersialisera din fastighet med DOOH",
-  ogDescription:
-    "Öka intäkterna från din fastighet med storbildsskärmar och DOOH utomhusmedia. Installation, montage och mediaförsäljning.",
-  ogImage: `${imageBaseUrl}/city-stockholm.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Kommersialisera din fastighet med DOOH",
-  twitterDescription:
-    "Öka intäkterna från din fastighet med storbildsskärmar och DOOH utomhusmedia.",
-  twitterImage: `${imageBaseUrl}/city-stockholm.jpg`,
-});
+useCmsSeo("SEO page - Kommersialisera");
 
 definePageMeta({
   ssr: true,
@@ -101,16 +89,7 @@ definePageMeta({
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "Kommersialisera",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - Kommersialisera")
-        .content;
-    },
-  },
 };
 </script>

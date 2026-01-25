@@ -1,23 +1,12 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Butiks-TV").content,
+);
 
-useSeoMeta({
-  title: "Butiks-TV - Digital reklam i kassalinjen | 200 butiker i Sverige",
-  description:
-    "Syns där människor finns! Digital reklam i kassalinjen på 200 livsmedelsbutiker i Sverige. Hög visningsfrekvens, 140+ visningar per dag. Köp lokalt, regionalt eller rikstäckande.",
-  ogTitle: "Butiks-TV - Digital reklam i kassalinjen",
-  ogDescription:
-    "Nå dina kunder i vardagens få pauser - i kön till kassan. 200 digitala skärmar i livsmedelsbutiker med hög visningsfrekvens.",
-  ogImage: `${imageBaseUrl}/grocery-shopping.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Butiks-TV - Digital reklam i kassalinjen",
-  twitterDescription:
-    "Syns där människor finns! Digital reklam i 200 livsmedelsbutiker i Sverige. Hög visningsfrekvens, enkelt att köpa.",
-  twitterImage: `${imageBaseUrl}/grocery-shopping.jpg`,
-});
+useCmsSeo("SEO page - Butiks-TV");
 
 definePageMeta({
   ssr: true,
@@ -103,16 +92,7 @@ definePageMeta({
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "ButiksTv",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - Butiks-TV")
-        .content;
-    },
-  },
 };
 </script>

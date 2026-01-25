@@ -1,16 +1,5 @@
 <script setup>
-useSeoMeta({
-  title: "Avregistrera",
-  description: "",
-  robots: "noindex, nofollow",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
-});
+useNoIndexSeo("Avregistrera");
 
 definePageMeta({
   ssr: true,

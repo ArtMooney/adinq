@@ -1,8 +1,8 @@
 <script setup>
-useSeoMeta({
-  title: "404 - Sidan hittades inte",
-  description: "Sidan du letar efter kunde inte hittas",
-});
+useSimpleSeo(
+  "404 - Sidan hittades inte",
+  "Sidan du letar efter kunde inte hittas",
+);
 
 const props = defineProps({
   error: Object,

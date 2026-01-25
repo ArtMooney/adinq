@@ -2,22 +2,12 @@
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
 const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Priser").content,
+);
 
-useSeoMeta({
-  title: "Priser för DOOH & Butiks-TV reklam | Kostnader & prisexempel",
-  description:
-    "Se prisexempel för DOOH och butiks-TV reklam. Priser varierar beroende på täckning och sändningstid. Transparenta kostnader för storbildsskärmar och digital utomhusreklam.",
-  ogTitle: "Priser för DOOH & Butiks-TV reklam",
-  ogDescription:
-    "Se prisexempel för DOOH och butiks-TV reklam. Transparenta kostnader för digital utomhusreklam.",
-  ogImage: `${imageBaseUrl}/priser-handslag.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Priser för DOOH & Butiks-TV reklam",
-  twitterDescription:
-    "Se prisexempel för DOOH och butiks-TV reklam. Transparenta kostnader för digital utomhusreklam.",
-  twitterImage: `${imageBaseUrl}/priser-handslag.jpg`,
-});
+useCmsSeo("SEO page - Priser");
 
 definePageMeta({
   ssr: true,
@@ -132,15 +122,7 @@ const { data: prices, error } = await useFetch("/api/prices", {
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "Priser",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - Priser").content;
-    },
-  },
 };
 </script>

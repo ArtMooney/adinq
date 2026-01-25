@@ -1,23 +1,13 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () =>
+    staticContentStore.getContentByTitle("page - Marknadsplatskarta").content,
+);
 
-useSeoMeta({
-  title: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige | Adinq",
-  description:
-    "Sök bland våra många marknadsplatser över hela Sverige. Interaktiv karta som visar var Adinq har digitala reklamplatser och DOOH-skärmar. Navigera enkelt för att hitta platser nära dig.",
-  ogTitle: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige",
-  ogDescription:
-    "Interaktiv karta som visar var Adinq har digitala reklamplatser och DOOH-skärmar över hela Sverige.",
-  ogImage: `${imageBaseUrl}/small-house-on-island.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige",
-  twitterDescription:
-    "Interaktiv karta som visar var Adinq har digitala reklamplatser över hela Sverige.",
-  twitterImage: `${imageBaseUrl}/small-house-on-island.jpg`,
-});
+useCmsSeo("SEO page - Marknadsplatskarta");
 
 definePageMeta({
   ssr: true,
@@ -69,17 +59,7 @@ definePageMeta({
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "Marknadsplatskarta",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle(
-        "page - Marknadsplatskarta",
-      ).content;
-    },
-  },
 };
 </script>

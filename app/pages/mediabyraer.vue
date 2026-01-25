@@ -1,23 +1,12 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Mediebyraer").content,
+);
 
-useSeoMeta({
-  title: "DOOH för Mediebyråer - En naturlig del i mediemixen | Adinq",
-  description:
-    "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige. 140+ visningar per dag, filmer som inte går att zappa bort. Perfekt komplement till era kampanjer.",
-  ogTitle: "DOOH för Mediebyråer - En naturlig del i mediemixen",
-  ogDescription:
-    "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige.",
-  ogImage: `${imageBaseUrl}/air-balloons-on-blue-sky.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "DOOH för Mediebyråer - En naturlig del i mediemixen",
-  twitterDescription:
-    "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige.",
-  twitterImage: `${imageBaseUrl}/air-balloons-on-blue-sky.jpg`,
-});
+useCmsSeo("SEO page - Mediebyraer");
 
 definePageMeta({
   ssr: true,
@@ -87,16 +76,7 @@ definePageMeta({
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "Mediabyraer",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - Mediebyraer")
-        .content;
-    },
-  },
 };
 </script>

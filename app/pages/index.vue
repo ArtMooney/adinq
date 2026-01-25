@@ -3,33 +3,12 @@ import IconChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down
 
 const config = useRuntimeConfig();
 const imageBaseUrl = config.public.imageBaseUrl;
-const publicSiteUrl = config.public.publicSiteUrl;
 const staticContentStore = useStaticContentStore();
 const staticContent = computed(
   () => staticContentStore.getContentByTitle("page - Index").content,
 );
-const staticContentSEO = computed(
-  () => staticContentStore.getContentByTitle("SEO page - Index").content,
-);
 
-useSeoMeta({
-  title: () => staticContentSEO.value.title,
-  description: () => staticContentSEO.value.description,
-  ogTitle: () => staticContentSEO.value.ogTitle,
-  ogDescription: () => staticContentSEO.value.ogDescription,
-  ogImage: () => `${imageBaseUrl}/cms-files/${staticContentSEO.value.ogImage}`,
-  ogUrl: `${publicSiteUrl}`,
-  ogType: "website",
-  ogSiteName: "Adinq",
-  ogLocale: "sv_SE",
-  twitterCard: "summary_large_image",
-  twitterTitle: () => staticContentSEO.value.twitterTitle,
-  twitterDescription: () => staticContentSEO.value.twitterDescription,
-  twitterImage: () =>
-    `${imageBaseUrl}/cms-files/${staticContentSEO.value.twitterImage}`,
-  robots: "index, follow",
-  author: "Adinq",
-});
+useCmsSeo("SEO page - Index");
 
 definePageMeta({
   ssr: true,

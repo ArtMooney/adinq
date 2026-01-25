@@ -2,23 +2,12 @@
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regular";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Varfor oss").content,
+);
 
-useSeoMeta({
-  title: "Varför välja Adinq? | Tränga igenom mediebruset med DOOH",
-  description:
-    "Vi fångar ögonblicket då människor står still - sysslolösa en kort stund i vardagen. Varumärkesexponering på digitala annonsytor där människorna finns. Syns på rätt sätt!",
-  ogTitle: "Varför välja Adinq? | Tränga igenom mediebruset med DOOH",
-  ogDescription:
-    "Vi fångar ögonblicket då människor står still och möjliggör varumärkesexponering där människorna finns.",
-  ogImage: `${imageBaseUrl}/crowd-at-concert.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Varför välja Adinq? | Tränga igenom mediebruset",
-  twitterDescription:
-    "Vi fångar ögonblicket då människor står still och möjliggör varumärkesexponering där människorna finns.",
-  twitterImage: `${imageBaseUrl}/crowd-at-concert.jpg`,
-});
+useCmsSeo("SEO page - Varfor oss");
 
 definePageMeta({
   ssr: true,
@@ -94,16 +83,7 @@ definePageMeta({
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "VarforOss",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - Varfor oss")
-        .content;
-    },
-  },
 };
 </script>

@@ -2,22 +2,12 @@
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
 const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Dagens Adinq").content,
+);
 
-useSeoMeta({
-  title: "Om Adinq - Vårt team | Digital marknadsföring och DOOH",
-  description:
-    "Träffa teamet bakom Adinq - experter inom digital marknadsföring och DOOH media. Företagsledning, försäljning, produktion och marknadsföring som hjälper er nå ut digitalt.",
-  ogTitle: "Om Adinq - Vårt team",
-  ogDescription:
-    "Träffa teamet bakom Adinq som hjälper företag nå ut digitalt lokalt, regionalt och rikstäckande genom DOOH media.",
-  ogImage: `${imageBaseUrl}/sky-full-of-stars.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Om Adinq - Vårt team",
-  twitterDescription:
-    "Träffa teamet bakom Adinq - experter inom digital marknadsföring och DOOH media.",
-  twitterImage: `${imageBaseUrl}/sky-full-of-stars.jpg`,
-});
+useCmsSeo("SEO page - Dagens Adinq");
 
 definePageMeta({
   ssr: true,
@@ -174,8 +164,6 @@ const colleaguesProduction = colleagues?.value.filter(
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "DagensAdinq",
 
@@ -188,11 +176,6 @@ export default {
 
     getFooterHeight() {
       return this.footerHeight();
-    },
-
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - Dagens AdinQ")
-        .content;
     },
   },
 

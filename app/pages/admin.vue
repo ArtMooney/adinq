@@ -1,16 +1,5 @@
 <script setup>
-useSeoMeta({
-  title: "Admin",
-  description: "",
-  robots: "noindex, nofollow",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  twitterCard: "",
-  twitterTitle: "",
-  twitterDescription: "",
-  twitterImage: "",
-});
+useNoIndexSeo("Admin");
 
 definePageMeta({
   ssr: false,

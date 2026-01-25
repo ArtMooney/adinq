@@ -2,22 +2,12 @@
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
 const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - MediaProduktion").content,
+);
 
-useSeoMeta({
-  title: "Reklamfilm & Media Produktion för storbildsskärmar | Adinq",
-  description:
-    "Vi producerar reklamfilmer och slides för storbildsskärmar och DOOH. Allt under samma tak - från idé till färdig film. Perfekt för butiks-TV och sociala medier.",
-  ogTitle: "Reklamfilm & Media Produktion för storbildsskärmar",
-  ogDescription:
-    "Vi producerar reklamfilmer och slides för storbildsskärmar och DOOH. Allt under samma tak för ditt företag.",
-  ogImage: `${imageBaseUrl}/camera-at-ocean-shore.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Reklamfilm & Media Produktion för storbildsskärmar",
-  twitterDescription:
-    "Vi producerar reklamfilmer och slides för storbildsskärmar och DOOH.",
-  twitterImage: `${imageBaseUrl}/camera-at-ocean-shore.jpg`,
-});
+useCmsSeo("SEO page - MediaProduktion");
 
 definePageMeta({
   ssr: true,
@@ -158,16 +148,7 @@ const galleryBigscreens = gallery.value.filter(
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "MediaProduktion",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - MediaProduktion")
-        .content;
-    },
-  },
 };
 </script>

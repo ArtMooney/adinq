@@ -2,22 +2,12 @@
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
 const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Kundutlatanden").content,
+);
 
-useSeoMeta({
-  title: "Kundutlåtanden - Vad säger våra kunder? | Adinq DOOH",
-  description:
-    "Läs vad våra nöjda kunder säger om Adinq och våra digitala marknadsföringstjänster inom DOOH, butiks-TV och fastighetskommersialisering.",
-  ogTitle: "Kundutlåtanden - Vad säger våra kunder om Adinq?",
-  ogDescription:
-    "Läs vad våra nöjda kunder säger om Adinq och våra digitala marknadsföringstjänster inom DOOH och butiks-TV.",
-  ogImage: `${imageBaseUrl}/roads-gothenburg-evening.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Kundutlåtanden - Vad säger våra kunder om Adinq?",
-  twitterDescription:
-    "Läs vad våra nöjda kunder säger om Adinq och våra digitala marknadsföringstjänster.",
-  twitterImage: `${imageBaseUrl}/high-traffic-roads-gothenburg-evening.jpg`,
-});
+useCmsSeo("SEO page - Kundutlatanden");
 
 definePageMeta({
   ssr: true,
@@ -104,8 +94,6 @@ const { data: testimonials, error } = await useFetch("/api/testimonials", {
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "Kundutlatanden",
 
@@ -118,11 +106,6 @@ export default {
 
     getFooterHeight() {
       return this.footerHeight();
-    },
-
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - Kundutlatanden")
-        .content;
     },
   },
 

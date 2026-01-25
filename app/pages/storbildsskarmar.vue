@@ -1,23 +1,12 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Storbildsskarmar").content,
+);
 
-useSeoMeta({
-  title: "Storbildsskärmar - Tydlig DOOH reklam utomhus | Adinq",
-  description:
-    "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns - stort, tydligt och icke-påtvingande. Flera orter i Sverige. Vi producerar även era slides.",
-  ogTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
-  ogDescription:
-    "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns på flera orter i Sverige.",
-  ogImage: `${imageBaseUrl}/led-screen-gislaved-hq.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
-  twitterDescription:
-    "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns.",
-  twitterImage: `${imageBaseUrl}/led-screen-gislaved-hq.jpg`,
-});
+useCmsSeo("SEO page - Storbildsskarmar");
 
 definePageMeta({
   ssr: true,
@@ -93,17 +82,7 @@ definePageMeta({
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "Storbildsskarmar",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle(
-        "page - Storbildsskarmar",
-      ).content;
-    },
-  },
 };
 </script>
