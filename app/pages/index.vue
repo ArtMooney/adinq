@@ -3,32 +3,32 @@ import IconChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down
 
 const config = useRuntimeConfig();
 const imageBaseUrl = config.public.imageBaseUrl;
+const publicSiteUrl = config.public.publicSiteUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Index").content,
+);
+const staticContentSEO = computed(
+  () => staticContentStore.getContentByTitle("SEO page - Index").content,
+);
 
 useSeoMeta({
-  title:
-    "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
-  description:
-    "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande - vi har lösningen för er digitala marknadsföring.",
-  ogTitle:
-    "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
-  ogDescription:
-    "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande - vi har lösningen för er digitala marknadsföring.",
-  ogImage: `${imageBaseUrl}/adinq-presentation-poster.webp`,
-  ogUrl: "https://www.adinq.se/",
+  title: () => staticContentSEO.value.title,
+  description: () => staticContentSEO.value.description,
+  ogTitle: () => staticContentSEO.value.ogTitle,
+  ogDescription: () => staticContentSEO.value.ogDescription,
+  ogImage: () => `${imageBaseUrl}/cms-files/${staticContentSEO.value.ogImage}`,
+  ogUrl: `${publicSiteUrl}`,
   ogType: "website",
   ogSiteName: "Adinq",
   ogLocale: "sv_SE",
   twitterCard: "summary_large_image",
-  twitterTitle:
-    "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
-  twitterDescription:
-    "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande.",
-  twitterImage: `${imageBaseUrl}/adinq-presentation-poster.webp`,
-  keywords:
-    "DOOH, Digital Out of Home, digital reklam, utomhusreklam, digital marknadsföring, Adinq, digital skärm, reklam Sverige",
+  twitterTitle: () => staticContentSEO.value.twitterTitle,
+  twitterDescription: () => staticContentSEO.value.twitterDescription,
+  twitterImage: () =>
+    `${imageBaseUrl}/cms-files/${staticContentSEO.value.twitterImage}`,
   robots: "index, follow",
   author: "Adinq",
-  language: "sv-SE",
 });
 
 definePageMeta({
@@ -123,16 +123,8 @@ definePageMeta({
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "Index",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - Index").content;
-    },
-  },
 
   data() {
     return {

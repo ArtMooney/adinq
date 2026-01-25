@@ -460,4 +460,14 @@ export const staticContentTypes = {
     kommersialisera: "textarea",
     marknadsplatskarta: "textarea",
   },
+  "SEO page - Index": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
 };
