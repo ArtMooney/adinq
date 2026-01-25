@@ -32,7 +32,7 @@ useHead({
           height: 630,
         },
 
-        telephone: "+46-33-722-24-00",
+        telephone: "+46337222400",
         email: "info@adinq.se",
 
         address: {
