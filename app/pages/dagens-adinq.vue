@@ -4,10 +4,10 @@ import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chev
 const config = useRuntimeConfig();
 const staticContentStore = useStaticContentStore();
 const staticContent = computed(
-  () => staticContentStore.getContentByTitle("page - Dagens Adinq").content,
+  () => staticContentStore.getContentByTitle("page - Dagens AdinQ").content,
 );
 
-useCmsSeo("SEO page - Dagens Adinq");
+useCmsSeo("SEO page - Dagens AdinQ");
 
 definePageMeta({
   ssr: true,
