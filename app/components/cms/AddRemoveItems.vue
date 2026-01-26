@@ -1,6 +1,10 @@
 <template>
   <div
-    class="mx-auto my-12 flex max-w-screen-md flex-wrap justify-center gap-4 text-center text-base select-none"
+    v-if="
+      (cmsStore.viewMode !== 'graph' && !cmsStore.selectedTableIsStatic) ||
+      cmsStore.adminMode
+    "
+    class="mx-auto my-12 flex max-w-3xl flex-wrap justify-center gap-4 text-center text-base select-none"
   >
     <div>Add, edit or remove content below</div>
 
@@ -47,42 +51,11 @@
 </template>
 
 <script>
+import { useLoginStore } from "~/components/cms/stores/loginStore";
+import { useCmsStore } from "~/components/cms/stores/cmsStore";
+
 export default {
   name: "AddRemoveItems",
-
-  emits: [
-    "items",
-    "showItem",
-    "itemOpen",
-    "editingNewItem",
-    "saveNewItemOrder",
-  ],
-
-  props: {
-    login: {
-      type: Object,
-      required: true,
-    },
-    items: {
-      type: Array,
-      required: false,
-      default: [],
-    },
-    schema: {
-      type: Array,
-      required: false,
-      default: [],
-    },
-    tableId: {
-      type: String,
-      required: true,
-    },
-    editingNewItem: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-  },
 
   data() {
     const config = useRuntimeConfig();
@@ -91,7 +64,7 @@ export default {
       userName: config.public.userName,
       userPass: config.public.userPass,
       showDateList: false,
-      order: false,
+      order: "desc",
     };
   },
 
@@ -99,7 +72,7 @@ export default {
     getDateList() {
       const dateList = [];
 
-      for (const field of this.schema) {
+      for (const field of this.cmsStore.schema) {
         if (
           (field.type === "date" || field.type === "dateRange") &&
           !field.hidden
@@ -113,14 +86,22 @@ export default {
 
       return dateList;
     },
+
+    loginStore() {
+      return useLoginStore();
+    },
+
+    cmsStore() {
+      return useCmsStore();
+    },
   },
 
   methods: {
     addItem() {
-      if (this.editingNewItem) return;
+      if (this.cmsStore.editingNewItem) return;
 
-      const items = JSON.parse(JSON.stringify(this.items));
-      const sortOrder = this.items.length;
+      const items = JSON.parse(JSON.stringify(this.cmsStore.items));
+      const sortOrder = this.cmsStore.items.length;
       let fields = {};
       fields.sortOrder = sortOrder.toString();
 
@@ -128,10 +109,10 @@ export default {
         ...fields,
       });
 
-      this.$emit("items", items);
-      this.$emit("showItem", sortOrder);
-      this.$emit("itemOpen", true);
-      this.$emit("editingNewItem", true);
+      this.cmsStore.items = items;
+      this.cmsStore.showItem = sortOrder;
+      this.cmsStore.itemOpen = true;
+      this.cmsStore.editingNewItem = true;
 
       this.$router.push({
         hash: `#list-item-${items.length - 1}`,
@@ -139,41 +120,18 @@ export default {
     },
 
     async sortDateFields(fieldName) {
-      if (!this.schema.length) return;
+      if (!this.cmsStore.schema.length) return;
 
-      this.order = !this.order;
-
-      let items = await this.listRows(this.tableId, fieldName, this.order);
-
-      this.$emit("items", JSON.parse(JSON.stringify(items)));
-      this.$emit("saveNewItemOrder", true);
+      this.order = this.order === "asc" ? "desc" : "asc";
+      await this.cmsStore.loadRows(this.order, fieldName);
+      await this.cmsStore.saveSortOrder();
       this.showDateList = false;
-    },
-
-    async listRows(tableid, fieldName, asc) {
-      try {
-        return await $fetch("/cms/rows", {
-          method: "POST",
-          headers: {
-            Authorization: "Basic " + btoa(this.userName + ":" + this.userPass),
-          },
-          body: JSON.stringify({
-            email: this.login.email,
-            password: this.login.password,
-            table_id: tableid,
-            field_name: fieldName,
-            asc: asc,
-          }),
-        });
-      } catch (err) {
-        console.log(err);
-      }
     },
   },
 
   watch: {
-    schema() {
-      this.order = false;
+    "cmsStore.schema"() {
+      this.order = "desc";
     },
   },
 };

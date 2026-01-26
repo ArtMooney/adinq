@@ -1,23 +1,12 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Butiks-TV").content,
+);
 
-useSeoMeta({
-  title: "Butiks-TV - Digital reklam i kassalinjen | 200 butiker i Sverige",
-  description:
-    "Syns där människor finns! Digital reklam i kassalinjen på 200 livsmedelsbutiker i Sverige. Hög visningsfrekvens, 140+ visningar per dag. Köp lokalt, regionalt eller rikstäckande.",
-  ogTitle: "Butiks-TV - Digital reklam i kassalinjen",
-  ogDescription:
-    "Nå dina kunder i vardagens få pauser - i kön till kassan. 200 digitala skärmar i livsmedelsbutiker med hög visningsfrekvens.",
-  ogImage: `${imageBaseUrl}/grocery-shopping.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Butiks-TV - Digital reklam i kassalinjen",
-  twitterDescription:
-    "Syns där människor finns! Digital reklam i 200 livsmedelsbutiker i Sverige. Hög visningsfrekvens, enkelt att köpa.",
-  twitterImage: `${imageBaseUrl}/grocery-shopping.jpg`,
-});
+useCmsSeo("SEO page - Butiks-TV");
 
 definePageMeta({
   ssr: true,
@@ -43,10 +32,10 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">Butiks-TV</h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <div class="max-w-3xl px-8 text-lg lg:text-2xl">
-          Att synas där människor finns
+          {{ staticContent.header.subtitle }}
         </div>
 
         <NuxtLink
@@ -76,30 +65,24 @@ definePageMeta({
       <IconBlob
         icon="streamline-ultimate-color:color-palette"
         icon-color="#e09963"
-        title="Stort eller litet företag?"
-        message="Vi hjälper dig att nå ut. Lokalt, regionalt eller rikstäckande!"
+        :title="staticContent.textBlocks.block1.title"
+        :message="formatText(staticContent.textBlocks.block1.text)"
         link=""
       ></IconBlob>
 
       <IconBlob
         icon="streamline-ultimate-color:desktop-monitor-smiley"
         icon-color="#67ac6e"
-        title="Fördelar som annonsör"
-        :message="[
-          '• Filmerna går inte att klicka eller zappa bort.',
-          '• Du möter folk i en av vardagens få pauser, - i kön till kassan.',
-          '• Hög visningsfrekvens, - från 140 visningar per dag/butik.',
-          '• Enkelt att köpa, enkelt att variera ditt budskap.',
-          '• Köp lokalt på din ort, regionalt eller rikstäckande.',
-        ]"
+        :title="staticContent.textBlocks.block2.title"
+        :message="formatText(staticContent.textBlocks.block2.text)"
         link=""
       ></IconBlob>
 
       <IconBlob
         icon="emojione-v1:bull-horn"
         icon-color="#ac67a6"
-        title="200 butiker"
-        message="Vi har digitala skärmar i kassalinjen på ca 200 livsmedelsbutiker i Sverige. Här kan du nå ut med ditt budskap med hög visningsfrekvens till dina kunder under en vecka, månad eller kampanjvis under året, allt efter behov. Dessutom i en av vardagens få pauser, - i kön till kassan!"
+        :title="staticContent.textBlocks.block3.title"
+        :message="formatText(staticContent.textBlocks.block3.text)"
         link=""
       ></IconBlob>
     </div>

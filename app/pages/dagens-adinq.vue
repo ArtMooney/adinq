@@ -2,22 +2,12 @@
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
 const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Dagens AdinQ").content,
+);
 
-useSeoMeta({
-  title: "Om Adinq - Vårt team | Digital marknadsföring och DOOH",
-  description:
-    "Träffa teamet bakom Adinq - experter inom digital marknadsföring och DOOH media. Företagsledning, försäljning, produktion och marknadsföring som hjälper er nå ut digitalt.",
-  ogTitle: "Om Adinq - Vårt team",
-  ogDescription:
-    "Träffa teamet bakom Adinq som hjälper företag nå ut digitalt lokalt, regionalt och rikstäckande genom DOOH media.",
-  ogImage: `${imageBaseUrl}/sky-full-of-stars.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Om Adinq - Vårt team",
-  twitterDescription:
-    "Träffa teamet bakom Adinq - experter inom digital marknadsföring och DOOH media.",
-  twitterImage: `${imageBaseUrl}/sky-full-of-stars.jpg`,
-});
+useCmsSeo("SEO page - Dagens AdinQ");
 
 definePageMeta({
   ssr: true,
@@ -66,7 +56,7 @@ const colleaguesProduction = colleagues?.value.filter(
           class="absolute inset-0 flex flex-col items-center justify-center text-center"
         >
           <h1 class="mx-10 mb-8 md:mx-30">
-            Dagens
+            {{ staticContent.header.title }}
             <span>
               <router-link to="/">
                 <NuxtImg
@@ -104,7 +94,7 @@ const colleaguesProduction = colleagues?.value.filter(
       />
 
       <h3 v-if="colleaguesManagement.length > 0" class="relative text-center">
-        Företagsledning och administration
+        {{ staticContent.colleagues.management }}
       </h3>
 
       <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
@@ -131,7 +121,7 @@ const colleaguesProduction = colleagues?.value.filter(
       />
 
       <h3 v-if="colleaguesSales.length > 0" class="relative text-center">
-        Försäljning
+        {{ staticContent.colleagues.sales }}
       </h3>
 
       <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">
@@ -158,7 +148,7 @@ const colleaguesProduction = colleagues?.value.filter(
       />
 
       <h3 v-if="colleaguesProduction.length > 0" class="relative text-center">
-        Produktion och marknadsföring
+        {{ staticContent.colleagues.production }}
       </h3>
 
       <div class="flex flex-wrap justify-center gap-x-4 gap-y-8">

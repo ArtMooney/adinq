@@ -2,19 +2,18 @@
   <div class="py-32">
     <CmsLoginPanel
       v-if="panel === 'login'"
-      @reset-password-panel="resetPasswordSwitch"
-      @status="$emit('status', $event)"
+      @reset-password-switch="switchPanel('resetPassword')"
     />
 
     <CmsResetPasswordPanel
       v-if="panel === 'resetPassword'"
-      @login-switch="loginSwitch"
+      @login-switch="switchPanel('login')"
     />
 
     <CmsNewPasswordPanel
       v-if="panel === 'newPassword'"
       :validation="validationCode"
-      @login-switch="loginSwitch"
+      @login-switch="switchPanel('login')"
     />
 
     <CmsLoadingSpinner v-if="panel === 'loading'" class="justify-self-center" />
@@ -31,6 +30,8 @@
 </template>
 
 <script>
+import { useLoginStore } from "~/components/cms/stores/loginStore";
+
 export default {
   name: "Login",
 
@@ -45,6 +46,12 @@ export default {
       showStatusMessage: false,
       statusMessage: "Couldn't validate your code, rerouted to the login page.",
     };
+  },
+
+  computed: {
+    loginStore() {
+      return useLoginStore();
+    },
   },
 
   async mounted() {
@@ -84,28 +91,14 @@ export default {
       }
 
       if (isPasswordSwitch) {
-        this.newPasswordSwitch();
-      } else if (!getLocalStorage("adinq-cms")) {
-        this.loginSwitch();
+        this.switchPanel("newPassword");
+      } else if (!this.loginStore.isValid) {
+        this.switchPanel("login");
       }
     },
 
-    loginSwitch() {
-      this.panel = "login";
-
-      const urlWithoutQueryString = window.location.href.split("?")[0];
-      history.replaceState({}, document.title, urlWithoutQueryString);
-    },
-
-    resetPasswordSwitch() {
-      this.panel = "resetPassword";
-
-      const urlWithoutQueryString = window.location.href.split("?")[0];
-      history.replaceState({}, document.title, urlWithoutQueryString);
-    },
-
-    newPasswordSwitch() {
-      this.panel = "newPassword";
+    switchPanel(panelName) {
+      this.panel = panelName;
 
       const urlWithoutQueryString = window.location.href.split("?")[0];
       history.replaceState({}, document.title, urlWithoutQueryString);

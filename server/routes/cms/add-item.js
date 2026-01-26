@@ -1,6 +1,7 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
 import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
 import { uploadFile } from "~~/server/routes/cms/r2/upload-file.js";
+import { handleJsonFileUploads } from "~~/server/routes/cms/utils/json-file-handler.js";
 import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
 import { cmsTables } from "~~/server/db/schema.ts";
@@ -9,6 +10,7 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const headers = getHeaders(event);
   const body = await readBody(event);
+  const db = useDrizzle(event.context.cloudflare.env.DB);
 
   if (!(await checkLogin(headers, config.userName, config.userPass))) {
     throw createError({
@@ -48,6 +50,8 @@ export default defineEventHandler(async (event) => {
     }
   }
 
+  await handleJsonFileUploads(bucket, body.item, body.schema);
+
   const tableName = body?.table_id;
 
   if (!cmsTables.some((t) => t.id === tableName)) {
@@ -56,8 +60,6 @@ export default defineEventHandler(async (event) => {
       statusMessage: "Invalid table",
     });
   }
-
-  const db = useDrizzle(event.context.cloudflare.env.DB);
 
   try {
     const insertedItem = await db
@@ -69,7 +71,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     throw createError({
       statusCode: 400,
-      statusMessage: "Failed to insert item",
+      statusMessage: "Failed to save item",
     });
   }
 });

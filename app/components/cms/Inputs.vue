@@ -36,7 +36,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
       auto-apply
       :input-attrs="{ name: input.name, required: input.required }"
       :range="input.type === 'dateRange'"
-      class="[&_div]:!font-body [&_input]:!font-body [&_button]:!p-0 [&_div]:!text-xs [&_input]:!border-white/25 [&_input]:!bg-transparent [&_input]:!py-3 [&_input]:!text-sm [&_input]:!text-white"
+      class="[&_div]:font-body! [&_input]:font-body! [&_button]:p-0! [&_div]:text-xs! [&_input]:border-white/25! [&_input]:bg-transparent! [&_input]:py-3! [&_input]:text-sm! [&_input]:text-white!"
     >
     </VueDatePicker>
 
@@ -61,7 +61,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
         class="hidden"
         type="file"
         :name="`${input.name}`"
-        :accept="input.type === 'fileImg' ? '.jpg, .jpeg, .png' : ''"
+        :accept="input.type === 'fileImg' ? '.jpg, .jpeg, .png, .webp' : ''"
         autocomplete="off"
         :required="input.required"
       />
@@ -113,8 +113,6 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 <script>
 export default {
   name: "Inputs",
-
-  emits: ["showItem", "saveFlag", "inputError"],
 
   props: {
     input: {

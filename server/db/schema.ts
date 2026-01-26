@@ -87,14 +87,54 @@ export const prisexempel = sqliteTable("prisexempel", {
     .notNull(),
 });
 
+export const static_content = sqliteTable("static_content", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  title: text("title").notNull(),
+  content: text("content", { mode: "json" }),
+  sortOrder: integer("sort_order"),
+  createdAt: text("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: text("updated_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+});
+
 export const cmsTables = [
-  { id: "mediaproduktioner", name: "Mediaproduktioner" },
-  { id: "medarbetare", name: "Medarbetare" },
-  { id: "prisexempel", name: "Prisexempel" },
-  { id: "kundutlatanden", name: "Kundutlåtanden" },
+  {
+    id: "mediaproduktioner",
+    name: "Mediaproduktioner",
+    viewMode: "list",
+    backupRef: null,
+  },
+  {
+    id: "medarbetare",
+    name: "Medarbetare",
+    viewMode: "list",
+    backupRef: null,
+  },
+  {
+    id: "prisexempel",
+    name: "Prisexempel",
+    viewMode: "list",
+    backupRef: null,
+  },
+  {
+    id: "kundutlatanden",
+    name: "Kundutlåtanden",
+    viewMode: "list",
+    backupRef: null,
+  },
+  {
+    id: "static_content",
+    name: "Static Content",
+    viewMode: "list",
+    backupRef: null,
+  },
 ];
 
-export const fieldTypes = {
+export const fieldsConfig = {
   mediaproduktioner: {
     id: { type: "integer", label: "", required: true, hidden: true },
     title: { type: "text", label: "Titel", required: true, hidden: false },
@@ -201,5 +241,343 @@ export const fieldTypes = {
     sortOrder: { type: "integer", label: "", required: true, hidden: true },
     createdAt: { type: "date", label: "", required: true, hidden: true },
     updatedAt: { type: "date", label: "", required: true, hidden: true },
+  },
+
+  static_content: {
+    id: { type: "integer", label: "", required: true, hidden: true },
+    title: { type: "text", label: "Title", required: true, hidden: false },
+    content: {
+      type: "json",
+      label: "Content",
+      required: false,
+      hidden: false,
+    },
+    sortOrder: { type: "integer", label: "", required: true, hidden: true },
+    createdAt: { type: "date", label: "", required: true, hidden: true },
+    updatedAt: { type: "date", label: "", required: true, hidden: true },
+  },
+};
+
+export const graphConfig = {};
+
+export const selectorMonths = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+export const staticContentTypes = {
+  "page - Index": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+    videoBlock: {
+      title: "text",
+      videoLinkSwe: "text",
+      videoLinkEng: "text",
+      poster: "fileImg",
+    },
+  },
+  "page - MediaProduktion": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+    videoBlock: {
+      text: "textarea",
+      videoLink: "text",
+    },
+    marketingChannels: {
+      title: "text",
+      text_movies: "textarea",
+      text_bigscreens: "textarea",
+    },
+    iconBlob: {
+      block1: "textarea",
+      block2: "textarea",
+      block3: "textarea",
+      block4: "textarea",
+    },
+  },
+  "page - Dagens AdinQ": {
+    header: {
+      title: "text",
+    },
+    colleagues: {
+      management: "text",
+      sales: "text",
+      production: "text",
+    },
+  },
+  "page - Kundutlatanden": {
+    header: {
+      title: "text",
+    },
+  },
+  "page - Varfor oss": {
+    header: {
+      title: "text",
+    },
+    quote: {
+      text: "textarea",
+    },
+    iconBlob: {
+      text: "textarea",
+    },
+  },
+  "page - Priser": {
+    header: {
+      title: "text",
+    },
+    prices: {
+      title: "text",
+      text: "textarea",
+      more: "text",
+    },
+  },
+  "page - Kontakta oss": {
+    header: {
+      title: "text",
+    },
+    contactForm: {
+      title: "text",
+      text: "textarea",
+    },
+  },
+  "page - Avregistrera": {
+    form: {
+      title: "text",
+      input: "text",
+    },
+  },
+  "page - Butiks-TV": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+    textBlocks: {
+      block1: {
+        title: "text",
+        text: "textarea",
+      },
+      block2: {
+        title: "text",
+        text: "textarea",
+      },
+      block3: {
+        title: "text",
+        text: "textarea",
+      },
+    },
+  },
+  "page - Storbildsskarmar": {
+    header: {
+      title: "text",
+    },
+    textBlock: {
+      text: "textarea",
+      image: "fileImg",
+    },
+  },
+  "page - Mediebyraer": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+    textBlock: {
+      title: "text",
+      text: "textarea",
+    },
+  },
+  "page - Kommersialisera": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+    textBlocks: {
+      block1: {
+        title: "text",
+        text: "textarea",
+      },
+      block2: {
+        title: "text",
+        text: "textarea",
+      },
+      block3: {
+        title: "text",
+        text: "textarea",
+      },
+    },
+  },
+  "page - Marknadsplatskarta": {
+    header: {
+      title: "text",
+      subtitle: "text",
+    },
+  },
+  "component - Navbar": {
+    buttons: {
+      index: "text",
+      mediaProduktion: "text",
+      kollegor: "text",
+      kundutlatanden: "text",
+      varforOss: "text",
+      priser: "text",
+      kontaktaOss: "text",
+    },
+  },
+  "component - Footer": {
+    index: "text",
+    mediaProduktion: "text",
+    kollegor: "text",
+    kundutlatanden: "text",
+    varforOss: "text",
+    priser: "text",
+    kontaktaOss: "text",
+  },
+  "component - CompanyInfo": {
+    company: "text",
+    address: "text",
+    address2: "text",
+    phone: "text",
+    email: "text",
+  },
+  "component - MarketingChannels": {
+    title: "text",
+    butiksTv: "textarea",
+    storbildsskarmar: "textarea",
+    mediebyraer: "textarea",
+    kommersialisera: "textarea",
+    marknadsplatskarta: "textarea",
+  },
+  "SEO page - Index": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - MediaProduktion": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - Dagens AdinQ": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - Kundutlatanden": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - Varfor oss": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - Priser": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - Kontakta oss": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - Butiks-TV": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - Storbildsskarmar": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - Mediebyraer": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - Kommersialisera": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
+  },
+  "SEO page - Marknadsplatskarta": {
+    title: "text",
+    description: "textarea",
+    ogTitle: "text",
+    ogDescription: "textarea",
+    ogImage: "fileImg",
+    twitterTitle: "text",
+    twitterDescription: "textarea",
+    twitterImage: "fileImg",
   },
 };

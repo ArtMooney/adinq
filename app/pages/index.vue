@@ -3,33 +3,12 @@ import IconChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down
 
 const config = useRuntimeConfig();
 const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Index").content,
+);
 
-useSeoMeta({
-  title:
-    "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
-  description:
-    "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande - vi har lösningen för er digitala marknadsföring.",
-  ogTitle:
-    "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
-  ogDescription:
-    "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande - vi har lösningen för er digitala marknadsföring.",
-  ogImage: `${imageBaseUrl}/adinq-presentation-poster.webp`,
-  ogUrl: "https://www.adinq.se/",
-  ogType: "website",
-  ogSiteName: "Adinq",
-  ogLocale: "sv_SE",
-  twitterCard: "summary_large_image",
-  twitterTitle:
-    "Adinq - Digital ut-av-hemma reklam | Vi hjälper er att nå ut digitalt",
-  twitterDescription:
-    "Adinq hjälper företag att nå ut digitalt med DOOH (Digital Out of Home Media). Lokalt, regionalt eller rikstäckande.",
-  twitterImage: `${imageBaseUrl}/adinq-presentation-poster.webp`,
-  keywords:
-    "DOOH, Digital Out of Home, digital reklam, utomhusreklam, digital marknadsföring, Adinq, digital skärm, reklam Sverige",
-  robots: "index, follow",
-  author: "Adinq",
-  language: "sv-SE",
-});
+useCmsSeo("SEO page - Index");
 
 definePageMeta({
   ssr: true,
@@ -67,10 +46,10 @@ definePageMeta({
         v-show="videoLoaded"
         class="absolute inset-0 flex flex-col items-center justify-center bg-amber-700/15 px-4 text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">Vi hjälper er att nå ut digitalt!</h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <div class="max-w-3xl px-8 text-lg lg:text-2xl">
-          Lokalt, regionalt eller rikstäckande
+          {{ staticContent.header.subtitle }}
         </div>
 
         <NuxtLink
@@ -86,7 +65,9 @@ definePageMeta({
   </Heading>
 
   <div class="mx-4 my-20 flex flex-col gap-8 sm:mx-8">
-    <h3 id="services" class="mt-32 text-center">Se vår informationsvideo</h3>
+    <h3 id="services" class="mt-32 text-center">
+      {{ staticContent.videoBlock.title }}
+    </h3>
     <div class="flex justify-center gap-4 underline">
       <div
         @click="sweVersion = true"
@@ -107,13 +88,13 @@ definePageMeta({
 
     <VideoBlob
       v-if="sweVersion"
-      video-Link="https://qcard.adinq.se/?i=1758120106"
-      :poster="`${imageBaseUrl}/adinq-presentation-poster.webp`"
+      :video-Link="`${staticContent.videoBlock.videoLinkSwe}`"
+      :poster="`${imageBaseUrl}/cms-files/${staticContent.videoBlock.poster}`"
     ></VideoBlob>
     <VideoBlob
       v-if="!sweVersion"
-      video-Link="https://qcard.adinq.se/?i=1758120027"
-      :poster="`${imageBaseUrl}/adinq-presentation-poster.webp`"
+      :video-Link="`${staticContent.videoBlock.videoLinkEng}`"
+      :poster="`${imageBaseUrl}/cms-files/${staticContent.videoBlock.poster}`"
     ></VideoBlob>
 
     <MarketingChannels></MarketingChannels>

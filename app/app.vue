@@ -1,12 +1,12 @@
 <script setup>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 const config = useRuntimeConfig();
 const siteUrl = config.public.publicSiteUrl;
+const staticContentStore = useStaticContentStore();
+await staticContentStore.loadContent();
 
 useHead({
-  htmlAttrs: {
-    lang: "sv",
-  },
-
   script: [
     {
       key: "schema-org-data",
@@ -32,7 +32,7 @@ useHead({
           height: 630,
         },
 
-        telephone: "+46-33-722-24-00",
+        telephone: "+46337222400",
         email: "info@adinq.se",
 
         address: {

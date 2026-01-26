@@ -21,16 +21,28 @@ import IconEmojioneV1GrowingHeart from "~icons/emojione-v1/growing-heart";
       <div
         class="mt-4 flex flex-col flex-wrap items-center justify-center gap-x-4 gap-y-2 justify-self-center sm:mx-12 md:mx-0 lg:flex-row"
       >
-        <NavbarLink text="Hem" route="/"></NavbarLink>
+        <NavbarLink :text="staticContent.index" route="/"></NavbarLink>
         <NavbarLink
-          text="Mediaproduktion"
+          :text="staticContent.mediaProduktion"
           route="/media-produktion"
         ></NavbarLink>
-        <NavbarLink text="Dagens ADinQ" route="/dagens-adinq"></NavbarLink>
-        <NavbarLink text="Kundutlåtanden" route="/kundutlatanden"></NavbarLink>
-        <NavbarLink text="Varför oss" route="/varfor-oss"></NavbarLink>
-        <NavbarLink text="Priser" route="/priser"></NavbarLink>
-        <NavbarLink text="Kontakta oss" route="/kontakta-oss"></NavbarLink>
+        <NavbarLink
+          :text="staticContent.kollegor"
+          route="/dagens-adinq"
+        ></NavbarLink>
+        <NavbarLink
+          :text="staticContent.kundutlatanden"
+          route="/kundutlatanden"
+        ></NavbarLink>
+        <NavbarLink
+          :text="staticContent.varforOss"
+          route="/varfor-oss"
+        ></NavbarLink>
+        <NavbarLink :text="staticContent.priser" route="/priser"></NavbarLink>
+        <NavbarLink
+          :text="staticContent.kontaktaOss"
+          route="/kontakta-oss"
+        ></NavbarLink>
         <NavbarLink text="Admin" route="/admin"></NavbarLink>
       </div>
 
@@ -82,8 +94,17 @@ import IconEmojioneV1GrowingHeart from "~icons/emojione-v1/growing-heart";
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "Footer",
+
+  computed: {
+    staticContent() {
+      return useStaticContentStore().getContentByTitle("component - Footer")
+        .content;
+    },
+  },
 
   mounted() {
     window.addEventListener("resize", this.onResize);

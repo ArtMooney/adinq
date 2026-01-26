@@ -2,6 +2,10 @@ import { checkLogin } from "~~/server/utils/check-login.js";
 import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
 import { uploadFile } from "~~/server/routes/cms/r2/upload-file.js";
 import { deleteIfExists } from "~~/server/routes/cms/r2/delete-if-exists.js";
+import {
+  handleJsonFileUploads,
+  handleJsonDeletePrevious,
+} from "~~/server/routes/cms/utils/json-file-handler.js";
 import { cmsTables } from "~~/server/db/schema.ts";
 import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
@@ -28,8 +32,8 @@ export default defineEventHandler(async (event) => {
 
   const db = useDrizzle(event.context.cloudflare.env.DB);
   const tableName = body?.table_id;
-
   const bucket = event.context.cloudflare?.env.FILES;
+
   if (!bucket) {
     throw createError({
       statusCode: 500,
@@ -75,6 +79,15 @@ export default defineEventHandler(async (event) => {
       }
     }
   }
+
+  await handleJsonDeletePrevious(
+    bucket,
+    currentStoredItem,
+    body.item,
+    body.schema,
+  );
+
+  await handleJsonFileUploads(bucket, body.item, body.schema);
 
   try {
     const updatedItem = await db

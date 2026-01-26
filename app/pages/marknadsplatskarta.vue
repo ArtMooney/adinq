@@ -1,23 +1,13 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () =>
+    staticContentStore.getContentByTitle("page - Marknadsplatskarta").content,
+);
 
-useSeoMeta({
-  title: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige | Adinq",
-  description:
-    "Sök bland våra många marknadsplatser över hela Sverige. Interaktiv karta som visar var Adinq har digitala reklamplatser och DOOH-skärmar. Navigera enkelt för att hitta platser nära dig.",
-  ogTitle: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige",
-  ogDescription:
-    "Interaktiv karta som visar var Adinq har digitala reklamplatser och DOOH-skärmar över hela Sverige.",
-  ogImage: `${imageBaseUrl}/small-house-on-island.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Marknadsplatskarta - Våra DOOH-platser över hela Sverige",
-  twitterDescription:
-    "Interaktiv karta som visar var Adinq har digitala reklamplatser över hela Sverige.",
-  twitterImage: `${imageBaseUrl}/small-house-on-island.jpg`,
-});
+useCmsSeo("SEO page - Marknadsplatskarta");
 
 definePageMeta({
   ssr: true,
@@ -43,12 +33,10 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">
-          Sök bland våra många marknadsplatser över hela Sverige!
-        </h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <div class="max-w-3xl px-8 text-lg lg:text-2xl">
-          Navigera i kartan nedan med mus, touchpad eller på mobilen!
+          {{ staticContent.header.subtitle }}
         </div>
 
         <NuxtLink

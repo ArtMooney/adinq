@@ -2,22 +2,12 @@
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
 const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Kundutlatanden").content,
+);
 
-useSeoMeta({
-  title: "Kundutlåtanden - Vad säger våra kunder? | Adinq DOOH",
-  description:
-    "Läs vad våra nöjda kunder säger om Adinq och våra digitala marknadsföringstjänster inom DOOH, butiks-TV och fastighetskommersialisering.",
-  ogTitle: "Kundutlåtanden - Vad säger våra kunder om Adinq?",
-  ogDescription:
-    "Läs vad våra nöjda kunder säger om Adinq och våra digitala marknadsföringstjänster inom DOOH och butiks-TV.",
-  ogImage: `${imageBaseUrl}/roads-gothenburg-evening.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Kundutlåtanden - Vad säger våra kunder om Adinq?",
-  twitterDescription:
-    "Läs vad våra nöjda kunder säger om Adinq och våra digitala marknadsföringstjänster.",
-  twitterImage: `${imageBaseUrl}/high-traffic-roads-gothenburg-evening.jpg`,
-});
+useCmsSeo("SEO page - Kundutlatanden");
 
 definePageMeta({
   ssr: true,
@@ -55,7 +45,7 @@ const { data: testimonials, error } = await useFetch("/api/testimonials", {
         <div
           class="absolute inset-0 flex flex-col items-center justify-center text-center"
         >
-          <h1 class="mx-10 mb-8 md:mx-30">Vad säger våra kunder?</h1>
+          <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
           <NuxtLink
             :to="{ path: '/kundutlatanden', hash: '#testimonials' }"

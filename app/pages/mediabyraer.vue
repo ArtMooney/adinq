@@ -1,23 +1,12 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Mediebyraer").content,
+);
 
-useSeoMeta({
-  title: "DOOH för Mediebyråer - En naturlig del i mediemixen | Adinq",
-  description:
-    "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige. 140+ visningar per dag, filmer som inte går att zappa bort. Perfekt komplement till era kampanjer.",
-  ogTitle: "DOOH för Mediebyråer - En naturlig del i mediemixen",
-  ogDescription:
-    "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige.",
-  ogImage: `${imageBaseUrl}/air-balloons-on-blue-sky.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "DOOH för Mediebyråer - En naturlig del i mediemixen",
-  twitterDescription:
-    "DOOH och butiks-TV som naturlig del i mediemixen. Stor flexibilitet, lokala i hela Sverige.",
-  twitterImage: `${imageBaseUrl}/air-balloons-on-blue-sky.jpg`,
-});
+useCmsSeo("SEO page - Mediebyraer");
 
 definePageMeta({
   ssr: true,
@@ -43,10 +32,10 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">En naturlig del i mediemixen!</h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <div class="max-w-3xl px-8 text-lg lg:text-2xl">
-          Stor flexibilitet - lokala i hela Sverige!
+          {{ staticContent.header.subtitle }}
         </div>
 
         <NuxtLink
@@ -76,18 +65,8 @@ definePageMeta({
       <IconBlob
         icon="streamline-ultimate-color:color-palette-2"
         icon-color="#e09963"
-        title="Butiks TV och digitala storbildskärmar"
-        :message="[
-          'Två kompletterande marknadsplatser. Ett koncept vi är relativt ensamma om och specialiserade på sedan många år.',
-          '',
-          '• Filmerna går inte att klicka eller zappa bort.',
-          '• Du möter folk i en av vardagens få pauser, - i kön till kassan.',
-          '• Hög visningsfrekvens, - från 140 visningar per dag/butik.',
-          '• Enkelt att köpa, enkelt att variera ditt budskap.',
-          '• Köp lokalt på din ort, regionalt eller rikstäckande.',
-          '',
-          'Allt beroende på hur era kunders kampanjer ligger bokade eller vart man vill synas. Vår stora fördel är att vi kan vara lokala i hela Sverige.',
-        ]"
+        :title="staticContent.textBlock.title"
+        :message="formatText(staticContent.textBlock.text)"
         link=""
       ></IconBlob>
     </div>

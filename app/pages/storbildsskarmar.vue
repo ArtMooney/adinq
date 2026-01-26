@@ -1,23 +1,12 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Storbildsskarmar").content,
+);
 
-useSeoMeta({
-  title: "Storbildsskärmar - Tydlig DOOH reklam utomhus | Adinq",
-  description:
-    "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns - stort, tydligt och icke-påtvingande. Flera orter i Sverige. Vi producerar även era slides.",
-  ogTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
-  ogDescription:
-    "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns på flera orter i Sverige.",
-  ogImage: `${imageBaseUrl}/led-screen-gislaved-hq.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Storbildsskärmar - Tydlig DOOH reklam utomhus",
-  twitterDescription:
-    "Tydlig och effektiv marknadsföring med storbildsskärmar. Syns där människor finns.",
-  twitterImage: `${imageBaseUrl}/led-screen-gislaved-hq.jpg`,
-});
+useCmsSeo("SEO page - Storbildsskarmar");
 
 definePageMeta({
   ssr: true,
@@ -43,9 +32,7 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">
-          Tydlig och bra marknadsföring med Storbildsskärmar!
-        </h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <NuxtLink
           :to="{ path: '/storbildsskarmar', hash: '#info' }"
@@ -74,13 +61,13 @@ definePageMeta({
       <IconBlob
         icon="streamline-ultimate-color:saving-money-flower"
         icon-color="#e09963"
-        message="Att synas på Storbildsskärm är ett fantastiskt bra sätt att synas där människor finns! Ett stort antal passerande människor kombinerat med ett medie som är stort, tydligt och som inte är påtvingande är ett vinnande recept. Vi kan erbjuda er att synas på flera olika orter i Sverige. Vår produktionsavdelning kan även hjälpa er att producera era egna slides som sen kan visas på Storbildsskärmarna."
+        :message="formatText(staticContent.textBlock.text)"
         link=""
         class="relative lg:col-span-2"
       ></IconBlob>
 
       <NuxtImg
-        src="led-screen-on-lawn.jpg"
+        :src="`/cms-files/${staticContent.textBlock.image}`"
         alt=""
         sizes="500px sm:640px md:500px"
         width="750"

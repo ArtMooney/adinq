@@ -1,6 +1,6 @@
 <template>
   <div
-    class="[animation:spin_0.6s_linear_infinite] rounded-full border-[3px]"
+    class="animate-[spin_0.6s_linear_infinite] rounded-full border-[3px]"
     :class="[
       size === 'large' ? 'h-10 w-10' : 'h-5 w-5',
       mode === 'dark'

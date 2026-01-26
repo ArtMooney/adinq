@@ -11,7 +11,7 @@ import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regu
     :style="`transform: translateX(${randomX}px) rotate(${randomRotate}deg)`"
   >
     <div
-      class="absolute inset-0 z-0 transform-gpu rounded-xl bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-30"
+      class="absolute inset-0 z-0 transform-gpu rounded-xl bg-linear-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-opacity duration-300 ease-in-out group-hover:opacity-30"
     ></div>
 
     <div v-if="screenshot" class="m-4 border border-white/25">

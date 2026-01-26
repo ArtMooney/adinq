@@ -29,7 +29,7 @@ import IconIconoirXmark from "~icons/iconoir/xmark";
 
       <IconHeroiconsBars2
         @click="showNavbar = !showNavbar"
-        class="block h-8 min-h-8 w-8 min-w-8 cursor-pointer xl:!hidden"
+        class="block h-8 min-h-8 w-8 min-w-8 cursor-pointer xl:hidden!"
       />
 
       <div
@@ -45,57 +45,57 @@ import IconIconoirXmark from "~icons/iconoir/xmark";
           v-if="showNavbar"
           @click="showNavbar = !showNavbar"
           class="absolute top-4 right-4 h-8 min-h-8 w-8 min-w-8 cursor-pointer"
-          :class="[showNavbar && 'xl:!hidden']"
+          :class="[showNavbar && 'xl:hidden!']"
         />
 
         <NavbarLink
           @click="showNavbar = false"
           icon="heroicons:home"
-          text="Hem"
+          :text="staticContent.buttons.index"
           route="/"
         ></NavbarLink>
 
         <NavbarLink
           @click="showNavbar = false"
           icon="ph:film-slate-light"
-          text="Mediaproduktion"
+          :text="staticContent.buttons.mediaProduktion"
           route="/media-produktion"
         ></NavbarLink>
 
         <NavbarLink
           @click="showNavbar = false"
           icon="fluent:people-32-regular"
-          text="Dagens ADinQ"
+          :text="staticContent.buttons.kollegor"
           route="/dagens-adinq"
         ></NavbarLink>
 
         <NavbarLink
           @click="showNavbar = false"
           icon="famicons:chatbubble-ellipses-outline"
-          text="Kundutlåtanden"
+          :text="staticContent.buttons.kundutlatanden"
           route="/kundutlatanden"
         ></NavbarLink>
 
         <NavbarLink
           @click="showNavbar = false"
           icon="proicons:chat-question"
-          text="Varför oss"
+          :text="staticContent.buttons.varforOss"
           route="/varfor-oss"
         ></NavbarLink>
 
         <NavbarLink
           @click="showNavbar = false"
           icon="hugeicons:money-bag-01"
-          text="Priser"
+          :text="staticContent.buttons.priser"
           route="/priser"
         ></NavbarLink>
 
         <div class="group relative">
           <button @click="handleClickContact" class="white">
-            Kontakta oss
+            {{ staticContent.buttons.kontaktaOss }}
           </button>
           <div
-            class="absolute inset-0 z-[-1] w-full rounded-full bg-gradient-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-all duration-300 ease-in-out group-hover:opacity-90"
+            class="absolute inset-0 z-[-1] w-full rounded-full bg-linear-to-r from-red-400 to-red-800 opacity-0 blur-xl transition-all duration-300 ease-in-out group-hover:opacity-90"
             :class="[currentPath === '/kontakta-oss' && 'opacity-60']"
           />
         </div>
@@ -103,7 +103,7 @@ import IconIconoirXmark from "~icons/iconoir/xmark";
         <SocialMediaIcons
           v-if="showNavbar"
           class="mt-4"
-          :class="[showNavbar && 'xl:!hidden']"
+          :class="[showNavbar && 'xl:hidden!']"
         />
       </div>
     </div>
@@ -111,6 +111,8 @@ import IconIconoirXmark from "~icons/iconoir/xmark";
 </template>
 
 <script>
+import { useStaticContentStore } from "~/stores/static-content.js";
+
 export default {
   name: "Navbar",
 
@@ -127,6 +129,11 @@ export default {
   computed: {
     currentPath() {
       return this.$route.path;
+    },
+
+    staticContent() {
+      return useStaticContentStore().getContentByTitle("component - Navbar")
+        .content;
     },
   },
 

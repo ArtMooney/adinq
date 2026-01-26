@@ -2,22 +2,12 @@
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
 const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Priser").content,
+);
 
-useSeoMeta({
-  title: "Priser för DOOH & Butiks-TV reklam | Kostnader & prisexempel",
-  description:
-    "Se prisexempel för DOOH och butiks-TV reklam. Priser varierar beroende på täckning och sändningstid. Transparenta kostnader för storbildsskärmar och digital utomhusreklam.",
-  ogTitle: "Priser för DOOH & Butiks-TV reklam",
-  ogDescription:
-    "Se prisexempel för DOOH och butiks-TV reklam. Transparenta kostnader för digital utomhusreklam.",
-  ogImage: `${imageBaseUrl}/priser-handslag.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Priser för DOOH & Butiks-TV reklam",
-  twitterDescription:
-    "Se prisexempel för DOOH och butiks-TV reklam. Transparenta kostnader för digital utomhusreklam.",
-  twitterImage: `${imageBaseUrl}/priser-handslag.jpg`,
-});
+useCmsSeo("SEO page - Priser");
 
 definePageMeta({
   ssr: true,
@@ -52,7 +42,7 @@ const { data: prices, error } = await useFetch("/api/prices", {
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">Priser</h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <NuxtLink
           :to="{ path: '/priser', hash: '#priser' }"
@@ -70,13 +60,9 @@ const { data: prices, error } = await useFetch("/api/prices", {
     <div
       class="mx-auto flex w-full flex-col items-center justify-center gap-8 text-center sm:max-w-lg lg:max-w-4xl"
     >
-      <h3 class="text-center">Prisexempel</h3>
+      <h3 class="text-center">{{ staticContent.header.title }}</h3>
 
-      <p>
-        Priserna varierar beroende på flera faktorer såsom täckning och
-        sändningstid så vi tillhandahåller endast några förslag för att ge
-        exempel på vilka kostnadsnivåer ni kan förvänta er.
-      </p>
+      <p v-html="formatText(staticContent.prices.text)"></p>
     </div>
 
     <div
@@ -111,7 +97,7 @@ const { data: prices, error } = await useFetch("/api/prices", {
       class="relative mt-32 grid gap-8 px-4 py-8 sm:px-8 lg:grid-cols-2 xl:grid-cols-3"
     >
       <h3 class="my-12 text-center lg:col-span-2 xl:col-span-3">
-        Fler prisexempel
+        {{ staticContent.prices.more }}
       </h3>
 
       <NuxtImg

@@ -2,23 +2,12 @@
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 import IconFluentCommentQuote20Regular from "~icons/fluent/comment-quote-20-regular";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Varfor oss").content,
+);
 
-useSeoMeta({
-  title: "Varför välja Adinq? | Tränga igenom mediebruset med DOOH",
-  description:
-    "Vi fångar ögonblicket då människor står still - sysslolösa en kort stund i vardagen. Varumärkesexponering på digitala annonsytor där människorna finns. Syns på rätt sätt!",
-  ogTitle: "Varför välja Adinq? | Tränga igenom mediebruset med DOOH",
-  ogDescription:
-    "Vi fångar ögonblicket då människor står still och möjliggör varumärkesexponering där människorna finns.",
-  ogImage: `${imageBaseUrl}/crowd-at-concert.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Varför välja Adinq? | Tränga igenom mediebruset",
-  twitterDescription:
-    "Vi fångar ögonblicket då människor står still och möjliggör varumärkesexponering där människorna finns.",
-  twitterImage: `${imageBaseUrl}/crowd-at-concert.jpg`,
-});
+useCmsSeo("SEO page - Varfor oss");
 
 definePageMeta({
   ssr: true,
@@ -44,7 +33,7 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">Varför välja oss?</h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <NuxtLink
           :to="{ path: '/varfor-oss', hash: '#varfor' }"
@@ -67,24 +56,7 @@ definePageMeta({
         style="color: #aaaaaa"
       ></IconFluentCommentQuote20Regular>
 
-      <p>
-        "Hos människan, -det är här allt börjar. Att påverka och skapa
-        förändring hos individen är mångas önskan. Många aktörer vill ha just
-        din uppmärksamhet, men hur gör man egentligen för att tränga igenom
-        mediebruset i dagens informationssamhälle?
-      </p>
-      <p>
-        Vi på ADinQ tror inte att det finns ett enskilt svar. Flera saker spelar
-        in, på grund av att allt börjar hos just människan. Samhället utvecklas
-        i snabb takt på flera sätt, vilket i sin tur påverkar det mänskliga
-        beteendet. För att hänga med krävs det att man anpassar sig.
-      </p>
-      <p>
-        Vi möjliggör varumärkesexponering på platser där människorna finns. Vi
-        fångar ögonblicket då människor står still, -sysslolösa en kort stund i
-        vardagen. På digitala annonsytor i miljöer utanför människors hem. Vi
-        hjälper er att synas på rätt sätt!"
-      </p>
+      <p v-html="formatText(staticContent.quote.text)"></p>
     </div>
 
     <div class="relative mt-32 grid gap-8 p-8">
@@ -101,7 +73,7 @@ definePageMeta({
       <IconBlob
         icon="hugeicons:contact-01"
         icon-color="#6293a5"
-        message="Kontakta oss för mer info"
+        :message="formatText(staticContent.iconBlob.text)"
         link="/kontakta-oss"
       ></IconBlob>
     </div>

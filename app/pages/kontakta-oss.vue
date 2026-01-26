@@ -1,23 +1,12 @@
 <script setup>
 import IconQlementineIconsChevronDoubleDown16 from "~icons/qlementine-icons/chevron-double-down-16";
 
-const config = useRuntimeConfig();
-const imageBaseUrl = config.public.imageBaseUrl;
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Kontakta oss").content,
+);
 
-useSeoMeta({
-  title: "Kontakta oss - Adinq | Digital marknadsföring & DOOH i Borås",
-  description:
-    "Få personlig hjälp från vårt team i Borås. Kontakta oss för frågor om digital marknadsföring, DOOH, butiks-TV och kommersialisering av fastigheter. Vi svarar snabbt!",
-  ogTitle: "Kontakta Adinq - Personlig hjälp från vårt team i Borås",
-  ogDescription:
-    "Få personlig hjälp från vårt team i Borås. Kontakta oss för frågor om digital marknadsföring och DOOH.",
-  ogImage: `${imageBaseUrl}/hands-holding-each-others-arms.jpg`,
-  twitterCard: "summary_large_image",
-  twitterTitle: "Kontakta Adinq - Personlig hjälp från vårt team i Borås",
-  twitterDescription:
-    "Få personlig hjälp från vårt team i Borås. Kontakta oss för digital marknadsföring och DOOH.",
-  twitterImage: `${imageBaseUrl}/hands-holding-each-others-arms.jpg`,
-});
+useCmsSeo("SEO page - Kontakta oss");
 
 definePageMeta({
   ssr: true,
@@ -43,7 +32,7 @@ definePageMeta({
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center"
       >
-        <h1 class="mx-10 mb-8 md:mx-30">Kontakta oss</h1>
+        <h1 class="mx-10 mb-8 md:mx-30">{{ staticContent.header.title }}</h1>
 
         <NuxtLink
           :to="{ path: '/kontakta-oss', hash: '#kontakta-oss' }"
@@ -62,13 +51,13 @@ definePageMeta({
     class="my-32 flex max-w-5xl flex-col gap-8 px-4 sm:px-8 lg:mx-auto"
   >
     <h3 class="text-center sm:px-8 md:px-12">
-      Få personlig hjälp från vårt team i Borås
+      {{ staticContent.header.title }}
     </h3>
 
-    <p class="mb-12 text-center sm:px-16 md:px-32">
-      Vårt team i Borås är redo att hjälpa dig. Vi svarar snabbt på telefon och
-      mejl, och ser till att du får den hjälp du behöver.
-    </p>
+    <p
+      class="mb-12 text-center sm:px-16 md:px-32"
+      v-html="formatText(staticContent.contactForm.text)"
+    ></p>
 
     <form
       v-if="contactForm"
