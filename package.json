@@ -22,7 +22,8 @@
     "db:import:local": "wrangler d1 execute adinq --local --file=adinq-backup-inserts.sql",
     "db:import:dev": "wrangler d1 execute adinq_dev --remote --file=adinq-backup-inserts.sql",
     "db:push": "npm run db:extract:local && npm run db:import",
-    "db:pull": "npm run db:extract && npm run db:import:local"
+    "db:pull": "npm run db:extract && npm run db:import:local",
+    "db:extract:table:local": "./scripts/extract-table.sh database_name table_name exported_table.sql"
   },
   "dependencies": {
     "@nuxt/image": "^2.0.0",
