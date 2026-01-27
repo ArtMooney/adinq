@@ -87,6 +87,26 @@ export const prisexempel = sqliteTable("prisexempel", {
     .notNull(),
 });
 
+export const politisk_reklam = sqliteTable("politisk_reklam", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  title: text("title").notNull(),
+  rad2: text("rad2"),
+  rad3: text("rad3"),
+  rad4: text("rad4"),
+  rad5: text("rad5"),
+  rad6: text("rad6"),
+  rad7: text("rad7"),
+  rad8: text("rad8"),
+  sortOrder: integer("sort_order"),
+  createdAt: text("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: text("updated_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+});
+
 export const static_content = sqliteTable("static_content", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   title: text("title").notNull(),
@@ -123,6 +143,12 @@ export const cmsTables = [
   {
     id: "kundutlatanden",
     name: "Kundutlåtanden",
+    viewMode: "list",
+    backupRef: null,
+  },
+  {
+    id: "politisk_reklam",
+    name: "Politisk Reklam",
     viewMode: "list",
     backupRef: null,
   },
@@ -238,6 +264,21 @@ export const fieldsConfig = {
       required: false,
       hidden: false,
     },
+    sortOrder: { type: "integer", label: "", required: true, hidden: true },
+    createdAt: { type: "date", label: "", required: true, hidden: true },
+    updatedAt: { type: "date", label: "", required: true, hidden: true },
+  },
+
+  politisk_reklam: {
+    id: { type: "integer", label: "", required: true, hidden: true },
+    title: { type: "text", label: "Rad 1", required: true, hidden: false },
+    rad2: { type: "text", label: "Rad 2", required: false, hidden: false },
+    rad3: { type: "text", label: "Rad 3", required: false, hidden: false },
+    rad4: { type: "text", label: "Rad 4", required: false, hidden: false },
+    rad5: { type: "text", label: "Rad 5", required: false, hidden: false },
+    rad6: { type: "text", label: "Rad 6", required: false, hidden: false },
+    rad7: { type: "text", label: "Rad 7", required: false, hidden: false },
+    rad8: { type: "text", label: "Rad 8", required: false, hidden: false },
     sortOrder: { type: "integer", label: "", required: true, hidden: true },
     createdAt: { type: "date", label: "", required: true, hidden: true },
     updatedAt: { type: "date", label: "", required: true, hidden: true },
@@ -425,6 +466,12 @@ export const staticContentTypes = {
       subtitle: "text",
     },
   },
+  "page - PolitiskReklam": {
+    header: {
+      title: "text",
+      text: "textarea",
+    },
+  },
   "component - Navbar": {
     buttons: {
       index: "text",
@@ -459,6 +506,16 @@ export const staticContentTypes = {
     mediebyraer: "textarea",
     kommersialisera: "textarea",
     marknadsplatskarta: "textarea",
+  },
+  "component - PolitiskBlob": {
+    rad1: "text",
+    rad2: "text",
+    rad3: "text",
+    rad4: "text",
+    rad5: "text",
+    rad6: "text",
+    rad7: "text",
+    rad8: "text",
   },
   "SEO page - Index": {
     title: "text",
