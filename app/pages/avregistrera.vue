@@ -1,4 +1,9 @@
 <script setup>
+const staticContentStore = useStaticContentStore();
+const staticContent = computed(
+  () => staticContentStore.getContentByTitle("page - Avregistrera").content,
+);
+
 useNoIndexSeo("Avregistrera");
 
 definePageMeta({
@@ -84,17 +89,8 @@ definePageMeta({
 </template>
 
 <script>
-import { useStaticContentStore } from "~/stores/static-content.js";
-
 export default {
   name: "Avregistrera",
-
-  computed: {
-    staticContent() {
-      return useStaticContentStore().getContentByTitle("page - Avregistrera")
-        .content;
-    },
-  },
 
   data() {
     const config = useRuntimeConfig();
