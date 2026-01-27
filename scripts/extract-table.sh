@@ -18,11 +18,8 @@ echo "Exporting table '${TABLE_NAME}' from database '${DATABASE_NAME}' to '${OUT
 # Export entire database to temporary file
 wrangler d1 export ${DATABASE_NAME} --local --output=.temp-export.sql
 
-# Extract CREATE TABLE and INSERT statements for specific table
-{
-    grep -E "CREATE TABLE .*${TABLE_NAME}" .temp-export.sql
-    grep "INSERT INTO \"${TABLE_NAME}\"" .temp-export.sql
-} > "${OUTPUT_FILE}"
+# Extract only INSERT statements for specific table (data only, no schema)
+grep "INSERT INTO \"${TABLE_NAME}\"" .temp-export.sql > "${OUTPUT_FILE}"
 
 # Remove temporary file
 rm .temp-export.sql
