@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { staticContentTypes } from "~/../server/db/schema";
+import { staticContentTypes } from "~/../server/db/cmsConfig";
 
 export default {
   name: "JsonFields",

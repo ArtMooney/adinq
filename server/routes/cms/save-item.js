@@ -6,7 +6,7 @@ import {
   handleJsonFileUploads,
   handleJsonDeletePrevious,
 } from "~~/server/routes/cms/utils/json-file-handler.js";
-import { cmsTables } from "~~/server/db/schema.ts";
+import { cmsTables } from "~~/server/db/cmsConfig.ts";
 import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
 import { eq } from "drizzle-orm";

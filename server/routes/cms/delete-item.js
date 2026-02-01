@@ -2,7 +2,7 @@ import { checkLogin } from "~~/server/utils/check-login.js";
 import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
 import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
-import { cmsTables } from "~~/server/db/schema.ts";
+import { cmsTables } from "~~/server/db/cmsConfig.ts";
 import { eq } from "drizzle-orm";
 import { deleteIfExists } from "~~/server/routes/cms/r2/delete-if-exists.js";
 import { handleJsonFileDeleteAll } from "~~/server/routes/cms/utils/json-file-handler.js";

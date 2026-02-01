@@ -1,6 +1,6 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
 import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
-import { cmsTables } from "~~/server/db/schema.ts";
+import { cmsTables } from "~~/server/db/cmsConfig.ts";
 import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
 import { inArray } from "drizzle-orm";

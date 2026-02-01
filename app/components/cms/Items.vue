@@ -95,7 +95,7 @@ import { VueDraggableNext } from "vue-draggable-next";
 <script>
 import { useLoginStore } from "~/components/cms/stores/loginStore";
 import { useCmsStore } from "~/components/cms/stores/cmsStore";
-import { graphConfig, staticContentTypes } from "~/../server/db/schema";
+import { graphConfig, staticContentTypes } from "~/../server/db/cmsConfig";
 
 export default {
   name: "CmsItems",

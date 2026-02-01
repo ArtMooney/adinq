@@ -1,4 +1,4 @@
-import { staticContentTypes } from "~~/server/db/schema.ts";
+import { staticContentTypes } from "~~/server/db/cmsConfig.ts";
 import { uploadFile } from "~~/server/routes/cms/r2/upload-file.js";
 import { deleteIfExists } from "~~/server/routes/cms/r2/delete-if-exists.js";
 

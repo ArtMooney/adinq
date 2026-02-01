@@ -4,7 +4,7 @@ import { uploadFile } from "~~/server/routes/cms/r2/upload-file.js";
 import { handleJsonFileUploads } from "~~/server/routes/cms/utils/json-file-handler.js";
 import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
-import { cmsTables } from "~~/server/db/schema.ts";
+import { cmsTables } from "~~/server/db/cmsConfig.ts";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
