@@ -2,7 +2,7 @@
 import { useStaticContentStore } from "~/stores/static-content.js";
 
 const config = useRuntimeConfig();
-const siteUrl = config.public.publicSiteUrl;
+const imageBaseUrl = config.public.imageBaseUrl;
 const staticContentStore = useStaticContentStore();
 await staticContentStore.loadContent();
 
@@ -21,13 +21,13 @@ useHead({
         url: "https://www.adinq.se",
         logo: {
           "@type": "ImageObject",
-          url: `${siteUrl}/images/adinq_vit.svg`,
+          url: `${imageBaseUrl}/adinq_vit.svg`,
           width: 250,
           height: 60,
         },
         image: {
           "@type": "ImageObject",
-          url: `${siteUrl}/images/adinq-presentation-poster.webp`,
+          url: `${imageBaseUrl}/adinq-presentation-poster.webp`,
           width: 1200,
           height: 630,
         },
