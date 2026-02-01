@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { useLoginStore } from "~/components/cms/stores/loginStore";
-import { selectorMonths } from "~~/server/db/schema.ts";
 
 export const useCmsStore = defineStore("cmsStore", {
   state: () => ({
@@ -441,9 +440,7 @@ export const useCmsStore = defineStore("cmsStore", {
           : parseInt(this.selectedYear);
 
       const selectedMonth =
-        this.selectedMonth === "-"
-          ? 0
-          : selectorMonths.indexOf(this.selectedMonth);
+        this.selectedMonth === "-" ? 0 : months.indexOf(this.selectedMonth);
 
       const startDate = new Date(selectedYear, selectedMonth, 1);
 

@@ -24,11 +24,7 @@
         v-model="cmsStore.selectedMonth"
         :disabled="cmsStore.selectedYear === '-'"
       >
-        <option
-          v-for="month in ['-', ...selectorMonths]"
-          :key="month"
-          :value="month"
-        >
+        <option v-for="month in ['-', ...months]" :key="month" :value="month">
           {{ month }}
         </option>
       </select>
@@ -38,7 +34,6 @@
 
 <script>
 import { useCmsStore } from "~/components/cms/stores/cmsStore";
-import { selectorMonths } from "~/../server/db/schema";
 
 export default {
   name: "GraphSelectors",
@@ -53,10 +48,6 @@ export default {
   computed: {
     cmsStore() {
       return useCmsStore();
-    },
-
-    selectorMonths() {
-      return selectorMonths;
     },
   },
 
