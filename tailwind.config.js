@@ -1,4 +1,5 @@
 import plugin from "tailwindcss/plugin";
+import { cmsStyles } from "./tailwind.cms.styles.js";
 
 export default {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
@@ -169,6 +170,8 @@ export default {
         },
       });
     }),
+
+    cmsStyles,
   ],
   safelist: ["border-l", "border-white", "pl-3"],
   corePlugins: {
