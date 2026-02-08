@@ -25,5 +25,9 @@ export default {
       return useCmsStore();
     },
   },
+
+  mounted() {
+    window.scrollTo(0, 0);
+  },
 };
 </script>

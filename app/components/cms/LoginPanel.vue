@@ -14,6 +14,7 @@
         placeholder="Enter email address"
         required
         autocomplete="email"
+        class="text-base"
       />
 
       <input
@@ -22,6 +23,7 @@
         type="password"
         placeholder="Enter password"
         autocomplete="current-password"
+        class="text-base"
       />
 
       <button
@@ -35,7 +37,7 @@
 
       <div
         @click="$emit('resetPasswordSwitch')"
-        class="flex cursor-pointer justify-self-start text-sm underline hover:text-white/75"
+        class="flex cursor-pointer justify-self-start text-sm underline hover:text-neutral-400"
       >
         Forgot your password?
       </div>
@@ -43,7 +45,7 @@
 
     <div
       v-if="showStatusMessage"
-      class="mt-12 w-full bg-[#a38373] p-4 text-base text-black sm:w-2/3 md:w-1/2"
+      class="mt-12 w-full bg-orange-400/70 p-4 text-base text-black sm:w-2/3 md:w-1/2"
     >
       {{ statusMessage }}
     </div>

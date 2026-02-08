@@ -21,7 +21,7 @@
     <div class="flex flex-col items-center px-4 md:px-8">
       <div
         v-if="showStatusMessage"
-        class="w-full justify-self-center bg-[#a38373] p-4 text-base text-black sm:w-2/3 md:w-1/2"
+        class="w-full justify-self-center bg-orange-400/70 p-4 text-base text-black sm:w-2/3 md:w-1/2"
       >
         {{ statusMessage }}
       </div>

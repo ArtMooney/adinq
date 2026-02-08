@@ -56,8 +56,8 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
       <input
         @click.stop
         @change="handleFileInput($event, input.name, item)"
-        :id="`${input.name}-${index}`"
-        :ref="`${input.name}-${index}`"
+        :id="`${inputId}-${index}`"
+        :ref="`${inputId}-${index}`"
         class="hidden"
         type="file"
         :name="`${input.name}`"
@@ -68,7 +68,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 
       <label
         @click.stop
-        :for="`${input.name}-${index}`"
+        :for="`${inputId}-${index}`"
         class="relative m-0 cursor-pointer p-0 text-sm underline"
       >
         <span class="max-w-xs truncate sm:max-w-md">
@@ -91,7 +91,7 @@ import IconCloseCircleOutline from "~icons/ion/close-circle-outline";
 
         <IconCloseCircleOutline
           v-if="isCloseIcon"
-          @click.stop.prevent="removeFile(`${input.name}-${index}`, input.name)"
+          @click.stop.prevent="removeFile(`${inputId}-${index}`, input.name)"
           class="absolute -top-3 -right-6 h-6 min-h-6 w-6 min-w-6 cursor-pointer px-0.5 text-white"
         ></IconCloseCircleOutline>
       </label>
@@ -130,6 +130,10 @@ export default {
   },
 
   computed: {
+    inputId() {
+      return this.input.uniqueId || this.input.name;
+    },
+
     selectValue: {
       get() {
         return this.item[this.input.name] || "";

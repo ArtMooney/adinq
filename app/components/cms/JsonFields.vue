@@ -62,6 +62,7 @@ export default {
       return {
         ...this.baseInput,
         name: fieldKey,
+        uniqueId: label,
         label,
         type: fieldType,
       };
