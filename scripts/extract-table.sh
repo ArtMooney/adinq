@@ -5,7 +5,7 @@
 
 if [ "$#" -ne 3 ]; then
     echo "Usage: ./scripts/extract-table.sh <database-name> <table-name> <output-file>"
-    echo "Example: ./scripts/extract-table.sh adinq users users-export.sql"
+    echo "Example: ./scripts/extract-table.sh database users users-export.sql"
     exit 1
 fi
 
