@@ -47,6 +47,7 @@ export default {
       this.cmsStore.backupRef = table.backupRef;
 
       await this.cmsStore.loadFields();
+      this.cmsStore.loadingFlag = true;
       await this.backupReferencedTable(table);
       await this.cmsStore.loadRows("asc", "sortOrder");
     },
@@ -56,6 +57,7 @@ export default {
 
       this.cmsStore.tableId = this.cmsStore.backupRef;
       await this.cmsStore.loadRows("asc", "sortOrder");
+      this.cmsStore.loadingFlag = true;
 
       const backupItems = this.cmsStore.items.filter(this.isExpiredItem);
       this.cmsStore.tableId = table.id;
@@ -66,6 +68,7 @@ export default {
       await this.cmsStore.deleteItems();
 
       this.cmsStore.tableId = table.id;
+      this.cmsStore.loadingFlag = false;
     },
 
     isExpiredItem(item) {
