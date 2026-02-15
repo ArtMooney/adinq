@@ -15,56 +15,17 @@ const staticContent = computed(
     ></div>
 
     <div
-      class="relative flex h-full w-full flex-col gap-2 rounded bg-neutral-900 p-4 pb-12 sm:p-8"
+      class="relative flex h-full w-full flex-col gap-4 rounded bg-neutral-900 p-4 pb-12 sm:p-8"
     >
-      <p>
-        <span class="mr-1 font-bold text-neutral-400"
-          >{{ staticContent.rad1 }}:</span
-        >
-        {{ reklam.title }}
-      </p>
-      <p>
-        <span class="mr-1 font-bold text-neutral-400"
-          >{{ staticContent.rad2 }}:</span
-        >
-        {{ reklam.rad2 }}
-      </p>
-      <p>
-        <span class="mr-1 font-bold text-neutral-400"
-          >{{ staticContent.rad3 }}:</span
-        >
-        {{ reklam.rad3 }}
-      </p>
-      <p>
-        <span class="mr-1 font-bold text-neutral-400"
-          >{{ staticContent.rad4 }}:</span
-        >
-        {{ reklam.rad4 }}
-      </p>
-      <p>
-        <span class="mr-1 font-bold text-neutral-400"
-          >{{ staticContent.rad5 }}:</span
-        >
-        {{ reklam.rad5 }}
-      </p>
-      <p>
-        <span class="mr-1 font-bold text-neutral-400"
-          >{{ staticContent.rad6 }}:</span
-        >
-        {{ reklam.rad6 }}
-      </p>
-      <p>
-        <span class="mr-1 font-bold text-neutral-400"
-          >{{ staticContent.rad7 }}:</span
-        >
-        {{ reklam.rad7 }}
-      </p>
-      <p>
-        <span class="mr-1 font-bold text-neutral-400"
-          >{{ staticContent.rad8 }}:</span
-        >
-        {{ reklam.rad8 }}
-      </p>
+      <div v-for="i in 8" :key="i">
+        <p class="font-bold text-neutral-400">
+          {{ staticContent[`rad${i}`] }}:
+        </p>
+
+        <p class="break-all">
+          {{ i === 1 ? reklam.title : reklam[`rad${i}`] }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
