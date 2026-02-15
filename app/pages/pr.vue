@@ -34,7 +34,7 @@ const { data: reklam, error } = await useFetch("/api/politisk-reklam", {
       v-html="formatText(staticContent.header.text)"
     ></p>
 
-    <div class="relative mb-32 grid w-full gap-8 p-8">
+    <div class="relative mb-32 grid w-full gap-8 p-4 sm:p-8">
       <NuxtImg
         src="background-bricks-flowers.jpg"
         alt=""
