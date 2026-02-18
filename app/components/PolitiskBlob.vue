@@ -8,6 +8,7 @@ const staticContent = computed(
 
 <template>
   <div
+    v-if="reklam"
     class="group relative min-h-52 cursor-pointer rounded border border-white/25"
   >
     <div
@@ -24,7 +25,7 @@ const staticContent = computed(
 
         <p
           class="break-all"
-          v-html="formatText(i === 1 ? reklam.title : reklam[`rad${i}`])"
+          v-html="formatText(i === 1 ? reklam?.title : reklam?.[`rad${i}`])"
         ></p>
       </div>
     </div>
