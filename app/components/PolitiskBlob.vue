@@ -25,7 +25,9 @@ const staticContent = computed(
 
         <p
           class="break-all"
-          v-html="formatText(i === 1 ? reklam?.title : reklam?.[`rad${i}`])"
+          v-html="
+            formatText((i === 1 ? reklam?.title : reklam?.[`rad${i}`]) ?? '')
+          "
         ></p>
       </div>
     </div>
