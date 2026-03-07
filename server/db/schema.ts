@@ -97,6 +97,7 @@ export const politisk_reklam = sqliteTable("politisk_reklam", {
   rad6: text("rad6"),
   rad7: text("rad7"),
   rad8: text("rad8"),
+  rad9: text("rad9"),
   sortOrder: integer("sort_order"),
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)

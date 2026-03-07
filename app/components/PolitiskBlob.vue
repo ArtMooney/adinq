@@ -18,7 +18,7 @@ const staticContent = computed(
     <div
       class="relative flex h-full w-full flex-col gap-4 rounded bg-neutral-900 p-4 pb-12 sm:p-8"
     >
-      <div v-for="i in 8" :key="i">
+      <div v-for="i in 9" :key="i">
         <p class="font-bold text-neutral-400">
           {{ staticContent[`rad${i}`] }}:
         </p>
