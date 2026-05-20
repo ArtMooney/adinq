@@ -173,7 +173,6 @@ export default {
 
     cmsStyles,
   ],
-  safelist: ["border-l", "border-white", "pl-3"],
   corePlugins: {
     preflight: true,
   },

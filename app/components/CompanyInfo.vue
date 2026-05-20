@@ -45,9 +45,11 @@ export default {
           index > 0 &&
           infoElement.offsetTop === infoElements[index - 1].offsetTop
         ) {
-          infoElement.classList.add("border-l", "border-white", "pl-3");
+          infoElement.style.borderLeft = "1px solid white";
+          infoElement.style.paddingLeft = "0.75rem";
         } else {
-          infoElement.classList.remove("border-l", "border-white", "pl-3");
+          infoElement.style.borderLeft = "";
+          infoElement.style.paddingLeft = "";
         }
       }
     },
