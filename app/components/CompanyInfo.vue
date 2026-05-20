@@ -1,7 +1,7 @@
 <template>
   <div
     ref="companyInfo"
-    class="flex w-2/3 flex-wrap justify-center gap-x-3 gap-y-2 justify-self-center text-xs md:col-span-3 [&>a]:underline [&>a]:opacity-40 [&>a]:hover:opacity-50 [&>p]:opacity-40"
+    class="flex w-2/3 max-w-xl flex-wrap justify-center gap-x-3 gap-y-2 justify-self-center text-xs md:col-span-3 [&>a]:underline [&>a]:opacity-40 [&>a]:hover:opacity-50 [&>p]:opacity-40"
   >
     <p>{{ staticContent.company }}</p>
     <p>{{ staticContent.address }}</p>
