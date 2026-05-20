@@ -35,14 +35,56 @@ useHead({
         telephone: "+46337222400",
         email: "info@adinq.se",
 
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "Fabriksgatan 11, plan 3",
-          addressLocality: "Borås",
-          addressRegion: "Västra Götalands län",
-          postalCode: "503 38",
-          addressCountry: "SE",
-        },
+        address: [
+          {
+            "@type": "PostalAddress",
+            streetAddress: "Fabriksgatan 11, plan 3",
+            addressLocality: "Borås",
+            addressRegion: "Västra Götalands län",
+            postalCode: "503 38",
+            addressCountry: "SE",
+          },
+          {
+            "@type": "PostalAddress",
+            streetAddress: "Fagottvägen 1",
+            addressLocality: "Eskilstuna",
+            addressRegion: "Södermanlands län",
+            postalCode: "633 47",
+            addressCountry: "SE",
+          },
+        ],
+
+        location: [
+          {
+            "@type": "Place",
+            name: "ADinQ AB - Borås",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Fabriksgatan 11, plan 3",
+              addressLocality: "Borås",
+              addressRegion: "Västra Götalands län",
+              postalCode: "503 38",
+              addressCountry: "SE",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: "57.71735",
+              longitude: "12.94223",
+            },
+          },
+          {
+            "@type": "Place",
+            name: "ADinQ AB - Eskilstuna",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Fagottvägen 1",
+              addressLocality: "Eskilstuna",
+              addressRegion: "Södermanlands län",
+              postalCode: "633 47",
+              addressCountry: "SE",
+            },
+          },
+        ],
 
         geo: {
           "@type": "GeoCoordinates",
@@ -88,6 +130,10 @@ useHead({
           {
             "@type": "City",
             name: "Borås",
+          },
+          {
+            "@type": "City",
+            name: "Eskilstuna",
           },
         ],
 
