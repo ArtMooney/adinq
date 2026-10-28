@@ -38,7 +38,7 @@
     "date-fns": "^4.4.0",
     "drizzle-orm": "^0.45.4",
     "leaflet-gesture-handling": "^1.2.2",
-    "nuxt": "^4.6.2",
+    "nuxt": "^4.6.3",
     "pinia": "^4.1.0",
     "pinia-plugin-persistedstate": "^4.7.1",
     "plyr": "^3.8.5",
@@ -49,15 +49,15 @@
     "vue-router": "^5.4.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20261026.1",
-    "@iconify/json": "^2.2.548",
+    "@cloudflare/workers-types": "^5.20261028.1",
+    "@iconify/json": "^2.2.549",
     "better-sqlite3": "^13.0.3",
     "drizzle-kit": "^0.31.11",
     "esbuild": "^0.28.2",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "unplugin-icons": "^24.0.0",
-    "wrangler": "^4.152.0"
+    "wrangler": "^4.154.0"
   },
   "engines": {
     "node": "^24.15.0"
