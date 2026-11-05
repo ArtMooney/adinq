@@ -26,38 +26,38 @@
     "db:extract:table:local": "./scripts/extract-table.sh database_name table_name exported_table.sql"
   },
   "dependencies": {
-    "@nuxt/image": "^2.2.0",
+    "@nuxt/image": "^2.2.1",
     "@nuxtjs/leaflet": "^1.3.3",
     "@nuxtjs/robots": "^7.0.2",
     "@nuxtjs/sitemap": "^9.1.0",
     "@pinia/nuxt": "^1.0.3",
-    "@tailwindcss/vite": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.4",
     "@vue/devtools-api": "^8.2.1",
     "@vuepic/vue-datepicker": "^14.0.0",
     "chart.js": "^4.6.1",
     "date-fns": "^4.4.0",
     "drizzle-orm": "^0.45.4",
     "leaflet-gesture-handling": "^1.2.2",
-    "nuxt": "^4.6.3",
+    "nuxt": "^4.6.4",
     "pinia": "^4.1.0",
     "pinia-plugin-persistedstate": "^4.7.1",
     "plyr": "^3.8.5",
-    "tailwindcss": "^4.3.3",
-    "vue": "^3.5.44",
+    "tailwindcss": "^4.3.4",
+    "vue": "^3.5.45",
     "vue-chartjs": "^5.3.4",
     "vue-draggable-next": "^2.3.0",
     "vue-router": "^5.4.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20261028.1",
-    "@iconify/json": "^2.2.549",
+    "@cloudflare/workers-types": "^5.20261104.1",
+    "@iconify/json": "^2.2.553",
     "better-sqlite3": "^13.0.3",
     "drizzle-kit": "^0.31.11",
     "esbuild": "^0.28.2",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "unplugin-icons": "^24.0.0",
-    "wrangler": "^4.154.0"
+    "wrangler": "^4.158.0"
   },
   "engines": {
     "node": "^24.15.0"
