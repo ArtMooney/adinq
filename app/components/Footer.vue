@@ -44,6 +44,10 @@ import IconEmojioneV1GrowingHeart from "~icons/emojione-v1/growing-heart";
           route="/kontakta-oss"
         ></NavbarLink>
         <NavbarLink text="Admin" route="/admin"></NavbarLink>
+        <NavbarLink
+          text="Integritet och cookies"
+          route="/integritet"
+        ></NavbarLink>
       </div>
 
       <SocialMediaIcons

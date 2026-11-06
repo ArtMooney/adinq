@@ -1,4 +1,10 @@
-import { sqliteTable, integer, text, real } from "drizzle-orm/sqlite-core";
+import {
+  sqliteTable,
+  integer,
+  text,
+  real,
+  index,
+} from "drizzle-orm/sqlite-core";
 import { sql } from "drizzle-orm";
 
 export const users = sqliteTable("users", {
@@ -14,6 +20,18 @@ export const users = sqliteTable("users", {
     .$onUpdate(() => sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
+
+export const adminSessions = sqliteTable(
+  "admin_sessions",
+  {
+    tokenHash: text("token_hash").primaryKey(),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    expiresAt: integer("expires_at").notNull(),
+  },
+  (table) => [index("admin_sessions_expires_at_idx").on(table.expiresAt)],
+);
 
 export const mediaproduktioner = sqliteTable("mediaproduktioner", {
   id: integer("id").primaryKey({ autoIncrement: true }),

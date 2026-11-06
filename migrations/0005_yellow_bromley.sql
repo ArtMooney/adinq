@@ -1,0 +1,1 @@
+ALTER TABLE `politisk_reklam` DROP COLUMN `rad10`;

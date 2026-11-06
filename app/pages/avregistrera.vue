@@ -35,13 +35,6 @@ definePageMeta({
 
         <div class="hidden">
           <input
-            name="clientip"
-            type="text"
-            placeholder="clientip"
-            v-model="formData.clientip"
-          />
-
-          <input
             name="pageuri"
             type="text"
             placeholder="pageuri"
@@ -70,8 +63,12 @@ definePageMeta({
         </div>
 
         <p class="mt-2 max-w-2xl text-[12px] text-gray-300">
-          * När du skickar din email till oss tas du bort från vår maillista.
-          Inga uppgifter lagras på denna webbplats.
+          Din e-postadress skickas till ADinQ AB via Mailgun för att hantera din
+          begäran om avregistrering. Läs mer om uppgifterna och dina rättigheter
+          på sidan
+          <NuxtLink to="/integritet" class="underline"
+            >Integritet och cookies</NuxtLink
+          >.
         </p>
       </form>
 
@@ -101,7 +98,6 @@ export default {
       formData: {
         email: "",
         subject: "avregistrera",
-        clientip: "",
         pageuri: "",
         pagename: "",
         amex: "",
@@ -117,12 +113,6 @@ export default {
       successMessage: false,
       errorMessage: false,
     };
-  },
-
-  async created() {
-    const res = await fetch("https://api.ipify.org?format=json");
-    const ip = await res.json();
-    this.formData.clientip = ip.ip;
   },
 
   mounted() {

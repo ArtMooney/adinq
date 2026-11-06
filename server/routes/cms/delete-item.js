@@ -1,5 +1,4 @@
-import { checkLogin } from "~~/server/utils/check-login.js";
-import { checkAuthentication } from "~~/server/routes/cms/utils/check-authentication.js";
+import { requireAdminSession } from "~~/server/utils/admin-session.js";
 import { useDrizzle } from "~~/server/db/client.ts";
 import * as schema from "~~/server/db/schema.ts";
 import { cmsTables } from "~~/server/db/cmsConfig.ts";
@@ -8,23 +7,8 @@ import { deleteIfExists } from "~~/server/routes/cms/r2/delete-if-exists.js";
 import { handleJsonFileDeleteAll } from "~~/server/routes/cms/utils/json-file-handler.js";
 
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig();
-  const headers = getHeaders(event);
+  await requireAdminSession(event);
   const body = await readBody(event);
-
-  if (!(await checkLogin(headers, config.userName, config.userPass))) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: "Unauthorized",
-    });
-  }
-
-  if (!(await checkAuthentication(event, body?.email, body?.password))) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: "Failed to login",
-    });
-  }
 
   const db = useDrizzle(event.context.cloudflare.env.DB);
   const tableName = body?.table_id;

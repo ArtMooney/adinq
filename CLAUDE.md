@@ -14,7 +14,7 @@
 |--------------|--------------------------------------------------|
 | Framework    | **Nuxt 4** (Vue 3, Nitro)                        |
 | Styling      | **Tailwind CSS v4** (via `@tailwindcss/vite`)    |
-| State        | **Pinia** with `pinia-plugin-persistedstate`     |
+| State        | **Pinia** (in-memory state)     |
 | Database     | **Cloudflare D1** (SQLite) via **Drizzle ORM**   |
 | File storage | **Cloudflare R2**                                |
 | Deploy       | **Cloudflare Pages** (`cloudflare_pages` preset) |
@@ -25,7 +25,7 @@
 | Email        | **Mailgun** (server-side, raw `fetch`)           |
 | Charts       | **Chart.js** via `vue-chartjs`                   |
 | Drag & drop  | `vue-draggable-next`                             |
-| Video        | **Plyr**                                         |
+| Video        | Native HTML video controls                                         |
 | Dates        | **date-fns**, **@vuepic/vue-datepicker**         |
 
 ### Preferences
@@ -130,7 +130,7 @@ adinq/
 │   │   ├── prices.js
 │   │   └── ...
 │   ├── routes/cms/               # CMS admin API routes (authenticated)
-│   │   ├── login.js              # CMS login
+│   │   ├── login.post.js         # CMS login and session creation
 │   │   ├── rows.js               # Fetch rows from a table
 │   │   ├── add-item.js           # Add row
 │   │   ├── save-item.js          # Save row
@@ -144,7 +144,7 @@ adinq/
 │   │   └── cmsConfig.ts          # CMS table and field configuration
 │   └── utils/
 │       ├── check-login.js        # Basic auth check
-│       ├── check-authentication.js
+│       ├── admin-session.js      # Session and same-origin checks
 │       └── mailgun/send-email.js # Mailgun integration
 ├── migrations/                   # Drizzle SQL migrations
 ├── scripts/
@@ -204,9 +204,10 @@ page/component.
 - Import paths: `~~/server/...` (tilde prefix)
 
 ### Authentication
-- **Two-step auth**: Basic Auth (header) + CMS user login (email/password in body)
-- Public APIs (`server/api/`) only require Basic Auth
-- CMS routes (`server/routes/cms/`) require both Basic Auth and CMS login
+- Admin login verifies the password once and creates a random token in an HttpOnly, Secure, SameSite=Strict session cookie. D1 stores the token hash and an eight-hour expiry.
+- Protected CMS routes require that session, POST and a matching Origin; passwords are never persisted in client state or repeated in CRUD requests.
+- Public APIs (`server/api/`) retain their existing Basic Auth headers. Password-reset routes retain Basic Auth plus exact reset-token matching and same-origin POST validation.
+- Logout and password reset revoke server-side sessions. Apply the session-table migration before deploying; see README.md.
 
 ### Pinia stores
 - Defined with `defineStore()` (Options syntax, not Setup syntax)

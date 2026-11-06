@@ -39,24 +39,14 @@ export const useCmsStore = defineStore("cmsStore", {
     async loadTables() {
       this.loadingFlag = true;
       const loginStore = useLoginStore();
-      const config = useRuntimeConfig();
 
       try {
         this.tables = await $fetch("/cms/tables", {
           method: "POST",
-          headers: {
-            Authorization:
-              "Basic " +
-              btoa(config.public.userName + ":" + config.public.userPass),
-          },
-          body: {
-            email: loginStore.email,
-            password: loginStore.password,
-          },
         });
       } catch (err) {
         if (err.status === 401) {
-          loginStore.logout();
+          await loginStore.logout();
           location.reload();
         }
 
@@ -69,19 +59,11 @@ export const useCmsStore = defineStore("cmsStore", {
     async loadFields() {
       this.loadingFlag = true;
       const loginStore = useLoginStore();
-      const config = useRuntimeConfig();
 
       try {
         this.schema = await $fetch("/cms/fields", {
           method: "POST",
-          headers: {
-            Authorization:
-              "Basic " +
-              btoa(config.public.userName + ":" + config.public.userPass),
-          },
           body: {
-            email: loginStore.email,
-            password: loginStore.password,
             table_id: this.tableId,
           },
         });
@@ -93,7 +75,7 @@ export const useCmsStore = defineStore("cmsStore", {
         this.inputError = false;
       } catch (err) {
         if (err.status === 401) {
-          loginStore.logout();
+          await loginStore.logout();
           location.reload();
         }
 
@@ -108,19 +90,11 @@ export const useCmsStore = defineStore("cmsStore", {
 
       this.loadingFlag = true;
       const loginStore = useLoginStore();
-      const config = useRuntimeConfig();
 
       try {
         this.items = await $fetch("/cms/rows", {
           method: "POST",
-          headers: {
-            Authorization:
-              "Basic " +
-              btoa(config.public.userName + ":" + config.public.userPass),
-          },
           body: {
-            email: loginStore.email,
-            password: loginStore.password,
             table_id: this.tableId,
             field_name: fieldName,
             sort_order: sortOrder,
@@ -128,7 +102,7 @@ export const useCmsStore = defineStore("cmsStore", {
         });
       } catch (err) {
         if (err.status === 401) {
-          loginStore.logout();
+          await loginStore.logout();
           location.reload();
         }
 
@@ -160,7 +134,6 @@ export const useCmsStore = defineStore("cmsStore", {
       if (index !== this.showItem) return;
 
       const loginStore = useLoginStore();
-      const config = useRuntimeConfig();
       const item = this.items[index];
       const form = this.formRefs[index];
 
@@ -176,14 +149,7 @@ export const useCmsStore = defineStore("cmsStore", {
           this.editingNewItem ? "/cms/add-item" : "/cms/save-item",
           {
             method: "POST",
-            headers: {
-              Authorization:
-                "Basic " +
-                btoa(config.public.userName + ":" + config.public.userPass),
-            },
             body: {
-              email: loginStore.email,
-              password: loginStore.password,
               item: this.items[index],
               schema: this.schema,
               table_id: this.tableId,
@@ -200,7 +166,7 @@ export const useCmsStore = defineStore("cmsStore", {
         this.editingNewItem = false;
       } catch (err) {
         if (err.status === 401) {
-          loginStore.logout();
+          await loginStore.logout();
           location.reload();
         }
 
@@ -212,7 +178,6 @@ export const useCmsStore = defineStore("cmsStore", {
 
     async saveSortOrder() {
       const loginStore = useLoginStore();
-      const config = useRuntimeConfig();
 
       this.saveFlag = true;
       this.saveAllFlag = true;
@@ -225,14 +190,7 @@ export const useCmsStore = defineStore("cmsStore", {
       try {
         await $fetch("/cms/save-sort-order", {
           method: "POST",
-          headers: {
-            Authorization:
-              "Basic " +
-              btoa(config.public.userName + ":" + config.public.userPass),
-          },
           body: {
-            email: loginStore.email,
-            password: loginStore.password,
             items: items,
             schema: this.schema,
             table_id: this.tableId,
@@ -242,7 +200,7 @@ export const useCmsStore = defineStore("cmsStore", {
         this.itemOpen = false;
       } catch (err) {
         if (err.status === 401) {
-          loginStore.logout();
+          await loginStore.logout();
           location.reload();
         }
 
@@ -255,7 +213,6 @@ export const useCmsStore = defineStore("cmsStore", {
 
     async addItems() {
       const loginStore = useLoginStore();
-      const config = useRuntimeConfig();
 
       this.saveFlag = true;
       this.saveAllFlag = true;
@@ -263,14 +220,7 @@ export const useCmsStore = defineStore("cmsStore", {
       try {
         await $fetch("/cms/add-items", {
           method: "POST",
-          headers: {
-            Authorization:
-              "Basic " +
-              btoa(config.public.userName + ":" + config.public.userPass),
-          },
           body: {
-            email: loginStore.email,
-            password: loginStore.password,
             items: this.items,
             schema: this.schema,
             table_id: this.tableId,
@@ -278,7 +228,7 @@ export const useCmsStore = defineStore("cmsStore", {
         });
       } catch (err) {
         if (err.status === 401) {
-          loginStore.logout();
+          await loginStore.logout();
           location.reload();
         }
 
@@ -292,7 +242,6 @@ export const useCmsStore = defineStore("cmsStore", {
 
     async deleteItems() {
       const loginStore = useLoginStore();
-      const config = useRuntimeConfig();
 
       this.saveFlag = true;
       this.saveAllFlag = true;
@@ -300,14 +249,7 @@ export const useCmsStore = defineStore("cmsStore", {
       try {
         await $fetch("/cms/delete-items", {
           method: "POST",
-          headers: {
-            Authorization:
-              "Basic " +
-              btoa(config.public.userName + ":" + config.public.userPass),
-          },
           body: {
-            email: loginStore.email,
-            password: loginStore.password,
             items: this.items,
             schema: this.schema,
             table_id: this.tableId,
@@ -315,7 +257,7 @@ export const useCmsStore = defineStore("cmsStore", {
         });
       } catch (err) {
         if (err.status === 401) {
-          loginStore.logout();
+          await loginStore.logout();
           location.reload();
         }
 
@@ -329,20 +271,12 @@ export const useCmsStore = defineStore("cmsStore", {
 
     async deleteItem(index) {
       const loginStore = useLoginStore();
-      const config = useRuntimeConfig();
       this.saveFlag = true;
 
       try {
         await $fetch("/cms/delete-item", {
           method: "POST",
-          headers: {
-            Authorization:
-              "Basic " +
-              btoa(config.public.userName + ":" + config.public.userPass),
-          },
           body: {
-            email: loginStore.email,
-            password: loginStore.password,
             item: this.items[index],
             schema: this.schema,
             table_id: this.tableId,
@@ -356,7 +290,7 @@ export const useCmsStore = defineStore("cmsStore", {
         this.editingItem = false;
       } catch (err) {
         if (err.status === 401) {
-          loginStore.logout();
+          await loginStore.logout();
           location.reload();
         }
 

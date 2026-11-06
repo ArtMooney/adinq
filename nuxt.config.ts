@@ -43,7 +43,6 @@ export default defineNuxtConfig({
     "@nuxtjs/leaflet",
     "unplugin-icons/nuxt",
     "@pinia/nuxt",
-    "pinia-plugin-persistedstate/nuxt",
   ],
 
   image: {

@@ -30,8 +30,15 @@ export async function hashPassword(password) {
 }
 
 export async function verifyPassword(password, stored) {
+  if (typeof password !== "string" || typeof stored !== "string") return false;
   const encoder = new TextEncoder();
-  const combined = Uint8Array.from(atob(stored), (c) => c.charCodeAt(0));
+  let combined;
+  try {
+    combined = Uint8Array.from(atob(stored), (c) => c.charCodeAt(0));
+  } catch {
+    return false;
+  }
+  if (combined.length !== 48) return false;
 
   const salt = combined.slice(0, 16);
   const storedHash = combined.slice(16);
@@ -58,5 +65,9 @@ export async function verifyPassword(password, stored) {
   const hashArray = new Uint8Array(hash);
 
   if (hashArray.length !== storedHash.length) return false;
-  return hashArray.every((byte, i) => byte === storedHash[i]);
+  let difference = 0;
+  for (let i = 0; i < hashArray.length; i++) {
+    difference |= hashArray[i] ^ storedHash[i];
+  }
+  return difference === 0;
 }

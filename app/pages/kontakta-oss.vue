@@ -143,13 +143,6 @@ definePageMeta({
 
       <div class="hidden">
         <input
-          name="clientip"
-          type="text"
-          placeholder="clientip"
-          v-model="formData.clientip"
-        />
-
-        <input
           name="pageuri"
           type="text"
           placeholder="pageuri"
@@ -178,9 +171,12 @@ definePageMeta({
       </div>
 
       <p class="mt-6 max-w-2xl text-[12px] text-gray-300">
-        * När du skickar detta formulär vidarebefordras dina uppgifter endast
-        via e-post till ADinQ AB för att kunna svara på din förfrågan.
-        Uppgifterna lagras inte på denna webbplats.
+        ADinQ AB använder uppgifterna för att besvara din förfrågan. Formuläret
+        skickas som e-post via Mailgun. Läs om hur vi hanterar uppgifterna och
+        dina rättigheter på sidan
+        <NuxtLink to="/integritet" class="underline"
+          >Integritet och cookies</NuxtLink
+        >.
       </p>
     </form>
 
@@ -218,7 +214,6 @@ export default {
         city: "",
         message: "",
         subject: "allmanna-fragor",
-        clientip: "",
         pageuri: "",
         pagename: "",
         amex: "",
@@ -233,12 +228,6 @@ export default {
       successMessage: false,
       errorMessage: false,
     };
-  },
-
-  async created() {
-    const res = await fetch("https://api.ipify.org?format=json");
-    const ip = await res.json();
-    this.formData.clientip = ip.ip;
   },
 
   mounted() {

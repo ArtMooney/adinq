@@ -1,9 +1,11 @@
 import { checkLogin } from "~~/server/utils/check-login.js";
 import { useDrizzle } from "~~/server/db/client.ts";
 import { users } from "~~/server/db/schema.ts";
-import { like } from "drizzle-orm";
+import { eq } from "drizzle-orm";
+import { requireAdminPost } from "~~/server/utils/admin-session.js";
 
 export default defineEventHandler(async (event) => {
+  requireAdminPost(event);
   const config = useRuntimeConfig();
   const headers = getHeaders(event);
   const body = await readBody(event);
@@ -15,7 +17,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  if (!body?.validation) {
+  if (typeof body?.validation !== "string" || !body.validation) {
     throw createError({
       statusCode: 400,
       statusMessage: "Missing a validation code",
@@ -26,7 +28,7 @@ export default defineEventHandler(async (event) => {
   const user = await db
     .select()
     .from(users)
-    .where(like(users.resetId, body.validation));
+    .where(eq(users.resetId, body.validation));
 
   if (!user || user.length === 0) {
     throw createError({

@@ -69,8 +69,8 @@ export default {
       window.location.href = protocol + siteDomain;
     },
 
-    logOut() {
-      this.loginStore.logout();
+    async logOut() {
+      await this.loginStore.logout();
       location.reload();
     },
   },

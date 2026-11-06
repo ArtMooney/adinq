@@ -2,10 +2,11 @@
   <ClientOnly>
     <video
       v-if="!errorLoading"
-      ref="videoplayer"
       :src="videoSrc"
       :poster="poster"
       class="aspect-video w-full rounded"
+      controls
+      aria-label="Videospelare"
       playsinline
       preload="none"
     ></video>
@@ -37,24 +38,14 @@ export default {
     return {
       userName: config.public.userName,
       userPass: config.public.userPass,
-      player: null,
       videoSrc: "",
       errorLoading: false,
     };
   },
 
   async mounted() {
-    this.videoSrc = await this.getQcardVideo();
-
-    if (!this.videoSrc) this.errorLoading = true;
-
-    if (this.$refs.videoplayer) {
-      this.$refs.videoplayer.src = this.videoSrc;
-      import("plyr").then(({ default: Plyr }) => {
-        import("plyr/dist/plyr.css");
-        this.player = new Plyr(this.$refs.videoplayer);
-      });
-    }
+    this.videoSrc = (await this.getQcardVideo()) || "";
+    this.errorLoading = !this.videoSrc;
   },
 
   methods: {

@@ -92,7 +92,7 @@ export default {
 
       if (isPasswordSwitch) {
         this.switchPanel("newPassword");
-      } else if (!this.loginStore.isValid) {
+      } else {
         this.switchPanel("login");
       }
     },

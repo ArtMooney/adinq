@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center px-4 py-12 md:px-8">
     <form
-      @submit.prevent
+      @submit.prevent="loginForm"
       class="grid w-full gap-2 sm:w-2/3 md:w-1/2"
       name="login"
     >
@@ -23,13 +23,14 @@
         type="password"
         placeholder="Enter password"
         autocomplete="current-password"
+        required
         class="text-base"
       />
 
       <button
-        @click="loginForm"
         type="submit"
         data-wait="Please wait..."
+        :disabled="loginStore.pending"
         class="mt-4 bg-[#548b63]! text-white hover:bg-[#6bad7d]!"
       >
         {{ buttonText }}
@@ -59,11 +60,7 @@ export default {
   name: "LoginPanel",
 
   data() {
-    const config = useRuntimeConfig();
-
     return {
-      userName: config.public.userName,
-      userPass: config.public.userPass,
       loginEmail: "",
       loginPassword: "",
       showStatusMessage: false,
@@ -80,7 +77,11 @@ export default {
 
   methods: {
     async loginForm(event) {
-      if (!emailValidator(event.target.parentElement)) {
+      if (this.loginStore.pending) return;
+
+      const form = event.currentTarget;
+
+      if (!emailValidator(form)) {
         this.statusMessage =
           "One or more email addresses that you have provided do not appear to have a correct format.";
         this.showStatusMessage = true;
@@ -88,36 +89,21 @@ export default {
         this.clearErrorWhenClicked();
       }
 
-      if (
-        requiredFields(event.target.parentElement) &&
-        emailValidator(event.target.parentElement)
-      ) {
+      if (requiredFields(form) && emailValidator(form)) {
         const savedText = this.buttonText;
-        this.buttonText = event.target.dataset.wait;
+        this.buttonText = "Please wait...";
 
         try {
-          await $fetch("/cms/login", {
-            method: "POST",
-            headers: {
-              Authorization:
-                "Basic " + btoa(this.userName + ":" + this.userPass),
-            },
-            body: JSON.stringify({
-              email: this.loginEmail,
-              password: this.loginPassword,
-            }),
-          });
-
-          this.loginStore.login(this.loginEmail, this.loginPassword);
+          await this.loginStore.login(this.loginEmail, this.loginPassword);
           this.showStatusMessage = false;
-          this.buttonText = savedText;
         } catch (err) {
           this.statusMessage =
             err.statusMessage || "Something went wrong. Please try again.";
           this.showStatusMessage = true;
-          this.buttonText = savedText;
-
           this.clearErrorWhenClicked();
+        } finally {
+          this.loginPassword = "";
+          this.buttonText = savedText;
         }
       }
     },

@@ -1,40 +1,65 @@
 import { defineStore } from "pinia";
 
-const THIRTY_DAYS = 1000 * 60 * 60 * 24 * 30;
-
 export const useLoginStore = defineStore("loginStore", {
   state: () => ({
-    isLoggedIn: false,
-    email: null,
-    password: null,
+    user: null,
     expiresAt: null,
+    pending: false,
+    initialized: false,
   }),
 
   getters: {
     isValid() {
-      if (this.isLoggedIn && this.expiresAt && Date.now() >= this.expiresAt) {
-        return false;
-      }
-
-      return this.isLoggedIn;
+      return Boolean(this.user && this.expiresAt > Date.now());
     },
   },
 
   actions: {
-    login(email, password) {
-      this.isLoggedIn = true;
-      this.email = email;
-      this.password = password;
-      this.expiresAt = Date.now() + THIRTY_DAYS;
+    async initialize() {
+      this.pending = true;
+
+      try {
+        const session = await $fetch("/cms/session");
+        this.user = session.user;
+        this.expiresAt = session.expiresAt;
+      } catch (error) {
+        this.user = null;
+        this.expiresAt = null;
+
+        if (error.status !== 401) throw error;
+      } finally {
+        this.pending = false;
+        this.initialized = true;
+      }
     },
 
-    logout() {
-      this.isLoggedIn = false;
-      this.email = null;
-      this.password = null;
-      this.expiresAt = null;
+    async login(email, password) {
+      this.pending = true;
+
+      try {
+        const session = await $fetch("/cms/login", {
+          method: "POST",
+          body: { email, password },
+        });
+
+        this.user = session.user;
+        this.expiresAt = session.expiresAt;
+        this.initialized = true;
+      } finally {
+        this.pending = false;
+      }
+    },
+
+    async logout() {
+      this.pending = true;
+
+      try {
+        await $fetch("/cms/logout", { method: "POST" });
+        this.user = null;
+        this.expiresAt = null;
+      } finally {
+        this.pending = false;
+      }
     },
   },
-
-  persist: true,
 });
